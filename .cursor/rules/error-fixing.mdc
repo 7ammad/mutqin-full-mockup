@@ -1,0 +1,179 @@
+﻿***
+title: TypeScript Error Fixing Protocol
+description: Automated error detection and fixing workflow
+tags: [typescript, debugging, validation]
+alwaysApply: true
+globs: ["src/**/*.ts", "src/**/*.tsx", "*.ts", "*.tsx", "**/*.ts", "**/*.tsx"]
+***
+
+# TypeScript Error Fixing Protocol
+
+## Auto-Validation After Code Changes
+
+After implementing code, automatically suggest:
+"Validate TypeScript: npm run type-check (or tsc --noEmit)"
+
+## Error-Fixing Workflow
+
+When TypeScript errors are found:
+
+### 1. Detection Phase
+Suggest running:
+- `tsc --noEmit` (standard TypeScript check)
+- `npm run type-check` (if script exists)
+- `next typegen && tsc --noEmit` (for Next.js)
+
+### 2. Categorization Phase
+Group errors by type:
+- **Priority 1:** Missing imports (icons, components, types)
+- **Priority 2:** Type mismatches (props, arguments)
+- **Priority 3:** Complex errors (requires investigation)
+
+Show summary:
+"dY"? Found [X] errors across [Y] files:
+- P1 (Missing imports): [count]
+- P2 (Type mismatches): [count]
+- P3 (Complex): [count]
+
+Should we fix these now? Starting with P1..."
+
+### 3. Batch Fixing Phase
+- Fix similar errors together (use Composer for 3-5 files)
+- Start with highest-priority/highest-count errors
+- Validate after each batch
+- Regenerate error list if needed
+
+### 4. Validation Loop
+After each fix batch:
+- Re-run validation
+- Check if errors decreased
+- Continue until 0 errors
+- Final build test
+
+## Fix Patterns (Auto-Apply)
+
+### Missing Imports
+**Error:** `Cannot find name 'X'`
+
+**Fix:**
+1. Check if X should be imported
+2. Find existing import statement from same package
+3. Add X to that import (alphabetically)
+4. If no import exists, add new import at top
+
+**Example (Lucide React icons):**
+```typescript
+// Before
+import { AlertCircle } from "lucide-react";
+
+// After (adding FileText)
+import { AlertCircle, FileText } from "lucide-react";
+```
+
+### Type Mismatches
+**Error:** `Type 'X' is not assignable to 'Y'`
+
+**Fix:**
+1. Review type definitions
+2. Identify mismatch (prop name, type, structure)
+3. Ask user: "Fix component interface or calling code?"
+4. Apply fix
+5. Explain what was changed and why
+
+### Prop Errors
+**Error:** `Property 'X' does not exist on type 'Y'`
+
+**Fix:**
+1. Check component prop interface
+2. Check all usages of component
+3. Determine correct prop name
+4. Update either:
+   - Component interface (if prop missing)
+   - Calling code (if wrong prop name)
+5. Show before/after code
+
+## Communication Protocol
+
+### After Code Changes:
+"�o. Code implemented. Ready to validate?
+
+Run: [appropriate command based on project]"
+
+### When Errors Found:
+"dY"' Found [X] errors across [Y] files.
+
+Priority breakdown:
+- P1 (Missing imports): [X]
+- P2 (Type issues): [Y]
+- P3 (Complex): [Z]
+
+Should we fix these now? Starting with P1..."
+
+### After Each Batch:
+"�o. Fixed [X] files. Re-validating...
+
+Result: [X] errors remaining (decreased by [Y])
+Next: [Action]"
+
+### When Complete:
+"�o. All TypeScript errors fixed!
+
+Summary:
+- Files fixed: [X]
+- Errors resolved: [Y]
+- Validation: PASSING �o"
+- Build: [READY/TESTED/PASS]
+
+Ready for next phase?"
+
+## Rules Enforcement
+
+### dYs� NEVER Do:
+- Skip validation after code changes
+- Use `@ts-ignore` to hide errors (explain issue instead)
+- Add `any` types (suggest proper types)
+- Proceed to next phase with failing validation
+- Commit code with TypeScript errors
+
+### �o. ALWAYS Do:
+- Suggest validation after code changes
+- Group similar errors for batch fixing
+- Use Composer for multi-file fixes
+- Use Chat for complex single-file issues
+- Explain root cause when fixing complex errors
+- Validate incrementally (after each batch)
+- Re-validate until 0 errors
+
+## Project Type Detection
+
+Automatically detect project type and suggest appropriate commands:
+
+**Next.js projects** (has `next` in package.json):
+- Validation: `npx next typegen && tsc --noEmit`
+- Build: `npm run build`
+
+**React/Vite projects** (has `vite` in package.json):
+- Validation: `tsc --noEmit`
+- Build: `npm run build`
+
+**Node.js projects:**
+- Validation: `tsc --noEmit`
+- Build: `tsc` or `npm run build`
+
+**Any TypeScript project:**
+- Validation: `tsc --noEmit`
+- Watch mode: `tsc --noEmit --watch`
+
+## Tool Selection
+
+**Use Composer (Cmd+I) for:**
+- Fixing 3-5 files with similar errors
+- Batch icon import updates
+- Multi-file type corrections
+- Applying same pattern across files
+
+**Use Chat (Cmd+L) for:**
+- Single complex file with multiple error types
+- Investigation and explanation needed
+- User wants to review before applying
+- Debugging unusual TypeScript issues

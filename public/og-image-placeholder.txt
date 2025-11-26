@@ -1,0 +1,18 @@
+OG Image Required
+
+File: public/og-image.png
+Size: 1200x630px
+Format: PNG
+
+Content should include:
+- Mutqin branding (مُتْقِن)
+- Tagline: "مُوَحَّد. مُوثَّق. مُتاح." / "Unified. Verified. Accessible."
+- SCFHS alignment badge (optional)
+- Professional medical/education theme
+
+Optional variants:
+- public/og-image-ar.png (Arabic version)
+- public/og-image-en.png (English version)
+
+Note: This is a placeholder file. Replace with actual OG image before production deployment.
+

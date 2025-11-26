@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedEvent KSA - Regulated Ecosystem</title>
+    
+    <!-- React & Tailwind -->
+    <script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Recharts -->
+    <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body { transition: background-color 0.3s, color 0.3s; }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; opacity: 0; transform: translateY(10px); }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+        /* Floating Controller */
+        .demo-float {
+            position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px);
+            padding: 8px 12px; border-radius: 50px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 8px 10px -6px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.15); display: flex; gap: 12px; align-items: center;
+            transition: transform 0.2s;
+        }
+        .demo-float:hover { transform: translateY(-2px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4); }
+    </style>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], cairo: ['Cairo', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857', 900: '#064e3b' },
+                        gold: { 500: '#d97706', 600: '#b45309' }, // For Regulator/Gov
+                        dark: { 900: '#0f172a', 800: '#1e293b', 700: '#334155' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = window.Recharts;
+
+        // --- ICONS ---
+        const IconBase = ({ children, size = 20, className = "", flipRtl = false }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`${className} ${flipRtl ? 'rtl:scale-x-[-1]' : ''}`}>{children}</svg>
+        );
+        
+        const Icons = {
+            Shield: (p) => <IconBase {...p}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></IconBase>,
+            Users: (p) => <IconBase {...p}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></IconBase>,
+            Building: (p) => <IconBase {...p}><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M16 18h.01"/></IconBase>,
+            Dollar: (p) => <IconBase {...p}><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></IconBase>,
+            Gov: (p) => <IconBase {...p}><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></IconBase>, // Regulator Icon
+            Chart: (p) => <IconBase {...p}><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></IconBase>,
+            List: (p) => <IconBase {...p}><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></IconBase>,
+            Settings: (p) => <IconBase {...p}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></IconBase>,
+            Grid: (p) => <IconBase {...p}><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></IconBase>,
+            Plus: (p) => <IconBase {...p}><path d="M5 12h14"/><path d="M12 5v14"/></IconBase>,
+            Search: (p) => <IconBase {...p}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></IconBase>,
+            Bell: (p) => <IconBase {...p}><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></IconBase>,
+            Sun: (p) => <IconBase {...p}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></IconBase>,
+            Moon: (p) => <IconBase {...p}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></IconBase>,
+            Globe: (p) => <IconBase {...p}><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></IconBase>,
+            Sparkles: (p) => <IconBase {...p}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></IconBase>,
+            Check: (p) => <IconBase {...p}><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></IconBase>,
+            LogOut: (p) => <IconBase {...p} flipRtl={true}><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></IconBase>,
+            Wallet: (p) => <IconBase {...p}><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></IconBase>,
+            QrCode: (p) => <IconBase {...p}><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></IconBase>,
+            ArrowRight: (p) => <IconBase {...p} flipRtl={true}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></IconBase>,
+            ChevronRight: (p) => <IconBase {...p} flipRtl={true}><path d="m9 18 6-6-6-6"/></IconBase>,
+            Link: (p) => <IconBase {...p}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></IconBase>,
+            Download: (p) => <IconBase {...p}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></IconBase>,
+            Loader: (p) => <IconBase {...p} className="animate-spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></IconBase>
+        };
+        const { LayoutDashboard, Calendar, Users, Shield, Bell, Search, LogOut, Plus, Check, Dollar, GraduationCap, Sparkles, ArrowRight, ChevronRight, Building, Wallet, QrCode, Sun, Moon, Globe, List, Link, Download, Loader, Gov } = Icons;
+
+        // --- MOCK DATA & TRANSLATIONS ---
+        const TRANSLATIONS = {
+            en: { 
+                title: "MedEvent", welcome: "Welcome back", 
+                // Roles
+                organizer: "Organizer", vendor: "Vendor", regulator: "Regulator", hcp: "HCP",
+                // Menus
+                dashboard: "Dashboard", my_events: "My Events", marketplace: "Marketplace", sponsorships: "Sponsorships", 
+                approvals: "Approvals", discover: "Discover", wallet: "My Wallet",
+                // Actions
+                create_event: "Create Event", publish: "Publish Event", sponsor_now: "Sponsor Now", 
+                approve: "Approve Event", export_pdf: "Export PDF", share_li: "Share to LinkedIn",
+                verify: "Verify License", register: "Register", show_qr: "Show QR Code",
+                // Labels
+                status: "Status", date: "Date", location: "Location", cme: "CME",
+                est_funding: "Est. Funding", sfda_check: "SFDA API Check", enter_license: "Enter License (MDS-REQ):",
+                verifying: "Verifying with SFDA...", verified: "License Verified",
+                reg_pending: "Pending Approval", reg_approved: "Approved by SCFHS",
+                // Toasts
+                event_created: "Event Created! Waiting for Sponsorship...",
+                sponsor_sent: "Funding Secured! Sent to SCFHS for Review...",
+                approved: "Approved! Event is now LIVE for HCPs.",
+                registered: "Registered! Added to Wallet."
+            },
+            ar: { 
+                title: "ميد إيفنت", welcome: "مرحباً بك",
+                organizer: "المنظم", vendor: "الممول", regulator: "الهيئة (SCFHS)", hcp: "الممارس",
+                dashboard: "لوحة التحكم", my_events: "فعالياتي", marketplace: "سوق الرعاية", sponsorships: "رعاياتي",
+                approvals: "الموافقات", discover: "اكتشف", wallet: "محفظتي",
+                create_event: "إنشاء فعالية", publish: "نشر الفعالية", sponsor_now: "ادعم الآن",
+                approve: "اعتماد الفعالية", export_pdf: "تصدير PDF", share_li: "نشر في LinkedIn",
+                verify: "تحقق من الترخيص", register: "تسجيل", show_qr: "عرض الباركود",
+                status: "الحالة", date: "التاريخ", location: "الموقع", cme: "ساعات",
+                est_funding: "التمويل المتوقع", sfda_check: "التحقق من الغذاء والدواء", enter_license: "أدخل رقم الترخيص:",
+                verifying: "جاري التحقق...", verified: "تم التحقق من الترخيص",
+                reg_pending: "بانتظار الاعتماد", reg_approved: "معتمد من الهيئة",
+                event_created: "تم الإنشاء! بانتظار الرعاية...",
+                sponsor_sent: "تم التمويل! أرسلت للاعتماد...",
+                approved: "تم الاعتماد! الفعالية متاحة للتسجيل.",
+                registered: "تم التسجيل! أضيفت للمحفظة."
+            }
+        };
+
+        const INITIAL_EVENTS = [
+            { id: 1, title: "Riyadh Heart Summit", titleAr: "قمة الرياض للقلب", date: "2025-11-25", loc: "KFSHRC", locAr: "التخصصي", spec: "Cardiology", cme: 12, status: "Published", sponsored: true, approved: true, goal: 50000 },
+            { id: 2, title: "Future of Nursing", titleAr: "مستقبل التمريض", date: "2025-12-02", loc: "Jeddah", locAr: "جدة", spec: "Nursing", cme: 6, status: "Pending Funding", sponsored: false, approved: false, goal: 30000 }
+        ];
+
+        // --- COMPONENTS ---
+
+        const Sidebar = ({ role, lang, setView, activeTab, setActiveTab }) => {
+            const t = TRANSLATIONS[lang];
+            const menus = {
+                Organizer: [
+                    { id: 'dashboard', icon: Icons.Grid, label: t.dashboard },
+                    { id: 'events', icon: Icons.List, label: t.my_events }
+                ],
+                Vendor: [
+                    { id: 'marketplace', icon: Icons.Search, label: t.marketplace },
+                    { id: 'sponsorships', icon: Icons.Dollar, label: t.sponsorships }
+                ],
+                Regulator: [
+                    { id: 'approvals', icon: Icons.Shield, label: t.approvals },
+                    { id: 'reports', icon: Icons.Chart, label: t.dashboard }
+                ],
+                HCP: [
+                    { id: 'discover', icon: Icons.Search, label: t.discover },
+                    { id: 'wallet', icon: Icons.Wallet, label: t.wallet }
+                ]
+            };
+
+            return (
+                <div className="w-64 bg-white dark:bg-dark-800 border-r border-slate-200 dark:border-slate-700 hidden lg:flex flex-col transition-colors">
+                    <div className="p-6 border-b border-slate-100 dark:border-slate-700 cursor-pointer" onClick={() => setView('landing')}>
+                        <div className="flex items-center gap-2 font-bold text-xl text-slate-900 dark:text-white">
+                            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white"><Icons.Shield size={18}/></div>
+                            {t.title}
+                        </div>
+                        <div className="mt-2 inline-block px-2 py-0.5 bg-slate-100 dark:bg-slate-700 rounded text-[10px] font-bold uppercase text-slate-500 dark:text-slate-300 tracking-wider">
+                            {role === 'Regulator' ? 'SCFHS Admin' : role} Portal
+                        </div>
+                    </div>
+                    <div className="p-4 space-y-1 flex-1">
+                        {menus[role].map(item => (
+                            <button key={item.id} onClick={() => setActiveTab(item.id)} className={`w-full text-start px-4 py-3 rounded-xl font-medium flex items-center gap-3 transition ${activeTab === item.id ? 'bg-slate-900 dark:bg-emerald-600 text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'}`}>
+                                <item.icon size={18} /> {item.label}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="p-4 border-t border-slate-100 dark:border-slate-700">
+                        <button onClick={() => setView('landing')} className="w-full text-start px-4 py-3 rounded-xl font-medium flex items-center gap-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition"><Icons.LogOut size={18} flipRtl={true}/> {t.logout}</button>
+                    </div>
+                </div>
+            );
+        };
+
+        const Header = ({ view, t, lang, setLang, darkMode, setDarkMode }) => (
+            <div className="h-16 bg-white dark:bg-dark-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-40 transition-colors">
+                <div className="font-bold text-slate-800 dark:text-white">{t.welcome}, <span className="text-emerald-600">{view} User</span></div>
+                <div className="flex items-center gap-3">
+                    <button onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold flex gap-1"><Icons.Globe size={16}/> {lang.toUpperCase()}</button>
+                    <button onClick={() => setDarkMode(!darkMode)} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300">{darkMode ? <Icons.Sun size={18}/> : <Icons.Moon size={18}/>}</button>
+                    <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full border-2 border-emerald-500"></div>
+                </div>
+            </div>
+        );
+
+        // --- VIEWS ---
+
+        // 1. ORGANIZER (Create -> Pending Funding)
+        const OrgEvents = ({ events, onCreate, t, lang }) => {
+            const [showWizard, setShowWizard] = useState(false);
+            const [form, setForm] = useState({ title: '', desc: '', sponsor: false });
+            
+            return (
+                <div className="fade-in space-y-6">
+                    <div className="flex justify-between items-center">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white">{t.my_events}</h2>
+                        <button onClick={() => setShowWizard(true)} className="bg-slate-900 dark:bg-emerald-600 text-white px-4 py-2 rounded-lg font-bold flex gap-2 hover:opacity-90"><Icons.Plus size={18}/> {t.create_event}</button>
+                    </div>
+                    
+                    <div className="bg-white dark:bg-dark-800 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                        <table className="w-full text-sm text-left text-slate-600 dark:text-slate-300">
+                            <thead className="bg-slate-50 dark:bg-slate-700/50 font-bold"><tr><th className="p-4">{t.title_label}</th><th className="p-4">{t.date}</th><th className="p-4">{t.status}</th></tr></thead>
+                            <tbody>
+                                {events.map(ev => (
+                                    <tr key={ev.id} className="border-t border-slate-100 dark:border-slate-700">
+                                        <td className="p-4 font-medium text-slate-900 dark:text-white">{lang==='ar' && ev.titleAr ? ev.titleAr : ev.title}</td>
+                                        <td className="p-4">{ev.date}</td>
+                                        <td className="p-4">
+                                            <span className={`px-2 py-1 rounded text-xs font-bold ${
+                                                ev.status === 'Published' ? 'bg-emerald-100 text-emerald-700' : 
+                                                ev.status === 'Pending Approval' ? 'bg-orange-100 text-orange-700' : 
+                                                'bg-slate-100 text-slate-600'
+                                            }`}>{ev.status}</span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {showWizard && (
+                        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 fade-in">
+                            <div className="bg-white dark:bg-dark-800 w-full max-w-md rounded-2xl p-6 space-y-4 shadow-2xl">
+                                <h3 className="font-bold text-lg dark:text-white">{t.create_event}</h3>
+                                <input className="w-full p-3 border rounded-xl dark:bg-dark-900 dark:border-slate-600 dark:text-white" placeholder="Event Title" value={form.title} onChange={e=>setForm({...form, title:e.target.value})}/>
+                                <div onClick={()=>setForm({...form, sponsor:!form.sponsor})} className={`p-3 rounded-xl border cursor-pointer flex items-center gap-3 ${form.sponsor ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20' : 'dark:border-slate-600'}`}>
+                                    <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${form.sponsor?'bg-emerald-500 text-white':''}`}>{form.sponsor && <Icons.Check size={12}/>}</div>
+                                    <div><div className="font-bold text-sm dark:text-white">{t.sponsor_req}</div><div className="text-xs text-slate-500">Est. 50k SAR</div></div>
+                                </div>
+                                <button onClick={()=>{onCreate(form); setShowWizard(false)}} className="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold">{t.publish}</button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        // 2. VENDOR (Pending Funding -> Pending Approval)
+        const VendorMarket = ({ events, onSponsor, t }) => {
+            const [loadingId, setLoadingId] = useState(null);
+            const opps = events.filter(e => !e.sponsored);
+
+            const handleBid = (id) => {
+                const lic = prompt(t.enter_license);
+                if(!lic) return;
+                setLoadingId(id);
+                // Simulate API Call
+                setTimeout(() => {
+                    setLoadingId(null);
+                    onSponsor(id);
+                }, 2000);
+            };
+
+            return (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+                    {opps.map(ev => (
+                        <div key={ev.id} className="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition group">
+                            <div className="flex justify-between mb-4"><span className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-xs font-bold dark:text-white">{ev.spec}</span><span className="text-emerald-600 font-bold">SAR {ev.goal.toLocaleString()}</span></div>
+                            <h4 className="font-bold dark:text-white mb-4 text-lg">{ev.title}</h4>
+                            <button onClick={() => handleBid(ev.id)} disabled={loadingId === ev.id} className="w-full bg-slate-900 dark:bg-blue-600 text-white py-2.5 rounded-xl font-bold text-sm flex justify-center items-center gap-2 hover:opacity-90 disabled:opacity-50">
+                                {loadingId === ev.id ? <><Icons.Loader size={16}/> {t.verifying}</> : t.sponsor_now}
+                            </button>
+                            {loadingId !== ev.id && <div className="text-[10px] text-center mt-2 text-slate-400 flex justify-center gap-1"><Icons.Shield size={10}/> {t.sfda_check}</div>}
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        // 3. REGULATOR (Pending Approval -> Published)
+        const RegulatorDash = ({ events, onApprove, t }) => {
+            const pending = events.filter(e => e.status === 'Pending Approval');
+            return (
+                <div className="fade-in space-y-6">
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white flex gap-2 items-center"><Icons.Gov className="text-gold-500"/> {t.approvals} Queue</h2>
+                    <div className="bg-white dark:bg-dark-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                        {pending.length === 0 ? <div className="p-10 text-center text-slate-400">No items awaiting approval.</div> : 
+                        pending.map(ev => (
+                            <div key={ev.id} className="p-6 border-b border-slate-100 dark:border-slate-700 last:border-0 flex justify-between items-center">
+                                <div>
+                                    <h4 className="font-bold text-lg dark:text-white">{ev.title}</h4>
+                                    <div className="text-sm text-slate-500 mt-1 flex gap-4">
+                                        <span>🏢 {ev.loc}</span>
+                                        <span className="text-emerald-600">💰 Funded by Pharma</span>
+                                    </div>
+                                </div>
+                                <div className="flex gap-2">
+                                    <button className="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 flex gap-2"><Icons.Link size={16}/> LinkedIn</button>
+                                    <button className="px-4 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 flex gap-2"><Icons.Download size={16}/> PDF</button>
+                                    <button onClick={() => onApprove(ev.id)} className="px-6 py-2 bg-gold-600 text-white rounded-lg text-sm font-bold hover:bg-gold-500 shadow-lg shadow-gold-600/20">{t.approve}</button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // 4. HCP (Published -> Synced)
+        const HCPDash = ({ events, t, lang }) => {
+            const live = events.filter(e => e.status === 'Published');
+            return (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+                    {live.map(ev => (
+                        <div key={ev.id} className="bg-white dark:bg-dark-800 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
+                            <div className="flex justify-between mb-4">
+                                <div className="bg-slate-100 dark:bg-slate-700 p-2 rounded text-center min-w-[3.5rem]"><div className="text-xs font-bold text-slate-500">NOV</div><div className="text-lg font-bold dark:text-white">25</div></div>
+                                <span className="text-emerald-600 text-xs font-bold bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded h-fit flex gap-1"><Icons.Shield size={12}/> {t.accredited}</span>
+                            </div>
+                            <h4 className="font-bold dark:text-white mb-1">{lang==='ar' && ev.titleAr ? ev.titleAr : ev.title}</h4>
+                            <button onClick={()=>alert("Registered!")} className="w-full mt-4 bg-slate-900 dark:bg-emerald-600 text-white py-2 rounded-lg text-sm font-bold">{t.register}</button>
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        // --- APP ORCHESTRATOR ---
+        const App = () => {
+            const [view, setView] = useState('landing');
+            const [activeTab, setActiveTab] = useState('dashboard');
+            const [events, setEvents] = useState(INITIAL_EVENTS);
+            const [lang, setLang] = useState('en');
+            const [darkMode, setDarkMode] = useState(false);
+            const [toast, setToast] = useState(null);
+
+            const t = TRANSLATIONS[lang];
+            const isRtl = lang === 'ar';
+
+            useEffect(() => {
+                document.documentElement.classList.toggle('dark', darkMode);
+                document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+                document.body.style.fontFamily = isRtl ? 'Cairo, sans-serif' : 'Inter, sans-serif';
+            }, [darkMode, isRtl]);
+
+            const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 3000); };
+
+            // --- STATE LOGIC ---
+            
+            const handleCreate = (data) => {
+                const newEv = { id: Date.now(), ...data, cme: 8, status: data.sponsor ? 'Pending Funding' : 'Published', sponsored: false, approved: false, goal: 50000 };
+                setEvents([newEv, ...events]);
+                showToast(t.event_created);
+                if(data.sponsor) setTimeout(() => { setView('Vendor'); setActiveTab('marketplace'); }, 1500);
+            };
+
+            const handleSponsor = (id) => {
+                setEvents(events.map(e => e.id === id ? {...e, sponsored: true, status: 'Pending Approval'} : e));
+                showToast(t.sponsor_sent);
+                setTimeout(() => { setView('Regulator'); setActiveTab('approvals'); }, 1500);
+            };
+
+            const handleApprove = (id) => {
+                setEvents(events.map(e => e.id === id ? {...e, approved: true, status: 'Published'} : e));
+                showToast(t.approved);
+                setTimeout(() => { setView('HCP'); setActiveTab('discover'); }, 1500);
+            };
+
+            // Landing Page
+            if (view === 'landing') {
+                return (
+                    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-emerald-900 flex items-center justify-center relative" dir={isRtl?'rtl':'ltr'}>
+                        <div className="absolute top-5 right-5 flex gap-2 z-50">
+                             <button onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')} className="p-2 bg-white/10 rounded-full text-white hover:bg-white/20"><Icons.Globe/></button>
+                             <button onClick={() => setDarkMode(!darkMode)} className="p-2 bg-white/10 rounded-full text-white hover:bg-white/20">{darkMode ? <Icons.Sun/> : <Icons.Moon/>}</button>
+                        </div>
+                        <div className="max-w-5xl w-full p-8 grid lg:grid-cols-2 gap-16 items-center z-10">
+                            <div className="text-white space-y-6 fade-in">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">Vision 2030</div>
+                                <h1 className="text-5xl font-extrabold font-cairo">{lang==='en'?'National Medical':'الشبكة الوطنية'} <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">{lang==='en'?'Knowledge Grid':'للمعرفة الطبية'}</span></h1>
+                                <button onClick={()=>setView('Organizer')} className="bg-emerald-600 px-8 py-3 rounded-xl font-bold shadow-lg hover:scale-105 transition flex gap-2 items-center">{t.explore} <Icons.ArrowRight flipRtl={true}/></button>
+                            </div>
+                            <div className="grid gap-4 fade-in">
+                                {['Organizer', 'Vendor', 'Regulator', 'HCP'].map(r => (
+                                    <div key={r} onClick={() => { setView(r); setActiveTab(r==='Organizer'?'dashboard':r==='Vendor'?'marketplace':r==='Regulator'?'approvals':'discover'); }} className="bg-white/10 backdrop-blur hover:bg-white/20 p-5 rounded-xl cursor-pointer border border-white/10 flex items-center gap-4 transition group">
+                                        <div className={`p-3 rounded-lg ${r==='Organizer'?'bg-blue-500':r==='Vendor'?'bg-purple-500':r==='Regulator'?'bg-gold-500':'bg-emerald-500'} text-white shadow-lg`}>
+                                            {r==='Organizer'?<Icons.Building/>:r==='Vendor'?<Icons.Dollar/>:r==='Regulator'?<Icons.Gov/>:<Icons.Users/>}
+                                        </div>
+                                        <div><h3 className="font-bold text-white text-lg">{t[r.toLowerCase()]}</h3></div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="min-h-screen flex bg-slate-50 dark:bg-dark-900 text-slate-900 dark:text-white transition-colors" dir={isRtl ? 'rtl' : 'ltr'}>
+                    <div className="demo-float">
+                        <button onClick={() => setView('landing')} className="p-2 rounded-full hover:bg-white/10 text-white"><Icons.LogOut size={16}/></button>
+                        <div className="w-px bg-white/20 h-4"></div>
+                        <button onClick={() => setLang(l => l === 'en' ? 'ar' : 'en')} className="px-3 py-1 text-xs font-bold text-white hover:bg-white/10 rounded-full">{lang.toUpperCase()}</button>
+                        <button onClick={() => setDarkMode(!darkMode)} className="p-2 text-white hover:bg-white/10 rounded-full">{darkMode?<Icons.Sun size={16}/>:<Icons.Moon size={16}/>}</button>
+                    </div>
+
+                    <Sidebar role={view} lang={lang} setView={setView} activeTab={activeTab} setActiveTab={setActiveTab} />
+                    
+                    <div className="flex-1 flex flex-col h-screen overflow-hidden">
+                        <Header view={view} t={t} lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} />
+                        <div className="flex-1 overflow-y-auto p-8">
+                            {/* ORGANIZER */}
+                            {view === 'Organizer' && activeTab === 'events' && <OrgEvents events={events} onCreate={handleCreate} t={t} lang={lang} />}
+                            {view === 'Organizer' && activeTab === 'dashboard' && <div className="text-center py-20 text-slate-400">Analytics Dashboard</div>}
+                            
+                            {/* VENDOR */}
+                            {view === 'Vendor' && activeTab === 'marketplace' && <VendorMarket events={events} onSponsor={handleSponsor} t={t} />}
+                            {view === 'Vendor' && activeTab === 'sponsorships' && <div className="text-center py-20 text-slate-400">Active Sponsorships Table</div>}
+                            
+                            {/* REGULATOR */}
+                            {view === 'Regulator' && activeTab === 'approvals' && <RegulatorDash events={events} onApprove={handleApprove} t={t} />}
+                            
+                            {/* HCP */}
+                            {view === 'HCP' && activeTab === 'discover' && <HCPDash events={events} t={t} lang={lang} />}
+                            {view === 'HCP' && activeTab === 'wallet' && <div className="text-center py-20 text-slate-400">Digital Wallet & Certificates</div>}
+                        </div>
+                    </div>
+
+                    {toast && (
+                        <div className="fixed bottom-8 left-8 z-50 bg-slate-900 dark:bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 fade-in">
+                            <div className="bg-emerald-500 dark:bg-white/20 rounded-full p-1"><Icons.Check size={14}/></div><div className="font-medium text-sm">{toast}</div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

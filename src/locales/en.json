@@ -1,0 +1,360 @@
+{
+  "brand": {
+    "name": "Mutqin",
+    "tagline": "Unified. Verified. Accessible."
+  },
+  "nav": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "about": "About",
+    "contact": "Contact",
+    "createAccount": "Create Account",
+    "login": "Login"
+  },
+  "hero": {
+    "title": "Saudi Arabia's CME Platform",
+    "subtitle": "The Unified Platform for Accredited Continuing Medical Education",
+    "description": "Connect Healthcare Professionals with Accredited CME Events",
+    "ctaPrimary": "Get Started Free",
+    "ctaSecondary": "Learn More",
+    "stats": {
+      "eventsHosted": "Events Hosted",
+      "activeHCPs": "Active HCPs",
+      "cmeHoursTracked": "CME Hours Tracked",
+      "accreditedOrganizers": "Accredited Organizers"
+    }
+  },
+  "trust": {
+    "scfhs": "Aligned with SCFHS Standards",
+    "data_residency": "Data Hosted in Saudi Arabia",
+    "mumaris": "Compatible with Mumaris Plus",
+    "secure": "Full Encryption & Data Protection"
+  },
+  "roles": {
+    "hcp": {
+      "title": "Healthcare Professionals",
+      "description": "Discover accredited medical events and track CME hours",
+      "benefits": [
+        "Automatic CME hours tracking",
+        "Instant accredited certificates",
+        "Browse thousands of events",
+        "Sync with Mumaris Plus"
+      ],
+      "cta": "Register as HCP"
+    },
+    "organizer": {
+      "title": "CME Providers",
+      "description": "Create and manage accredited medical events easily",
+      "benefits": [
+        "Comprehensive event management",
+        "Automated registration system",
+        "Detailed reporting",
+        "Dedicated support"
+      ],
+      "cta": "Register as Organizer"
+    },
+    "event_manager": {
+      "title": "Event Managers",
+      "description": "Manage medical event execution efficiently",
+      "benefits": [
+        "Comprehensive dashboard",
+        "QR check-in system",
+        "Live management",
+        "Real-time reports"
+      ],
+      "cta": "Register as Event Manager"
+    },
+    "sponsor": {
+      "title": "Sponsors & Vendors",
+      "description": "Sponsor medical events and connect with professionals",
+      "benefits": [
+        "Available sponsorship opportunities",
+        "Target audience reach",
+        "Detailed ROI reports",
+        "Flexible sponsorship packages"
+      ],
+      "cta": "Register as Sponsor"
+    },
+    "regulator": {
+      "title": "Regulators",
+      "description": "Monitor and accredit medical events",
+      "benefits": [
+        "Comprehensive accreditation portal",
+        "Fast review process",
+        "National reports",
+        "Full standards compliance"
+      ],
+      "cta": "Register as Regulator"
+    }
+  },
+  "how_it_works": {
+    "title": "How Mutqin Works",
+    "subtitle": "A simple journey from registration to certificate",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Create Your Account",
+        "description": "Choose your role and register in minutes"
+      },
+      {
+        "number": 2,
+        "title": "Explore Events",
+        "description": "Browse thousands of accredited events"
+      },
+      {
+        "number": 3,
+        "title": "Register for Event",
+        "description": "Reserve your spot easily"
+      },
+      {
+        "number": 4,
+        "title": "Attend Event",
+        "description": "Check in via QR code"
+      },
+      {
+        "number": 5,
+        "title": "Get Your Certificate",
+        "description": "Automatically accredited certificate"
+      }
+    ]
+  },
+  "features": {
+    "title": "Platform Features",
+    "subtitle": "Everything you need in one place",
+    "items": [
+      {
+        "title": "Automatic Tracking",
+        "description": "Automatically track CME hours with Mumaris Plus sync"
+      },
+      {
+        "title": "Instant Certificates",
+        "description": "Get accredited certificates immediately after attendance"
+      },
+      {
+        "title": "QR System",
+        "description": "Fast and secure check-in via QR"
+      },
+      {
+        "title": "Detailed Reports",
+        "description": "Comprehensive reports for all events and hours"
+      },
+      {
+        "title": "High Security",
+        "description": "Encrypted data hosted in Saudi Arabia"
+      },
+      {
+        "title": "Multilingual Support",
+        "description": "Full Arabic and English interface"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "subtitle": "Choose the plan that fits you",
+    "tiers": {
+      "free": {
+        "name": "Free",
+        "price": "SAR 0",
+        "period": "Forever",
+        "features": [
+          "Browse events",
+          "Track CME hours",
+          "Accredited certificates",
+          "Mumaris Plus sync"
+        ],
+        "cta": "Get Started Free"
+      },
+      "organizer": {
+        "name": "Organizer",
+        "price": "Starting from",
+        "priceAmount": "SAR 500",
+        "period": "per month",
+        "features": [
+          "All Free features",
+          "Unlimited event management",
+          "Advanced registration system",
+          "Detailed reports",
+          "Dedicated support"
+        ],
+        "cta": "Start as Organizer"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "On demand",
+        "features": [
+          "All Organizer features",
+          "Custom solutions",
+          "API integration",
+          "Team training",
+          "24/7 support"
+        ],
+        "cta": "Contact Us"
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to your most common questions",
+    "items": [
+      {
+        "question": "Is Mutqin recognized by SCFHS?",
+        "answer": "Yes, Mutqin is aligned with Saudi Commission for Health Specialties (SCFHS) standards. All accredited events on the platform comply with required standards, and registered hours are officially accredited."
+      },
+      {
+        "question": "How do I track my CME hours?",
+        "answer": "You can easily track your Continuing Medical Education (CME) hours through your dashboard. Tracking is automatic when you attend events and check in via QR. You can also export reports for sync with Mumaris Plus platform."
+      },
+      {
+        "question": "Is my data safe?",
+        "answer": "Yes, your data is completely safe. We use full encryption for all data, and all servers are hosted in Saudi Arabia to ensure full compliance with local regulations."
+      },
+      {
+        "question": "Can I cancel my account?",
+        "answer": "Yes, you can cancel your account at any time from account settings. All your data will be securely deleted according to privacy policy."
+      },
+      {
+        "question": "How do I get my certificate?",
+        "answer": "You get your certificate automatically after checking in to the event via QR. The certificate will be ready for download immediately from your dashboard."
+      },
+      {
+        "question": "What payment methods are available?",
+        "answer": "We accept all local and international payment methods: Mada, Visa, Mastercard, and Apple Pay. All transactions are secure and encrypted."
+      }
+    ]
+  },
+  "cta": {
+    "final": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Join thousands of healthcare professionals and organizers",
+      "cta": "Create Free Account"
+    }
+  },
+  "registration": {
+    "title": "Create Account",
+    "subtitle": "Choose your role to get started",
+    "selectRole": "Select Your Role",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Login",
+    "forms": {
+      "hcp": {
+        "title": "Register as Healthcare Professional",
+        "subtitle": "Start tracking your CME hours",
+        "fields": {
+          "fullName": "Full Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "specialty": "Specialty",
+          "scfhsNumber": "SCFHS Registration Number (Optional)",
+          "organization": "Organization (Optional)"
+        },
+        "submit": "Create Account"
+      },
+      "organizer": {
+        "title": "Register as Organizer",
+        "subtitle": "Start managing your events",
+        "fields": {
+          "organizationName": "Organization Name",
+          "contactPersonName": "Contact Person Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "organizationType": "Organization Type",
+          "scfhsProviderId": "SCFHS Provider ID (Optional)"
+        },
+        "submit": "Create Account"
+      },
+      "event_manager": {
+        "title": "Register as Event Manager",
+        "subtitle": "Start managing event execution",
+        "fields": {
+          "fullName": "Full Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "associatedOrganization": "Associated Organization",
+          "role": "Job Role"
+        },
+        "submit": "Create Account"
+      },
+      "sponsor": {
+        "title": "Register as Sponsor",
+        "subtitle": "Start sponsoring events",
+        "fields": {
+          "companyName": "Company Name",
+          "contactPersonName": "Contact Person Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "industry": "Industry",
+          "sponsorshipInterest": "Sponsorship Interest Type"
+        },
+        "submit": "Create Account"
+      },
+      "regulator": {
+        "title": "Register as Regulator",
+        "subtitle": "Start reviewing and accrediting events",
+        "fields": {
+          "organizationName": "Organization Name",
+          "contactPersonName": "Contact Person Name",
+          "officialEmail": "Official Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "roleTitle": "Job Title"
+        },
+        "submit": "Create Account"
+      }
+    },
+    "validation": {
+      "required": "This field is required",
+      "email": "Invalid email address",
+      "phone": "Invalid phone number",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordMatch": "Passwords do not match"
+    }
+  },
+  "verification": {
+    "title": "Verify Your Email",
+    "subtitle": "We sent a verification code to",
+    "instructions": "Enter the 6-digit code",
+    "resend": "Resend Code",
+    "resendCountdown": "You can resend in",
+    "verify": "Verify",
+    "success": "Verified successfully!",
+    "redirecting": "Redirecting..."
+  },
+  "footer": {
+    "description": "The unified platform for continuing medical education in Saudi Arabia",
+    "links": {
+      "about": "About Mutqin",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    },
+    "copyright": "All rights reserved"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "search": "Search",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close"
+  }
+}
+

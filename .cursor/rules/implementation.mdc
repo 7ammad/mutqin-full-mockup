@@ -1,0 +1,122 @@
+﻿***
+title: Implementation Phase Workflow
+description: Phase completion checklist and validation
+tags: [workflow, phases, validation]
+alwaysApply: true
+***
+
+# Implementation Phase Protocol
+
+## Phase Completion Checklist
+
+After implementing EACH feature/phase:
+
+### 1. Code Review �o.
+- [ ] Code matches implementation plan
+- [ ] Follows existing patterns
+- [ ] Comments added for complex logic
+- [ ] No console.logs or debug code left
+
+### 2. TypeScript Validation dY"?
+```bash
+npm run type-check
+```
+**Expected: 0 errors**
+
+**If errors found:**
+- Stop current work
+- Enter error-fixing workflow (use @error-fixing.mdc)
+- Fix all errors systematically
+- Re-validate
+- Only proceed when passing
+
+### 3. Build Validation dY?-�,?
+```bash
+npm run build
+```
+**Expected: Successful build**
+
+**If build fails:**
+- Review build output
+- Most likely TypeScript errors (run type-check)
+- Fix and rebuild
+- Only proceed when passing
+
+### 4. Task Tracking dY"<
+- [ ] Update implementation task tracker
+- [ ] Mark current phase complete
+- [ ] Document any blockers or notes
+- [ ] Update progress counter
+- [ ] Move to next phase indicator
+
+### 5. Optional: Commit Changes
+```bash
+git add .
+git commit -m "feat: [phase name] - [brief description]"
+```
+
+## Phase Transition Rules
+
+**Before starting NEXT phase:**
+
+�o. Requirements:
+1. Previous phase validation passes (0 TypeScript errors)
+2. Build test passes
+3. Task tracker updated
+4. All blockers resolved or documented
+
+�?O DO NOT:
+- Skip validation steps
+- Proceed with known errors
+- Implement multiple phases simultaneously (unless explicitly requested)
+- Commit code with errors
+
+## Automatic Workflow Enforcement
+
+After implementing code, automatically:
+
+1. **Remind to validate:**
+   "�o. Phase implementation complete. Ready to validate?
+   
+   Run: npm run type-check"
+
+2. **If validation fails:**
+   "dY"' Validation failed. Found [X] errors.
+   
+   Entering error-fixing workflow..."
+
+3. **After fixing errors:**
+   "�o. All errors fixed. Validation passing.
+   
+   Ready for build test? Run: npm run build"
+
+4. **After successful build:**
+   "�o. Build successful!
+   
+   Phase complete checklist:
+   - [x] Code implemented
+   - [x] Validation passed
+   - [x] Build successful
+   - [ ] Task tracker updated
+   
+   Ready to update tracker?"
+
+5. **After tracker update:**
+   "dYZ% Phase [X] complete!
+   
+   Next phase: [Y]
+   Ready to begin?"
+
+## Integration with Error Fixing
+
+When validation fails, automatically:
+1. Reference error-fixing protocol
+2. Categorize errors by priority
+3. Guide systematic fixing
+4. Re-validate after each batch
+5. Prevent proceeding until clean
+
+## This Protocol is ACTIVE
+
+I will enforce this workflow automatically for every phase implementation.
+You don't need to remember the steps�?"I'll guide you through them.

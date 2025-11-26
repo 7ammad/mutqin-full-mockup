@@ -1,0 +1,22 @@
+---
+title: TypeScript Error Fixing Workflow
+tags: [typescript, debugging, workflow]
+alwaysApply: true
+---
+
+# TypeScript Error Fix Context
+
+When working on TypeScript error fixes:
+
+- Reference: @docs/typescript-fix-plan.md for detailed workflow
+- Task tracking: @TYPESCRIPT-FIX-TASKS.md for current progress
+- Error report: @typescript-errors-report.json for current state
+- Fix plan: @CURSOR-FIX-PLAN.md for generated prompts
+
+## Workflow Steps
+
+1. Run detection: npm run fix:detect
+2. Review generated CURSOR-FIX-PLAN.md
+3. Use Composer for batch fixes
+4. Update TYPESCRIPT-FIX-TASKS.md after each phase
+5. Validate: npm run fix:validate
