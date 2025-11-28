@@ -16,6 +16,7 @@ import CertificateGeneration from "./CertificateGeneration";
 import Reporting from "./Reporting";
 import { Calendar, Users, CheckCircle, FileText, Clock, QrCode, Briefcase, UserCheck, Activity, Settings, Award, FileText as FileTextIcon } from "lucide-react";
 import { MOCK_EVENT_ASSIGNMENTS } from "@/lib/mockData";
+import ExecutionFlow from "./ExecutionFlow";
 
 type ViewType = 'ASSIGNMENTS' | 'BRIEFING' | 'REGISTRATION' | 'ATTENDANCE' | 'SESSIONS' | 'POST_EVENT' | 'CERTIFICATES' | 'REPORTING';
 
@@ -39,6 +40,8 @@ export default function EventManagerView() {
 
     return (
         <div className="space-y-6">
+            <ExecutionFlow />
+
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <LiquidGlassCard blurIntensity="lg" interactive={false}>
