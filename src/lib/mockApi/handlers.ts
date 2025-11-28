@@ -5,6 +5,12 @@ function jsonBadRequest(message: string) {
   return HttpResponse.json({ ok: false, message }, { status: 400 });
 }
 
+let assignmentCounter = 2;
+let ticketCounter = 2;
+let reviewCounter = 2;
+let sponsorshipCounter = 2;
+let certificateCounter = 2;
+
 export const handlers: RequestHandler[] = [
   http.post('/api/accreditation/submit', async ({ request }) => {
     const body = await request.json();
@@ -68,7 +74,7 @@ export const handlers: RequestHandler[] = [
     const event = state.events.find((e) => e.id === eventId);
     if (!event) return jsonBadRequest('event not found');
 
-    const assignmentId = `assign-${Date.now()}`;
+    const assignmentId = `assign-${assignmentCounter++}`;
     setState((prev) => ({
       ...prev,
       assignments: [
@@ -119,7 +125,7 @@ export const handlers: RequestHandler[] = [
     const event = state.events.find((e) => e.id === eventId);
     if (!event) return jsonBadRequest('event not found');
 
-    const ticketId = `tkt-${Date.now()}`;
+    const ticketId = `tkt-${ticketCounter++}`;
     setState((prev) => ({
       ...prev,
       tickets: [
@@ -210,7 +216,7 @@ export const handlers: RequestHandler[] = [
     const attendance = state.attendanceRecords.find((a) => a.ticketId === ticket.id);
     if (!attendance || !attendance.finalized) return jsonBadRequest('attendance not finalized');
 
-    const certId = `cert-${Date.now()}`;
+    const certId = `cert-${certificateCounter++}`;
     const certUrl = `/certs/${certId}.pdf`;
 
     setState((prev) => ({
@@ -238,7 +244,7 @@ export const handlers: RequestHandler[] = [
     const ticket = state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId);
     if (!ticket || ticket.status !== 'attended') return jsonBadRequest('attended ticket required for review');
 
-    const reviewId = `rev-${Date.now()}`;
+    const reviewId = `rev-${reviewCounter++}`;
     setState((prev) => ({
       ...prev,
       reviews: [
@@ -266,7 +272,7 @@ export const handlers: RequestHandler[] = [
     if (!event) return jsonBadRequest('event not found');
     if (event.status !== 'published') return jsonBadRequest('event must be published for sponsorship purchase');
 
-    const sponsorshipId = `spon-${Date.now()}`;
+    const sponsorshipId = `spon-${sponsorshipCounter++}`;
     setState((prev) => ({
       ...prev,
       sponsorships: [
