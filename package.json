@@ -17,7 +17,8 @@
     "errors:view": "type cme-type-errors.json",
     "fix:detect": "node scripts/fix-typescript-errors.js",
     "fix:validate": "next typegen && tsc --noEmit",
-    "fix:all": "npm run fix:detect && npm run fix:validate && npm run build"
+    "fix:all": "npm run fix:detect && npm run fix:validate && npm run build",
+    "test": "vitest run"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
