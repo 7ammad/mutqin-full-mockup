@@ -29,9 +29,16 @@ export default function EventManagerView() {
 
     // Get assigned events
     const assignedEvents = events.filter(e => e.assignedToEventManager);
-    const assignments = MOCK_EVENT_ASSIGNMENTS.filter(a => 
+    const assignments = MOCK_EVENT_ASSIGNMENTS.filter(a =>
         assignedEvents.some(e => e.id === a.eventId)
     );
+    const primaryAssignment = assignments[0];
+    const primaryEvent = primaryAssignment ? assignedEvents.find(e => e.id === primaryAssignment.eventId) : undefined;
+    const normalizedEventStatus = primaryEvent?.status?.toLowerCase?.() || 'draft';
+    const normalizedAssignmentStatus =
+        primaryAssignment?.status?.toLowerCase?.() === 'active'
+            ? 'accepted'
+            : (primaryAssignment?.status?.toLowerCase?.() as 'pending' | 'accepted' | 'declined' | undefined) || 'pending';
 
     // Calculate stats
     const activeAssignments = assignments.filter(a => a.status === 'Active').length;
@@ -40,7 +47,14 @@ export default function EventManagerView() {
 
     return (
         <div className="space-y-6">
-            <ExecutionFlow />
+            {primaryEvent && (
+                <ExecutionFlow
+                    eventId={primaryEvent.id}
+                    eventStatus={normalizedEventStatus}
+                    assignmentId={primaryAssignment?.id}
+                    assignmentStatus={normalizedAssignmentStatus}
+                />
+            )}
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -11,24 +11,33 @@ import { useToast } from "@/components/ui/toast-context";
 type AssignmentStatus = 'pending' | 'accepted' | 'declined';
 type TicketStatus = 'confirmed' | 'attended';
 
+type ExecutionFlowProps = {
+  eventId: string;
+  eventStatus: string;
+  assignmentId?: string;
+  assignmentStatus?: AssignmentStatus;
+};
+
 const defaults = {
-  assignmentId: 'assign-1',
-  eventId: 'evt-1',
   eventManagerId: 'em-1',
   hcpId: 'hcp-1',
   ticketId: 'tkt-1',
 };
 
-export default function ExecutionFlow() {
+export default function ExecutionFlow({
+  eventId,
+  eventStatus,
+  assignmentId,
+  assignmentStatus: initialAssignmentStatus = 'pending',
+}: ExecutionFlowProps) {
   const { showToast } = useToast();
-  const [assignmentStatus, setAssignmentStatus] = useState<AssignmentStatus>('pending');
+  const [assignmentStatus, setAssignmentStatus] = useState<AssignmentStatus>(initialAssignmentStatus);
   const [ticketStatus, setTicketStatus] = useState<TicketStatus>('confirmed');
   const [attendanceFinalized, setAttendanceFinalized] = useState<boolean>(false);
   const [certificate, setCertificate] = useState<{ id: string; url: string } | null>(null);
   const [lastResult, setLastResult] = useState<unknown>(null);
   const [lastError, setLastError] = useState<string>('');
-  const [eventPublished] = useState<boolean>(true);
-  const [eventApproved] = useState<boolean>(true);
+  const normalizedEventStatus = eventStatus.toLowerCase();
 
   const handleResult = async <T,>(fn: () => Promise<T>) => {
     setLastError('');
@@ -46,8 +55,9 @@ export default function ExecutionFlow() {
   };
 
   const acceptAssignment = async () => {
+    if (!assignmentId) return;
     const res = await handleResult(() =>
-      api.respondAssignment({ assignmentId: defaults.assignmentId, decision: 'accept' })
+      api.respondAssignment({ assignmentId, decision: 'accept' })
     );
     if (res && res.ok) {
       setAssignmentStatus('accepted');
@@ -56,7 +66,7 @@ export default function ExecutionFlow() {
   };
 
   const checkIn = async () => {
-    if (assignmentStatus !== 'accepted' || !eventPublished) return;
+    if (assignmentStatus !== 'accepted' || normalizedEventStatus !== 'published') return;
     const res = await handleResult(() =>
       api.checkIn({ ticketId: defaults.ticketId, eventManagerId: defaults.eventManagerId })
     );
@@ -69,7 +79,7 @@ export default function ExecutionFlow() {
   const finalizeAttendance = async () => {
     if (ticketStatus !== 'attended') return;
     const res = await handleResult(() =>
-      api.finalizeAttendance({ eventId: defaults.eventId, eventManagerId: defaults.eventManagerId })
+      api.finalizeAttendance({ eventId, eventManagerId: defaults.eventManagerId })
     );
     if (res && res.ok) {
       setAttendanceFinalized(true);
@@ -78,9 +88,9 @@ export default function ExecutionFlow() {
   };
 
   const issueCertificate = async () => {
-    if (!attendanceFinalized || ticketStatus !== 'attended' || !eventApproved) return;
+    if (!attendanceFinalized || ticketStatus !== 'attended' || normalizedEventStatus !== 'approved') return;
     const res = await handleResult(() =>
-      api.issueCertificate({ eventId: defaults.eventId, hcpId: defaults.hcpId })
+      api.issueCertificate({ eventId, hcpId: defaults.hcpId })
     );
     if (res && res.ok) {
       setCertificate({ id: res.certificateId, url: res.url });
@@ -88,9 +98,9 @@ export default function ExecutionFlow() {
     }
   };
 
-  const checkInDisabled = assignmentStatus !== 'accepted' || !eventPublished;
+  const checkInDisabled = assignmentStatus !== 'accepted' || normalizedEventStatus !== 'published';
   const finalizeDisabled = ticketStatus !== 'attended';
-  const certDisabled = !attendanceFinalized || ticketStatus !== 'attended' || !eventApproved;
+  const certDisabled = !attendanceFinalized || ticketStatus !== 'attended' || normalizedEventStatus !== 'approved';
 
   return (
     <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4 space-y-3">
@@ -98,7 +108,7 @@ export default function ExecutionFlow() {
         <div>
           <h3 className="text-lg font-semibold text-[var(--label)]">Execution Flow (demo)</h3>
           <p className="text-xs text-[var(--secondary-label)]">
-            assignmentId: {defaults.assignmentId} · eventId: {defaults.eventId} · ticketId: {defaults.ticketId}
+            assignmentId: {assignmentId ?? '—'} · eventId: {eventId} · ticketId: {defaults.ticketId}
           </p>
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -112,10 +122,10 @@ export default function ExecutionFlow() {
             Finalized: {attendanceFinalized ? 'yes' : 'no'}
           </Badge>
           <Badge variant="outline">
-            Event: {eventPublished ? 'published' : 'not published'}
+            Event: {normalizedEventStatus}
           </Badge>
           <Badge variant="outline">
-            Accreditation: {eventApproved ? 'approved' : 'not approved'}
+            Accreditation: {normalizedEventStatus === 'approved' ? 'approved' : 'not approved'}
           </Badge>
         </div>
       </div>
