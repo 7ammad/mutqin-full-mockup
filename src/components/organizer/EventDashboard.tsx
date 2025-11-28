@@ -23,6 +23,9 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
   const normalizeStatus = (status?: string) =>
     status ? status.toLowerCase().replace(' ', '_') : 'draft';
   const [eventStatus, setEventStatus] = useState<string>(normalizeStatus(event?.status));
+  const [eventManagerId, setEventManagerId] = useState<string>('em-1');
+  const [organizerIdInput, setOrganizerIdInput] = useState<string>((event as any)?.organizerId ?? 'org-1');
+  const [assignment, setAssignment] = useState<{ id: string; status?: string } | null>(null);
   const [lastResult, setLastResult] = useState<unknown>(null);
   const [lastError, setLastError] = useState<string>('');
 
@@ -71,6 +74,8 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
   };
 
   const submitDisabled = eventStatus !== 'draft';
+  const assignDisabled = !['approved', 'published'].includes(eventStatus);
+  const publishDisabled = eventStatus !== 'approved' || organizerIdInput !== ((event as any).organizerId ?? 'org-1');
 
   // Mock stats
   const registrations = 145;
@@ -101,6 +106,11 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
           <Badge variant="outline" className="capitalize">
             {eventStatus}
           </Badge>
+          {assignment && (
+            <Badge variant="outline">
+              assignment: {assignment.id} {assignment.status ? `(${assignment.status})` : ''}
+            </Badge>
+          )}
         </div>
       </div>
 
@@ -109,6 +119,50 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
           <GlassButton variant="default" onClick={submitAccreditation} disabled={submitDisabled} size="sm">
             Submit accreditation
           </GlassButton>
+          <div className="flex items-center gap-2">
+            <input
+              className="border rounded px-2 py-1 text-sm"
+              value={eventManagerId}
+              onChange={(e) => setEventManagerId(e.target.value)}
+              placeholder="eventManagerId"
+            />
+            <GlassButton
+              variant="default"
+              onClick={async () => {
+                const res = await handleResult(() => api.createAssignment({ eventId, eventManagerId }));
+                if (res && res.ok) {
+                  setAssignment({ id: res.assignmentId });
+                  showToast('Assignment created', 'success');
+                }
+              }}
+              disabled={assignDisabled}
+              size="sm"
+            >
+              Create assignment
+            </GlassButton>
+          </div>
+          <div className="flex items-center gap-2">
+            <input
+              className="border rounded px-2 py-1 text-sm"
+              value={organizerIdInput}
+              onChange={(e) => setOrganizerIdInput(e.target.value)}
+              placeholder="organizerId"
+            />
+            <GlassButton
+              variant="default"
+              onClick={async () => {
+                const res = await handleResult(() => api.publishEvent({ eventId, organizerId: organizerIdInput }));
+                if (res && res.ok) {
+                  setEventStatus(normalizeStatus(res.status));
+                  showToast('Event published', 'success');
+                }
+              }}
+              disabled={publishDisabled}
+              size="sm"
+            >
+              Publish
+            </GlassButton>
+          </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mt-3">
           <div>

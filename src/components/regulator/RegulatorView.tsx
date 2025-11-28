@@ -12,6 +12,7 @@ import DecisionManagement from "./DecisionManagement";
 import ComplianceMonitoring from "./ComplianceMonitoring";
 import NationalAnalytics from "./NationalAnalytics";
 import AuditTools from "./AuditTools";
+import { AccreditationPanel } from "./AccreditationPanel";
 
 type ViewType = 'QUEUE' | 'WORKFLOW' | 'CHECKLIST' | 'DECISION' | 'COMPLIANCE' | 'ANALYTICS' | 'AUDIT';
 
@@ -97,7 +98,12 @@ export default function RegulatorView() {
             </div>
 
             {/* Content Views */}
-            {view === 'QUEUE' && <ApplicationQueue />}
+            {view === 'QUEUE' && (
+                <>
+                    <ApplicationQueue />
+                    <AccreditationPanel eventId="evt-1" initialStatus="pending_review" />
+                </>
+            )}
             {view === 'WORKFLOW' && <ReviewWorkflow />}
             {view === 'CHECKLIST' && <StandardsChecklist />}
             {view === 'DECISION' && <DecisionManagement />}
