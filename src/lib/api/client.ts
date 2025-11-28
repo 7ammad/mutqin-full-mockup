@@ -19,6 +19,8 @@ import type {
   ReviewAccreditationResponse,
   SubmitAccreditationRequest,
   SubmitAccreditationResponse,
+  PublishEventRequest,
+  PublishEventResponse,
 } from './types';
 
 type SuccessResponse = { ok: true };
@@ -72,6 +74,9 @@ export const api = {
 
   purchaseSponsorship: (body: PurchaseSponsorshipRequest) =>
     request<PurchaseSponsorshipResponse>('/api/sponsorship/purchase', body),
+
+  publishEvent: (body: PublishEventRequest) =>
+    request<PublishEventResponse>('/api/events/publish', body),
 };
 
 export type { SuccessResponse as ApiSuccessResponse };

@@ -47,3 +47,6 @@ export type CreateReviewResponse = { ok: true; reviewId: string };
 
 export type PurchaseSponsorshipRequest = { eventId: string; vendorId: string; package: string };
 export type PurchaseSponsorshipResponse = { ok: true; sponsorshipId: string; status: 'purchased' };
+
+export type PublishEventRequest = { eventId: string; organizerId: string };
+export type PublishEventResponse = { ok: true; eventId: string; status: 'published' };

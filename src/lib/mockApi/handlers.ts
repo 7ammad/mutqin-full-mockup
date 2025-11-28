@@ -12,6 +12,27 @@ let sponsorshipCounter = 2;
 let certificateCounter = 2;
 
 export const handlers: RequestHandler[] = [
+  http.post('/api/events/publish', async ({ request }) => {
+    const body = await request.json();
+    const { eventId, organizerId } = body as { eventId?: string; organizerId?: string };
+    if (!eventId || !organizerId) return jsonBadRequest('eventId and organizerId are required');
+
+    const state = getState();
+    const event = state.events.find((e) => e.id === eventId);
+    if (!event) return jsonBadRequest('event not found');
+    if (event.organizerId !== organizerId) return jsonBadRequest('organizer mismatch');
+    if (event.status !== 'approved') return jsonBadRequest('event must be approved before publish');
+
+    setState((prev) => ({
+      ...prev,
+      events: prev.events.map((e) =>
+        e.id === eventId ? { ...e, status: 'published' } : e
+      ),
+    }));
+
+    return HttpResponse.json({ ok: true, eventId, status: 'published' });
+  }),
+
   http.post('/api/accreditation/submit', async ({ request }) => {
     const body = await request.json();
     const { eventId } = body as { eventId?: string };
