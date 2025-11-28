@@ -11,6 +11,7 @@ import { PWARegistration } from "@/components/PWARegistration";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import { MedicalOrganizationSchema } from "@/components/seo/MedicalOrganizationSchema";
 import { WebsiteSchema } from "@/components/seo/WebsiteSchema";
+import { MockApiProvider } from "./MockApiProvider";
 
 const cairo = Cairo({
     subsets: ["arabic", "latin"],
@@ -116,6 +117,7 @@ export default function RootLayout({
                             <AuthProvider>
                                 <PersonaProvider>
                                     <ToastProvider>
+                                        <MockApiProvider />
                                         <PWARegistration />
                                         {children}
                                     </ToastProvider>
