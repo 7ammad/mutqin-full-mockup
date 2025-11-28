@@ -1,5 +1,5 @@
 import { http, HttpResponse, type RequestHandler } from 'msw';
-import { getState, setState } from '@/context/demoStore';
+import { getState, setState, resetDemo } from '@/context/demoStore';
 
 function jsonBadRequest(message: string) {
   return HttpResponse.json({ ok: false, message }, { status: 400 });
@@ -10,8 +10,14 @@ let ticketCounter = 2;
 let reviewCounter = 2;
 let sponsorshipCounter = 2;
 let certificateCounter = 2;
+let attendanceCounter = 2;
 
 export const handlers: RequestHandler[] = [
+  http.post('/api/demo/reset', async () => {
+    resetDemo();
+    return HttpResponse.json({ ok: true });
+  }),
+
   http.post('/api/events/publish', async ({ request }) => {
     const body = await request.json();
     const { eventId, organizerId } = body as { eventId?: string; organizerId?: string };
@@ -147,6 +153,7 @@ export const handlers: RequestHandler[] = [
     if (!event) return jsonBadRequest('event not found');
 
     const ticketId = `tkt-${ticketCounter++}`;
+    const attendanceId = `att-${attendanceCounter++}`;
     setState((prev) => ({
       ...prev,
       tickets: [
@@ -156,6 +163,14 @@ export const handlers: RequestHandler[] = [
           eventId,
           hcpId,
           status: 'confirmed',
+        },
+      ],
+      attendanceRecords: [
+        ...prev.attendanceRecords,
+        {
+          id: attendanceId,
+          ticketId,
+          finalized: false,
         },
       ],
     }));
@@ -228,9 +243,13 @@ export const handlers: RequestHandler[] = [
     const state = getState();
     const event = state.events.find((e) => e.id === eventId);
     if (!event) return jsonBadRequest('event not found');
-    if (event.status !== 'approved') return jsonBadRequest('event must be approved to issue certificate');
+    if (event.status !== 'approved' && event.status !== 'published') {
+      return jsonBadRequest('event must be approved or published to issue certificate');
+    }
 
-    const ticket = state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId);
+    const ticket =
+      state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId && t.status === 'attended') ||
+      state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId);
     if (!ticket) return jsonBadRequest('ticket not found for hcp');
     if (ticket.status !== 'attended') return jsonBadRequest('ticket must be attended');
 
@@ -262,7 +281,9 @@ export const handlers: RequestHandler[] = [
     if (!eventId || !hcpId || typeof rating !== 'number') return jsonBadRequest('eventId, hcpId, rating are required');
 
     const state = getState();
-    const ticket = state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId);
+    const ticket =
+      state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId && t.status === 'attended') ||
+      state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId);
     if (!ticket || ticket.status !== 'attended') return jsonBadRequest('attended ticket required for review');
 
     const reviewId = `rev-${reviewCounter++}`;

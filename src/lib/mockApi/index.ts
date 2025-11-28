@@ -13,5 +13,9 @@ export async function startMockApi(): Promise<void> {
   await worker.start({
     onUnhandledRequest: 'bypass',
   });
+  if (typeof window !== 'undefined') {
+    // signal readiness for E2E tests
+    (window as any).__mswReady = true;
+  }
   started = true;
 }

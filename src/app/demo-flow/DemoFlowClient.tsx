@@ -47,11 +47,7 @@ function jsonPretty(value: unknown) {
 export default function DemoFlowClient() {
   const [activeTab, setActiveTab] = useState<TabKey>('organizer');
   const [flowState, setFlowState] = useState<FlowState>({
-    eventStatus: 'published',
-    assignmentId: 'assign-1',
-    assignmentStatus: 'pending',
-    ticketId: 'tkt-1',
-    ticketStatus: 'confirmed',
+    eventStatus: 'draft',
   });
   const [lastResult, setLastResult] = useState<unknown>(null);
   const [lastError, setLastError] = useState<string>('');
@@ -240,7 +236,7 @@ export default function DemoFlowClient() {
   const finalizeDisabled = flowState.ticketStatus !== 'attended';
   const certificateDisabled =
     !flowState.attendanceFinalized ||
-    flowState.eventStatus !== 'approved' ||
+    (flowState.eventStatus !== 'approved' && flowState.eventStatus !== 'published') ||
     flowState.ticketStatus !== 'attended';
   const reviewDisabled = flowState.ticketStatus !== 'attended';
 
