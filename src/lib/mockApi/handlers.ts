@@ -135,4 +135,155 @@ export const handlers: RequestHandler[] = [
 
     return HttpResponse.json({ ok: true, ticketId, status: 'confirmed' });
   }),
+
+  http.post('/api/attendance/checkin', async ({ request }) => {
+    const body = await request.json();
+    const { ticketId, eventManagerId } = body as { ticketId?: string; eventManagerId?: string };
+    if (!ticketId || !eventManagerId) return jsonBadRequest('ticketId and eventManagerId are required');
+
+    const state = getState();
+    const ticket = state.tickets.find((t) => t.id === ticketId);
+    if (!ticket) return jsonBadRequest('ticket not found');
+    if (ticket.status !== 'confirmed') return jsonBadRequest('ticket must be confirmed');
+
+    const event = state.events.find((e) => e.id === ticket.eventId);
+    if (!event) return jsonBadRequest('event not found');
+    if (event.status === 'draft' || event.status === 'pending_review') {
+      return jsonBadRequest('event not eligible for check-in');
+    }
+
+    const assignment = state.assignments.find((a) => a.eventId === event.id && a.status === 'accepted');
+    if (!assignment || assignment.eventManagerId !== eventManagerId) {
+      return jsonBadRequest('no accepted assignment for this event/eventManager');
+    }
+
+    setState((prev) => ({
+      ...prev,
+      tickets: prev.tickets.map((t) =>
+        t.id === ticketId ? { ...t, status: 'attended' } : t
+      ),
+    }));
+
+    return HttpResponse.json({ ok: true, ticketId, status: 'attended' });
+  }),
+
+  http.post('/api/attendance/finalize', async ({ request }) => {
+    const body = await request.json();
+    const { eventId, eventManagerId } = body as { eventId?: string; eventManagerId?: string };
+    if (!eventId || !eventManagerId) return jsonBadRequest('eventId and eventManagerId are required');
+
+    const state = getState();
+    const event = state.events.find((e) => e.id === eventId);
+    if (!event) return jsonBadRequest('event not found');
+
+    const assignment = state.assignments.find((a) => a.eventId === eventId && a.status === 'accepted');
+    if (!assignment || assignment.eventManagerId !== eventManagerId) {
+      return jsonBadRequest('no accepted assignment for this event/eventManager');
+    }
+
+    setState((prev) => ({
+      ...prev,
+      attendanceRecords: prev.attendanceRecords.map((a) =>
+        a.ticketId.startsWith('tkt-') && prev.tickets.find((t) => t.id === a.ticketId && t.eventId === eventId)
+          ? { ...a, finalized: true }
+          : a
+      ),
+    }));
+
+    return HttpResponse.json({ ok: true, eventId, finalized: true });
+  }),
+
+  http.post('/api/certificates/issue', async ({ request }) => {
+    const body = await request.json();
+    const { eventId, hcpId } = body as { eventId?: string; hcpId?: string };
+    if (!eventId || !hcpId) return jsonBadRequest('eventId and hcpId are required');
+
+    const state = getState();
+    const event = state.events.find((e) => e.id === eventId);
+    if (!event) return jsonBadRequest('event not found');
+    if (event.status !== 'approved') return jsonBadRequest('event must be approved to issue certificate');
+
+    const ticket = state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId);
+    if (!ticket) return jsonBadRequest('ticket not found for hcp');
+    if (ticket.status !== 'attended') return jsonBadRequest('ticket must be attended');
+
+    const attendance = state.attendanceRecords.find((a) => a.ticketId === ticket.id);
+    if (!attendance || !attendance.finalized) return jsonBadRequest('attendance not finalized');
+
+    const certId = `cert-${Date.now()}`;
+    const certUrl = `/certs/${certId}.pdf`;
+
+    setState((prev) => ({
+      ...prev,
+      certificates: [
+        ...prev.certificates,
+        {
+          id: certId,
+          eventId,
+          ticketId: ticket.id,
+          hcpId,
+        },
+      ],
+    }));
+
+    return HttpResponse.json({ ok: true, certificateId: certId, url: certUrl });
+  }),
+
+  http.post('/api/reviews/create', async ({ request }) => {
+    const body = await request.json();
+    const { eventId, hcpId, rating, text } = body as { eventId?: string; hcpId?: string; rating?: number; text?: string };
+    if (!eventId || !hcpId || typeof rating !== 'number') return jsonBadRequest('eventId, hcpId, rating are required');
+
+    const state = getState();
+    const ticket = state.tickets.find((t) => t.eventId === eventId && t.hcpId === hcpId);
+    if (!ticket || ticket.status !== 'attended') return jsonBadRequest('attended ticket required for review');
+
+    const reviewId = `rev-${Date.now()}`;
+    setState((prev) => ({
+      ...prev,
+      reviews: [
+        ...prev.reviews,
+        {
+          id: reviewId,
+          eventId,
+          hcpId,
+          rating,
+          text,
+        } as any,
+      ],
+    }));
+
+    return HttpResponse.json({ ok: true, reviewId });
+  }),
+
+  http.post('/api/sponsorship/purchase', async ({ request }) => {
+    const body = await request.json();
+    const { eventId, vendorId, package: pkg } = body as { eventId?: string; vendorId?: string; package?: string };
+    if (!eventId || !vendorId || !pkg) return jsonBadRequest('eventId, vendorId and package are required');
+
+    const state = getState();
+    const event = state.events.find((e) => e.id === eventId);
+    if (!event) return jsonBadRequest('event not found');
+    if (event.status !== 'published') return jsonBadRequest('event must be published for sponsorship purchase');
+
+    const sponsorshipId = `spon-${Date.now()}`;
+    setState((prev) => ({
+      ...prev,
+      sponsorships: [
+        ...prev.sponsorships,
+        {
+          id: sponsorshipId,
+          eventId,
+          vendorId,
+          status: 'purchased',
+          package: pkg,
+        } as any,
+      ],
+      events: prev.events.map((e) =>
+        e.id === eventId ? { ...e, is_sponsored: true } : e
+      ),
+    }));
+
+    return HttpResponse.json({ ok: true, sponsorshipId, status: 'purchased' });
+  }),
 ];
