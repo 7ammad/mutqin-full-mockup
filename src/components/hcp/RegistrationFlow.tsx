@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input";
 import { CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react";
 import { Event } from "@/lib/mockData";
 import { useLanguage } from "@/context/LanguageContext";
-import { usePersona } from "@/context/PersonaContext";
 import { useToast } from "@/components/ui/toast-context";
+import { api } from "@/lib/api";
 
 interface RegistrationFlowProps {
     event: Event;
@@ -18,7 +18,6 @@ interface RegistrationFlowProps {
 
 export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFlowProps) {
     const { language } = useLanguage();
-    const { registerForEvent } = usePersona();
     const { showToast } = useToast();
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
@@ -28,14 +27,21 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
         specialty: "",
         licenseNumber: "",
     });
+    const [ticketInfo, setTicketInfo] = useState<{ ticketId: string; status: string } | null>(null);
 
-    const handleSubmit = () => {
-        registerForEvent(event.id);
-        showToast(
-            language === 'ar' ? 'تم التسجيل بنجاح' : 'Registration successful',
-            "success"
-        );
-        onComplete();
+    const handleSubmit = async () => {
+        try {
+            const res = await api.createRegistration({ eventId: event.id, hcpId: 'hcp-1' });
+            setTicketInfo({ ticketId: res.ticketId, status: res.status });
+            showToast(
+                language === 'ar' ? 'تم التسجيل بنجاح' : 'Registration successful',
+                "success"
+            );
+            onComplete();
+        } catch (err) {
+            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            showToast(message, "info");
+        }
     };
 
     const steps = [
@@ -44,11 +50,11 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
             fields: ['name', 'email', 'phone'],
         },
         {
-            title: language === 'ar' ? 'المعلومات المهنية' : 'Professional Information',
+            title: language === 'ar' ? 'معلومات مهنية' : 'Professional Information',
             fields: ['specialty', 'licenseNumber'],
         },
         {
-            title: language === 'ar' ? 'التأكيد' : 'Confirmation',
+            title: language === 'ar' ? 'تأكيد التسجيل' : 'Confirmation',
             fields: [],
         },
     ];
@@ -90,7 +96,7 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                                     <Input
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        placeholder={language === 'ar' ? 'أدخل اسمك الكامل' : 'Enter your full name'}
+                                        placeholder={language === 'ar' ? 'أدخل الاسم الكامل' : 'Enter your full name'}
                                     />
                                 </div>
                                 <div>
@@ -101,7 +107,7 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                                         type="email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        placeholder={language === 'ar' ? 'example@email.com' : 'example@email.com'}
+                                        placeholder="example@email.com"
                                     />
                                 </div>
                                 <div>
@@ -137,12 +143,12 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-1 block">
-                                        {language === 'ar' ? 'رقم الرخصة' : 'License Number'}
+                                        {language === 'ar' ? 'رقم الترخيص' : 'License Number'}
                                     </label>
                                     <Input
                                         value={formData.licenseNumber}
                                         onChange={(e) => setFormData({ ...formData, licenseNumber: e.target.value })}
-                                        placeholder={language === 'ar' ? 'رقم الرخصة الطبية' : 'Medical license number'}
+                                        placeholder={language === 'ar' ? 'رقم الترخيص الطبي' : 'Medical license number'}
                                     />
                                 </div>
                             </div>
@@ -158,7 +164,7 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                                 </h3>
                                 <p className="text-[var(--secondary-label)]">
                                     {language === 'ar'
-                                        ? 'يرجى مراجعة معلوماتك قبل التأكيد'
+                                        ? 'يرجى مراجعة بياناتك قبل التأكيد'
                                         : 'Please review your information before confirming'}
                                 </p>
                             </div>
@@ -206,8 +212,18 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                         {!isLastStep && <ArrowRight className="w-4 h-4 ml-2" />}
                     </GlassButton>
                 </div>
+
+                {ticketInfo && (
+                    <div className="rounded-lg border bg-white/70 p-3 text-sm">
+                        <div className="font-semibold text-[var(--label)]">
+                            {language === 'ar' ? 'تذكرة' : 'Ticket'}
+                        </div>
+                        <div className="text-[var(--secondary-label)]">
+                            ID: {ticketInfo.ticketId} — {ticketInfo.status}
+                        </div>
+                    </div>
+                )}
             </div>
         </LiquidGlassCard>
     );
 }
-

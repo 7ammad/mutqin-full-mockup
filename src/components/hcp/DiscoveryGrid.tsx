@@ -7,17 +7,21 @@ import { useLanguage } from "@/context/LanguageContext";
 import EventCard from "@/components/EventCard";
 import { GlobalSearch } from "@/components/shared/GlobalSearch";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass-card";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { api } from "@/lib/api";
 
 export default function DiscoveryGrid() {
-    const { events, registerForEvent, myTickets } = usePersona();
+    const { events, myTickets } = usePersona();
     const { showToast } = useToast();
     const { t, language } = useLanguage();
-    const publishedEvents = events.filter(e => e.status === 'Published');
+    const [registeredIds, setRegisteredIds] = useState<Set<string>>(new Set(myTickets));
+    const [lastTicket, setLastTicket] = useState<{ ticketId: string; status: string } | null>(null);
+
+    const publishedEvents = events.filter(e => e.status?.toLowerCase?.() === 'published');
 
     // AI-powered recommendations based on user's registered events
     const recommendedEvents = useMemo(() => {
-        const registeredEventIds = myTickets;
+        const registeredEventIds = Array.from(registeredIds);
         const registeredEvents = events.filter(e => registeredEventIds.includes(e.id));
 
         // Get specialties from registered events
@@ -45,9 +49,16 @@ export default function DiscoveryGrid() {
         return recommendations;
     }, [events, myTickets, publishedEvents]);
 
-    const handleRegister = (eventId: string) => {
-        registerForEvent(eventId);
-        showToast(t('hcp.registrationSuccess'), "success");
+    const handleRegister = async (eventId: string) => {
+        try {
+            const res = await api.createRegistration({ eventId, hcpId: 'hcp-1' });
+            setRegisteredIds(prev => new Set(prev).add(eventId));
+            setLastTicket({ ticketId: res.ticketId, status: res.status });
+            showToast(t('hcp.registrationSuccess'), "success");
+        } catch (err) {
+            const message = err instanceof Error ? err.message : t('errors.generic');
+            showToast(message, "info");
+        }
     };
 
     return (
@@ -93,7 +104,7 @@ export default function DiscoveryGrid() {
                         </div>
                         <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                             {recommendedEvents.map((event) => {
-                                const isRegistered = myTickets.includes(event.id);
+                                const isRegistered = registeredIds.has(event.id);
                                 return (
                                     <EventCard
                                         key={event.id}
@@ -121,7 +132,7 @@ export default function DiscoveryGrid() {
                 </h3>
                 <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {publishedEvents.map((event) => {
-                        const isRegistered = myTickets.includes(event.id);
+                        const isRegistered = registeredIds.has(event.id);
                         return (
                             <EventCard
                                 key={event.id}
@@ -139,6 +150,15 @@ export default function DiscoveryGrid() {
                     })}
                 </div>
             </div>
+
+            {lastTicket && (
+                <div className="rounded-lg border bg-white/70 p-3 text-sm">
+                    <div className="font-semibold text-[var(--label)]">{t('hcp.ticketConfirmation') ?? 'Ticket confirmation'}</div>
+                    <div className="text-[var(--secondary-label)]">
+                        {t('hcp.ticketId') ?? 'Ticket'}: {lastTicket.ticketId} — {lastTicket.status}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

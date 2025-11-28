@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass-card";
 import { GlassButton } from "@/components/ui/glass-button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { usePersona } from "@/context/PersonaContext";
 import { getEventTitle, getEventOrganizer } from "@/lib/eventTranslations";
 import { useToast } from "@/components/ui/toast-context";
+import { api } from "@/lib/api";
 
 interface EventDetailsProps {
     readonly event: Event;
@@ -18,34 +20,42 @@ interface EventDetailsProps {
 
 export function EventDetails({ event, onClose, onRegister }: EventDetailsProps) {
     const { language } = useLanguage();
-    const { myTickets, registerForEvent } = usePersona();
+    const { myTickets } = usePersona();
     const { showToast } = useToast();
-    const isRegistered = myTickets.includes(event.id);
+    const [registeredIds, setRegisteredIds] = useState<Set<string>>(new Set(myTickets));
+    const [ticketInfo, setTicketInfo] = useState<{ ticketId: string; status: string } | null>(null);
+    const isRegistered = registeredIds.has(event.id);
+    const isPublished = event.status?.toLowerCase?.() === 'published';
 
-    const handleRegister = () => {
-        if (!isRegistered) {
-            registerForEvent(event.id);
+    const handleRegister = async () => {
+        if (isRegistered || !isPublished) return;
+        try {
+            const res = await api.createRegistration({ eventId: event.id, hcpId: 'hcp-1' });
+            setRegisteredIds((prev) => new Set(prev).add(event.id));
+            setTicketInfo({ ticketId: res.ticketId, status: res.status });
             showToast(
                 language === 'ar' ? 'تم التسجيل بنجاح' : 'Registration successful',
                 "success"
             );
             if (onRegister) onRegister();
+        } catch (err) {
+            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            showToast(message, "info");
         }
     };
 
-    const eventUrl = globalThis.window === undefined ? '' : globalThis.window.location.href;
+    const eventUrl = typeof window === 'undefined' ? '' : window.location.href;
     const eventTitle = language === 'ar' ? event.titleAr : event.titleEn;
     const eventDescription = language === 'ar' ? event.descriptionAr : event.descriptionEn;
 
     const handleShare = () => {
-        if (navigator.share) {
+        if (typeof navigator !== 'undefined' && navigator.share) {
             navigator.share({
                 title: eventTitle,
                 text: eventDescription,
                 url: eventUrl,
             });
-        } else {
-            // Fallback: copy to clipboard
+        } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
             navigator.clipboard.writeText(eventUrl);
             showToast(
                 language === 'ar' ? 'تم نسخ الرابط' : 'Link copied',
@@ -55,21 +65,25 @@ export function EventDetails({ event, onClose, onRegister }: EventDetailsProps) 
     };
 
     const shareToTwitter = () => {
+        if (typeof window === 'undefined') return;
         const text = encodeURIComponent(`${eventTitle} - ${eventDescription.substring(0, 100)}...`);
-        globalThis.window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(eventUrl)}`, '_blank');
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(eventUrl)}`, '_blank');
     };
 
     const shareToFacebook = () => {
-        globalThis.window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(eventUrl)}`, '_blank');
+        if (typeof window === 'undefined') return;
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(eventUrl)}`, '_blank');
     };
 
     const shareToLinkedIn = () => {
-        globalThis.window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(eventUrl)}`, '_blank');
+        if (typeof window === 'undefined') return;
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(eventUrl)}`, '_blank');
     };
 
     const shareToWhatsApp = () => {
+        if (typeof window === 'undefined') return;
         const text = encodeURIComponent(`${eventTitle}\n${eventDescription.substring(0, 100)}...\n${eventUrl}`);
-        globalThis.window.open(`https://wa.me/?text=${text}`, '_blank');
+        window.open(`https://wa.me/?text=${text}`, '_blank');
     };
 
     return (
@@ -103,11 +117,11 @@ export function EventDetails({ event, onClose, onRegister }: EventDetailsProps) 
                             {event.specialty}
                         </Badge>
                         <Badge variant="default" className="bg-[var(--apple-green)]/10 text-[var(--apple-green)]">
-                            {event.cme_hours} {language === 'ar' ? 'ساعة' : 'Hours'} CME
+                            {event.cme_hours} {language === 'ar' ? 'ساعات' : 'Hours'} CME
                         </Badge>
                         {event.is_sponsored && (
                             <Badge variant="default" className="bg-[var(--apple-purple)]/10 text-[var(--apple-purple)]">
-                                {language === 'ar' ? 'مدعوم' : 'Sponsored'}
+                                {language === 'ar' ? 'برعاية' : 'Sponsored'}
                             </Badge>
                         )}
                     </div>
@@ -155,7 +169,7 @@ export function EventDetails({ event, onClose, onRegister }: EventDetailsProps) 
                                     {language === 'ar' ? 'المدة' : 'Duration'}
                                 </p>
                                 <p className="font-medium text-[var(--label)]">
-                                    {event.cme_hours} {language === 'ar' ? 'ساعة' : 'Hours'}
+                                    {event.cme_hours} {language === 'ar' ? 'ساعات' : 'Hours'}
                                 </p>
                             </div>
                         </div>
@@ -178,7 +192,7 @@ export function EventDetails({ event, onClose, onRegister }: EventDetailsProps) 
                                 onClick={handleRegister}
                                 variant={isRegistered ? "outline" : "default"}
                                 size="default"
-                                disabled={isRegistered}
+                                disabled={isRegistered || !isPublished}
                                 className="flex-1 flex items-center justify-center gap-2"
                             >
                                 {isRegistered ? (
@@ -203,11 +217,22 @@ export function EventDetails({ event, onClose, onRegister }: EventDetailsProps) 
                                 {language === 'ar' ? 'مشاركة' : 'Share'}
                             </GlassButton>
                         </div>
-                        
+
+                        {ticketInfo && (
+                            <div className="rounded-lg border bg-white/70 p-3 text-sm">
+                                <div className="font-semibold text-[var(--label)]">
+                                    {language === 'ar' ? 'تذكرة' : 'Ticket'}
+                                </div>
+                                <div className="text-[var(--secondary-label)]">
+                                    ID: {ticketInfo.ticketId} — {ticketInfo.status}
+                                </div>
+                            </div>
+                        )}
+
                         {/* Social Sharing Buttons */}
                         <div className="flex flex-wrap gap-2">
                             <span className="text-sm text-[var(--secondary-label)] self-center mr-2">
-                                {language === 'ar' ? 'شارك على:' : 'Share on:'}
+                                {language === 'ar' ? 'شارك عبر:' : 'Share on:'}
                             </span>
                             <GlassButton
                                 onClick={shareToTwitter}
@@ -252,4 +277,3 @@ export function EventDetails({ event, onClose, onRegister }: EventDetailsProps) 
         </div>
     );
 }
-
