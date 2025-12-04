@@ -11,6 +11,7 @@ import { FileUpload } from '@/components/shared/FileUpload';
 import { Calendar } from '@/components/shared/Calendar';
 import { ArrowRight, ArrowLeft, CheckCircle2, FileText, Users, Target, Mail, CreditCard, Eye } from 'lucide-react';
 import { Event } from '@/lib/mockData';
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
 interface EnhancedEventWizardProps {
     onCancel: () => void;
@@ -66,7 +67,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
         needsSponsorship: false,
     });
 
-    const specialties = ['Cardiology', 'Family Medicine', 'Emergency Medicine', 'Pediatrics', 'Internal Medicine', 'Surgery'];
+    const specialties = [getSpecialtyLabel('cardiology', language), 'Family Medicine', 'Emergency Medicine', 'Pediatrics', 'Internal Medicine', 'Surgery'];
     const eventTypes = ['Conference', 'Workshop', 'Webinar', 'Symposium', 'Internal Training'];
     const formats = ['in-person', 'virtual', 'hybrid'];
 
@@ -246,8 +247,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                     {specialties.map(spec => {
                         const isSelected = formData.targetAudience.includes(spec);
                         return (
-                            <button
-                                key={spec}
+                            <button key={spec}
                                 type="button"
                                 onClick={() => {
                                     if (isSelected) {
@@ -669,7 +669,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                 <GlassButton
                     variant="outline"
                     onClick={currentStep === 1 ? onCancel : handlePrevious}
-                >
+                 className="flex items-center justify-center gap-2">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     {currentStep === 1 
                         ? (language === 'ar' ? 'إلغاء' : 'Cancel')
@@ -681,7 +681,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                         variant="default"
                         onClick={handleNext}
                         disabled={!canProceed()}
-                    >
+                     className="flex items-center justify-center gap-2">
                         {language === 'ar' ? 'التالي' : 'Next'}
                         <ArrowRight className="w-4 h-4 ml-2" />
                     </GlassButton>
@@ -690,7 +690,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                         variant="default"
                         onClick={handleSubmit}
                         disabled={!canProceed()}
-                    >
+                     className="flex items-center justify-center gap-2">
                         {language === 'ar' ? 'إرسال' : 'Submit'}
                         <CheckCircle2 className="w-4 h-4 ml-2" />
                     </GlassButton>

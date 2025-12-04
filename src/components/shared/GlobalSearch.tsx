@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Search, X, Clock, TrendingUp } from "lucide-react";
 import { Event } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
 interface GlobalSearchProps {
     onSelect?: (result: Event) => void;
@@ -24,7 +25,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
     const [popularSearches] = useState([
         language === 'ar' ? 'مؤتمر القلب' : 'Cardiology Conference',
         language === 'ar' ? 'ورشة التمريض' : 'Nursing Workshop',
-        language === 'ar' ? 'طب الأطفال' : 'Pediatrics',
+        language === 'ar' ? 'طب الأطفال' : getSpecialtyLabel('pediatrics', language),
     ]);
     const searchRef = useRef<HTMLDivElement>(null);
 
@@ -114,12 +115,12 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                     className="pl-10 pr-10 w-full"
                 />
                 {query && (
-                    <button
-                        onClick={() => {
+                    <button onClick={() => {
                             setQuery("");
                             setIsOpen(false);
                         }}
                         className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors"
+                        aria-label={language === 'ar' ? 'مسح البحث' : 'Clear search'}
                     >
                         <X className="w-4 h-4 text-[var(--secondary-label)]" />
                     </button>
@@ -141,8 +142,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                                         {language === 'ar' ? 'النتائج' : 'Results'} ({searchResults.length})
                                     </p>
                                     {searchResults.map((event) => (
-                                        <button
-                                            key={event.id}
+                                        <button key={event.id}
                                             onClick={() => handleSelect(event)}
                                             className="w-full text-left p-3 rounded-lg hover:bg-[var(--system-fill)] transition-colors"
                                         >
@@ -177,8 +177,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                                     </div>
                                     <div className="space-y-1">
                                         {recentSearches.map((search, index) => (
-                                            <button
-                                                key={index}
+                                            <button key={index}
                                                 onClick={() => handleRecentSelect(search)}
                                                 className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--system-fill)] transition-colors text-sm text-[var(--label)]"
                                             >
@@ -199,8 +198,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                                 </div>
                                 <div className="flex flex-wrap gap-2">
                                     {popularSearches.map((search, index) => (
-                                        <button
-                                            key={index}
+                                        <button key={index}
                                             onClick={() => handleRecentSelect(search)}
                                             className="px-3 py-1.5 rounded-full bg-[var(--system-fill)] hover:bg-[var(--secondary-system-fill)] transition-colors text-sm text-[var(--label)]"
                                         >

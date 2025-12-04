@@ -8,6 +8,7 @@ import { GlassButton } from "@/components/ui/glass-button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { TrendingUp, Users, BarChart3, CheckCircle2, Download, Calendar, Award } from "lucide-react";
 import { Chart } from "@/components/shared/Chart";
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
 export default function NationalAnalytics() {
     const { events } = usePersona();
@@ -34,7 +35,7 @@ export default function NationalAnalytics() {
     ];
 
     const eventsBySpecialty = [
-        { name: language === 'ar' ? 'طب القلب' : 'Cardiology', value: 280 },
+        { name: language === 'ar' ? 'طب القلب' : getSpecialtyLabel('cardiology', language), value: 280 },
         { name: language === 'ar' ? 'طب الأطفال' : 'Pediatrics', value: 220 },
         { name: language === 'ar' ? 'الجراحة العامة' : 'General Surgery', value: 180 },
         { name: language === 'ar' ? 'طب الأسرة' : 'Family Medicine', value: 250 },
@@ -93,7 +94,7 @@ export default function NationalAnalytics() {
                                 <SelectItem value="12m">{language === 'ar' ? '12 شهر' : '12 Months'}</SelectItem>
                             </SelectContent>
                         </Select>
-                        <GlassButton variant="outline" className="gap-2">
+                        <GlassButton variant="outline" className="gap-2 flex items-center justify-center">
                             <Download className="h-4 w-4" />
                             {language === 'ar' ? 'تصدير' : 'Export'}
                         </GlassButton>

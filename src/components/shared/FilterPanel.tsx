@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Calendar as CalendarComponent } from "@/components/shared/Calendar";
 import { X, Filter, Calendar, MapPin, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
 export interface FilterOptions {
     specialty?: string;
@@ -26,17 +27,6 @@ interface FilterPanelProps {
     savedPresets?: FilterOptions[];
     onSavePreset?: (name: string, filters: FilterOptions) => void;
 }
-
-const SPECIALTIES = [
-    'Cardiology',
-    'General Surgery',
-    'Pediatrics',
-    'Emergency Medicine',
-    'Anesthesiology',
-    'Nursing',
-    'Pharmacy',
-    'Radiology',
-];
 
 const LOCATIONS = [
     'Riyadh',
@@ -62,6 +52,17 @@ export function FilterPanel({
 }: FilterPanelProps) {
     const { language } = useLanguage();
     const [filters, setFilters] = useState<FilterOptions>({});
+    
+    const SPECIALTIES = [
+        getSpecialtyLabel('cardiology', language),
+        'General Surgery',
+        'Pediatrics',
+        'Emergency Medicine',
+        'Anesthesiology',
+        'Nursing',
+        'Pharmacy',
+        'Radiology',
+    ];
     const [showSavePreset, setShowSavePreset] = useState(false);
     const [presetName, setPresetName] = useState("");
 
@@ -119,14 +120,13 @@ export function FilterPanel({
                             onClick={clearAll}
                             variant="outline"
                             size="sm"
-                        >
+                         className="flex items-center justify-center gap-2">
                             {language === 'ar' ? 'مسح الكل' : 'Clear All'}
                         </GlassButton>
                     )}
                     {onClose && (
-                        <button
-                            onClick={onClose}
-                            className="p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors"
+                        <button onClick={onClose}
+                            className="p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors inline-flex items-center justify-center"
                         >
                             <X className="w-4 h-4 text-[var(--secondary-label)]" />
                         </button>
@@ -141,8 +141,7 @@ export function FilterPanel({
                 </label>
                 <div className="flex flex-wrap gap-2">
                     {SPECIALTIES.map((specialty) => (
-                        <button
-                            key={specialty}
+                        <button key={specialty}
                             onClick={() => {
                                 updateFilter('specialty', filters.specialty === specialty ? undefined : specialty);
                             }}
@@ -232,8 +231,7 @@ export function FilterPanel({
                 </label>
                 <div className="flex flex-wrap gap-2">
                     {STATUSES.map((status) => (
-                        <button
-                            key={status}
+                        <button key={status}
                             onClick={() => {
                                 updateFilter('status', filters.status === status ? undefined : status);
                             }}
@@ -304,7 +302,7 @@ export function FilterPanel({
                                     onClick={handleSavePreset}
                                     variant="default"
                                     size="default"
-                                    className="flex-1"
+                                    className="flex-1 items-center justify-center gap-2"
                                 >
                                     {language === 'ar' ? 'حفظ' : 'Save'}
                                 </GlassButton>
