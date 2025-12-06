@@ -3,7 +3,7 @@ title: TypeScript Error Fixing Protocol
 description: Automated error detection and fixing workflow
 tags: [typescript, debugging, validation]
 alwaysApply: true
-globs: ["src/**/*.ts", "src/**/*.tsx", "*.ts", "*.tsx", "**/*.ts", "**/*.tsx", "!Docs/**"]
+globs: ["src/**/*.ts", "src/**/*.tsx", "*.ts", "*.tsx", "!Docs/**"]
 ***
 
 # TypeScript Error Fixing Protocol
