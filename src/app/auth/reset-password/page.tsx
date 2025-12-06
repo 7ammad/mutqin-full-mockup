@@ -36,12 +36,12 @@ function ResetPasswordForm() {
         setError('');
 
         if (password !== confirmPassword) {
-            setError(language === 'ar' ? 'كلمات المرور غير متطابقة' : 'Passwords do not match');
+            setError(language === 'ar' ? '   ' : 'Passwords do not match');
             return;
         }
 
         if (password.length < 6) {
-            setError(language === 'ar' ? 'كلمة المرور يجب أن تكون 6 أحرف على الأقل' : 'Password must be at least 6 characters');
+            setError(language === 'ar' ? '     6   ' : 'Password must be at least 6 characters');
             return;
         }
 
@@ -56,12 +56,12 @@ function ResetPasswordForm() {
         }, 1000);
     };
 
-    const title = language === 'ar' ? 'إعادة تعيين كلمة المرور' : 'Reset Password';
-    const passwordLabel = language === 'ar' ? 'كلمة المرور الجديدة' : 'New Password';
-    const confirmPasswordLabel = language === 'ar' ? 'تأكيد كلمة المرور' : 'Confirm Password';
-    const resetButton = language === 'ar' ? 'إعادة التعيين' : 'Reset Password';
+    const title = language === 'ar' ? '   ' : 'Reset Password';
+    const passwordLabel = language === 'ar' ? '  ' : 'New Password';
+    const confirmPasswordLabel = language === 'ar' ? '  ' : 'Confirm Password';
+    const resetButton = language === 'ar' ? ' ' : 'Reset Password';
     const successMessage = language === 'ar'
-        ? 'تم إعادة تعيين كلمة المرور بنجاح'
+        ? '     '
         : 'Password reset successfully';
 
     if (isSuccess) {
@@ -72,7 +72,7 @@ function ResetPasswordForm() {
                     <h1 className="text-2xl font-bold text-[var(--label)] mb-2">{title}</h1>
                     <p className="text-[var(--secondary-label)] mb-6">{successMessage}</p>
                     <p className="text-sm text-[var(--tertiary-label)]">
-                        {language === 'ar' ? 'جاري إعادة التوجيه...' : 'Redirecting...'}
+                        {language === 'ar' ? '  ...' : 'Redirecting...'}
                     </p>
                 </LiquidGlassCard>
             </div>
@@ -95,7 +95,7 @@ function ResetPasswordForm() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder={language === 'ar' ? 'كلمة المرور الجديدة' : 'New Password'}
+                            placeholder={language === 'ar' ? '  ' : 'New Password'}
                             required
                             minLength={6}
                             className="w-full"
@@ -110,7 +110,7 @@ function ResetPasswordForm() {
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            placeholder={language === 'ar' ? 'تأكيد كلمة المرور' : 'Confirm Password'}
+                            placeholder={language === 'ar' ? '  ' : 'Confirm Password'}
                             required
                             minLength={6}
                             className="w-full"
@@ -128,7 +128,7 @@ function ResetPasswordForm() {
                         className="w-full flex items-center justify-center gap-2"
                         disabled={isLoading}
                     >
-                        {isLoading ? (language === 'ar' ? 'جاري إعادة التعيين...' : 'Resetting...') : resetButton}
+                        {isLoading ? (language === 'ar' ? '  ...' : 'Resetting...') : resetButton}
                     </GlassButton>
                 </form>
             </LiquidGlassCard>

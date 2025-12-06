@@ -14,8 +14,8 @@ const MockLanguageProvider = ({ children, language: lang }: { children: React.Re
         'nav.login': 'Login',
       },
       ar: {
-        'brand.name': 'مُثْقِن',
-        'nav.login': 'تسجيل الدخول',
+        'brand.name': '',
+        'nav.login': ' ',
       },
     };
     return translations[language]?.[key] || key;

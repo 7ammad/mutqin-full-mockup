@@ -27,33 +27,33 @@ export default function ROIReporting() {
     };
 
     const campaignROI = [
-        { name: language === 'ar' ? 'حملة القلب' : 'Cardiology Campaign', investment: 50000, revenue: 150000, roi: 200 },
-        { name: language === 'ar' ? 'حملة طب الأطفال' : 'Pediatrics Campaign', investment: 40000, revenue: 120000, roi: 200 },
-        { name: language === 'ar' ? 'حملة الجراحة' : 'Surgery Campaign', investment: 35000, revenue: 95000, roi: 171.4 },
-        { name: language === 'ar' ? 'حملة الطوارئ' : 'Emergency Campaign', investment: 25000, revenue: 60000, roi: 140 },
+        { name: language === 'ar' ? ' ' : 'Cardiology Campaign', investment: 50000, revenue: 150000, roi: 200 },
+        { name: language === 'ar' ? '  ' : 'Pediatrics Campaign', investment: 40000, revenue: 120000, roi: 200 },
+        { name: language === 'ar' ? ' ' : 'Surgery Campaign', investment: 35000, revenue: 95000, roi: 171.4 },
+        { name: language === 'ar' ? ' ' : 'Emergency Campaign', investment: 25000, revenue: 60000, roi: 140 },
     ];
 
     const monthlyROI = [
-        { month: language === 'ar' ? 'يناير' : 'Jan', investment: 12000, revenue: 35000, roi: 191.7 },
-        { month: language === 'ar' ? 'فبراير' : 'Feb', investment: 15000, revenue: 42000, roi: 180 },
-        { month: language === 'ar' ? 'مارس' : 'Mar', investment: 18000, revenue: 52000, roi: 188.9 },
-        { month: language === 'ar' ? 'أبريل' : 'Apr', investment: 20000, revenue: 58000, roi: 190 },
-        { month: language === 'ar' ? 'مايو' : 'May', investment: 22000, revenue: 65000, roi: 195.5 },
-        { month: language === 'ar' ? 'يونيو' : 'Jun', investment: 25000, revenue: 75000, roi: 200 },
+        { month: language === 'ar' ? '' : 'Jan', investment: 12000, revenue: 35000, roi: 191.7 },
+        { month: language === 'ar' ? '' : 'Feb', investment: 15000, revenue: 42000, roi: 180 },
+        { month: language === 'ar' ? '' : 'Mar', investment: 18000, revenue: 52000, roi: 188.9 },
+        { month: language === 'ar' ? '' : 'Apr', investment: 20000, revenue: 58000, roi: 190 },
+        { month: language === 'ar' ? '' : 'May', investment: 22000, revenue: 65000, roi: 195.5 },
+        { month: language === 'ar' ? '' : 'Jun', investment: 25000, revenue: 75000, roi: 200 },
     ];
 
-    const title = language === 'ar' ? 'تقارير عائد الاستثمار' : 'ROI Reporting';
-    const summaryText = language === 'ar' ? 'ملخص' : 'Summary';
-    const detailedText = language === 'ar' ? 'مفصل' : 'Detailed';
-    const comparisonText = language === 'ar' ? 'مقارنة' : 'Comparison';
-    const totalInvestmentText = language === 'ar' ? 'إجمالي الاستثمار' : 'Total Investment';
-    const totalRevenueText = language === 'ar' ? 'إجمالي الإيرادات' : 'Total Revenue';
-    const netProfitText = language === 'ar' ? 'صافي الربح' : 'Net Profit';
-    const roiText = language === 'ar' ? 'عائد الاستثمار' : 'ROI';
-    const cpaText = language === 'ar' ? 'تكلفة الاكتساب' : 'Cost Per Acquisition';
-    const ltvText = language === 'ar' ? 'القيمة مدى الحياة' : 'Lifetime Value';
-    const paybackText = language === 'ar' ? 'فترة الاسترداد' : 'Payback Period';
-    const breakEvenText = language === 'ar' ? 'نقطة التعادل' : 'Break-Even Point';
+    const title = language === 'ar' ? '  ' : 'ROI Reporting';
+    const summaryText = language === 'ar' ? '' : 'Summary';
+    const detailedText = language === 'ar' ? '' : 'Detailed';
+    const comparisonText = language === 'ar' ? '' : 'Comparison';
+    const totalInvestmentText = language === 'ar' ? ' ' : 'Total Investment';
+    const totalRevenueText = language === 'ar' ? ' ' : 'Total Revenue';
+    const netProfitText = language === 'ar' ? ' ' : 'Net Profit';
+    const roiText = language === 'ar' ? ' ' : 'ROI';
+    const cpaText = language === 'ar' ? ' ' : 'Cost Per Acquisition';
+    const ltvText = language === 'ar' ? '  ' : 'Lifetime Value';
+    const paybackText = language === 'ar' ? ' ' : 'Payback Period';
+    const breakEvenText = language === 'ar' ? ' ' : 'Break-Even Point';
 
     return (
         <div className="space-y-6">
@@ -79,14 +79,14 @@ export default function ROIReporting() {
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="mtd">{language === 'ar' ? 'هذا الشهر' : 'MTD'}</SelectItem>
-                                <SelectItem value="ytd">{language === 'ar' ? 'هذه السنة' : 'YTD'}</SelectItem>
-                                <SelectItem value="12m">{language === 'ar' ? '12 شهر' : '12 Months'}</SelectItem>
+                                <SelectItem value="mtd">{language === 'ar' ? ' ' : 'MTD'}</SelectItem>
+                                <SelectItem value="ytd">{language === 'ar' ? ' ' : 'YTD'}</SelectItem>
+                                <SelectItem value="12m">{language === 'ar' ? '12 ' : '12 Months'}</SelectItem>
                             </SelectContent>
                         </Select>
                         <GlassButton variant="outline" className="gap-2 flex items-center justify-center">
                             <Download className="h-4 w-4" />
-                            {language === 'ar' ? 'تصدير PDF' : 'Export PDF'}
+                            {language === 'ar' ? ' PDF' : 'Export PDF'}
                         </GlassButton>
                     </div>
                 </div>
@@ -148,13 +148,13 @@ export default function ROIReporting() {
                     <div className="bg-[var(--system-fill)] p-4 rounded-ios text-center">
                         <p className="text-xs text-[var(--secondary-label)] mb-1">{paybackText}</p>
                         <p className="text-lg font-bold text-[var(--label)]">
-                            {mockROIData.paybackPeriod} {language === 'ar' ? 'شهر' : 'months'}
+                            {mockROIData.paybackPeriod} {language === 'ar' ? '' : 'months'}
                         </p>
                     </div>
                     <div className="bg-[var(--system-fill)] p-4 rounded-ios text-center">
                         <p className="text-xs text-[var(--secondary-label)] mb-1">{breakEvenText}</p>
                         <p className="text-lg font-bold text-[var(--label)]">
-                            {mockROIData.breakEvenPoint} {language === 'ar' ? 'عميل' : 'customers'}
+                            {mockROIData.breakEvenPoint} {language === 'ar' ? '' : 'customers'}
                         </p>
                     </div>
                 </div>
@@ -162,7 +162,7 @@ export default function ROIReporting() {
                 {/* Campaign ROI Comparison */}
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6 mb-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'مقارنة عائد الاستثمار للحملات' : 'Campaign ROI Comparison'}
+                        {language === 'ar' ? '   ' : 'Campaign ROI Comparison'}
                     </h3>
                     <Chart
                         type="bar"
@@ -177,7 +177,7 @@ export default function ROIReporting() {
                 {/* Monthly ROI Trend */}
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'اتجاه عائد الاستثمار الشهري' : 'Monthly ROI Trend'}
+                        {language === 'ar' ? '   ' : 'Monthly ROI Trend'}
                     </h3>
                     <Chart
                         type="line"

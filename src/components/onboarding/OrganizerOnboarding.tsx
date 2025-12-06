@@ -13,7 +13,7 @@ export function OrganizerOnboarding({ onComplete, onSkip }: OrganizerOnboardingP
     const steps = [
         {
             title: "Welcome, Organizer!",
-            titleAr: "مرحباً، المنظم!",
+            titleAr: " !",
             content: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
@@ -29,12 +29,12 @@ export function OrganizerOnboarding({ onComplete, onSkip }: OrganizerOnboardingP
             contentAr: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
-                        أنشئ وأدر فعاليات التعليم الطبي، تتبع التسجيلات، وأنشئ الشهادات.
+                                .
                     </p>
                     <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                         <Calendar className="w-8 h-8 text-[var(--apple-blue)] mb-2" />
-                        <p className="font-medium text-[var(--label)]">إنشاء الفعاليات</p>
-                        <p className="text-sm text-[var(--secondary-label)]">أنشئ الفعاليات باستخدام معالج الخطوات</p>
+                        <p className="font-medium text-[var(--label)]"> </p>
+                        <p className="text-sm text-[var(--secondary-label)]">    </p>
                     </LiquidGlassCard>
                 </div>
             ),

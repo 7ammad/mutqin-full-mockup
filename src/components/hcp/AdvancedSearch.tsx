@@ -78,7 +78,7 @@ export default function AdvancedSearch() {
                                 setSearchQuery(language === 'ar' ? result.titleAr : result.titleEn);
                             }
                         }}
-                        placeholder={language === 'ar' ? 'ابحث عن فعاليات...' : 'Search events...'}
+                        placeholder={language === 'ar' ? '  ...' : 'Search events...'}
                     />
                 </div>
                 <GlassButton
@@ -88,7 +88,7 @@ export default function AdvancedSearch() {
                     className="flex items-center gap-2"
                 >
                     <Filter className="w-4 h-4" />
-                    {language === 'ar' ? 'التصفية' : 'Filters'}
+                    {language === 'ar' ? '' : 'Filters'}
                 </GlassButton>
             </div>
 
@@ -106,7 +106,7 @@ export default function AdvancedSearch() {
                     <div className="flex items-center gap-2 mb-4">
                         <Sparkles className="w-5 h-5 text-[var(--apple-purple)]" />
                         <h3 className="text-lg font-semibold text-[var(--label)]">
-                            {language === 'ar' ? 'التوصيات المخصصة لك' : 'Personalized Recommendations'}
+                            {language === 'ar' ? '  ' : 'Personalized Recommendations'}
                         </h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -127,7 +127,7 @@ export default function AdvancedSearch() {
             <div>
                 <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'النتائج' : 'Results'} ({filteredEvents.length})
+                        {language === 'ar' ? '' : 'Results'} ({filteredEvents.length})
                     </h3>
                     {(searchQuery || Object.keys(filters).length > 0) && (
                         <GlassButton
@@ -139,7 +139,7 @@ export default function AdvancedSearch() {
                             size="sm"
                         >
                             <X className="w-4 h-4 mr-2" />
-                            {language === 'ar' ? 'مسح' : 'Clear'}
+                            {language === 'ar' ? '' : 'Clear'}
                         </GlassButton>
                     )}
                 </div>
@@ -148,7 +148,7 @@ export default function AdvancedSearch() {
                     <LiquidGlassCard blurIntensity="lg" interactive={false}>
                         <div className="text-center py-12">
                             <p className="text-[var(--secondary-label)]">
-                                {language === 'ar' ? 'لا توجد نتائج' : 'No results found'}
+                                {language === 'ar' ? '  ' : 'No results found'}
                             </p>
                         </div>
                     </LiquidGlassCard>

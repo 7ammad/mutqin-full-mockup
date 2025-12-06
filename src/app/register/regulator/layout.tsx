@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تسجيل جهة رقابية | مُتْقِن',
-  description: 'سجل كجهة رقابية واعتمد الفعاليات الطبية',
+  title: '   | ',
+  description: '     ',
 };
 
 export default function RegulatorRegisterLayout({

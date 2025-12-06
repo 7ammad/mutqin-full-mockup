@@ -54,7 +54,10 @@
     "handleViewCertificate",
     "qrcode",
     "jspdf",
-    "aivenio"
+    "aivenio",
+    "webp",
+    "lucide",
+    "Turbopack"
   ],
   "ignoreWords": [
     "cspell",
@@ -124,5 +127,4 @@
     }
   ]
 }
-
 

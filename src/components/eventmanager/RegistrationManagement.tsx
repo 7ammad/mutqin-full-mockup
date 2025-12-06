@@ -69,25 +69,25 @@ export default function RegistrationManagement({ eventId }: RegistrationManageme
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
     }
 
-    const title = language === 'ar' ? 'إدارة التسجيلات' : 'Registration Management';
-    const confirmedText = language === 'ar' ? 'مؤكد' : 'Confirmed';
-    const pendingText = language === 'ar' ? 'قيد الانتظار' : 'Pending';
-    const cancelledText = language === 'ar' ? 'ملغي' : 'Cancelled';
-    const totalText = language === 'ar' ? 'الإجمالي' : 'Total';
-    const searchPlaceholder = language === 'ar' ? 'ابحث عن تسجيل...' : 'Search registrations...';
-    const allStatusText = language === 'ar' ? 'الكل' : 'All';
-    const specialtyText = language === 'ar' ? 'التخصص' : 'Specialty';
-    const ticketText = language === 'ar' ? 'التذكرة' : 'Ticket';
-    const emailText = language === 'ar' ? 'البريد الإلكتروني' : 'Email';
-    const sendTicketText = language === 'ar' ? 'إرسال التذكرة' : 'Send Ticket';
-    const downloadAllText = language === 'ar' ? 'تحميل الكل' : 'Download All';
-    const viewTicketText = language === 'ar' ? 'عرض التذكرة' : 'View Ticket';
+    const title = language === 'ar' ? ' ' : 'Registration Management';
+    const confirmedText = language === 'ar' ? '' : 'Confirmed';
+    const pendingText = language === 'ar' ? ' ' : 'Pending';
+    const cancelledText = language === 'ar' ? '' : 'Cancelled';
+    const totalText = language === 'ar' ? '' : 'Total';
+    const searchPlaceholder = language === 'ar' ? '  ...' : 'Search registrations...';
+    const allStatusText = language === 'ar' ? '' : 'All';
+    const specialtyText = language === 'ar' ? '' : 'Specialty';
+    const ticketText = language === 'ar' ? '' : 'Ticket';
+    const emailText = language === 'ar' ? ' ' : 'Email';
+    const sendTicketText = language === 'ar' ? ' ' : 'Send Ticket';
+    const downloadAllText = language === 'ar' ? ' ' : 'Download All';
+    const viewTicketText = language === 'ar' ? ' ' : 'View Ticket';
 
     return (
         <div className="space-y-6">
@@ -207,7 +207,7 @@ export default function RegistrationManagement({ eventId }: RegistrationManageme
                                 <div className="space-y-1 text-sm text-[var(--secondary-label)]">
                                     <p>{emailText}: {registration.email}</p>
                                     {registration.licenseNumber && (
-                                        <p>{language === 'ar' ? 'رقم الرخصة' : 'License'}: {registration.licenseNumber}</p>
+                                        <p>{language === 'ar' ? ' ' : 'License'}: {registration.licenseNumber}</p>
                                     )}
                                     <p>{specialtyText}: {registration.specialty}</p>
                                     <p>{ticketText} ID: {registration.ticketId}</p>
@@ -247,7 +247,7 @@ export default function RegistrationManagement({ eventId }: RegistrationManageme
                                     size="sm"
                                     onClick={() => setSelectedRegistration(null)}
                                 >
-                                    {language === 'ar' ? 'إغلاق' : 'Close'}
+                                    {language === 'ar' ? '' : 'Close'}
                                 </GlassButton>
                             </div>
                             <div className="flex justify-center mb-4">

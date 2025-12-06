@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'إنشاء حساب | مُتْقِن',
-  description: 'سجل في مُتْقِن وابدأ رحلتك في التعليم الطبي المستمر',
+  title: '  | ',
+  description: '        ',
 };
 
 export default function RegisterLayout({

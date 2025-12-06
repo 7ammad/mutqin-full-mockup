@@ -45,19 +45,19 @@ export default function LandingPageBuilder() {
         }
     };
 
-    const title = language === 'ar' ? 'بناء صفحة الهبوط' : 'Landing Page Builder';
-    const pageTitleText = language === 'ar' ? 'عنوان الصفحة' : 'Page Title';
-    const descriptionText = language === 'ar' ? 'الوصف' : 'Description';
-    const heroImageText = language === 'ar' ? 'صورة البطل' : 'Hero Image';
-    const colorsText = language === 'ar' ? 'الألوان' : 'Colors';
-    const primaryColorText = language === 'ar' ? 'اللون الأساسي' : 'Primary Color';
-    const secondaryColorText = language === 'ar' ? 'اللون الثانوي' : 'Secondary Color';
-    const layoutText = language === 'ar' ? 'التخطيط' : 'Layout';
-    const showRegistrationText = language === 'ar' ? 'إظهار نموذج التسجيل' : 'Show Registration Form';
-    const previewText = language === 'ar' ? 'معاينة' : 'Preview';
-    const saveText = language === 'ar' ? 'حفظ' : 'Save';
-    const backText = language === 'ar' ? 'رجوع' : 'Back';
-    const editText = language === 'ar' ? 'تعديل' : 'Edit';
+    const title = language === 'ar' ? '  ' : 'Landing Page Builder';
+    const pageTitleText = language === 'ar' ? ' ' : 'Page Title';
+    const descriptionText = language === 'ar' ? '' : 'Description';
+    const heroImageText = language === 'ar' ? ' ' : 'Hero Image';
+    const colorsText = language === 'ar' ? '' : 'Colors';
+    const primaryColorText = language === 'ar' ? ' ' : 'Primary Color';
+    const secondaryColorText = language === 'ar' ? ' ' : 'Secondary Color';
+    const layoutText = language === 'ar' ? '' : 'Layout';
+    const showRegistrationText = language === 'ar' ? '  ' : 'Show Registration Form';
+    const previewText = language === 'ar' ? '' : 'Preview';
+    const saveText = language === 'ar' ? '' : 'Save';
+    const backText = language === 'ar' ? '' : 'Back';
+    const editText = language === 'ar' ? '' : 'Edit';
 
     if (previewMode) {
         return (
@@ -99,13 +99,13 @@ export default function LandingPageBuilder() {
                                 <div className="mt-8">
                                     <LiquidGlassCard blurIntensity="lg" className="p-6 max-w-md mx-auto">
                                         <h3 className="text-xl font-semibold text-[var(--label)] mb-4">
-                                            {language === 'ar' ? 'سجل الآن' : 'Register Now'}
+                                            {language === 'ar' ? ' ' : 'Register Now'}
                                         </h3>
                                         <div className="space-y-3">
-                                            <Input placeholder={language === 'ar' ? 'الاسم' : 'Name'} />
-                                            <Input type="email" placeholder={language === 'ar' ? 'البريد الإلكتروني' : 'Email'} />
+                                            <Input placeholder={language === 'ar' ? '' : 'Name'} />
+                                            <Input type="email" placeholder={language === 'ar' ? ' ' : 'Email'} />
                                             <GlassButton variant="default" className="w-full flex items-center justify-center gap-2" style={{ backgroundColor: config.primaryColor }}>
-                                                {language === 'ar' ? 'تسجيل' : 'Register'}
+                                                {language === 'ar' ? '' : 'Register'}
                                             </GlassButton>
                                         </div>
                                     </LiquidGlassCard>
@@ -133,7 +133,7 @@ export default function LandingPageBuilder() {
                 <div className="space-y-6">
                     <div>
                         <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                            {pageTitleText} ({language === 'ar' ? 'عربي' : 'English'})
+                            {pageTitleText} ({language === 'ar' ? '' : 'English'})
                         </label>
                         <Input
                             value={language === 'ar' ? (config.titleAr || '') : config.title}
@@ -143,7 +143,7 @@ export default function LandingPageBuilder() {
                                     [language === 'ar' ? 'titleAr' : 'title']: e.target.value,
                                 })
                             }
-                            placeholder={language === 'ar' ? 'أدخل العنوان بالعربية' : 'Enter title in English'}
+                            placeholder={language === 'ar' ? '  ' : 'Enter title in English'}
                         />
                     </div>
 
@@ -155,14 +155,14 @@ export default function LandingPageBuilder() {
                             <Input
                                 value={config.titleAr || ''}
                                 onChange={(e) => setConfig({ ...config, titleAr: e.target.value })}
-                                placeholder="أدخل العنوان بالعربية"
+                                placeholder="  "
                             />
                         </div>
                     )}
 
                     <div>
                         <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                            {descriptionText} ({language === 'ar' ? 'عربي' : 'English'})
+                            {descriptionText} ({language === 'ar' ? '' : 'English'})
                         </label>
                         <Textarea
                             value={language === 'ar' ? (config.descriptionAr || '') : config.description}
@@ -172,7 +172,7 @@ export default function LandingPageBuilder() {
                                     [language === 'ar' ? 'descriptionAr' : 'description']: e.target.value,
                                 })
                             }
-                            placeholder={language === 'ar' ? 'أدخل الوصف بالعربية' : 'Enter description in English'}
+                            placeholder={language === 'ar' ? '  ' : 'Enter description in English'}
                             className="min-h-[100px]"
                         />
                     </div>
@@ -185,7 +185,7 @@ export default function LandingPageBuilder() {
                             <Textarea
                                 value={config.descriptionAr || ''}
                                 onChange={(e) => setConfig({ ...config, descriptionAr: e.target.value })}
-                                placeholder="أدخل الوصف بالعربية"
+                                placeholder="  "
                                 className="min-h-[100px]"
                             />
                         </div>
@@ -273,7 +273,7 @@ export default function LandingPageBuilder() {
                         <div>
                             <p className="font-medium text-[var(--label)]">{showRegistrationText}</p>
                             <p className="text-sm text-[var(--secondary-label)]">
-                                {language === 'ar' ? 'إظهار نموذج التسجيل في الصفحة' : 'Show registration form on the page'}
+                                {language === 'ar' ? '    ' : 'Show registration form on the page'}
                             </p>
                         </div>
                         <button onClick={() => setConfig({ ...config, showRegistrationForm: !config.showRegistrationForm })}

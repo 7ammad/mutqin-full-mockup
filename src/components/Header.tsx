@@ -124,7 +124,7 @@ export function Header() {
             <button onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
               className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors"
               aria-label="Toggle Language"
-              title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
+              title={language === 'ar' ? 'Switch to English' : '  '}
             >
               <Languages className={`h-5 w-5 transition-colors ${
                 isScrolled 
@@ -137,7 +137,7 @@ export function Header() {
             {mounted && (
               <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors"
-                aria-label={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
+                aria-label={language === 'ar' ? ' ' : 'Toggle Theme'}
               >
                 {theme === 'dark' ? (
                   <Sun className={`h-5 w-5 transition-colors ${

@@ -194,7 +194,7 @@ export default function CompactCMETracker({
                             {Math.round(animatedHours)}/{requiredHours}
                         </span>
                         <span className="text-xs text-[var(--secondary-label)] leading-tight">
-                            {language === "ar" ? "ساعة CME" : "CME hrs"}
+                            {language === "ar" ? " CME" : "CME hrs"}
                         </span>
                     </div>
                 </>
@@ -208,7 +208,7 @@ export default function CompactCMETracker({
                             {Math.round(animatedHours)}/{requiredHours}
                         </span>
                         <span className="text-xs text-[var(--secondary-label)] leading-tight">
-                            {language === "ar" ? "ساعة CME" : "CME hrs"}
+                            {language === "ar" ? " CME" : "CME hrs"}
                         </span>
                     </div>
                 </>
@@ -257,7 +257,7 @@ export default function CompactCMETracker({
                         setIsExpanded(!isExpanded);
                     }}
                     className="p-2 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors flex-shrink-0 ml-auto"
-                    aria-label={language === "ar" ? "عرض التفاصيل" : "View details"}
+                    aria-label={language === "ar" ? " " : "View details"}
                 >
                     {isExpanded ? (
                         <ChevronUp className="h-5 w-5 text-[var(--secondary-label)]" />
@@ -290,30 +290,30 @@ export default function CompactCMETracker({
                         <div className="grid grid-cols-2 gap-3 text-sm">
                             <div>
                                 <p className="text-[var(--secondary-label)] mb-1">
-                                    {language === "ar" ? "مكتسب" : "Earned"}
+                                    {language === "ar" ? "" : "Earned"}
                                 </p>
                                 <p className="text-lg font-bold text-[var(--label)]">
-                                    {Math.round(animatedHours)} {language === "ar" ? "ساعة" : "hrs"}
+                                    {Math.round(animatedHours)} {language === "ar" ? "" : "hrs"}
                                 </p>
                             </div>
                             <div>
                                 <p className="text-[var(--secondary-label)] mb-1">
-                                    {language === "ar" ? "المتبقي" : "Remaining"}
+                                    {language === "ar" ? "" : "Remaining"}
                                 </p>
                                 <p className={cn(
                                     "text-lg font-bold",
                                     remainingHours > 0 ? "text-[var(--apple-orange)]" : "text-[var(--apple-green)]"
                                 )}>
-                                    {remainingHours} {language === "ar" ? "ساعة" : "hrs"}
+                                    {remainingHours} {language === "ar" ? "" : "hrs"}
                                 </p>
                             </div>
                         </div>
                         <div className="flex items-center justify-between text-xs text-[var(--secondary-label)]">
                             <span>
-                                {cmeData.creditsData.items.length} {language === "ar" ? "فعالية" : "events"}
+                                {cmeData.creditsData.items.length} {language === "ar" ? "" : "events"}
                             </span>
                             <span>
-                                {language === "ar" ? "الهدف" : "Goal"}: {requiredHours} {language === "ar" ? "ساعة/سنة" : "hrs/year"}
+                                {language === "ar" ? "" : "Goal"}: {requiredHours} {language === "ar" ? "/" : "hrs/year"}
                             </span>
                         </div>
                     </div>

@@ -23,34 +23,34 @@ describe('Header Navigation', () => {
     renderWithProviders(<Header />);
 
     // Check by href instead of text (works for both languages)
-    expect(screen.getByRole('link', { name: /الأنشطة|Activities/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /ما هو متقن|What is Mutqin/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /كيف يعمل|How It Works/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /من نخدم|Who We Serve/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /لماذا يهم|Why It Matters/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /انضم|Join/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /|Activities/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /  |What is Mutqin/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: / |How It Works/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: / |Who We Serve/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: / |Why It Matters/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /|Join/i })).toBeInTheDocument();
   });
 
   it('navigation links have correct hrefs', () => {
     renderWithProviders(<Header />);
 
     // Check by href (language-agnostic)
-    const activitiesLink = screen.getByRole('link', { name: /الأنشطة|Activities/i });
+    const activitiesLink = screen.getByRole('link', { name: /|Activities/i });
     expect(activitiesLink).toHaveAttribute('href', '#activities-preview');
 
-    const whatIsLink = screen.getByRole('link', { name: /ما هو متقن|What is Mutqin/i });
+    const whatIsLink = screen.getByRole('link', { name: /  |What is Mutqin/i });
     expect(whatIsLink).toHaveAttribute('href', '#what-is-mutqin');
 
-    const howItWorksLink = screen.getByRole('link', { name: /كيف يعمل|How It Works/i });
+    const howItWorksLink = screen.getByRole('link', { name: / |How It Works/i });
     expect(howItWorksLink).toHaveAttribute('href', '#how-it-works');
 
-    const whoWeServeLink = screen.getByRole('link', { name: /من نخدم|Who We Serve/i });
+    const whoWeServeLink = screen.getByRole('link', { name: / |Who We Serve/i });
     expect(whoWeServeLink).toHaveAttribute('href', '#who-we-serve');
 
-    const whyItMattersLink = screen.getByRole('link', { name: /لماذا يهم|Why It Matters/i });
+    const whyItMattersLink = screen.getByRole('link', { name: / |Why It Matters/i });
     expect(whyItMattersLink).toHaveAttribute('href', '#why-it-matters');
 
-    const joinLink = screen.getByRole('link', { name: /انضم|Join/i });
+    const joinLink = screen.getByRole('link', { name: /|Join/i });
     expect(joinLink).toHaveAttribute('href', '#demo');
   });
 

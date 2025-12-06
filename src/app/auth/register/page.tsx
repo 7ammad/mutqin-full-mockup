@@ -34,17 +34,17 @@ function RegisterForm() {
         setError('');
 
         if (password !== confirmPassword) {
-            setError(language === 'ar' ? 'كلمات المرور غير متطابقة' : 'Passwords do not match');
+            setError(language === 'ar' ? '   ' : 'Passwords do not match');
             return;
         }
 
         if (password.length < 6) {
-            setError(language === 'ar' ? 'كلمة المرور يجب أن تكون 6 أحرف على الأقل' : 'Password must be at least 6 characters');
+            setError(language === 'ar' ? '     6   ' : 'Password must be at least 6 characters');
             return;
         }
 
         if (!selectedRole) {
-            setError(language === 'ar' ? 'يرجى اختيار الدور' : 'Please select a role');
+            setError(language === 'ar' ? '  ' : 'Please select a role');
             return;
         }
 
@@ -57,22 +57,22 @@ function RegisterForm() {
     };
 
     const roles: { id: Persona; labelAr: string; labelEn: string }[] = [
-        { id: 'HCP', labelAr: 'الممارس الصحي', labelEn: 'Healthcare Professional' },
-        { id: 'ORGANIZER', labelAr: 'المنظم', labelEn: 'Organizer' },
-        { id: 'VENDOR', labelAr: 'الداعم', labelEn: 'Vendor' },
-        { id: 'REGULATOR', labelAr: 'المعتمد', labelEn: 'Regulator' },
-        { id: 'EVENT_MANAGER', labelAr: 'مدير الفعاليات', labelEn: 'Event Manager' },
+        { id: 'HCP', labelAr: ' ', labelEn: 'Healthcare Professional' },
+        { id: 'ORGANIZER', labelAr: '', labelEn: 'Organizer' },
+        { id: 'VENDOR', labelAr: '', labelEn: 'Vendor' },
+        { id: 'REGULATOR', labelAr: '', labelEn: 'Regulator' },
+        { id: 'EVENT_MANAGER', labelAr: ' ', labelEn: 'Event Manager' },
     ];
 
-    const pageTitle = language === 'ar' ? 'إنشاء حساب جديد' : 'Create Account';
-    const nameLabel = language === 'ar' ? 'الاسم' : 'Name';
-    const emailLabel = language === 'ar' ? 'البريد الإلكتروني' : 'Email';
-    const passwordLabel = language === 'ar' ? 'كلمة المرور' : 'Password';
-    const confirmPasswordLabel = language === 'ar' ? 'تأكيد كلمة المرور' : 'Confirm Password';
-    const roleLabel = language === 'ar' ? 'الدور' : 'Role';
-    const registerButton = language === 'ar' ? 'إنشاء حساب' : 'Register';
-    const haveAccount = language === 'ar' ? 'لديك حساب بالفعل؟' : 'Already have an account?';
-    const loginLink = language === 'ar' ? 'تسجيل الدخول' : 'Login';
+    const pageTitle = language === 'ar' ? '  ' : 'Create Account';
+    const nameLabel = language === 'ar' ? '' : 'Name';
+    const emailLabel = language === 'ar' ? ' ' : 'Email';
+    const passwordLabel = language === 'ar' ? ' ' : 'Password';
+    const confirmPasswordLabel = language === 'ar' ? '  ' : 'Confirm Password';
+    const roleLabel = language === 'ar' ? '' : 'Role';
+    const registerButton = language === 'ar' ? ' ' : 'Register';
+    const haveAccount = language === 'ar' ? '  ' : 'Already have an account?';
+    const loginLink = language === 'ar' ? ' ' : 'Login';
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-[var(--system-background)] px-4">
@@ -90,7 +90,7 @@ function RegisterForm() {
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            placeholder={language === 'ar' ? 'الاسم الكامل' : 'Full Name'}
+                            placeholder={language === 'ar' ? ' ' : 'Full Name'}
                             required
                             className="w-full"
                         />
@@ -120,7 +120,7 @@ function RegisterForm() {
                             className="w-full px-4 py-2 rounded-2xl bg-white/10 dark:bg-white/5 border border-white/20 text-[var(--label)] focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]"
                             required
                         >
-                            <option value="">{language === 'ar' ? 'اختر الدور' : 'Select Role'}</option>
+                            <option value="">{language === 'ar' ? ' ' : 'Select Role'}</option>
                             {roles.map((role) => (
                                 <option key={role.id} value={role.id}>
                                     {language === 'ar' ? role.labelAr : role.labelEn}
@@ -137,7 +137,7 @@ function RegisterForm() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder={language === 'ar' ? 'كلمة المرور' : 'Password'}
+                            placeholder={language === 'ar' ? ' ' : 'Password'}
                             required
                             minLength={6}
                             className="w-full"
@@ -152,7 +152,7 @@ function RegisterForm() {
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            placeholder={language === 'ar' ? 'تأكيد كلمة المرور' : 'Confirm Password'}
+                            placeholder={language === 'ar' ? '  ' : 'Confirm Password'}
                             required
                             minLength={6}
                             className="w-full"
@@ -170,7 +170,7 @@ function RegisterForm() {
                         className="w-full flex items-center justify-center gap-2"
                         disabled={isLoading}
                     >
-                        {isLoading ? (language === 'ar' ? 'جاري الإنشاء...' : 'Creating...') : registerButton}
+                        {isLoading ? (language === 'ar' ? ' ...' : 'Creating...') : registerButton}
                     </GlassButton>
                 </form>
 

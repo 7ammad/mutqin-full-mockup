@@ -106,7 +106,7 @@ export function FilterPanel({
                 <div className="flex items-center gap-2">
                     <Filter className="w-5 h-5 text-[var(--label)]" />
                     <h3 className="text-lg font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'التصفية' : 'Filters'}
+                        {language === 'ar' ? '' : 'Filters'}
                     </h3>
                     {activeFiltersCount > 0 && (
                         <span className="px-2 py-0.5 rounded-full bg-[var(--apple-blue)]/10 text-[var(--apple-blue)] text-xs font-medium">
@@ -121,7 +121,7 @@ export function FilterPanel({
                             variant="outline"
                             size="sm"
                          className="flex items-center justify-center gap-2">
-                            {language === 'ar' ? 'مسح الكل' : 'Clear All'}
+                            {language === 'ar' ? ' ' : 'Clear All'}
                         </GlassButton>
                     )}
                     {onClose && (
@@ -137,7 +137,7 @@ export function FilterPanel({
             {/* Specialty Filter */}
             <div>
                 <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                    {language === 'ar' ? 'التخصص' : 'Specialty'}
+                    {language === 'ar' ? '' : 'Specialty'}
                 </label>
                 <div className="flex flex-wrap gap-2">
                     {SPECIALTIES.map((specialty) => (
@@ -162,7 +162,7 @@ export function FilterPanel({
             <div>
                 <label className="text-sm font-medium text-[var(--label)] mb-2 flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
-                    {language === 'ar' ? 'نطاق التاريخ' : 'Date Range'}
+                    {language === 'ar' ? ' ' : 'Date Range'}
                 </label>
                 <div className="space-y-3">
                     <div className="grid grid-cols-2 gap-3">
@@ -174,7 +174,7 @@ export function FilterPanel({
                                 className="w-full"
                             />
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === 'ar' ? 'من' : 'From'}
+                                {language === 'ar' ? '' : 'From'}
                             </p>
                         </div>
                         <div>
@@ -185,7 +185,7 @@ export function FilterPanel({
                                 className="w-full"
                             />
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === 'ar' ? 'إلى' : 'To'}
+                                {language === 'ar' ? '' : 'To'}
                             </p>
                         </div>
                     </div>
@@ -208,14 +208,14 @@ export function FilterPanel({
             <div>
                 <label className="text-sm font-medium text-[var(--label)] mb-2 flex items-center gap-2">
                     <MapPin className="w-4 h-4" />
-                    {language === 'ar' ? 'الموقع' : 'Location'}
+                    {language === 'ar' ? '' : 'Location'}
                 </label>
                 <select
                     value={filters.location || ""}
                     onChange={(e) => updateFilter('location', e.target.value || undefined)}
                     className="w-full px-3 py-2 rounded-lg bg-[var(--system-fill)] border border-[var(--border)] text-[var(--label)] focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]"
                 >
-                    <option value="">{language === 'ar' ? 'جميع المواقع' : 'All Locations'}</option>
+                    <option value="">{language === 'ar' ? ' ' : 'All Locations'}</option>
                     {LOCATIONS.map((location) => (
                         <option key={location} value={location}>
                             {location}
@@ -227,7 +227,7 @@ export function FilterPanel({
             {/* Status Filter */}
             <div>
                 <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                    {language === 'ar' ? 'الحالة' : 'Status'}
+                    {language === 'ar' ? '' : 'Status'}
                 </label>
                 <div className="flex flex-wrap gap-2">
                     {STATUSES.map((status) => (
@@ -252,13 +252,13 @@ export function FilterPanel({
             <div>
                 <label className="text-sm font-medium text-[var(--label)] mb-2 flex items-center gap-2">
                     <DollarSign className="w-4 h-4" />
-                    {language === 'ar' ? 'نطاق السعر' : 'Price Range'}
+                    {language === 'ar' ? ' ' : 'Price Range'}
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                     <div>
                         <Input
                             type="number"
-                            placeholder={language === 'ar' ? 'الحد الأدنى' : 'Min'}
+                            placeholder={language === 'ar' ? ' ' : 'Min'}
                             value={filters.priceMin || ""}
                             onChange={(e) => updateFilter('priceMin', e.target.value ? Number(e.target.value) : undefined)}
                             className="w-full"
@@ -267,7 +267,7 @@ export function FilterPanel({
                     <div>
                         <Input
                             type="number"
-                            placeholder={language === 'ar' ? 'الحد الأقصى' : 'Max'}
+                            placeholder={language === 'ar' ? ' ' : 'Max'}
                             value={filters.priceMax || ""}
                             onChange={(e) => updateFilter('priceMax', e.target.value ? Number(e.target.value) : undefined)}
                             className="w-full"
@@ -286,13 +286,13 @@ export function FilterPanel({
                             size="default"
                             className="w-full"
                         >
-                            {language === 'ar' ? 'حفظ التصفية' : 'Save Filter Preset'}
+                            {language === 'ar' ? ' ' : 'Save Filter Preset'}
                         </GlassButton>
                     ) : (
                         <div className="space-y-2">
                             <Input
                                 type="text"
-                                placeholder={language === 'ar' ? 'اسم التصفية' : 'Preset Name'}
+                                placeholder={language === 'ar' ? ' ' : 'Preset Name'}
                                 value={presetName}
                                 onChange={(e) => setPresetName(e.target.value)}
                                 className="w-full"
@@ -304,7 +304,7 @@ export function FilterPanel({
                                     size="default"
                                     className="flex-1 items-center justify-center gap-2"
                                 >
-                                    {language === 'ar' ? 'حفظ' : 'Save'}
+                                    {language === 'ar' ? '' : 'Save'}
                                 </GlassButton>
                                 <GlassButton
                                     onClick={() => {
@@ -314,7 +314,7 @@ export function FilterPanel({
                                     variant="outline"
                                     size="default"
                                 >
-                                    {language === 'ar' ? 'إلغاء' : 'Cancel'}
+                                    {language === 'ar' ? '' : 'Cancel'}
                                 </GlassButton>
                             </div>
                         </div>

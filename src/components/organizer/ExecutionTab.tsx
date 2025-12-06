@@ -29,7 +29,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
   if (loading) {
     return (
       <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-8 text-center">
-        <p className="text-[var(--secondary-label)]">{language === "ar" ? "جاري التحميل..." : "Loading..."}</p>
+        <p className="text-[var(--secondary-label)]">{language === "ar" ? " ..." : "Loading..."}</p>
       </LiquidGlassCard>
     );
   }
@@ -37,8 +37,8 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
   if (publishedEvents.length === 0) {
     return (
       <EmptyState
-        title={language === "ar" ? "لا توجد أنشطة منشورة" : "No published activities"}
-        description={language === "ar" ? "لا توجد أنشطة منشورة لعرض معلومات التنفيذ" : "No published activities to show execution information"}
+        title={language === "ar" ? "   " : "No published activities"}
+        description={language === "ar" ? "      " : "No published activities to show execution information"}
         icon={ClipboardList}
       />
     );
@@ -52,7 +52,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "التكليفات المقبولة" : "Accepted Assignments"}
+                {language === "ar" ? " " : "Accepted Assignments"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">
                 {publishedEvents.length}
@@ -67,7 +67,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "الحضور المنتهي" : "Finalized Attendance"}
+                {language === "ar" ? " " : "Finalized Attendance"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">
                 {compliance.filter((c) => c.attendanceRecords.status === "submitted").length}
@@ -82,7 +82,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "متأخر" : "Overdue"}
+                {language === "ar" ? "" : "Overdue"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">
                 {compliance.filter((c) => c.attendanceRecords.status === "overdue" || c.hoursRegistration.status === "overdue").length}
@@ -100,14 +100,14 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
         <div className="flex items-center gap-2 mb-6">
           <ClipboardList className="h-5 w-5 text-[var(--apple-blue)]" />
           <h2 className="text-2xl font-bold text-[var(--label)]">
-            {language === "ar" ? "تقديمات الامتثال" : "Compliance Submissions"}
+            {language === "ar" ? " " : "Compliance Submissions"}
           </h2>
         </div>
 
         {compliance.length === 0 ? (
           <EmptyState
-            title={language === "ar" ? "لا توجد بيانات امتثال" : "No compliance data"}
-            description={language === "ar" ? "لا توجد أنشطة منتهية تتطلب تقديمات امتثال" : "No completed activities requiring compliance submissions"}
+            title={language === "ar" ? "   " : "No compliance data"}
+            description={language === "ar" ? "      " : "No completed activities requiring compliance submissions"}
             icon={FileText}
           />
         ) : (
@@ -126,7 +126,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
                       <div className="flex-1">
                         <h3 className="font-semibold text-[var(--label)] mb-1">{eventTitle}</h3>
                         <p className="text-xs text-[var(--secondary-label)]">
-                          {language === "ar" ? "انتهى في" : "Ended"}: {new Date(item.endedAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
+                          {language === "ar" ? " " : "Ended"}: {new Date(item.endedAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
                         </p>
                       </div>
                     </div>
@@ -136,7 +136,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
                       <div className="p-3 rounded-lg bg-[var(--system-fill)]">
                         <div className="flex items-center justify-between mb-2">
                           <p className="text-xs text-[var(--secondary-label)] font-medium">
-                            {language === "ar" ? "سجلات الحضور" : "Attendance Records"}
+                            {language === "ar" ? " " : "Attendance Records"}
                           </p>
                           <Badge
                             variant={item.attendanceRecords.status === "submitted" ? "default" : item.attendanceRecords.status === "overdue" ? "outline" : "outline"}
@@ -149,19 +149,19 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
                             }
                           >
                             {item.attendanceRecords.status === "submitted"
-                              ? language === "ar" ? "مقدم" : "Submitted"
+                              ? language === "ar" ? "" : "Submitted"
                               : item.attendanceRecords.status === "overdue"
-                              ? language === "ar" ? "متأخر" : "Overdue"
-                              : language === "ar" ? "غير مبدئ" : "Not Started"}
+                              ? language === "ar" ? "" : "Overdue"
+                              : language === "ar" ? " " : "Not Started"}
                           </Badge>
                         </div>
                         <p className="text-xs text-[var(--secondary-label)]">
                           {item.attendanceRecords.dueAt
-                            ? `${language === "ar" ? "مستحق" : "Due"}: ${new Date(item.attendanceRecords.dueAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}`
+                            ? `${language === "ar" ? "" : "Due"}: ${new Date(item.attendanceRecords.dueAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}`
                             : ""}
                         </p>
                         <p className="text-sm text-[var(--label)] mt-1">
-                          {attendanceData.checkedInCount} / {attendanceData.totalCount} {language === "ar" ? "تم التحقق" : "checked in"}
+                          {attendanceData.checkedInCount} / {attendanceData.totalCount} {language === "ar" ? " " : "checked in"}
                         </p>
                       </div>
 
@@ -169,7 +169,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
                       <div className="p-3 rounded-lg bg-[var(--system-fill)]">
                         <div className="flex items-center justify-between mb-2">
                           <p className="text-xs text-[var(--secondary-label)] font-medium">
-                            {language === "ar" ? "تسجيل الساعات" : "Hours Registration"}
+                            {language === "ar" ? " " : "Hours Registration"}
                           </p>
                           <Badge
                             variant={item.hoursRegistration.status === "submitted" ? "default" : item.hoursRegistration.status === "overdue" ? "outline" : "outline"}
@@ -182,19 +182,19 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
                             }
                           >
                             {item.hoursRegistration.status === "submitted"
-                              ? language === "ar" ? "مقدم" : "Submitted"
+                              ? language === "ar" ? "" : "Submitted"
                               : item.hoursRegistration.status === "overdue"
-                              ? language === "ar" ? "متأخر" : "Overdue"
-                              : language === "ar" ? "غير مبدئ" : "Not Started"}
+                              ? language === "ar" ? "" : "Overdue"
+                              : language === "ar" ? " " : "Not Started"}
                           </Badge>
                         </div>
                         <p className="text-xs text-[var(--secondary-label)]">
                           {item.hoursRegistration.dueAt
-                            ? `${language === "ar" ? "مستحق" : "Due"}: ${new Date(item.hoursRegistration.dueAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}`
+                            ? `${language === "ar" ? "" : "Due"}: ${new Date(item.hoursRegistration.dueAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}`
                             : ""}
                         </p>
                         <p className="text-sm text-[var(--label)] mt-1">
-                          {event.cme_hours || 0} {language === "ar" ? "ساعة" : "hours"}
+                          {event.cme_hours || 0} {language === "ar" ? "" : "hours"}
                         </p>
                       </div>
                     </div>
@@ -206,7 +206,7 @@ export default function ExecutionTab({ events, language, router, loading }: Exec
                         onClick={() => router.push(buildRoute.organizerEvent(item.activityId, 'execution'))}
                       >
                         <FileText className="h-4 w-4 mr-2" />
-                        {language === "ar" ? "عرض التفاصيل" : "View Details"}
+                        {language === "ar" ? " " : "View Details"}
                       </GlassButton>
                     </div>
                   </div>

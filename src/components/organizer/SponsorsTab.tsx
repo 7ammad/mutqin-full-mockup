@@ -26,7 +26,7 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "الحزم المتاحة" : "Available Packages"}
+                {language === "ar" ? " " : "Available Packages"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">{sponsorsData.packages.length}</p>
             </div>
@@ -39,7 +39,7 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "الصفقات المدفوعة" : "Paid Deals"}
+                {language === "ar" ? " " : "Paid Deals"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">
                 {sponsorsData.deals.filter((d) => d.status === "paid").length}
@@ -54,7 +54,7 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "الإفصاحات المعتمدة" : "Approved Disclosures"}
+                {language === "ar" ? " " : "Approved Disclosures"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">
                 {sponsorsData.disclosures.filter((d) => d.status === "approved").length}
@@ -72,14 +72,14 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
         <div className="flex items-center gap-2 mb-6">
           <Package className="h-5 w-5 text-[var(--apple-blue)]" />
           <h2 className="text-xl font-semibold text-[var(--label)]">
-            {language === "ar" ? "حزم الرعاية" : "Sponsorship Packages"}
+            {language === "ar" ? " " : "Sponsorship Packages"}
           </h2>
         </div>
 
         {sponsorsData.packages.length === 0 ? (
           <EmptyState
-            title={language === "ar" ? "لا توجد حزم رعاية" : "No sponsorship packages"}
-            description={language === "ar" ? "أنشئ حزم رعاية للفعاليات التي تحتاج رعاية" : "Create sponsorship packages for events that need sponsorship"}
+            title={language === "ar" ? "   " : "No sponsorship packages"}
+            description={language === "ar" ? "      " : "Create sponsorship packages for events that need sponsorship"}
             icon={Package}
           />
         ) : (
@@ -91,8 +91,8 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                     <h3 className="font-semibold text-[var(--label)]">{pkg.title}</h3>
                     <Badge variant={pkg.spotsRemaining > 0 ? "default" : "outline"}>
                       {pkg.spotsRemaining > 0
-                        ? language === "ar" ? "متاح" : "Available"
-                        : language === "ar" ? "مباع" : "Sold"}
+                        ? language === "ar" ? "" : "Available"
+                        : language === "ar" ? "" : "Sold"}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-2">
@@ -101,7 +101,7 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                   </div>
                   <div className="space-y-1">
                     <p className="text-xs text-[var(--secondary-label)]">
-                      {language === "ar" ? "المزايا" : "Benefits"}:
+                      {language === "ar" ? "" : "Benefits"}:
                     </p>
                     <ul className="text-sm text-[var(--label)] space-y-1">
                       {pkg.benefits.map((benefit, idx) => (
@@ -114,7 +114,7 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-[var(--system-fill)]">
                     <p className="text-xs text-[var(--secondary-label)]">
-                      {pkg.spotsRemaining} / {pkg.spotsTotal} {language === "ar" ? "متاح" : "available"}
+                      {pkg.spotsRemaining} / {pkg.spotsTotal} {language === "ar" ? "" : "available"}
                     </p>
                   </div>
                 </div>
@@ -129,14 +129,14 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
         <div className="flex items-center gap-2 mb-6">
           <DollarSign className="h-5 w-5 text-[var(--apple-green)]" />
           <h2 className="text-xl font-semibold text-[var(--label)]">
-            {language === "ar" ? "الصفقات" : "Deals"}
+            {language === "ar" ? "" : "Deals"}
           </h2>
         </div>
 
         {sponsorsData.deals.length === 0 ? (
           <EmptyState
-            title={language === "ar" ? "لا توجد صفقات" : "No deals"}
-            description={language === "ar" ? "ستظهر الصفقات هنا عند شراء الرعاة للحزم" : "Deals will appear here when sponsors purchase packages"}
+            title={language === "ar" ? "  " : "No deals"}
+            description={language === "ar" ? "      " : "Deals will appear here when sponsors purchase packages"}
             icon={DollarSign}
           />
         ) : (
@@ -149,7 +149,7 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <h3 className="font-semibold text-[var(--label)]">
-                          {language === "ar" ? "صفقة الرعاية" : "Sponsorship Deal"}
+                          {language === "ar" ? " " : "Sponsorship Deal"}
                         </h3>
                         <Badge
                           variant={deal.status === "paid" ? "default" : "outline"}
@@ -160,16 +160,16 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                           }
                         >
                           {deal.status === "paid"
-                            ? language === "ar" ? "مدفوع" : "Paid"
-                            : language === "ar" ? "محجوز" : "Reserved"}
+                            ? language === "ar" ? "" : "Paid"
+                            : language === "ar" ? "" : "Reserved"}
                         </Badge>
                       </div>
                       <p className="text-xs text-[var(--secondary-label)]">
-                        {language === "ar" ? "تم الإنشاء" : "Created"}: {new Date(deal.createdAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
+                        {language === "ar" ? " " : "Created"}: {new Date(deal.createdAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
                       </p>
                       {deal.paidAt && (
                         <p className="text-xs text-[var(--secondary-label)]">
-                          {language === "ar" ? "تم الدفع" : "Paid"}: {new Date(deal.paidAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
+                          {language === "ar" ? " " : "Paid"}: {new Date(deal.paidAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
                         </p>
                       )}
                       {disclosure && (
@@ -185,8 +185,8 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                               }
                             >
                               {disclosure.status === "approved"
-                                ? language === "ar" ? "معتمد" : "Approved"
-                                : language === "ar" ? "مقدم" : "Submitted"}
+                                ? language === "ar" ? "" : "Approved"
+                                : language === "ar" ? "" : "Submitted"}
                             </Badge>
                           </div>
                         </div>
@@ -205,14 +205,14 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
         <div className="flex items-center gap-2 mb-6">
           <FileText className="h-5 w-5 text-[var(--apple-blue)]" />
           <h2 className="text-xl font-semibold text-[var(--label)]">
-            {language === "ar" ? "الإفصاحات" : "Disclosures"}
+            {language === "ar" ? "" : "Disclosures"}
           </h2>
         </div>
 
         {sponsorsData.disclosures.length === 0 ? (
           <EmptyState
-            title={language === "ar" ? "لا توجد إفصاحات" : "No disclosures"}
-            description={language === "ar" ? "ستظهر الإفصاحات هنا عند تقديمها من قبل الرعاة" : "Disclosures will appear here when submitted by sponsors"}
+            title={language === "ar" ? "  " : "No disclosures"}
+            description={language === "ar" ? "       " : "Disclosures will appear here when submitted by sponsors"}
             icon={FileText}
           />
         ) : (
@@ -223,7 +223,7 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <h3 className="font-semibold text-[var(--label)]">
-                        {language === "ar" ? "إفصاح الرعاية" : "Sponsorship Disclosure"}
+                        {language === "ar" ? " " : "Sponsorship Disclosure"}
                       </h3>
                       <Badge
                         variant={disclosure.status === "approved" ? "default" : disclosure.status === "submitted" ? "outline" : "outline"}
@@ -236,18 +236,18 @@ export default function SponsorsTab({ language }: SponsorsTabProps) {
                         }
                       >
                         {disclosure.status === "approved"
-                          ? language === "ar" ? "معتمد" : "Approved"
+                          ? language === "ar" ? "" : "Approved"
                           : disclosure.status === "submitted"
-                          ? language === "ar" ? "مقدم" : "Submitted"
-                          : language === "ar" ? "مرفوض" : "Returned"}
+                          ? language === "ar" ? "" : "Submitted"
+                          : language === "ar" ? "" : "Returned"}
                       </Badge>
                     </div>
                     <p className="text-xs text-[var(--secondary-label)]">
-                      {language === "ar" ? "تم التقديم" : "Submitted"}: {new Date(disclosure.submittedAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
+                      {language === "ar" ? " " : "Submitted"}: {new Date(disclosure.submittedAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
                     </p>
                     {disclosure.approvedAt && (
                       <p className="text-xs text-[var(--secondary-label)]">
-                        {language === "ar" ? "تم الاعتماد" : "Approved"}: {new Date(disclosure.approvedAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
+                        {language === "ar" ? " " : "Approved"}: {new Date(disclosure.approvedAt).toLocaleDateString(language === "ar" ? "ar-SA" : "en-US")}
                       </p>
                     )}
                     {disclosure.notes && (

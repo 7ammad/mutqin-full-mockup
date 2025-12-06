@@ -3,7 +3,7 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Mutqin",
-    "alternateName": "مُتْقِن",
+    "alternateName": "",
     "url": "https://mutqin.sa",
     "logo": "https://mutqin.sa/logo.png",
     "description": "The unified platform for continuing medical education in Saudi Arabia",

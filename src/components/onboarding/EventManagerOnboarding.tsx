@@ -13,7 +13,7 @@ export function EventManagerOnboarding({ onComplete, onSkip }: EventManagerOnboa
     const steps = [
         {
             title: "Welcome, Event Manager!",
-            titleAr: "مرحباً، مدير الفعاليات!",
+            titleAr: "  !",
             content: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
@@ -38,20 +38,20 @@ export function EventManagerOnboarding({ onComplete, onSkip }: EventManagerOnboa
             contentAr: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
-                        أدر مهام الفعاليات، تعامل مع تسجيل الحضور، وأنشئ الشهادات.
+                                .
                     </p>
                     <div className="grid grid-cols-3 gap-4">
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                             <ClipboardCheck className="w-6 h-6 text-[var(--apple-blue)] mb-2" />
-                            <p className="text-sm font-medium text-[var(--label)]">المهام</p>
+                            <p className="text-sm font-medium text-[var(--label)]"></p>
                         </LiquidGlassCard>
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                             <QrCode className="w-6 h-6 text-[var(--apple-green)] mb-2" />
-                            <p className="text-sm font-medium text-[var(--label)]">تسجيل الحضور</p>
+                            <p className="text-sm font-medium text-[var(--label)]"> </p>
                         </LiquidGlassCard>
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                             <FileText className="w-6 h-6 text-[var(--apple-yellow)] mb-2" />
-                            <p className="text-sm font-medium text-[var(--label)]">الشهادات</p>
+                            <p className="text-sm font-medium text-[var(--label)]"></p>
                         </LiquidGlassCard>
                     </div>
                 </div>

@@ -38,7 +38,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <Store className="h-4 w-4" />
-                    {language === 'ar' ? 'السوق' : 'Marketplace'}
+                    {language === 'ar' ? '' : 'Marketplace'}
                 </GlassButton>
                 <GlassButton
                     onClick={() => setView('ADVANCED_MARKETPLACE')}
@@ -47,7 +47,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <Store className="h-4 w-4" />
-                    {language === 'ar' ? 'السوق المتقدم' : 'Advanced Marketplace'}
+                    {language === 'ar' ? ' ' : 'Advanced Marketplace'}
                 </GlassButton>
                 <GlassButton
                     onClick={() => setView('PACKAGES')}
@@ -56,7 +56,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <Package className="h-4 w-4" />
-                    {language === 'ar' ? 'الحزم' : 'Packages'}
+                    {language === 'ar' ? '' : 'Packages'}
                 </GlassButton>
                 <GlassButton
                     onClick={() => setView('TARGETING')}
@@ -65,7 +65,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <Target className="h-4 w-4" />
-                    {language === 'ar' ? 'الاستهداف' : 'Targeting'}
+                    {language === 'ar' ? '' : 'Targeting'}
                 </GlassButton>
                 <GlassButton
                     onClick={() => setView('CONTENT')}
@@ -74,7 +74,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <FileText className="h-4 w-4" />
-                    {language === 'ar' ? 'المحتوى' : 'Content'}
+                    {language === 'ar' ? '' : 'Content'}
                 </GlassButton>
                 <GlassButton
                     onClick={() => setView('ANALYTICS')}
@@ -83,7 +83,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <BarChart3 className="h-4 w-4" />
-                    {language === 'ar' ? 'التحليلات' : 'Analytics'}
+                    {language === 'ar' ? '' : 'Analytics'}
                 </GlassButton>
                 <GlassButton
                     onClick={() => setView('ROI')}
@@ -92,7 +92,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <DollarSign className="h-4 w-4" />
-                    {language === 'ar' ? 'عائد الاستثمار' : 'ROI'}
+                    {language === 'ar' ? ' ' : 'ROI'}
                 </GlassButton>
                 <GlassButton
                     onClick={() => setView('COMPLIANCE')}
@@ -101,7 +101,7 @@ export default function VendorView() {
                     className="gap-2"
                 >
                     <ShieldCheck className="h-4 w-4" />
-                    {language === 'ar' ? 'الامتثال' : 'Compliance'}
+                    {language === 'ar' ? '' : 'Compliance'}
                 </GlassButton>
             </div>
 

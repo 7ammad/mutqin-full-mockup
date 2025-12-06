@@ -18,9 +18,9 @@ export default function CampaignAnalytics() {
 
     // Mock campaign data
     const campaigns = [
-        { id: 'camp1', name: language === 'ar' ? 'حملة القلب 2025' : 'Cardiology Campaign 2025' },
-        { id: 'camp2', name: language === 'ar' ? 'حملة طب الأطفال' : 'Pediatrics Campaign' },
-        { id: 'camp3', name: language === 'ar' ? 'حملة الجراحة العامة' : 'General Surgery Campaign' },
+        { id: 'camp1', name: language === 'ar' ? '  2025' : 'Cardiology Campaign 2025' },
+        { id: 'camp2', name: language === 'ar' ? '  ' : 'Pediatrics Campaign' },
+        { id: 'camp3', name: language === 'ar' ? '  ' : 'General Surgery Campaign' },
     ];
 
     // Mock analytics data
@@ -47,25 +47,25 @@ export default function CampaignAnalytics() {
     ];
 
     const channelData = [
-        { name: language === 'ar' ? 'البريد الإلكتروني' : 'Email', value: 45000 },
-        { name: language === 'ar' ? 'وسائل التواصل' : 'Social Media', value: 35000 },
-        { name: language === 'ar' ? 'الموقع الإلكتروني' : 'Website', value: 25000 },
-        { name: language === 'ar' ? 'الأحداث' : 'Events', value: 20000 },
+        { name: language === 'ar' ? ' ' : 'Email', value: 45000 },
+        { name: language === 'ar' ? ' ' : 'Social Media', value: 35000 },
+        { name: language === 'ar' ? ' ' : 'Website', value: 25000 },
+        { name: language === 'ar' ? '' : 'Events', value: 20000 },
     ];
 
-    const title = language === 'ar' ? 'تحليلات الحملات' : 'Campaign Analytics';
-    const selectCampaignText = language === 'ar' ? 'اختر الحملة' : 'Select Campaign';
-    const timeRangeText = language === 'ar' ? 'الفترة الزمنية' : 'Time Range';
-    const impressionsText = language === 'ar' ? 'الانطباعات' : 'Impressions';
-    const clicksText = language === 'ar' ? 'النقرات' : 'Clicks';
-    const ctrText = language === 'ar' ? 'معدل النقر' : 'CTR';
-    const conversionsText = language === 'ar' ? 'التحويلات' : 'Conversions';
-    const costText = language === 'ar' ? 'التكلفة' : 'Cost';
-    const revenueText = language === 'ar' ? 'الإيرادات' : 'Revenue';
-    const roiText = language === 'ar' ? 'عائد الاستثمار' : 'ROI';
-    const engagementText = language === 'ar' ? 'معدل التفاعل' : 'Engagement Rate';
-    const reachText = language === 'ar' ? 'الوصول' : 'Reach';
-    const growthText = language === 'ar' ? 'نمو الجمهور' : 'Audience Growth';
+    const title = language === 'ar' ? ' ' : 'Campaign Analytics';
+    const selectCampaignText = language === 'ar' ? ' ' : 'Select Campaign';
+    const timeRangeText = language === 'ar' ? ' ' : 'Time Range';
+    const impressionsText = language === 'ar' ? '' : 'Impressions';
+    const clicksText = language === 'ar' ? '' : 'Clicks';
+    const ctrText = language === 'ar' ? ' ' : 'CTR';
+    const conversionsText = language === 'ar' ? '' : 'Conversions';
+    const costText = language === 'ar' ? '' : 'Cost';
+    const revenueText = language === 'ar' ? '' : 'Revenue';
+    const roiText = language === 'ar' ? ' ' : 'ROI';
+    const engagementText = language === 'ar' ? ' ' : 'Engagement Rate';
+    const reachText = language === 'ar' ? '' : 'Reach';
+    const growthText = language === 'ar' ? ' ' : 'Audience Growth';
 
     return (
         <div className="space-y-6">
@@ -81,7 +81,7 @@ export default function CampaignAnalytics() {
                                 <SelectValue placeholder={selectCampaignText} />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="all">{language === 'ar' ? 'جميع الحملات' : 'All Campaigns'}</SelectItem>
+                                <SelectItem value="all">{language === 'ar' ? ' ' : 'All Campaigns'}</SelectItem>
                                 {campaigns.map((campaign) => (
                                     <SelectItem key={campaign.id} value={campaign.id}>
                                         {campaign.name}
@@ -97,7 +97,7 @@ export default function CampaignAnalytics() {
                                 className="gap-2"
                             >
                                 <Eye className="h-4 w-4" />
-                                {language === 'ar' ? 'عرض الحملة' : 'View Campaign'}
+                                {language === 'ar' ? ' ' : 'View Campaign'}
                             </GlassButton>
                         )}
                         <Select value={timeRange} onValueChange={setTimeRange}>
@@ -105,15 +105,15 @@ export default function CampaignAnalytics() {
                                 <SelectValue placeholder={timeRangeText} />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="7d">{language === 'ar' ? '7 أيام' : '7 Days'}</SelectItem>
-                                <SelectItem value="30d">{language === 'ar' ? '30 يوم' : '30 Days'}</SelectItem>
-                                <SelectItem value="90d">{language === 'ar' ? '90 يوم' : '90 Days'}</SelectItem>
-                                <SelectItem value="1y">{language === 'ar' ? 'سنة واحدة' : '1 Year'}</SelectItem>
+                                <SelectItem value="7d">{language === 'ar' ? '7 ' : '7 Days'}</SelectItem>
+                                <SelectItem value="30d">{language === 'ar' ? '30 ' : '30 Days'}</SelectItem>
+                                <SelectItem value="90d">{language === 'ar' ? '90 ' : '90 Days'}</SelectItem>
+                                <SelectItem value="1y">{language === 'ar' ? ' ' : '1 Year'}</SelectItem>
                             </SelectContent>
                         </Select>
                         <GlassButton variant="outline" className="gap-2 flex items-center justify-center">
                             <Download className="h-4 w-4" />
-                            {language === 'ar' ? 'تصدير' : 'Export'}
+                            {language === 'ar' ? '' : 'Export'}
                         </GlassButton>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ export default function CampaignAnalytics() {
                 {/* Performance Over Time Chart */}
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6 mb-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'الأداء بمرور الوقت' : 'Performance Over Time'}
+                        {language === 'ar' ? '  ' : 'Performance Over Time'}
                     </h3>
                     <Chart
                         type="line"
@@ -178,7 +178,7 @@ export default function CampaignAnalytics() {
                 {/* Channel Distribution */}
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'التوزيع حسب القناة' : 'Distribution by Channel'}
+                        {language === 'ar' ? '  ' : 'Distribution by Channel'}
                     </h3>
                     <Chart
                         type="pie"

@@ -104,10 +104,10 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                         className="gap-2 mb-4"
                     >
                         <ArrowLeft className="w-4 h-4" />
-                        {language === 'ar' ? 'رجوع' : 'Back to Overview'}
+                        {language === 'ar' ? '' : 'Back to Overview'}
                     </GlassButton>
                     <h1 className="text-xl font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'سجل الحضور' : 'Attendance Ledger'}
+                        {language === 'ar' ? ' ' : 'Attendance Ledger'}
                 </h1>
                     <h2 className="text-2xl font-bold text-[var(--label)]">
                         {eventTitle}
@@ -121,7 +121,7 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             <Calendar className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'التاريخ' : 'Date'}
+                                    {language === 'ar' ? '' : 'Date'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{eventDate}</p>
                             </div>
@@ -130,7 +130,7 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             <MapPin className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'الموقع' : 'Location'}
+                                    {language === 'ar' ? '' : 'Location'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{eventLocation || '-'}</p>
                             </div>
@@ -139,7 +139,7 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             <Clock className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'ساعات التعليم' : 'CME Hours'}
+                                    {language === 'ar' ? ' ' : 'CME Hours'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{event.cme_hours || '-'}</p>
                             </div>
@@ -153,7 +153,7 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                         <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--apple-red)]/10">
                             <div className="w-2 h-2 rounded-full bg-[var(--apple-red)] animate-pulse" />
                             <span className="text-sm font-medium text-[var(--apple-red)]">
-                                {language === 'ar' ? 'مباشر' : 'LIVE'}
+                                {language === 'ar' ? '' : 'LIVE'}
                             </span>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                        {language === 'ar' ? 'المتوقع' : 'Expected'}
+                                        {language === 'ar' ? '' : 'Expected'}
                                     </p>
                                     <p className="text-3xl font-bold text-[var(--label)]">{attendanceData.totalExpected}</p>
                                 </div>
@@ -178,11 +178,11 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                        {language === 'ar' ? 'تم التسجيل' : 'Checked In'}
+                                        {language === 'ar' ? ' ' : 'Checked In'}
                                     </p>
                                     <p className="text-3xl font-bold text-[var(--label)]">{attendanceData.checkedIn}</p>
                                     <p className="text-xs text-[var(--tertiary-label)] mt-1">
-                                        +{attendanceData.checkedInLastHour} {language === 'ar' ? 'آخر ساعة' : 'Last Hour'}
+                                        +{attendanceData.checkedInLastHour} {language === 'ar' ? ' ' : 'Last Hour'}
                                     </p>
                                 </div>
                                 <div className="p-3 rounded-full bg-[var(--apple-green)]/10">
@@ -195,7 +195,7 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                        {language === 'ar' ? 'معدل الحضور' : 'Attendance Rate'}
+                                        {language === 'ar' ? ' ' : 'Attendance Rate'}
                                     </p>
                                     <p className="text-3xl font-bold text-[var(--label)]">
                                         {attendanceData.totalExpected > 0 
@@ -213,10 +213,10 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                        {language === 'ar' ? 'متوسط وقت التسجيل' : 'Avg Check-In Time'}
+                                        {language === 'ar' ? '  ' : 'Avg Check-In Time'}
                                     </p>
                                     <p className="text-2xl font-bold text-[var(--label)]">
-                                        {attendanceData.averageCheckInTime} {language === 'ar' ? 'دقيقة' : 'minutes'}
+                                        {attendanceData.averageCheckInTime} {language === 'ar' ? '' : 'minutes'}
                                     </p>
                                 </div>
                                 <div className="p-3 rounded-full bg-[var(--apple-orange)]/10">
@@ -231,7 +231,7 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                    {language === 'ar' ? 'ساعة الذروة' : 'Peak Hour'}
+                                    {language === 'ar' ? ' ' : 'Peak Hour'}
                                 </p>
                                 <p className="text-xl font-bold text-[var(--label)]">{attendanceData.peakHour}</p>
                             </div>
@@ -245,13 +245,13 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                     <div className="flex items-center justify-between">
                         <div>
                             <h3 className="text-lg font-semibold text-[var(--label)] mb-2">
-                                {language === 'ar' ? 'إنهاء الحضور' : 'Finalize Attendance'}
+                                {language === 'ar' ? ' ' : 'Finalize Attendance'}
                             </h3>
                             <p className="text-sm text-[var(--secondary-label)]">
                                 {language === 'ar' 
                                     ? attendanceFinalized 
-                                        ? 'تم إنهاء الحضور. لا يمكن إجراء تغييرات إضافية.'
-                                        : 'بعد التحقق من جميع الحضور، قم بإنهاء الحضور لإغلاق القائمة.'
+                                        ? '  .     .'
+                                        : '         .'
                                     : attendanceFinalized
                                     ? 'Attendance has been finalized. No further changes can be made.'
                                     : 'After verifying all attendance, finalize attendance to close the list.'}
@@ -265,13 +265,13 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                                     await api.finalizeAttendance({ eventId: id, eventManagerId: "em-1" });
                                     setAttendanceFinalized(true);
                                     showToast(
-                                        language === 'ar' ? 'تم إنهاء الحضور بنجاح' : 'Attendance finalized successfully',
+                                        language === 'ar' ? '   ' : 'Attendance finalized successfully',
                                         'success'
                                     );
                                     // Refresh page data
                                     router.refresh();
                                 } catch (err) {
-                                    const message = err instanceof Error ? err.message : (language === 'ar' ? 'فشل إنهاء الحضور' : 'Failed to finalize attendance');
+                                    const message = err instanceof Error ? err.message : (language === 'ar' ? '  ' : 'Failed to finalize attendance');
                                     showToast(message, 'info');
                                 }
                             }}
@@ -279,8 +279,8 @@ export default function EventAttendanceDashboardPage({ params }: PageProps) {
                             className="gap-2 flex items-center justify-center"
                         >
                             {attendanceFinalized 
-                                ? (language === 'ar' ? 'منتهي' : 'Finalized')
-                                : (language === 'ar' ? 'إنهاء الحضور' : 'Finalize Attendance')}
+                                ? (language === 'ar' ? '' : 'Finalized')
+                                : (language === 'ar' ? ' ' : 'Finalize Attendance')}
                         </GlassButton>
                     </div>
                 </LiquidGlassCard>

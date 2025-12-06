@@ -204,7 +204,7 @@ export default function OrganizerRegistrationPage() {
                 id="scfhsProviderId"
                 type="text"
                 {...register('scfhsProviderId')}
-                placeholder={language === 'ar' ? 'اختياري' : 'Optional'}
+                placeholder={language === 'ar' ? '' : 'Optional'}
               />
             </div>
 

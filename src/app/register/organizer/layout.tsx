@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تسجيل منظم | مُتْقِن',
-  description: 'سجل كمنظم وابدأ إدارة فعالياتك الطبية المعتمدة',
+  title: '  | ',
+  description: '      ',
 };
 
 export default function OrganizerRegisterLayout({

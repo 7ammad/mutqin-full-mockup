@@ -60,20 +60,20 @@ export default function QRCheckInSystem() {
         );
     };
 
-    const title = language === 'ar' ? 'نظام تسجيل الحضور' : 'QR Check-In System';
-    const selectEventText = language === 'ar' ? 'اختر الفعالية' : 'Select Event';
-    const scanQRText = language === 'ar' ? 'مسح رمز QR' : 'Scan QR Code';
-    const generateQRText = language === 'ar' ? 'إنشاء رموز QR' : 'Generate QR Codes';
-    const attendeesText = language === 'ar' ? 'الحضور' : 'Attendees';
-    const checkedInText = language === 'ar' ? 'تم التسجيل' : 'Checked In';
-    const notCheckedInText = language === 'ar' ? 'لم يتم التسجيل' : 'Not Checked In';
-    const checkInRateText = language === 'ar' ? 'معدل الحضور' : 'Check-In Rate';
-    const manualCheckInText = language === 'ar' ? 'تسجيل يدوي' : 'Manual Check-In';
-    const nameText = language === 'ar' ? 'الاسم' : 'Name';
-    const emailText = language === 'ar' ? 'البريد الإلكتروني' : 'Email';
-    const ticketIdText = language === 'ar' ? 'رقم التذكرة' : 'Ticket ID';
-    const statusText = language === 'ar' ? 'الحالة' : 'Status';
-    const timeText = language === 'ar' ? 'الوقت' : 'Time';
+    const title = language === 'ar' ? '  ' : 'QR Check-In System';
+    const selectEventText = language === 'ar' ? ' ' : 'Select Event';
+    const scanQRText = language === 'ar' ? '  QR' : 'Scan QR Code';
+    const generateQRText = language === 'ar' ? '  QR' : 'Generate QR Codes';
+    const attendeesText = language === 'ar' ? '' : 'Attendees';
+    const checkedInText = language === 'ar' ? ' ' : 'Checked In';
+    const notCheckedInText = language === 'ar' ? '  ' : 'Not Checked In';
+    const checkInRateText = language === 'ar' ? ' ' : 'Check-In Rate';
+    const manualCheckInText = language === 'ar' ? ' ' : 'Manual Check-In';
+    const nameText = language === 'ar' ? '' : 'Name';
+    const emailText = language === 'ar' ? ' ' : 'Email';
+    const ticketIdText = language === 'ar' ? ' ' : 'Ticket ID';
+    const statusText = language === 'ar' ? '' : 'Status';
+    const timeText = language === 'ar' ? '' : 'Time';
 
     return (
         <div className="space-y-6">
@@ -169,7 +169,7 @@ export default function QRCheckInSystem() {
                                             size="sm"
                                             onClick={() => setShowScanner(false)}
                                         >
-                                            {language === 'ar' ? 'إغلاق' : 'Close'}
+                                            {language === 'ar' ? '' : 'Close'}
                                         </GlassButton>
                                     </div>
                                     <QRScanner onScan={handleQRScan} />

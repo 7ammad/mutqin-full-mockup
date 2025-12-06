@@ -35,10 +35,10 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
     if (!event.needs_sponsorship && !hasSponsors) {
         return (
             <EmptyState
-                title={language === 'ar' ? 'لا يوجد رعاة' : 'No sponsors'}
+                title={language === 'ar' ? '  ' : 'No sponsors'}
                 description={
                     language === 'ar'
-                        ? 'هذا الحدث لا يحتاج إلى رعاة'
+                        ? '     '
                         : 'This event does not require sponsorship'
                 }
                 icon={Users}
@@ -52,12 +52,12 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
             <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                 <h3 className="text-lg font-semibold text-[var(--label)] mb-4 flex items-center gap-2">
                     <Users className="h-5 w-5" />
-                    {language === 'ar' ? 'حالة الرعاية' : 'Sponsorship Status'}
+                    {language === 'ar' ? ' ' : 'Sponsorship Status'}
                 </h3>
                 <div className="space-y-3">
                     <div className="flex items-center justify-between">
                         <span className="text-sm text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'الحالة' : 'Status'}
+                            {language === 'ar' ? '' : 'Status'}
                         </span>
                         <Badge
                             className={
@@ -69,10 +69,10 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
                             }
                         >
                             {event.is_sponsored
-                                ? language === 'ar' ? 'ممول' : 'Sponsored'
+                                ? language === 'ar' ? '' : 'Sponsored'
                                 : event.needs_sponsorship
-                                ? language === 'ar' ? 'يحتاج رعاة' : 'Needs Sponsors'
-                                : language === 'ar' ? 'لا يحتاج رعاة' : 'No Sponsorship Needed'}
+                                ? language === 'ar' ? ' ' : 'Needs Sponsors'
+                                : language === 'ar' ? '  ' : 'No Sponsorship Needed'}
                         </Badge>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
                 <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4 flex items-center gap-2">
                         <Package className="h-5 w-5" />
-                        {language === 'ar' ? 'باقات الرعاية' : 'Sponsorship Packages'}
+                        {language === 'ar' ? ' ' : 'Sponsorship Packages'}
                     </h3>
                     <div className="space-y-3">
                         {sponsorsData.packages.map((pkg) => (
@@ -95,15 +95,15 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
                                     <div className="font-medium text-[var(--label)]">{pkg.title}</div>
                                     <div className="text-lg font-bold text-[var(--label)] flex items-center gap-1">
                                         <DollarSign className="h-4 w-4" />
-                                        {pkg.priceSAR.toLocaleString()} {language === 'ar' ? 'ريال' : 'SAR'}
+                                        {pkg.priceSAR.toLocaleString()} {language === 'ar' ? '' : 'SAR'}
                                     </div>
                                 </div>
                                 <div className="text-xs text-[var(--secondary-label)] mb-2">
-                                    {language === 'ar' ? 'المتبقي' : 'Remaining'}: {pkg.spotsRemaining} / {pkg.spotsTotal}
+                                    {language === 'ar' ? '' : 'Remaining'}: {pkg.spotsRemaining} / {pkg.spotsTotal}
                                 </div>
                                 {pkg.benefits.length > 0 && (
                                     <div className="text-xs text-[var(--secondary-label)]">
-                                        {language === 'ar' ? 'الفوائد' : 'Benefits'}: {pkg.benefits.join(', ')}
+                                        {language === 'ar' ? '' : 'Benefits'}: {pkg.benefits.join(', ')}
                                     </div>
                                 )}
                             </div>
@@ -117,7 +117,7 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
                 <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4 flex items-center gap-2">
                         <DollarSign className="h-5 w-5" />
-                        {language === 'ar' ? 'صفقات الرعاية' : 'Sponsorship Deals'}
+                        {language === 'ar' ? ' ' : 'Sponsorship Deals'}
                     </h3>
                     <div className="space-y-3">
                         {sponsorsData.deals.map((deal) => (
@@ -127,7 +127,7 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
                             >
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="text-sm font-medium text-[var(--label)]">
-                                        {language === 'ar' ? 'راعي' : 'Sponsor'}: {deal.sponsorOrgId}
+                                        {language === 'ar' ? '' : 'Sponsor'}: {deal.sponsorOrgId}
                                     </div>
                                     <Badge
                                         className={
@@ -137,13 +137,13 @@ export default function SponsorsTab({ event }: SponsorsTabProps) {
                                         }
                                     >
                                         {deal.status === 'paid'
-                                            ? language === 'ar' ? 'مدفوع' : 'Paid'
-                                            : language === 'ar' ? 'محجوز' : 'Reserved'}
+                                            ? language === 'ar' ? '' : 'Paid'
+                                            : language === 'ar' ? '' : 'Reserved'}
                                     </Badge>
                                 </div>
                                 {deal.paidAt && (
                                     <div className="text-xs text-[var(--secondary-label)]">
-                                        {language === 'ar' ? 'تاريخ الدفع' : 'Paid at'}:{' '}
+                                        {language === 'ar' ? ' ' : 'Paid at'}:{' '}
                                         {new Date(deal.paidAt).toLocaleDateString(
                                             language === 'ar' ? 'ar-SA' : 'en-US'
                                         )}

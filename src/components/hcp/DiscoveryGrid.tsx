@@ -32,14 +32,14 @@ export default function DiscoveryGrid() {
 
     const mapToEventCard = (event: DemoEvent): Event => ({
         id: event.id,
-        titleAr: event.titleAr ?? event.title ?? 'الفعالية',
+        titleAr: event.titleAr ?? event.title ?? '',
         titleEn: event.titleEn ?? event.title ?? 'Event',
-        organizerAr: event.organizerAr ?? 'المنظم',
+        organizerAr: event.organizerAr ?? '',
         organizerEn: event.organizerEn ?? 'Organizer',
         specialty: event.specialty ?? 'General',
         cme_hours: event.cme_hours ?? 0,
         date: event.date ?? new Date().toISOString(),
-        locationAr: event.locationAr ?? 'الموقع',
+        locationAr: event.locationAr ?? '',
         locationEn: event.locationEn ?? 'Location',
         status:
             event.status === 'published'
@@ -200,7 +200,7 @@ export default function DiscoveryGrid() {
                         onClick={() => setSelectedSpecialty(null)}
                         className="text-sm"
                     >
-                        {language === 'ar' ? 'الكل' : 'All'}
+                        {language === 'ar' ? '' : 'All'}
                     </GlassButton>
                     {uniqueSpecialties.map((specialty) => (
                         <GlassButton
@@ -223,13 +223,13 @@ export default function DiscoveryGrid() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={t('hcp.searchPlaceholder') || (language === 'ar' ? 'ابحث عن فعاليات...' : 'Search events...')}
+                    placeholder={t('hcp.searchPlaceholder') || (language === 'ar' ? '  ...' : 'Search events...')}
                     className="pl-10 pr-10 w-full"
                 />
                 {searchQuery && (
                     <button onClick={() => setSearchQuery('')}
                         className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors"
-                        aria-label={language === 'ar' ? 'مسح البحث' : 'Clear search'}
+                        aria-label={language === 'ar' ? ' ' : 'Clear search'}
                     >
                         <X className="w-4 h-4 text-[var(--secondary-label)]" />
                     </button>
@@ -246,11 +246,11 @@ export default function DiscoveryGrid() {
                             </div>
                             <div>
                                 <h3 className="text-lg font-semibold text-[var(--label)]">
-                                    {language === 'ar' ? 'فعاليات موصى بها لك' : 'Recommended for You'}
+                                    {language === 'ar' ? '   ' : 'Recommended for You'}
                                 </h3>
                                 <p className="text-sm text-[var(--secondary-label)]">
                                     {language === 'ar' 
-                                        ? 'بناءً على اهتماماتك وتاريخك' 
+                                        ? '   ' 
                                         : 'Based on your interests and history'}
                                 </p>
                             </div>
@@ -303,7 +303,7 @@ export default function DiscoveryGrid() {
             {myRegisteredEvents.length > 0 && (
                 <div>
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'تسجيلاتك' : 'Your registrations'}
+                        {language === 'ar' ? '' : 'Your registrations'}
                     </h3>
                     <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {myRegisteredEvents.map((event) => {
@@ -343,11 +343,11 @@ export default function DiscoveryGrid() {
             {/* All Events */}
             <div>
                 <h3 className="text-xl font-semibold text-[var(--label)] mb-4">
-                    {language === 'ar' ? 'جميع الفعاليات' : 'All Events'}
+                    {language === 'ar' ? ' ' : 'All Events'}
                 </h3>
                 {isLoadingEvents ? (
                     <div className="text-center py-8 text-[var(--secondary-label)]">
-                        {language === 'ar' ? 'جاري التحميل...' : 'Loading events...'}
+                        {language === 'ar' ? ' ...' : 'Loading events...'}
                     </div>
                 ) : eventsError ? (
                     <LiquidGlassCard blurIntensity="md" className="p-6 text-center">
@@ -355,8 +355,8 @@ export default function DiscoveryGrid() {
                     </LiquidGlassCard>
                 ) : filteredEvents.length === 0 ? (
                     <EmptyState
-                        title={language === 'ar' ? 'لا توجد فعاليات متاحة' : 'No events available'}
-                        description={language === 'ar' ? 'لا توجد فعاليات تطابق الفلتر المحدد' : 'No events match the selected filters'}
+                        title={language === 'ar' ? '   ' : 'No events available'}
+                        description={language === 'ar' ? '     ' : 'No events match the selected filters'}
                         icon={Sparkles}
                     />
                 ) : (

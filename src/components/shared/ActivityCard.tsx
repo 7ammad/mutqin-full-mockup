@@ -69,7 +69,7 @@ interface ActivityCardProps {
 function formatDate(dateString: string, language: 'ar' | 'en'): string {
     const date = new Date(dateString);
     const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const monthsAr = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    const monthsAr = ['', '', '', '', '', '', '', '', '', '', '', ''];
     
     if (language === 'ar') {
         return `${date.getDate()} ${monthsAr[date.getMonth()]} ${date.getFullYear()}`;
@@ -83,7 +83,7 @@ function formatHours(hours: number, language: 'ar' | 'en', t: (key: string) => s
     const template = t(formatKey);
     
     if (language === 'ar') {
-        const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        const arabicDigits = ['', '', '', '', '', '', '', '', '', ''];
         const hoursStr = hours.toString().split('').map(d => {
             const digit = parseInt(d);
             return isNaN(digit) ? d : arabicDigits[digit];
@@ -107,10 +107,10 @@ function getStatusBorderColor(status: Event['status']): string {
 // Get pending reason text
 function getPendingReason(event: Event, language: 'ar' | 'en'): string {
     if (event.status === 'Pending Approval') {
-        return language === 'ar' ? 'اعتماد' : 'Approval';
+        return language === 'ar' ? '' : 'Approval';
     }
     if (event.needs_sponsorship) {
-        return language === 'ar' ? 'رعاية' : 'Sponsorship';
+        return language === 'ar' ? '' : 'Sponsorship';
     }
     return '';
 }
@@ -429,7 +429,7 @@ export function ActivityCard({
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Badge className="bg-[var(--apple-orange)]/10 text-[var(--apple-orange)] border-[var(--apple-orange)]/30 text-xs font-medium cursor-help">
-                                        {language === 'ar' ? 'قيد الانتظار' : 'Pending'}
+                                        {language === 'ar' ? ' ' : 'Pending'}
                                     </Badge>
                                 </TooltipTrigger>
                                 <TooltipContent className="z-[9999]">
@@ -452,8 +452,8 @@ export function ActivityCard({
                             isPast && registrationStatus !== 'attended' && registrationStatus !== 'missed' && "bg-[var(--system-fill)] text-[var(--secondary-label)] border border-[var(--border)]",
                             !isPast && "bg-[var(--apple-green)]/10 text-[var(--apple-green)] border border-[var(--apple-green)]/30"
                         )}>
-                            {isPast && registrationStatus === 'attended' && (language === 'ar' ? 'حضر' : 'Attended')}
-                            {isPast && registrationStatus === 'missed' && (language === 'ar' ? 'غاب' : 'Missed')}
+                            {isPast && registrationStatus === 'attended' && (language === 'ar' ? '' : 'Attended')}
+                            {isPast && registrationStatus === 'missed' && (language === 'ar' ? '' : 'Missed')}
                             {!isPast && t('hcp.discover.registeredChip')}
                         </Badge>
                     )}
@@ -531,7 +531,7 @@ export function ActivityCard({
                             <div className="relative px-4 py-3">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm font-semibold text-blue-900 dark:text-blue-100 uppercase tracking-wide">
-                                        {language === 'ar' ? 'التسجيلات' : 'Registration'}
+                                        {language === 'ar' ? '' : 'Registration'}
                                     </span>
                                     <span className="text-base font-bold text-blue-900 dark:text-blue-100">
                                         {registrationCount.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')} / {capacity.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')}
@@ -591,7 +591,7 @@ export function ActivityCard({
                                 </div>
                                 <div className="text-sm">
                                     <span className="text-blue-600 dark:text-blue-400 font-semibold">
-                                        {sponsorshipPackage.value.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')} {language === 'ar' ? 'ر.س' : 'SAR'}
+                                        {sponsorshipPackage.value.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')} {language === 'ar' ? '.' : 'SAR'}
                                     </span>
                                 </div>
                             </div>

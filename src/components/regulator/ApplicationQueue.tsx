@@ -61,7 +61,7 @@ export default function ApplicationQueue({ queueEvents, selectedEventId, onSelec
     };
 
     const specialties = [
-        { id: 'all', label: language === 'ar' ? 'الكل' : 'All' },
+        { id: 'all', label: language === 'ar' ? '' : 'All' },
         { id: 'cardiology', label: t('specialties.cardiology') },
         { id: 'pediatrics', label: t('specialties.pediatrics') },
         { id: 'generalsurgery', label: t('specialties.generalSurgery') },
@@ -69,12 +69,12 @@ export default function ApplicationQueue({ queueEvents, selectedEventId, onSelec
         { id: 'emergency', label: t('specialties.emergency') },
     ];
 
-    const title = language === 'ar' ? 'قائمة التطبيقات' : 'Application Queue';
-    const searchPlaceholder = language === 'ar' ? 'ابحث عن فعاليات...' : 'Search events...';
-    const filtersText = language === 'ar' ? 'الفلاتر' : 'Filters';
-    const sortByText = language === 'ar' ? 'ترتيب حسب' : 'Sort By';
-    const pendingText = language === 'ar' ? 'فعاليات بانتظار المراجعة' : 'Events Pending Review';
-    const selectAllText = language === 'ar' ? 'تحديد الكل' : 'Select All';
+    const title = language === 'ar' ? ' ' : 'Application Queue';
+    const searchPlaceholder = language === 'ar' ? '  ...' : 'Search events...';
+    const filtersText = language === 'ar' ? '' : 'Filters';
+    const sortByText = language === 'ar' ? ' ' : 'Sort By';
+    const pendingText = language === 'ar' ? '  ' : 'Events Pending Review';
+    const selectAllText = language === 'ar' ? ' ' : 'Select All';
 
     return (
         <div className="space-y-6">
@@ -109,9 +109,9 @@ export default function ApplicationQueue({ queueEvents, selectedEventId, onSelec
                                 <SelectValue placeholder={sortByText} />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="date">{language === 'ar' ? 'تاريخ الفعالية' : 'Event Date'}</SelectItem>
-                                <SelectItem value="submission">{language === 'ar' ? 'تاريخ التقديم' : 'Submission Date'}</SelectItem>
-                                <SelectItem value="priority">{language === 'ar' ? 'الأولوية' : 'Priority'}</SelectItem>
+                                <SelectItem value="date">{language === 'ar' ? ' ' : 'Event Date'}</SelectItem>
+                                <SelectItem value="submission">{language === 'ar' ? ' ' : 'Submission Date'}</SelectItem>
+                                <SelectItem value="priority">{language === 'ar' ? '' : 'Priority'}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -122,7 +122,7 @@ export default function ApplicationQueue({ queueEvents, selectedEventId, onSelec
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                                        {language === 'ar' ? 'التخصص' : 'Specialty'}
+                                        {language === 'ar' ? '' : 'Specialty'}
                                     </label>
                                     <Select value={selectedSpecialty} onValueChange={setSelectedSpecialty}>
                                         <SelectTrigger>
@@ -159,8 +159,8 @@ export default function ApplicationQueue({ queueEvents, selectedEventId, onSelec
 
                 {filteredEvents.length === 0 ? (
                     <EmptyState
-                        title={language === 'ar' ? 'لا توجد تطبيقات' : 'No Applications'}
-                        description={language === 'ar' ? 'لا توجد فعاليات بانتظار المراجعة' : 'No events pending review'}
+                        title={language === 'ar' ? '  ' : 'No Applications'}
+                        description={language === 'ar' ? '    ' : 'No events pending review'}
                         icon={FileText}
                     />
                 ) : (
@@ -219,7 +219,7 @@ export default function ApplicationQueue({ queueEvents, selectedEventId, onSelec
                                             {event.cme_hours && event.cme_hours > 0 && (
                                                 <div className="text-right flex-shrink-0">
                                                     <div className="text-xs text-[var(--secondary-label)]">
-                                                        {language === 'ar' ? 'ساعات التعليم' : 'CME Hours'}
+                                                        {language === 'ar' ? ' ' : 'CME Hours'}
                                                     </div>
                                                     <div className="text-lg font-bold text-[var(--apple-blue)]">
                                                         {event.cme_hours}

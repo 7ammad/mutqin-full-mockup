@@ -39,15 +39,15 @@ export default function CMETrackingDashboard() {
         value: hours,
     }));
 
-    const title = language === 'ar' ? 'تتبع ساعات التعليم الطبي المستمر' : 'CME Hours Tracking';
-    const totalHoursText = language === 'ar' ? 'إجمالي الساعات' : 'Total Hours';
-    const annualGoalText = language === 'ar' ? 'الهدف السنوي' : 'Annual Goal';
-    const remainingText = language === 'ar' ? 'متبقي' : 'Remaining';
-    const syncText = language === 'ar' ? 'مزامنة مع ممارس+' : 'Sync with Mumaris Plus';
-    const syncingText = language === 'ar' ? 'جاري المزامنة...' : 'Syncing...';
-    const syncedText = language === 'ar' ? 'تمت المزامنة' : 'Synced';
-    const bySpecialtyText = language === 'ar' ? 'حسب التخصص' : 'By Specialty';
-    const recentActivityText = language === 'ar' ? 'النشاط الأخير' : 'Recent Activity';
+    const title = language === 'ar' ? '    ' : 'CME Hours Tracking';
+    const totalHoursText = language === 'ar' ? ' ' : 'Total Hours';
+    const annualGoalText = language === 'ar' ? ' ' : 'Annual Goal';
+    const remainingText = language === 'ar' ? '' : 'Remaining';
+    const syncText = language === 'ar' ? '  +' : 'Sync with Mumaris Plus';
+    const syncingText = language === 'ar' ? ' ...' : 'Syncing...';
+    const syncedText = language === 'ar' ? ' ' : 'Synced';
+    const bySpecialtyText = language === 'ar' ? ' ' : 'By Specialty';
+    const recentActivityText = language === 'ar' ? ' ' : 'Recent Activity';
 
     return (
         <div className="space-y-6">
@@ -72,7 +72,7 @@ export default function CMETrackingDashboard() {
                             <p className="text-sm text-[var(--secondary-label)] mb-1">{totalHoursText}</p>
                             <p className="text-3xl font-bold text-[var(--label)]">{totalHours}</p>
                             <p className="text-xs text-[var(--tertiary-label)] mt-1">
-                                {language === 'ar' ? 'ساعة' : 'hours'}
+                                {language === 'ar' ? '' : 'hours'}
                             </p>
                         </div>
                         <div className="p-3 rounded-full bg-[var(--apple-blue)]/10">
@@ -87,7 +87,7 @@ export default function CMETrackingDashboard() {
                             <p className="text-sm text-[var(--secondary-label)] mb-1">{annualGoalText}</p>
                             <p className="text-3xl font-bold text-[var(--label)]">{annualGoal}</p>
                             <p className="text-xs text-[var(--tertiary-label)] mt-1">
-                                {language === 'ar' ? 'ساعة/سنة' : 'hours/year'}
+                                {language === 'ar' ? '/' : 'hours/year'}
                             </p>
                         </div>
                         <div className="p-3 rounded-full bg-[var(--apple-green)]/10">
@@ -102,7 +102,7 @@ export default function CMETrackingDashboard() {
                             <p className="text-sm text-[var(--secondary-label)] mb-1">{remainingText}</p>
                             <p className="text-3xl font-bold text-[var(--label)]">{remaining}</p>
                             <p className="text-xs text-[var(--tertiary-label)] mt-1">
-                                {language === 'ar' ? 'ساعة' : 'hours'}
+                                {language === 'ar' ? '' : 'hours'}
                             </p>
                         </div>
                         <div className="p-3 rounded-full bg-[var(--apple-orange)]/10">
@@ -117,7 +117,7 @@ export default function CMETrackingDashboard() {
                 <div className="space-y-3">
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-[var(--label)]">
-                            {language === 'ar' ? 'التقدم نحو الهدف' : 'Progress to Goal'}
+                            {language === 'ar' ? '  ' : 'Progress to Goal'}
                         </span>
                         <span className="text-sm font-bold text-[var(--apple-green)]">
                             {progress.toFixed(0)}%
@@ -131,7 +131,7 @@ export default function CMETrackingDashboard() {
                     </div>
                     {progress >= 100 && (
                         <p className="text-sm text-[var(--apple-green)] font-medium text-center">
-                            {language === 'ar' ? 'تم تحقيق الهدف! ✓' : 'Goal achieved! ✓'}
+                            {language === 'ar' ? '  ! ✓' : 'Goal achieved! ✓'}
                         </p>
                     )}
                 </div>
@@ -175,14 +175,14 @@ export default function CMETrackingDashboard() {
                                     +{event.cme_hours}
                                 </p>
                                 <p className="text-xs text-[var(--tertiary-label)]">
-                                    {language === 'ar' ? 'ساعة' : 'hours'}
+                                    {language === 'ar' ? '' : 'hours'}
                                 </p>
                             </div>
                         </div>
                     ))}
                     {registeredEvents.length === 0 && (
                         <p className="text-center text-[var(--secondary-label)] py-8">
-                            {language === 'ar' ? 'لا توجد ساعات مسجلة بعد' : 'No hours recorded yet'}
+                            {language === 'ar' ? '    ' : 'No hours recorded yet'}
                         </p>
                     )}
                 </div>

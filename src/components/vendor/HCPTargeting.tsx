@@ -73,7 +73,7 @@ export default function HCPTargeting() {
             minCMEHours: minCMEHours[0],
             maxCMEHours: maxCMEHours[0],
         });
-        alert(language === 'ar' ? 'تم حفظ الهدف بنجاح' : 'Target saved successfully');
+        alert(language === 'ar' ? '   ' : 'Target saved successfully');
     };
 
     // Mock audience distribution data
@@ -85,15 +85,15 @@ export default function HCPTargeting() {
         { name: t('specialties.emergency'), value: 300 },
     ];
 
-    const title = language === 'ar' ? 'استهداف الممارسين الصحيين' : 'HCP Targeting';
-    const targetNameText = language === 'ar' ? 'اسم الهدف' : 'Target Name';
-    const specialtyText = language === 'ar' ? 'التخصص' : 'Specialty';
-    const regionText = language === 'ar' ? 'المنطقة' : 'Region';
-    const seniorityText = language === 'ar' ? 'المستوى الوظيفي' : 'Seniority Level';
-    const cmeHoursText = language === 'ar' ? 'ساعات التعليم الطبي المستمر' : 'CME Hours';
-    const estimatedAudienceText = language === 'ar' ? 'الجمهور المقدر' : 'Estimated Audience';
-    const calculateText = language === 'ar' ? 'حساب الجمهور' : 'Calculate Audience';
-    const saveTargetText = language === 'ar' ? 'حفظ الهدف' : 'Save Target';
+    const title = language === 'ar' ? '  ' : 'HCP Targeting';
+    const targetNameText = language === 'ar' ? ' ' : 'Target Name';
+    const specialtyText = language === 'ar' ? '' : 'Specialty';
+    const regionText = language === 'ar' ? '' : 'Region';
+    const seniorityText = language === 'ar' ? ' ' : 'Seniority Level';
+    const cmeHoursText = language === 'ar' ? '   ' : 'CME Hours';
+    const estimatedAudienceText = language === 'ar' ? ' ' : 'Estimated Audience';
+    const calculateText = language === 'ar' ? ' ' : 'Calculate Audience';
+    const saveTargetText = language === 'ar' ? ' ' : 'Save Target';
 
     return (
         <div className="space-y-6">
@@ -104,7 +104,7 @@ export default function HCPTargeting() {
                 </h2>
                 <p className="text-[var(--secondary-label)] mb-6">
                     {language === 'ar' 
-                        ? 'أنشئ أهداف مخصصة للوصول إلى الممارسين الصحيين المناسبين'
+                        ? '       '
                         : 'Create custom targets to reach the right healthcare professionals'}
                 </p>
 
@@ -116,7 +116,7 @@ export default function HCPTargeting() {
                         </Label>
                         <Input
                             id="targetName"
-                            placeholder={language === 'ar' ? 'مثال: أطباء القلب في الرياض' : 'e.g., Cardiologists in Riyadh'}
+                            placeholder={language === 'ar' ? ':    ' : 'e.g., Cardiologists in Riyadh'}
                             value={targetName}
                             onChange={(e) => setTargetName(e.target.value)}
                         />
@@ -210,7 +210,7 @@ export default function HCPTargeting() {
                         <div className="grid grid-cols-2 gap-4 mt-2">
                             <div>
                                 <Label className="text-sm text-[var(--secondary-label)] mb-1">
-                                    {language === 'ar' ? 'الحد الأدنى' : 'Minimum'}
+                                    {language === 'ar' ? ' ' : 'Minimum'}
                                 </Label>
                                 <Input
                                     type="number"
@@ -220,7 +220,7 @@ export default function HCPTargeting() {
                             </div>
                             <div>
                                 <Label className="text-sm text-[var(--secondary-label)] mb-1">
-                                    {language === 'ar' ? 'الحد الأقصى' : 'Maximum'}
+                                    {language === 'ar' ? ' ' : 'Maximum'}
                                 </Label>
                                 <Input
                                     type="number"
@@ -260,7 +260,7 @@ export default function HCPTargeting() {
             {targetAudienceSize > 0 && (
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'توزيع الجمهور حسب التخصص' : 'Audience Distribution by Specialty'}
+                        {language === 'ar' ? '   ' : 'Audience Distribution by Specialty'}
                     </h3>
                     <Chart
                         type="pie"

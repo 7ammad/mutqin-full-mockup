@@ -23,14 +23,14 @@ export default function ErrorPage({
     console.error('Application error:', error);
   }, [error]);
 
-  const title = language === 'ar' ? 'حدث خطأ ما' : 'Something went wrong';
+  const title = language === 'ar' ? '  ' : 'Something went wrong';
   
   const description = language === 'ar'
-    ? 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.'
+    ? '   .    .'
     : "An unexpected error occurred. Please try again.";
   
-  const retryButton = language === 'ar' ? 'حاول مرة أخرى' : 'Try Again';
-  const homeButton = language === 'ar' ? 'العودة إلى الرئيسية' : 'Go Home';
+  const retryButton = language === 'ar' ? '  ' : 'Try Again';
+  const homeButton = language === 'ar' ? '  ' : 'Go Home';
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--system-background)] px-4">

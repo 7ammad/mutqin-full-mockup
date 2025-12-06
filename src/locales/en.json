@@ -591,6 +591,30 @@
       "label": "Certificate",
       "unavailable": "Certificate not available"
     }
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "role": "Role",
+      "selectRole": "Select Role",
+      "submit": "Login",
+      "loggingIn": "Logging in...",
+      "quickLogin": "Quick Login",
+      "or": "Or",
+      "errors": {
+        "selectRole": "Please select a role",
+        "invalidCredentials": "Invalid credentials"
+      },
+      "roles": {
+        "HCP": "Healthcare Professional",
+        "ORGANIZER": "Organizer",
+        "VENDOR": "Vendor",
+        "REGULATOR": "Regulator",
+        "EVENT_MANAGER": "Event Manager"
+      }
+    }
   }
 }
 

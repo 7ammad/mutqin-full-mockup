@@ -54,31 +54,31 @@ const getNavItemsForPersona = (persona: Persona, language: 'en' | 'ar'): NavItem
                 {
                     key: 'queue',
                     icon: Inbox,
-                    label: { en: 'Queue', ar: 'المعروض للمراجعة' },
+                    label: { en: 'Queue', ar: ' ' },
                     path: '/dashboard/regulator?tab=queue'
                 },
                 {
                     key: 'review',
                     icon: Eye,
-                    label: { en: 'Review Workspace', ar: 'مساحة المراجعة' },
+                    label: { en: 'Review Workspace', ar: ' ' },
                     path: '/dashboard/regulator?tab=review'
                 },
                 {
                     key: 'decisions',
                     icon: History,
-                    label: { en: 'Decisions', ar: 'القرارات' },
+                    label: { en: 'Decisions', ar: '' },
                     path: '/dashboard/regulator?tab=decisions'
                 },
                 {
                     key: 'monitoring',
                     icon: Shield,
-                    label: { en: 'Monitoring', ar: 'المتابعة والالتزام' },
+                    label: { en: 'Monitoring', ar: ' ' },
                     path: '/dashboard/regulator?tab=monitoring'
                 },
                 {
                     key: 'analytics',
                     icon: BarChart3,
-                    label: { en: 'Analytics', ar: 'التحليلات' },
+                    label: { en: 'Analytics', ar: '' },
                     path: '/dashboard/regulator?tab=analytics'
                 }
             ];
@@ -87,31 +87,31 @@ const getNavItemsForPersona = (persona: Persona, language: 'en' | 'ar'): NavItem
                 {
                     key: 'overview',
                     icon: LayoutDashboard,
-                    label: { en: 'Overview', ar: 'نظرة عامة' },
+                    label: { en: 'Overview', ar: ' ' },
                     path: '/dashboard/organizer?tab=overview'
                 },
                 {
                     key: 'activities',
                     icon: Activity,
-                    label: { en: 'Activities', ar: 'الأنشطة' },
+                    label: { en: 'Activities', ar: '' },
                     path: '/dashboard/organizer?tab=activities'
                 },
                 {
                     key: 'accreditation',
                     icon: CheckCircle2,
-                    label: { en: 'Accreditation', ar: 'الاعتماد' },
+                    label: { en: 'Accreditation', ar: '' },
                     path: '/dashboard/organizer?tab=accreditation'
                 },
                 {
                     key: 'execution',
                     icon: ClipboardList,
-                    label: { en: 'Execution & Compliance', ar: 'التنفيذ والامتثال' },
+                    label: { en: 'Execution & Compliance', ar: ' ' },
                     path: '/dashboard/organizer?tab=execution'
                 },
                 {
                     key: 'sponsors',
                     icon: Users,
-                    label: { en: 'Sponsors', ar: 'الرعاة' },
+                    label: { en: 'Sponsors', ar: '' },
                     path: '/dashboard/organizer?tab=sponsors'
                 }
             ];
@@ -120,13 +120,13 @@ const getNavItemsForPersona = (persona: Persona, language: 'en' | 'ar'): NavItem
                 {
                     key: 'campaigns',
                     icon: Package,
-                    label: { en: 'Campaigns', ar: 'الحملات' },
+                    label: { en: 'Campaigns', ar: '' },
                     path: '/dashboard/vendor?tab=campaigns'
                 },
                 {
                     key: 'events',
                     icon: Calendar,
-                    label: { en: 'Events', ar: 'الفعاليات' },
+                    label: { en: 'Events', ar: '' },
                     path: '/dashboard/vendor?tab=events'
                 }
             ];
@@ -135,25 +135,25 @@ const getNavItemsForPersona = (persona: Persona, language: 'en' | 'ar'): NavItem
                 {
                     key: 'discover',
                     icon: Calendar,
-                    label: { en: 'Discover', ar: 'استكشف' },
+                    label: { en: 'Discover', ar: '' },
                     path: '/dashboard/hcp?tab=discover'
                 },
                 {
                     key: 'journey',
                     icon: ClipboardList,
-                    label: { en: 'My Journey', ar: 'رحلة التطوير المهني' },
+                    label: { en: 'My Journey', ar: '  ' },
                     path: '/dashboard/hcp?tab=journey'
                 },
                 {
                     key: 'files',
                     icon: FileText,
-                    label: { en: 'My Files', ar: 'ملفاتي' },
+                    label: { en: 'My Files', ar: '' },
                     path: '/dashboard/hcp?tab=files'
                 },
                 {
                     key: 'credits',
                     icon: BarChart3,
-                    label: { en: 'CME Credits', ar: 'الساعات المعتمدة' },
+                    label: { en: 'CME Credits', ar: ' ' },
                     path: '/dashboard/hcp?tab=credits'
                 }
             ];
@@ -162,31 +162,31 @@ const getNavItemsForPersona = (persona: Persona, language: 'en' | 'ar'): NavItem
                 {
                     key: 'inbox',
                     icon: Inbox,
-                    label: { en: 'Inbox', ar: 'الوارد' },
+                    label: { en: 'Inbox', ar: '' },
                     path: '/dashboard/event-manager?tab=inbox'
                 },
                 {
                     key: 'live-ops',
                     icon: Activity,
-                    label: { en: 'Live Ops', ar: 'التشغيل المباشر' },
+                    label: { en: 'Live Ops', ar: ' ' },
                     path: '/dashboard/event-manager?tab=live-ops'
                 },
                 {
                     key: 'attendance',
                     icon: ClipboardList,
-                    label: { en: 'Attendance & Exceptions', ar: 'الحضور والاستثناءات' },
+                    label: { en: 'Attendance & Exceptions', ar: ' ' },
                     path: '/dashboard/event-manager?tab=attendance'
                 },
                 {
                     key: 'handover',
                     icon: FileText,
-                    label: { en: 'Handover Pack', ar: 'حزمة التسليم' },
+                    label: { en: 'Handover Pack', ar: ' ' },
                     path: '/dashboard/event-manager?tab=handover'
                 },
                 {
                     key: 'analytics',
                     icon: BarChart3,
-                    label: { en: 'Analytics', ar: 'التحليلات التشغيلية' },
+                    label: { en: 'Analytics', ar: ' ' },
                     path: '/dashboard/event-manager?tab=analytics'
                 }
             ];
@@ -248,11 +248,11 @@ export default function DashboardLayout({
     const getUserRoleLabel = () => {
         if (!user) return '';
         const roleLabels: Record<Persona, { ar: string; en: string }> = {
-            ORGANIZER: { ar: 'المنظم', en: 'Organizer' },
-            VENDOR: { ar: 'الداعم', en: 'Vendor' },
-            REGULATOR: { ar: 'المعتمد', en: 'Regulator' },
-            HCP: { ar: 'الممارس الصحي', en: 'Healthcare Professional' },
-            EVENT_MANAGER: { ar: 'مدير الفعاليات', en: 'Event Manager' },
+            ORGANIZER: { ar: '', en: 'Organizer' },
+            VENDOR: { ar: '', en: 'Vendor' },
+            REGULATOR: { ar: '', en: 'Regulator' },
+            HCP: { ar: ' ', en: 'Healthcare Professional' },
+            EVENT_MANAGER: { ar: ' ', en: 'Event Manager' },
         };
         return language === 'ar' ? roleLabels[role].ar : roleLabels[role].en;
     };
@@ -335,7 +335,7 @@ export default function DashboardLayout({
                             className="w-full flex items-center justify-center gap-2"
                         >
                             <LogOut className="h-4 w-4 mr-2" />
-                            {language === 'ar' ? 'تسجيل الخروج' : 'Logout'}
+                            {language === 'ar' ? ' ' : 'Logout'}
                         </GlassButton>
                     </div>
                 </div>
@@ -361,7 +361,7 @@ export default function DashboardLayout({
                         <div className="flex items-center gap-4 flex-1">
                             <button onClick={() => setSidebarOpen(!sidebarOpen)}
                                 className="p-2 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors lg:hidden"
-                                aria-label={language === 'ar' ? 'فتح القائمة' : 'Open menu'}
+                                aria-label={language === 'ar' ? ' ' : 'Open menu'}
                                 aria-expanded={sidebarOpen}
                             >
                                 <Menu className="h-5 w-5 text-[var(--label)]" aria-hidden="true" />
@@ -389,7 +389,7 @@ export default function DashboardLayout({
                             <button onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
                                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors"
                                 aria-label="Toggle Language"
-                                title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
+                                title={language === 'ar' ? 'Switch to English' : '  '}
                             >
                                 <Languages className="h-4 w-4 text-[var(--secondary-label)]" />
                                 <span className="text-sm font-medium text-[var(--label)]">
@@ -401,8 +401,8 @@ export default function DashboardLayout({
                             {mounted && (
                                 <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                                     className="p-2 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors"
-                                    aria-label={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
-                                    title={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
+                                    aria-label={language === 'ar' ? ' ' : 'Toggle Theme'}
+                                    title={language === 'ar' ? ' ' : 'Toggle Theme'}
                                 >
                                     {theme === "dark" ? (
                                         <Sun className="h-5 w-5 text-[var(--apple-yellow)]" />

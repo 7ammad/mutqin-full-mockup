@@ -356,7 +356,7 @@ export function HcpFilesTab() {
         return (
             <div className="space-y-6">
                 <div className="text-center py-8 text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'جاري التحميل...' : 'Loading files...'}
+                    {language === 'ar' ? ' ...' : 'Loading files...'}
                 </div>
             </div>
         );
@@ -377,7 +377,7 @@ export function HcpFilesTab() {
                         )}
                     >
                         <Ticket className="h-3.5 w-3.5" />
-                        {language === 'ar' ? 'تذاكري' : 'My Tickets'}
+                        {language === 'ar' ? '' : 'My Tickets'}
                     </GlassButton>
                     <GlassButton
                         variant={viewMode === 'certificates' ? 'default' : 'ghost'}
@@ -389,7 +389,7 @@ export function HcpFilesTab() {
                         )}
                     >
                         <Award className="h-3.5 w-3.5" />
-                        {language === 'ar' ? 'شهاداتي' : 'My Certificates'}
+                        {language === 'ar' ? '' : 'My Certificates'}
                     </GlassButton>
                 </div>
             </div>
@@ -402,7 +402,7 @@ export function HcpFilesTab() {
                         <div className="space-y-4">
                             <div className="flex items-center justify-between flex-wrap gap-4">
                                 <h3 className="text-lg font-semibold text-[var(--label)]">
-                                    {language === 'ar' ? 'التذاكر القادمة' : 'Upcoming tickets'}
+                                    {language === 'ar' ? ' ' : 'Upcoming tickets'}
                                 </h3>
                                 <div className="flex items-center gap-2 flex-wrap">
                                     <GlassButton
@@ -411,7 +411,7 @@ export function HcpFilesTab() {
                                         onClick={() => setUpcomingTicketFilter('all')}
                                         className="text-xs"
                                     >
-                                        {language === 'ar' ? 'الكل' : 'All'}
+                                        {language === 'ar' ? '' : 'All'}
                                     </GlassButton>
                                     <GlassButton
                                         variant={upcomingTicketFilter === 'this_week' ? 'default' : 'outline'}
@@ -419,7 +419,7 @@ export function HcpFilesTab() {
                                         onClick={() => setUpcomingTicketFilter('this_week')}
                                         className="text-xs"
                                     >
-                                        {language === 'ar' ? 'هذا الأسبوع' : 'This week'}
+                                        {language === 'ar' ? ' ' : 'This week'}
                                     </GlassButton>
                                     <GlassButton
                                         variant={upcomingTicketFilter === 'this_month' ? 'default' : 'outline'}
@@ -427,7 +427,7 @@ export function HcpFilesTab() {
                                         onClick={() => setUpcomingTicketFilter('this_month')}
                                         className="text-xs"
                                     >
-                                        {language === 'ar' ? 'هذا الشهر' : 'This month'}
+                                        {language === 'ar' ? ' ' : 'This month'}
                                     </GlassButton>
                                 </div>
                             </div>
@@ -459,14 +459,14 @@ export function HcpFilesTab() {
                         <div className="space-y-4">
                             <div className="flex items-center justify-between flex-wrap gap-4">
                                 <h3 className="text-lg font-semibold text-[var(--label)]">
-                                    {language === 'ar' ? 'التذاكر السابقة' : 'Past tickets'}
+                                    {language === 'ar' ? ' ' : 'Past tickets'}
                                 </h3>
                                 <Select value={pastTicketFilter} onValueChange={setPastTicketFilter}>
                                     <SelectTrigger className="w-[140px] h-9 text-xs">
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
+                                        <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
                                         {availableYears.map(year => (
                                             <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
                                         ))}
@@ -502,12 +502,12 @@ export function HcpFilesTab() {
                     {/* Empty State */}
                     {filteredUpcomingTickets.length === 0 && filteredPastTickets.length === 0 && (
                         <EmptyState
-                            title={language === 'ar' ? 'لا توجد تذاكر' : 'No tickets'}
+                            title={language === 'ar' ? '  ' : 'No tickets'}
                             description={language === 'ar' 
-                                ? 'سجّل في فعالية لبدء عرض التذاكر'
+                                ? '     '
                                 : 'Register for an event to start viewing tickets'}
                             icon={Ticket}
-                            actionLabel={language === 'ar' ? 'استكشف الفعاليات' : 'Discover activities'}
+                            actionLabel={language === 'ar' ? ' ' : 'Discover activities'}
                             onAction={() => {
                                 const params = new URLSearchParams();
                                 params.set('tab', 'discover');
@@ -523,7 +523,7 @@ export function HcpFilesTab() {
                 <div className="space-y-4">
                     <div className="flex items-center justify-between flex-wrap gap-4">
                         <h3 className="text-lg font-semibold text-[var(--label)]">
-                            {language === 'ar' ? 'مكتبة الشهادات' : 'Certificates library'}
+                            {language === 'ar' ? ' ' : 'Certificates library'}
                         </h3>
                         <div className="flex items-center gap-3 flex-wrap">
                             <div className="flex items-center gap-2 flex-wrap">
@@ -533,7 +533,7 @@ export function HcpFilesTab() {
                                     onClick={() => setCertFilter('all')}
                                     className="text-xs"
                                 >
-                                    {language === 'ar' ? 'الكل' : 'All'}
+                                    {language === 'ar' ? '' : 'All'}
                                 </GlassButton>
                                 <GlassButton
                                     variant={certFilter === 'this_year' ? 'default' : 'outline'}
@@ -541,7 +541,7 @@ export function HcpFilesTab() {
                                     onClick={() => setCertFilter('this_year')}
                                     className="text-xs"
                                 >
-                                    {language === 'ar' ? 'هذا العام' : 'This year'}
+                                    {language === 'ar' ? ' ' : 'This year'}
                                 </GlassButton>
                                 <GlassButton
                                     variant={certFilter === 'last_year' ? 'default' : 'outline'}
@@ -549,7 +549,7 @@ export function HcpFilesTab() {
                                     onClick={() => setCertFilter('last_year')}
                                     className="text-xs"
                                 >
-                                    {language === 'ar' ? 'العام الماضي' : 'Last year'}
+                                    {language === 'ar' ? ' ' : 'Last year'}
                                 </GlassButton>
                             </div>
                             <Select value={certSort} onValueChange={(value) => setCertSort(value as CertSort)}>
@@ -557,8 +557,8 @@ export function HcpFilesTab() {
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="date">{language === 'ar' ? 'التاريخ' : 'Date'}</SelectItem>
-                                    <SelectItem value="hours">{language === 'ar' ? 'الساعات' : 'Hours'}</SelectItem>
+                                    <SelectItem value="date">{language === 'ar' ? '' : 'Date'}</SelectItem>
+                                    <SelectItem value="hours">{language === 'ar' ? '' : 'Hours'}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -567,12 +567,12 @@ export function HcpFilesTab() {
                     {/* Certificates Grid */}
                     {filteredCertificates.length === 0 ? (
                         <EmptyState
-                            title={language === 'ar' ? 'لا توجد شهادات' : 'No certificates'}
+                            title={language === 'ar' ? '  ' : 'No certificates'}
                             description={language === 'ar' 
-                                ? 'احضر الفعاليات وأكمل متطلبات الحضور للحصول على الشهادات'
+                                ? '       '
                                 : 'Attend events and complete attendance requirements to earn certificates'}
                             icon={Award}
-                            actionLabel={language === 'ar' ? 'استكشف الفعاليات' : 'Discover activities'}
+                            actionLabel={language === 'ar' ? ' ' : 'Discover activities'}
                             onAction={() => {
                                 const params = new URLSearchParams();
                                 params.set('tab', 'discover');

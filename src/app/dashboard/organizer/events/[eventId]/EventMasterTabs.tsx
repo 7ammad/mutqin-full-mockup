@@ -59,10 +59,10 @@ export default function EventMasterTabs({ eventId }: EventMasterTabsProps) {
     };
 
     const tabs: Array<{ key: ViewKey; label: string; labelAr: string; icon: typeof FileText }> = [
-        { key: 'summary', label: 'Summary', labelAr: 'الملخص', icon: FileText },
-        { key: 'execution', label: 'Execution & Compliance', labelAr: 'التنفيذ والامتثال', icon: ClipboardList },
-        { key: 'certificates', label: 'Certificates', labelAr: 'الشهادات', icon: Award },
-        { key: 'sponsors', label: 'Sponsors', labelAr: 'الرعاة', icon: Users },
+        { key: 'summary', label: 'Summary', labelAr: '', icon: FileText },
+        { key: 'execution', label: 'Execution & Compliance', labelAr: ' ', icon: ClipboardList },
+        { key: 'certificates', label: 'Certificates', labelAr: '', icon: Award },
+        { key: 'sponsors', label: 'Sponsors', labelAr: '', icon: Users },
     ];
 
     if (loading) {
@@ -72,13 +72,13 @@ export default function EventMasterTabs({ eventId }: EventMasterTabsProps) {
     if (error || !event) {
         return (
             <EmptyState
-                title={language === 'ar' ? 'حدث غير موجود' : 'Event not found'}
-                titleAr={language === 'ar' ? 'حدث غير موجود' : undefined}
-                description={error || (language === 'ar' ? 'لا يمكن العثور على هذا الحدث' : 'Unable to find this event')}
-                descriptionAr={language === 'ar' ? 'لا يمكن العثور على هذا الحدث' : undefined}
+                title={language === 'ar' ? '  ' : 'Event not found'}
+                titleAr={language === 'ar' ? '  ' : undefined}
+                description={error || (language === 'ar' ? '     ' : 'Unable to find this event')}
+                descriptionAr={language === 'ar' ? '     ' : undefined}
                 icon={FileText}
-                actionLabel={language === 'ar' ? 'رجوع إلى الفعاليات' : 'Back to activities'}
-                actionLabelAr={language === 'ar' ? 'رجوع إلى الفعاليات' : undefined}
+                actionLabel={language === 'ar' ? '  ' : 'Back to activities'}
+                actionLabelAr={language === 'ar' ? '  ' : undefined}
                 onAction={() => {
                     const params = new URLSearchParams();
                     params.set('tab', 'activities');

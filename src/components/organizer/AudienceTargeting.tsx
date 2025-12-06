@@ -34,9 +34,9 @@ export default function AudienceTargeting() {
     ];
 
     const seniorityLevels = [
-        language === 'ar' ? 'مقيم' : 'Resident',
-        language === 'ar' ? 'أخصائي' : 'Specialist',
-        language === 'ar' ? 'استشاري' : 'Consultant',
+        language === 'ar' ? '' : 'Resident',
+        language === 'ar' ? '' : 'Specialist',
+        language === 'ar' ? '' : 'Consultant',
     ];
 
     const toggleSpecialty = (specialty: string) => {
@@ -68,15 +68,15 @@ export default function AudienceTargeting() {
 
     const estimatedReach = criteria.specialties.length * criteria.regions.length * 1500; // Mock calculation
 
-    const title = language === 'ar' ? 'استهداف الجمهور' : 'Audience Targeting';
-    const specialtiesText = language === 'ar' ? 'التخصصات' : 'Specialties';
-    const regionsText = language === 'ar' ? 'المناطق' : 'Regions';
-    const seniorityText = language === 'ar' ? 'المستوى الوظيفي' : 'Seniority Level';
-    const pastAttendanceText = language === 'ar' ? 'الحضور السابق' : 'Past Attendance';
-    const includePastAttendeesText = language === 'ar' ? 'تضمين الحضور السابق' : 'Include Past Attendees';
-    const estimatedReachText = language === 'ar' ? 'الوصول المتوقع' : 'Estimated Reach';
-    const saveText = language === 'ar' ? 'حفظ' : 'Save';
-    const resetText = language === 'ar' ? 'إعادة تعيين' : 'Reset';
+    const title = language === 'ar' ? ' ' : 'Audience Targeting';
+    const specialtiesText = language === 'ar' ? '' : 'Specialties';
+    const regionsText = language === 'ar' ? '' : 'Regions';
+    const seniorityText = language === 'ar' ? ' ' : 'Seniority Level';
+    const pastAttendanceText = language === 'ar' ? ' ' : 'Past Attendance';
+    const includePastAttendeesText = language === 'ar' ? '  ' : 'Include Past Attendees';
+    const estimatedReachText = language === 'ar' ? ' ' : 'Estimated Reach';
+    const saveText = language === 'ar' ? '' : 'Save';
+    const resetText = language === 'ar' ? ' ' : 'Reset';
 
     return (
         <div className="space-y-6">
@@ -93,7 +93,7 @@ export default function AudienceTargeting() {
                             {estimatedReach.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')}
                         </p>
                         <p className="text-sm text-[var(--tertiary-label)] mt-1">
-                            {language === 'ar' ? 'ممارس صحي محتمل' : 'potential HCPs'}
+                            {language === 'ar' ? '  ' : 'potential HCPs'}
                         </p>
                     </div>
                     <div className="p-3 rounded-full bg-[var(--apple-blue)]/10">

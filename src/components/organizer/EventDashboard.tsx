@@ -95,24 +95,24 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
     return (
       <LiquidGlassCard blurIntensity="lg" className="p-12">
         <div className="text-center text-[var(--secondary-label)]">
-          {language === 'ar' ? 'الحدث غير موجود' : 'Event not found'}
+          {language === 'ar' ? '  ' : 'Event not found'}
         </div>
       </LiquidGlassCard>
     );
   }
 
-  const title = language === 'ar' ? 'لوحة الحدث' : 'Event Dashboard';
-  const registrationsText = language === 'ar' ? 'التسجيلات' : 'Registrations';
-  const revenueText = language === 'ar' ? 'الإيرادات' : 'Revenue';
-  const attendanceText = language === 'ar' ? 'نسبة الحضور' : 'Attendance Rate';
-  const capacityText = language === 'ar' ? 'السعة' : 'Capacity';
-  const timelineText = language === 'ar' ? 'خط زمني للتسجيل' : 'Registration Timeline';
-  const demographicsText = language === 'ar' ? 'شرائح الحضور' : 'Attendee Demographics';
-  const statusText = language === 'ar' ? 'حالة الاعتماد' : 'Accreditation Status';
-  const sponsorshipText = language === 'ar' ? 'حالة الرعاية' : 'Sponsorship Status';
-  const introTitle = language === 'ar' ? 'أنشطتك ومراحل الاعتماد' : 'Your activities & lifecycle';
+  const title = language === 'ar' ? ' ' : 'Event Dashboard';
+  const registrationsText = language === 'ar' ? '' : 'Registrations';
+  const revenueText = language === 'ar' ? '' : 'Revenue';
+  const attendanceText = language === 'ar' ? ' ' : 'Attendance Rate';
+  const capacityText = language === 'ar' ? '' : 'Capacity';
+  const timelineText = language === 'ar' ? '  ' : 'Registration Timeline';
+  const demographicsText = language === 'ar' ? ' ' : 'Attendee Demographics';
+  const statusText = language === 'ar' ? ' ' : 'Accreditation Status';
+  const sponsorshipText = language === 'ar' ? ' ' : 'Sponsorship Status';
+  const introTitle = language === 'ar' ? '  ' : 'Your activities & lifecycle';
   const lifecycleHelper = language === 'ar'
-    ? 'مرِّر الحدث عبر الاعتماد ثم التكليف ثم النشر. الأزرار أدناه متزامنة مع الحالة الحالية.'
+    ? '       .      .'
     : 'Move the event through accreditation, assignment, then publish. Controls stay in sync with current state.';
   const handleResult = async <T,>(fn: () => Promise<T>) => {
     setLastError('');
@@ -149,9 +149,9 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
   const attendanceRate = 85;
   const targetCapacity = 200;
   const registrationTimeline = [
-    { name: language === 'ar' ? 'يناير' : 'Jan', value: 20 },
-    { name: language === 'ar' ? 'فبراير' : 'Feb', value: 45 },
-    { name: language === 'ar' ? 'مارس' : 'Mar', value: 80 },
+    { name: language === 'ar' ? '' : 'Jan', value: 20 },
+    { name: language === 'ar' ? '' : 'Feb', value: 45 },
+    { name: language === 'ar' ? '' : 'Mar', value: 80 },
   ];
   const demographics = [
     { name: 'Cardiology', value: 45 },
@@ -184,25 +184,25 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
   const navItems = [
     {
       key: 'activities',
-      label: language === 'ar' ? 'أنشطتي' : 'My Activities',
+      label: language === 'ar' ? '' : 'My Activities',
       icon: <ListChecks className="h-4 w-4" />,
       count: sourceEvents.length,
     },
     {
       key: 'accreditation',
-      label: language === 'ar' ? 'الاعتمادات' : 'Accreditation',
+      label: language === 'ar' ? '' : 'Accreditation',
       icon: <Clock className="h-4 w-4" />,
       count: accreditationList.length,
     },
     {
       key: 'publishing',
-      label: language === 'ar' ? 'النشر' : 'Publishing',
+      label: language === 'ar' ? '' : 'Publishing',
       icon: <Send className="h-4 w-4" />,
       count: publishingList.length,
     },
     {
       key: 'help',
-      label: language === 'ar' ? 'المساعدة' : 'Help',
+      label: language === 'ar' ? '' : 'Help',
       icon: <HelpCircle className="h-4 w-4" />,
     },
   ] as const;
@@ -264,7 +264,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
                   <div className="flex flex-wrap gap-2 items-center">
                     <input
                       className="border rounded px-3 py-2 text-sm flex-1 min-w-[200px]"
-                      placeholder={language === 'ar' ? 'بحث بالعنوان' : 'Search by title'}
+                      placeholder={language === 'ar' ? ' ' : 'Search by title'}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -285,7 +285,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
                     {filteredActivities.length === 0 ? (
                       <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4">
                         <p className="text-sm text-[var(--secondary-label)]">
-                          {language === 'ar' ? 'لا توجد أنشطة مطابقة' : 'No activities found'}
+                          {language === 'ar' ? '   ' : 'No activities found'}
                         </p>
                       </LiquidGlassCard>
                     ) : (
@@ -317,7 +317,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
                   {accreditationList.length === 0 ? (
                     <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4">
                       <p className="text-sm text-[var(--secondary-label)]">
-                        {language === 'ar' ? 'لا توجد اعتمادات قيد المعالجة' : 'No accreditations in progress'}
+                        {language === 'ar' ? '    ' : 'No accreditations in progress'}
                       </p>
                     </LiquidGlassCard>
                   ) : (
@@ -329,7 +329,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
                               {language === 'ar' ? ev.titleAr ?? ev.title : ev.titleEn ?? ev.title}
                             </h3>
                             <p className="text-xs text-[var(--secondary-label)]">
-                              {language === 'ar' ? 'حالة الاعتماد' : 'Accreditation status'}: {normalize(ev.status)}
+                              {language === 'ar' ? ' ' : 'Accreditation status'}: {normalize(ev.status)}
                             </p>
                           </div>
                           <Badge variant="outline" className="capitalize">
@@ -347,7 +347,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
                   {publishingList.length === 0 ? (
                     <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4">
                       <p className="text-sm text-[var(--secondary-label)]">
-                        {language === 'ar' ? 'لا توجد فعاليات جاهزة للنشر' : 'No events ready to publish'}
+                        {language === 'ar' ? '    ' : 'No events ready to publish'}
                       </p>
                     </LiquidGlassCard>
                   ) : (
@@ -359,7 +359,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
                               {language === 'ar' ? ev.titleAr ?? ev.title : ev.titleEn ?? ev.title}
                             </h3>
                             <p className="text-xs text-[var(--secondary-label)]">
-                              {language === 'ar' ? 'جاهز للنشر بعد الموافقة' : 'Ready to publish after approval'}
+                              {language === 'ar' ? '   ' : 'Ready to publish after approval'}
                             </p>
                           </div>
                           <Badge variant="outline" className="capitalize">
@@ -375,11 +375,11 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
               {navView === 'help' && (
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4 space-y-2">
                   <h3 className="text-lg font-semibold text-[var(--label)]">
-                    {language === 'ar' ? 'المساعدة' : 'Help'}
+                    {language === 'ar' ? '' : 'Help'}
                   </h3>
                   <p className="text-sm text-[var(--secondary-label)]">
                     {language === 'ar'
-                      ? 'استخدم الاعتماد ثم التكليف ثم النشر. الأزرار في الشريط الجانبي تقودك للخطوات.'
+                      ? '     .      .'
                       : 'Use accreditation, then assignments, then publish. SideNav items guide the steps.'}
                   </p>
                 </LiquidGlassCard>
@@ -389,7 +389,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
             <div className="space-y-3">
               <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-semibold text-[var(--label)]">{language === 'ar' ? 'الإجراءات القادمة' : 'Next actions'}</h4>
+                  <h4 className="font-semibold text-[var(--label)]">{language === 'ar' ? ' ' : 'Next actions'}</h4>
                   <Badge variant="outline" className="capitalize">
                     {eventStatus}
                   </Badge>
@@ -431,23 +431,23 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
                 </div>
                 <div className="text-xs text-[var(--secondary-label)]">
                   {language === 'ar'
-                    ? 'الأزرار تعمل على الحدث النشط الافتراضي في العرض التوضيحي.'
+                    ? '        .'
                     : 'Buttons act on the demo primary event.'}
                 </div>
               </LiquidGlassCard>
               <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4 space-y-2">
-                <h4 className="font-semibold text-[var(--label)]">{language === 'ar' ? 'لقطة حالة' : 'Status snapshot'}</h4>
+                <h4 className="font-semibold text-[var(--label)]">{language === 'ar' ? ' ' : 'Status snapshot'}</h4>
                 <div className="space-y-1 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'قيد الاعتماد' : 'Pending review'}</span>
+                    <span className="text-[var(--secondary-label)]">{language === 'ar' ? ' ' : 'Pending review'}</span>
                     <span className="font-semibold text-[var(--label)]">{pendingCount}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'موافق عليه' : 'Approved'}</span>
+                    <span className="text-[var(--secondary-label)]">{language === 'ar' ? ' ' : 'Approved'}</span>
                     <span className="font-semibold text-[var(--label)]">{approvedCount}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'مسودة/مرفوض' : 'Draft/Rejected'}</span>
+                    <span className="text-[var(--secondary-label)]">{language === 'ar' ? '/' : 'Draft/Rejected'}</span>
                     <span className="font-semibold text-[var(--label)]">{rejectedCount}</span>
                   </div>
                 </div>
@@ -545,7 +545,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
               <p className="text-sm text-[var(--secondary-label)] mb-1">{registrationsText}</p>
               <p className="text-3xl font-bold text-[var(--label)]">{registrations}</p>
               <p className="text-xs text-[var(--tertiary-label)] mt-1">
-                {language === 'ar' ? 'من' : 'of'} {targetCapacity}
+                {language === 'ar' ? '' : 'of'} {targetCapacity}
               </p>
             </div>
             <div className="p-3 rounded-full bg-[var(--apple-blue)]/10">
@@ -575,7 +575,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
               <p className="text-sm text-[var(--secondary-label)] mb-1">{attendanceText}</p>
               <p className="text-3xl font-bold text-[var(--label)]">{attendanceRate}%</p>
               <p className="text-xs text-[var(--tertiary-label)] mt-1">
-                {language === 'ar' ? 'متوقع' : 'Expected'}
+                {language === 'ar' ? '' : 'Expected'}
               </p>
             </div>
             <div className="p-3 rounded-full bg-[var(--apple-purple)]/10">
@@ -590,7 +590,7 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
               <p className="text-sm text-[var(--secondary-label)] mb-1">{capacityText}</p>
               <p className="text-3xl font-bold text-[var(--label)]">{targetCapacity}</p>
               <p className="text-xs text-[var(--tertiary-label)] mt-1">
-                {language === 'ar' ? 'الحد الأقصى' : 'Maximum'}
+                {language === 'ar' ? ' ' : 'Maximum'}
               </p>
             </div>
             <div className="p-3 rounded-full bg-[var(--apple-orange)]/10">
@@ -633,13 +633,13 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-[var(--secondary-label)]">
-                {language === 'ar' ? 'ساعات CME' : 'CME Hours'}:
+                {language === 'ar' ? ' CME' : 'CME Hours'}:
               </span>
               <span className="text-[var(--label)] font-medium">{event.cme_hours}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[var(--secondary-label)]">
-                {language === 'ar' ? 'التخصص' : 'Specialty'}:
+                {language === 'ar' ? '' : 'Specialty'}:
               </span>
               <span className="text-[var(--label)] font-medium">{getSpecialtyLabel(event.specialty || '', language)}</span>
             </div>
@@ -660,21 +660,21 @@ export default function EventDashboard({ eventId }: EventDashboardProps) {
             >
               {event.is_sponsored
                 ? language === 'ar'
-                  ? 'برعاية'
+                  ? ''
                   : 'Sponsored'
                 : event.needs_sponsorship
                 ? language === 'ar'
-                  ? 'بحاجة لرعاية'
+                  ? ' '
                   : 'Needs Sponsorship'
                 : language === 'ar'
-                ? 'غير مدعوم'
+                ? ' '
                 : 'Not Sponsored'}
             </div>
           </div>
           {event.sfda_license && (
             <div className="text-sm">
               <span className="text-[var(--secondary-label)]">
-                {language === 'ar' ? 'رخصة SFDA' : 'SFDA License'}:
+                {language === 'ar' ? ' SFDA' : 'SFDA License'}:
               </span>
               <span className="text-[var(--label)] font-medium ml-2">{event.sfda_license}</span>
             </div>

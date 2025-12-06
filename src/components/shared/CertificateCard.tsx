@@ -23,7 +23,7 @@ function formatHours(hours: number, language: 'ar' | 'en', t: (key: string) => s
     const template = t(formatKey);
     
     if (language === 'ar') {
-        const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        const arabicDigits = ['', '', '', '', '', '', '', '', '', ''];
         const hoursStr = hours.toString().split('').map(d => {
             const digit = parseInt(d);
             return isNaN(digit) ? d : arabicDigits[digit];
@@ -90,7 +90,7 @@ export function CertificateCard({
             {/* Status Label */}
             <div className="flex items-center justify-center">
                 <Badge className="bg-[var(--apple-green)]/10 text-[var(--apple-green)] border-[var(--apple-green)]/30 text-xs font-medium">
-                    {language === 'ar' ? 'شهادة متاحة' : 'Certificate ready'}
+                    {language === 'ar' ? ' ' : 'Certificate ready'}
                 </Badge>
             </div>
 
@@ -103,7 +103,7 @@ export function CertificateCard({
                         className="flex-1 bg-[var(--apple-green)] hover:opacity-90 text-white dark:text-slate-900 h-8 text-xs"
                     >
                         <Download className="h-3.5 w-3.5 mr-1.5" />
-                        {language === 'ar' ? 'تنزيل الشهادة' : 'Download certificate'}
+                        {language === 'ar' ? ' ' : 'Download certificate'}
                     </Button>
                 )}
                 {onViewDetails && (
@@ -113,7 +113,7 @@ export function CertificateCard({
                         size="sm"
                         className="text-xs text-sky-400 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-200 h-8 px-3"
                     >
-                        {language === 'ar' ? 'عرض التفاصيل' : 'View details'}
+                        {language === 'ar' ? ' ' : 'View details'}
                     </Button>
                 )}
             </div>

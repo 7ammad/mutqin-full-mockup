@@ -1,595 +1,619 @@
 {
   "brand": {
-    "name": "مُتْقِن",
-    "tagline": "مُوَحَّد. مُوثَّق. مُتاح."
+    "name": "Mutqin",
+    "tagline": "Unified. Verified. Accessible."
   },
   "nav": {
-    "home": "الرئيسية",
-    "pricing": "الأسعار",
-    "faq": "الأسئلة الشائعة",
-    "about": "عن مُتْقِن",
-    "contact": "اتصل بنا",
-    "createAccount": "إنشاء حساب",
-    "login": "تسجيل الدخول",
-    "signIn": "تسجيل الدخول",
-    "activities": "الفعاليات المعتمدة",
-    "howItWorks": "كيف تعمل متقِن",
-    "whoWeServe": "من نخدم",
-    "compliance": "الامتثال والحوكمة",
-    "partnership": "شراكات التأسيس"
+    "home": "Home",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "about": "About",
+    "contact": "Contact",
+    "createAccount": "Create Account",
+    "login": "Login",
+    "signIn": "Sign in",
+    "activities": "Activities",
+    "howItWorks": "How it works",
+    "whoWeServe": "Who we serve",
+    "compliance": "Compliance & oversight",
+    "partnership": "Partnerships"
   },
   "hero": {
-    "title": "منصة التعليم الطبي المستمر في السعودية",
-    "subtitle": "المنصة الموحدة للتعليم الطبي المستمر المعتمد",
-    "description": "ربط الممارسين الصحيين بالفعاليات الطبية المعتمدة",
-    "ctaPrimary": "ابدأ مجاناً",
-    "ctaSecondary": "تعرف على المزيد",
+    "title": "Saudi Arabia's CME Platform",
+    "subtitle": "The Unified Platform for Accredited Continuing Medical Education",
+    "description": "Connect Healthcare Professionals with Accredited CME Events",
+    "ctaPrimary": "Get Started Free",
+    "ctaSecondary": "Learn More",
     "stats": {
-      "eventsHosted": "فعالية مستضافة",
-      "activeHCPs": "ممارس صحي نشط",
-      "cmeHoursTracked": "ساعة CME متتبعة",
-      "accreditedOrganizers": "منظم معتمد"
+      "eventsHosted": "Events Hosted",
+      "activeHCPs": "Active HCPs",
+      "cmeHoursTracked": "CME Hours Tracked",
+      "accreditedOrganizers": "Accredited Organizers"
     }
   },
   "trust": {
-    "scfhs": "متوافق مع معايير الهيئة السعودية للتخصصات الصحية",
-    "data_residency": "بيانات مستضافة في المملكة العربية السعودية",
-    "mumaris": "متوافق مع منصة ممارس بلس",
-    "secure": "تشفير كامل وحماية للبيانات"
+    "scfhs": "Aligned with SCFHS Standards",
+    "data_residency": "Data Hosted in Saudi Arabia",
+    "mumaris": "Compatible with Mumaris Plus",
+    "secure": "Full Encryption & Data Protection"
   },
   "roles": {
     "hcp": {
-      "title": "الممارسون الصحيون",
-      "description": "اكتشف الفعاليات الطبية المعتمدة وتتبع ساعات التعليم الطبي المستمر",
+      "title": "Healthcare Professionals",
+      "description": "Discover accredited medical events and track CME hours",
       "benefits": [
-        "تتبع تلقائي لساعات CME",
-        "شهادات معتمدة فوراً",
-        "تصفح آلاف الفعاليات",
-        "تزامن مع منصة ممارس بلس"
+        "Automatic CME hours tracking",
+        "Instant accredited certificates",
+        "Browse thousands of events",
+        "Sync with Mumaris Plus"
       ],
-      "cta": "سجل كممارس صحي"
+      "cta": "Register as HCP"
     },
     "organizer": {
-      "title": "مقدمو خدمات التعليم الطبي",
-      "description": "أنشئ وأدر الفعاليات الطبية المعتمدة بسهولة",
+      "title": "CME Providers",
+      "description": "Create and manage accredited medical events easily",
       "benefits": [
-        "إدارة فعاليات شاملة",
-        "نظام تسجيل تلقائي",
-        "تقارير مفصلة",
-        "دعم فني متخصص"
+        "Comprehensive event management",
+        "Automated registration system",
+        "Detailed reporting",
+        "Dedicated support"
       ],
-      "cta": "سجل كمنظم"
+      "cta": "Register as Organizer"
     },
     "event_manager": {
-      "title": "مديرو الفعاليات",
-      "description": "أدر تنفيذ الفعاليات الطبية بكفاءة",
+      "title": "Event Managers",
+      "description": "Manage medical event execution efficiently",
       "benefits": [
-        "لوحة تحكم شاملة",
-        "نظام حضور QR",
-        "إدارة مباشرة",
-        "تقارير فورية"
+        "Comprehensive dashboard",
+        "QR check-in system",
+        "Live management",
+        "Real-time reports"
       ],
-      "cta": "سجل كمدير فعاليات"
+      "cta": "Register as Event Manager"
     },
     "sponsor": {
-      "title": "الرعاة والموردون",
-      "description": "ادعم الفعاليات الطبية ووصل بالمتخصصين",
+      "title": "Sponsors & Vendors",
+      "description": "Sponsor medical events and connect with professionals",
       "benefits": [
-        "فرص رعاية متاحة",
-        "وصول للجمهور المستهدف",
-        "تقارير ROI مفصلة",
-        "حزم رعاية مرنة"
+        "Available sponsorship opportunities",
+        "Target audience reach",
+        "Detailed ROI reports",
+        "Flexible sponsorship packages"
       ],
-      "cta": "سجل كراعٍ"
+      "cta": "Register as Sponsor"
     },
     "regulator": {
-      "title": "الجهات الرقابية",
-      "description": "راقب واعتمد الفعاليات الطبية",
+      "title": "Regulators",
+      "description": "Monitor and accredit medical events",
       "benefits": [
-        "بوابة اعتماد شاملة",
-        "مراجعة سريعة",
-        "تقارير وطنية",
-        "امتثال كامل للمعايير"
+        "Comprehensive accreditation portal",
+        "Fast review process",
+        "National reports",
+        "Full standards compliance"
       ],
-      "cta": "سجل كجهة رقابية"
+      "cta": "Register as Regulator"
     }
   },
   "how_it_works": {
-    "title": "كيف يعمل مُتْقِن",
-    "subtitle": "رحلة بسيطة من التسجيل إلى الشهادة",
+    "title": "How Mutqin Works",
+    "subtitle": "A simple journey from registration to certificate",
     "steps": [
       {
         "number": 1,
-        "title": "سجل حسابك",
-        "description": "اختر دورك وسجل في دقائق"
+        "title": "Create Your Account",
+        "description": "Choose your role and register in minutes"
       },
       {
         "number": 2,
-        "title": "استكشف الفعاليات",
-        "description": "تصفح آلاف الفعاليات المعتمدة"
+        "title": "Explore Events",
+        "description": "Browse thousands of accredited events"
       },
       {
         "number": 3,
-        "title": "سجل في الفعالية",
-        "description": "احجز مكانك بسهولة"
+        "title": "Register for Event",
+        "description": "Reserve your spot easily"
       },
       {
         "number": 4,
-        "title": "احضر الفعالية",
-        "description": "سجل حضورك عبر QR"
+        "title": "Attend Event",
+        "description": "Check in via QR code"
       },
       {
         "number": 5,
-        "title": "احصل على شهادتك",
-        "description": "شهادة معتمدة تلقائياً"
+        "title": "Get Your Certificate",
+        "description": "Automatically accredited certificate"
       }
     ]
   },
   "features": {
-    "title": "مميزات المنصة",
-    "subtitle": "كل ما تحتاجه في مكان واحد",
+    "title": "Platform Features",
+    "subtitle": "Everything you need in one place",
     "items": [
       {
-        "title": "تتبع تلقائي",
-        "description": "تتبع ساعات CME تلقائياً مع التزامن مع ممارس بلس"
+        "title": "Automatic Tracking",
+        "description": "Automatically track CME hours with Mumaris Plus sync"
       },
       {
-        "title": "شهادات فورية",
-        "description": "احصل على شهادات معتمدة فوراً بعد الحضور"
+        "title": "Instant Certificates",
+        "description": "Get accredited certificates immediately after attendance"
       },
       {
-        "title": "نظام QR",
-        "description": "تسجيل حضور سريع وآمن عبر QR"
+        "title": "QR System",
+        "description": "Fast and secure check-in via QR"
       },
       {
-        "title": "تقارير مفصلة",
-        "description": "تقارير شاملة لجميع الفعاليات والساعات"
+        "title": "Detailed Reports",
+        "description": "Comprehensive reports for all events and hours"
       },
       {
-        "title": "أمان عالي",
-        "description": "بيانات مشفرة ومستضافة في السعودية"
+        "title": "High Security",
+        "description": "Encrypted data hosted in Saudi Arabia"
       },
       {
-        "title": "دعم متعدد اللغات",
-        "description": "واجهة عربية وإنجليزية كاملة"
+        "title": "Multilingual Support",
+        "description": "Full Arabic and English interface"
       }
     ]
   },
   "pricing": {
-    "title": "خطط الأسعار",
-    "subtitle": "اختر الخطة المناسبة لك",
+    "title": "Pricing Plans",
+    "subtitle": "Choose the plan that fits you",
     "tiers": {
       "free": {
-        "name": "مجاني",
-        "price": "ر.س 0",
-        "period": "مدى الحياة",
+        "name": "Free",
+        "price": "SAR 0",
+        "period": "Forever",
         "features": [
-          "تصفح الفعاليات",
-          "تتبع ساعات CME",
-          "شهادات معتمدة",
-          "تزامن مع ممارس بلس"
+          "Browse events",
+          "Track CME hours",
+          "Accredited certificates",
+          "Mumaris Plus sync"
         ],
-        "cta": "ابدأ مجاناً"
+        "cta": "Get Started Free"
       },
       "organizer": {
-        "name": "المنظمين",
-        "price": "يبدأ من",
-        "priceAmount": "ر.س 500",
-        "period": "شهرياً",
+        "name": "Organizer",
+        "price": "Starting from",
+        "priceAmount": "SAR 500",
+        "period": "per month",
         "features": [
-          "كل مميزات المجاني",
-          "إدارة فعاليات غير محدودة",
-          "نظام تسجيل متقدم",
-          "تقارير مفصلة",
-          "دعم فني مخصص"
+          "All Free features",
+          "Unlimited event management",
+          "Advanced registration system",
+          "Detailed reports",
+          "Dedicated support"
         ],
-        "cta": "ابدأ كمنظم"
+        "cta": "Start as Organizer"
       },
       "enterprise": {
-        "name": "المؤسسات",
-        "price": "مخصص",
-        "period": "حسب الطلب",
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "On demand",
         "features": [
-          "كل مميزات المنظمين",
-          "حلول مخصصة",
-          "تكامل API",
-          "تدريب فريق",
-          "دعم 24/7"
+          "All Organizer features",
+          "Custom solutions",
+          "API integration",
+          "Team training",
+          "24/7 support"
         ],
-        "cta": "تواصل معنا"
+        "cta": "Contact Us"
       }
     }
   },
   "faq": {
-    "title": "الأسئلة الشائعة",
-    "subtitle": "إجابات على أسئلتك الأكثر شيوعاً",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to your most common questions",
     "items": [
       {
-        "question": "هل مُتْقِن معتمد من الهيئة السعودية للتخصصات الصحية؟",
-        "answer": "نعم، مُتْقِن متوافق مع معايير الهيئة السعودية للتخصصات الصحية (SCFHS). جميع الفعاليات المعتمدة على المنصة تلتزم بالمعايير المطلوبة، والساعات المسجلة معتمدة رسمياً."
+        "question": "Is Mutqin recognized by SCFHS?",
+        "answer": "Yes, Mutqin is aligned with Saudi Commission for Health Specialties (SCFHS) standards. All accredited events on the platform comply with required standards, and registered hours are officially accredited."
       },
       {
-        "question": "كيف أتتبع ساعات التعليم المستمر؟",
-        "description": "يمكنك تتبع ساعات التعليم المستمر (CME) بسهولة من خلال لوحة التحكم الخاصة بك. يتم التتبع تلقائياً عند حضورك الفعاليات وتسجيلك عبر QR. يمكنك أيضاً تصدير التقارير للتزامن مع منصة ممارس بلس."
+        "question": "How do I track my CME hours?",
+        "answer": "You can easily track your Continuing Medical Education (CME) hours through your dashboard. Tracking is automatic when you attend events and check in via QR. You can also export reports for sync with Mumaris Plus platform."
       },
       {
-        "question": "هل بياناتي آمنة؟",
-        "answer": "نعم، بياناتك آمنة تماماً. نستخدم تشفيراً كاملاً لجميع البيانات، وجميع الخوادم مستضافة في المملكة العربية السعودية لضمان الامتثال الكامل للوائح المحلية."
+        "question": "Is my data safe?",
+        "answer": "Yes, your data is completely safe. We use full encryption for all data, and all servers are hosted in Saudi Arabia to ensure full compliance with local regulations."
       },
       {
-        "question": "هل يمكنني إلغاء حسابي؟",
-        "answer": "نعم، يمكنك إلغاء حسابك في أي وقت من إعدادات الحساب. سيتم حذف جميع بياناتك بشكل آمن وفقاً لسياسة الخصوصية."
+        "question": "Can I cancel my account?",
+        "answer": "Yes, you can cancel your account at any time from account settings. All your data will be securely deleted according to privacy policy."
       },
       {
-        "question": "كيف أحصل على شهادتي؟",
-        "answer": "تحصل على شهادتك تلقائياً بعد تسجيل حضورك في الفعالية عبر QR. الشهادة ستكون جاهزة للتحميل فوراً من لوحة التحكم الخاصة بك."
+        "question": "How do I get my certificate?",
+        "answer": "You get your certificate automatically after checking in to the event via QR. The certificate will be ready for download immediately from your dashboard."
       },
       {
-        "question": "ما طرق الدفع المتاحة؟",
-        "answer": "نقبل جميع طرق الدفع المحلية والدولية: مدى، فيزا، ماستركارد، وأبل باي. جميع المعاملات آمنة ومشفرة."
+        "question": "What payment methods are available?",
+        "answer": "We accept all local and international payment methods: Mada, Visa, Mastercard, and Apple Pay. All transactions are secure and encrypted."
       }
     ]
   },
   "cta": {
     "final": {
-      "title": "جاهز للبدء؟",
-      "subtitle": "انضم إلى آلاف الممارسين الصحيين والمنظمين",
-      "cta": "إنشاء حساب مجاني"
+      "title": "Ready to Get Started?",
+      "subtitle": "Join thousands of healthcare professionals and organizers",
+      "cta": "Create Free Account"
     }
   },
   "registration": {
-    "title": "إنشاء حساب",
-    "subtitle": "اختر دورك للبدء",
-    "selectRole": "اختر دورك",
-    "alreadyHaveAccount": "لديك حساب بالفعل؟",
-    "loginLink": "تسجيل الدخول",
+    "title": "Create Account",
+    "subtitle": "Choose your role to get started",
+    "selectRole": "Select Your Role",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Login",
     "forms": {
       "hcp": {
-        "title": "تسجيل ممارس صحي",
-        "subtitle": "ابدأ تتبع ساعات التعليم المستمر",
+        "title": "Register as Healthcare Professional",
+        "subtitle": "Start tracking your CME hours",
         "fields": {
-          "fullName": "الاسم الكامل",
-          "email": "البريد الإلكتروني",
-          "phone": "رقم الجوال",
-          "password": "كلمة المرور",
-          "confirmPassword": "تأكيد كلمة المرور",
-          "specialty": "التخصص",
-          "scfhsNumber": "رقم التسجيل في الهيئة (اختياري)",
-          "organization": "جهة العمل (اختياري)"
+          "fullName": "Full Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "specialty": "Specialty",
+          "scfhsNumber": "SCFHS Registration Number (Optional)",
+          "organization": "Organization (Optional)"
         },
-        "submit": "إنشاء حساب"
+        "submit": "Create Account"
       },
       "organizer": {
-        "title": "تسجيل منظم",
-        "subtitle": "ابدأ إدارة فعالياتك",
+        "title": "Register as Organizer",
+        "subtitle": "Start managing your events",
         "fields": {
-          "organizationName": "اسم المنظمة",
-          "contactPersonName": "اسم المسؤول",
-          "email": "البريد الإلكتروني",
-          "phone": "رقم الجوال",
-          "password": "كلمة المرور",
-          "confirmPassword": "تأكيد كلمة المرور",
-          "organizationType": "نوع المنظمة",
-          "scfhsProviderId": "رقم اعتماد الهيئة (اختياري)"
+          "organizationName": "Organization Name",
+          "contactPersonName": "Contact Person Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "organizationType": "Organization Type",
+          "scfhsProviderId": "SCFHS Provider ID (Optional)"
         },
-        "submit": "إنشاء حساب"
+        "submit": "Create Account"
       },
       "event_manager": {
-        "title": "تسجيل مدير فعاليات",
-        "subtitle": "ابدأ إدارة تنفيذ الفعاليات",
+        "title": "Register as Event Manager",
+        "subtitle": "Start managing event execution",
         "fields": {
-          "fullName": "الاسم الكامل",
-          "email": "البريد الإلكتروني",
-          "phone": "رقم الجوال",
-          "password": "كلمة المرور",
-          "confirmPassword": "تأكيد كلمة المرور",
-          "associatedOrganization": "المنظمة التابع لها",
-          "role": "الدور الوظيفي"
+          "fullName": "Full Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "associatedOrganization": "Associated Organization",
+          "role": "Job Role"
         },
-        "submit": "إنشاء حساب"
+        "submit": "Create Account"
       },
       "sponsor": {
-        "title": "تسجيل راعٍ",
-        "subtitle": "ابدأ رعاية الفعاليات",
+        "title": "Register as Sponsor",
+        "subtitle": "Start sponsoring events",
         "fields": {
-          "companyName": "اسم الشركة",
-          "contactPersonName": "اسم المسؤول",
-          "email": "البريد الإلكتروني",
-          "phone": "رقم الجوال",
-          "password": "كلمة المرور",
-          "confirmPassword": "تأكيد كلمة المرور",
-          "industry": "القطاع",
-          "sponsorshipInterest": "نوع الرعاية المطلوبة"
+          "companyName": "Company Name",
+          "contactPersonName": "Contact Person Name",
+          "email": "Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "industry": "Industry",
+          "sponsorshipInterest": "Sponsorship Interest Type"
         },
-        "submit": "إنشاء حساب"
+        "submit": "Create Account"
       },
       "regulator": {
-        "title": "تسجيل جهة رقابية",
-        "subtitle": "ابدأ مراجعة واعتماد الفعاليات",
+        "title": "Register as Regulator",
+        "subtitle": "Start reviewing and accrediting events",
         "fields": {
-          "organizationName": "اسم الجهة",
-          "contactPersonName": "اسم المسؤول",
-          "officialEmail": "البريد الإلكتروني الرسمي",
-          "phone": "رقم الجوال",
-          "password": "كلمة المرور",
-          "confirmPassword": "تأكيد كلمة المرور",
-          "roleTitle": "المسمى الوظيفي"
+          "organizationName": "Organization Name",
+          "contactPersonName": "Contact Person Name",
+          "officialEmail": "Official Email",
+          "phone": "Phone Number",
+          "password": "Password",
+          "confirmPassword": "Confirm Password",
+          "roleTitle": "Job Title"
         },
-        "submit": "إنشاء حساب"
+        "submit": "Create Account"
       }
     },
     "validation": {
-      "required": "هذا الحقل مطلوب",
-      "email": "البريد الإلكتروني غير صحيح",
-      "phone": "رقم الجوال غير صحيح",
-      "passwordMin": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
-      "passwordMatch": "كلمات المرور غير متطابقة"
+      "required": "This field is required",
+      "email": "Invalid email address",
+      "phone": "Invalid phone number",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordMatch": "Passwords do not match"
     }
   },
   "verification": {
-    "title": "تحقق من بريدك الإلكتروني",
-    "subtitle": "أرسلنا رمز التحقق إلى",
-    "instructions": "أدخل الرمز المكون من 6 أرقام",
-    "resend": "إعادة إرسال الرمز",
-    "resendCountdown": "يمكنك إعادة الإرسال خلال",
-    "verify": "تحقق",
-    "success": "تم التحقق بنجاح!",
-    "redirecting": "جاري التوجيه..."
+    "title": "Verify Your Email",
+    "subtitle": "We sent a verification code to",
+    "instructions": "Enter the 6-digit code",
+    "resend": "Resend Code",
+    "resendCountdown": "You can resend in",
+    "verify": "Verify",
+    "success": "Verified successfully!",
+    "redirecting": "Redirecting..."
   },
   "footer": {
-    "description": "المنصّة الموحَّدة لأنشطة التطوير المهني المستمر في القطاع الصحي في المملكة العربية السعودية",
+    "description": "The unified platform for CME/CPD activities in Saudi healthcare.",
     "links": {
-      "about": "عن مُتْقِن",
-      "pricing": "الأسعار",
-      "faq": "الأسئلة الشائعة",
-      "contact": "اتصل بنا",
-      "privacy": "سياسة الخصوصية",
-      "terms": "الشروط والأحكام"
+      "about": "About Mutqin",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions"
     },
-    "copyright": "جميع الحقوق محفوظة"
+    "copyright": "All rights reserved"
   },
   "common": {
-    "loading": "جاري التحميل...",
-    "save": "حفظ",
-    "cancel": "إلغاء",
-    "submit": "إرسال",
-    "search": "بحث",
-    "profile": "الملف الشخصي",
-    "settings": "الإعدادات",
-    "logout": "تسجيل الخروج",
-    "back": "رجوع",
-    "next": "التالي",
-    "previous": "السابق",
-    "close": "إغلاق",
-    "all": "الكل",
-    "viewDetails": "عرض التفاصيل",
-    "registrationSuccessful": "تم التسجيل بنجاح",
-    "registrationFailed": "فشل التسجيل"
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "search": "Search",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "all": "All",
+    "viewDetails": "View Details",
+    "registrationSuccessful": "Registration successful",
+    "registrationFailed": "Registration failed"
   },
   "specialties": {
-    "cardiology": "أمراض القلب",
-    "pediatrics": "طب الأطفال",
-    "emergency_medicine": "طب الطوارئ",
-    "family_medicine": "طب الأسرة",
-    "general_surgery": "الجراحة العامة",
-    "oncology": "الأورام",
-    "neurology": "طب الأعصاب",
-    "orthopedics": "جراحة العظام",
-    "dermatology": "طب الجلد",
-    "psychiatry": "الطب النفسي",
-    "endocrinology": "الغدد الصماء",
-    "gastroenterology": "طب الجهاز الهضمي",
-    "urology": "المسالك البولية",
-    "ophthalmology": "طب العيون",
-    "rheumatology": "الروماتيزم",
-    "pulmonology": "طب الرئة",
-    "nephrology": "طب الكلى",
-    "hematology": "أمراض الدم",
-    "infectious_diseases": "الأمراض المعدية",
-    "anesthesiology": "التخدير",
-    "radiology": "الأشعة",
-    "pathology": "علم الأمراض",
-    "internal_medicine": "الطب الباطني",
-    "obstetrics": "التوليد",
-    "gynecology": "طب النساء",
-    "ent": "الأنف والأذن والحنجرة",
-    "plastic_surgery": "الجراحة التجميلية"
+    "cardiology": "Cardiology",
+    "pediatrics": "Pediatrics",
+    "emergency_medicine": "Emergency Medicine",
+    "family_medicine": "Family Medicine",
+    "general_surgery": "General Surgery",
+    "oncology": "Oncology",
+    "neurology": "Neurology",
+    "orthopedics": "Orthopedics",
+    "dermatology": "Dermatology",
+    "psychiatry": "Psychiatry",
+    "endocrinology": "Endocrinology",
+    "gastroenterology": "Gastroenterology",
+    "urology": "Urology",
+    "ophthalmology": "Ophthalmology",
+    "rheumatology": "Rheumatology",
+    "pulmonology": "Pulmonology",
+    "nephrology": "Nephrology",
+    "hematology": "Hematology",
+    "infectious_diseases": "Infectious Diseases",
+    "anesthesiology": "Anesthesiology",
+    "radiology": "Radiology",
+    "pathology": "Pathology",
+    "internal_medicine": "Internal Medicine",
+    "obstetrics": "Obstetrics",
+    "gynecology": "Gynecology",
+    "ent": "ENT",
+    "plastic_surgery": "Plastic Surgery"
   },
   "landing": {
     "whatIs": {
-      "title": "متقِن هو نظام تشغيل موحّد لفعاليات التعليم الطبي المستمر",
-      "body": "يربط متقِن جهات التطوير والاعتماد والرقابة والمستشفيات والرعاة والممارسين الصحيين في مسار عمل واحد من تصميم النشاط إلى الساعات المسجلة.",
+      "title": "Mutqin is the operating system for accredited CPD activities",
+      "body": "Mutqin connects providers, accreditors, regulators, hospitals, sponsors, and HCPs in one workflow from activity design to recorded credits.",
       "pillars": {
-        "unifiedWorkflows": "مسارات عمل موحدة",
-        "sourceOfTruth": "مصدر حقيقة مشترك",
-        "visibility": "رؤية فورية"
+        "unifiedWorkflows": "Unified workflows",
+        "sourceOfTruth": "Shared source of truth",
+        "visibility": "Real-time visibility"
       },
       "visual": {
-        "providers": "جهات التطوير",
-        "regulators": "جهات اعتمادية",
-        "hcps": "ممارسون صحيون",
-        "sponsors": "رعاة"
+        "providers": "Providers",
+        "regulators": "Regulators",
+        "hcps": "HCPs",
+        "sponsors": "Sponsors"
       }
     },
     "howItWorks": {
-      "title": "كيف يدير متقِن كل نشاط من الفكرة إلى الساعات المعتمدة",
-      "subtitle": "من الاعتماد إلى الحضور إلى الساعات المسجلة، يحافظ متقِن على كل خطوة متصلة وموثقة وقابلة للتدقيق.",
+      "title": "How Mutqin runs each activity from idea to credits",
+      "subtitle": "From accreditation to attendance to posted hours, Mutqin keeps every step connected, documented, and auditable.",
       "steps": {
         "create": {
-          "title": "إنشاء النشاط",
-          "description": "تنشئ جهة التطوير المهني النشاط باستخدام قالب موحد يتضمن الأهداف والهيئة التدريسية والجدول والإفصاحات في حزمة واحدة منظمة."
+          "title": "Activity created",
+          "description": "CPD provider creates the activity using a unified template with objectives, faculty, agenda, and disclosures in one structured package."
         },
         "accredit": {
-          "title": "تقديم الاعتماد",
-          "description": "تُقدَّم حزمة الاعتماد الواحدة التي تحتوي على جميع المعلومات المطلوبة إلى الجهة الرقابية من خلال مسار عمل موحد في متقِن."
+          "title": "Accreditation submitted",
+          "description": "Single accreditation package containing all required information is submitted to the regulator through Mutqin's standardized workflow."
         },
         "decision": {
-          "title": "مراجعة الجهة الرقابية",
-          "description": "تراجع الجهة الرقابية الطلب في قائمة واحدة، تتخذ قرارًا بناءً على اللوائح، وتقدم ملاحظات واضحة إذا كانت هناك حاجة لتغييرات."
+          "title": "Regulator reviews",
+          "description": "Regulator reviews the submission in one queue, makes a decision based on regulations, and provides clear feedback if changes are needed."
         },
         "publish": {
-          "title": "نشر النشاط",
-          "description": "بعد الموافقة، يُنشَر النشاط ويصبح مرئيًا للممارسين الصحيين الذين يمكنهم تصفحه وعرض التفاصيل والتسجيل في الفعالية."
+          "title": "Activity published",
+          "description": "Once approved, the activity is published and becomes visible to HCPs who can browse, view details, and register for the event."
         },
         "attendance": {
-          "title": "تنفيذ الفعالية",
-          "description": "أثناء الفعالية، يُسجَّل الحضور رقميًا، ويُحافَظ على سجلات الامتثال، وتُقدَّم جميع البيانات في الوقت الفعلي من خلال متقِن."
+          "title": "Event runs",
+          "description": "During the event, digital attendance is captured, compliance records are maintained, and all data is submitted in real-time through Mutqin."
         },
         "credits": {
-          "title": "تأكيد الساعات",
-          "description": "يتم تأكيد الساعات المعتمدة وتظهر تلقائيًا في سجل الممارس الصحي، مع توفر الشهادات للتحميل."
+          "title": "Hours confirmed",
+          "description": "Accredited hours are confirmed and automatically appear in the HCP's record, with certificates available for download."
         }
       },
       "personas": {
-        "hcp": "ممارس صحي",
-        "provider": "جهة التطوير",
-        "regulator": "جهة اعتمادية",
-        "eventManager": "مدير فعاليات"
+        "hcp": "HCP",
+        "provider": "Provider",
+        "regulator": "Regulator",
+        "eventManager": "Event Manager"
       },
       "card": {
-        "title": "مؤتمر تحديثات أمراض القلب 2025",
-        "specialty": "أمراض القلب",
-        "location": "الرياض، فندق الفيصلية",
-        "date": "15-17 مارس 2025",
-        "hours": "18 ساعة معتمدة",
-        "scfhs": "معتمد"
+        "title": "Cardiology Update Conference 2025",
+        "specialty": "Cardiology",
+        "location": "Riyadh, Faisaliah Hotel",
+        "date": "Mar 15-17, 2025",
+        "hours": "18 Accredited Hours",
+        "scfhs": "SCFHS Accredited"
       }
     },
     "whoWeServe": {
-      "title": "قيمة واضحة لكل طرف في المنظومة",
+      "title": "Clear value for every stakeholder",
       "description": "",
       "hcp": {
-        "title": "ممارس صحي",
-        "benefit": "اطّلع على الفعاليات المعتمدة وساعاتك المعتمدة في مكان واحد."
+        "title": "HCP",
+        "benefit": "See accredited activities and your credits in one place."
       },
       "provider": {
-        "title": "جهة التطوير المهني",
-        "benefit": "تقديم طلبات الاعتماد في نموذج موحد يقلل الرفض والتأخير."
+        "title": "CPD Provider",
+        "benefit": "Submit accreditation requests in a standardized format that reduces rejections and delays."
       },
       "regulator": {
-        "title": "جهة اعتمادية / رقابية",
-        "benefit": "اطّلع على مسار تدقيق كامل من الاعتماد إلى الحضور."
+        "title": "Regulator / Accreditor",
+        "benefit": "View a complete audit trail from accreditation to attendance."
       },
       "eventManager": {
-        "title": "مدير فعاليات",
-        "benefit": "إدارة التسجيل والحضور والساعات من واجهة واحدة."
+        "title": "Event Manager",
+        "benefit": "Manage registration, attendance, and hours from a single interface."
       },
       "hospital": {
-        "title": "مستشفى / مؤسسة",
-        "benefit": "تتبع جميع أنشطة التطوير المهني المستمر والامتثال في مؤسستك."
+        "title": "Hospital / Institution",
+        "benefit": "Track all CME/CPD activities and compliance across your organization."
       },
       "sponsor": {
-        "title": "راعٍ",
-        "benefit": "رعاية الفعاليات في إطار شفاف مع توثيق المتطلبات."
+        "title": "Sponsor",
+        "benefit": "Sponsor activities within a transparent framework with documented requirements."
       }
     },
     "compliance": {
-      "title": "امتثال أبسط… وضوح أعلى في المسؤوليات",
-      "subtitle": "يوحّد متقِن ملفات الاعتماد والقرارات والحضور والساعات في مسار تدقيق واحد جاهز لكل نشاط.",
+      "title": "Simplified compliance, clearer oversight",
+      "subtitle": "Mutqin unifies accreditation files, decisions, attendance, and hours into one audit-ready trail for each activity.",
       "points": {
         "auditTrail": {
-          "title": "مسار تدقيق واحد لكل نشاط",
-          "description": "كل نشاط له سجل كامل من طلب الاعتماد حتى الساعات النهائية، جاهز للمراجعة."
+          "title": "Single audit trail per activity",
+          "description": "Every activity has one complete record from accreditation request to final hours, ready for review."
         },
         "alignedData": {
-          "title": "بيانات متوافقة بين الجهات والرقابة",
-          "description": "تعمل جهات التطوير والرقابة من نفس البيانات المنظمة، مما يقلل عدم التوافق والأخطاء."
+          "title": "Aligned data between providers and regulators",
+          "description": "Providers and regulators work from the same structured data, reducing misalignment and errors."
         },
         "fewerCycles": {
-          "title": "دورات أقل من المراجعة والاعتماد",
-          "description": "الطلبات الموحدة تصل إلى الجهات الرقابية مكتملة، مما يقلل جولات المراجعة والتأخير."
+          "title": "Fewer back-and-forth cycles on accreditation",
+          "description": "Standardized submissions reach regulators complete, reducing revision rounds and delays."
         },
         "saudiFlows": {
-          "title": "يتوافق مع مسارات اعتماد التطوير المهني السعودية",
-          "description": "مبني ليتوافق مع متطلبات الهيئة السعودية والتشريعات الحالية، وليس لاستبدالها."
+          "title": "Mirrors Saudi CPD accreditation flows",
+          "description": "Built to align with existing SCFHS and regulatory requirements, not replace them."
         }
       }
     },
     "partnership": {
-      "title": "انضموا كشركاء في إطلاق متقِن",
-      "subline": "يعمل متقِن مع مجموعة مختارة من المؤسسات—الجهات الرقابية، والمستشفيات، وجهات التطوير المهني، والرعاة—لتجربة أنشطة حقيقية وصقل المنصة.",
-      "ctaPrimary": "ابدأ شراكة مع متقِن",
-      "ctaSecondary": "اطّلع على سيناريو رحلة الفعاليّة",
+      "title": "Join as a founding partner",
+      "subline": "Mutqin is working with a small set of institutions—regulators, hospitals, CPD providers, and sponsors—to pilot real activities and refine the platform.",
+      "ctaPrimary": "Start a partnership conversation",
+      "ctaSecondary": "View a sample activity journey",
       "whoIsBehind": {
-        "title": "من وراء متقِن؟",
-        "body": "متقِن مبني من قبل فريق سعودي يعمل عند تقاطع التعليم الصحي، والامتثال، والبرمجيات. نركز على إنشاء بنية تحتية تربط الأنظمة وسير العمل الحالية بدلاً من استبدالها."
+        "title": "Who is behind Mutqin?",
+        "body": "Mutqin is built by a Saudi team working at the intersection of healthcare education, compliance, and software. We focus on creating infrastructure that connects existing systems and workflows rather than replacing them."
       },
       "faq": {
-        "title": "الأسئلة الشائعة",
+        "title": "Frequently Asked Questions",
         "items": [
           {
-            "question": "هل متقِن جهة تطوير مهني أم طبقة بنية تحتية؟",
-            "answer": "متقِن طبقة بنية تحتية. لا نقدم محتوى التطوير المهني المستمر ولا نعمل كجهة تطوير. بدلاً من ذلك، نوفر المنصة الرقمية التي تربط جهات التطوير المهني، والجهات المعتمدة، وجهات التنفيذ، والرعاة، والممارسين في مسار عمل واحد منظم."
+            "question": "Is Mutqin a CPD provider or an infrastructure layer?",
+            "answer": "Mutqin is an infrastructure layer. We do not provide CME/CPD content or act as a CPD provider. Instead, we provide the digital platform that connects CPD providers, accrediting bodies, execution vendors, sponsors, and practitioners in one organized workflow."
           },
           {
-            "question": "هل يستبدل متقِن بوابات الاعتماد الحالية؟",
-            "answer": "لا. متقِن لا يستبدل بوابات الاعتماد الرسمية ولا يغيّر اللوائح الحالية. يتصل بسير العمل والأنظمة الحالية، ويوفر واجهة موحدة تلتزم بنفس المتطلبات المعتمدة من الجهات المعتمدة."
+            "question": "Does Mutqin replace existing accreditation portals?",
+            "answer": "No. Mutqin does not replace official accreditation portals or change existing regulations. It connects to existing workflows and systems, providing a unified interface that follows the same requirements defined by accrediting bodies."
           },
           {
-            "question": "كيف يندمج متقِن مع الأنظمة الحالية؟",
-            "answer": "صُمِّم متقِن للاندماج مع الأنظمة الحالية من خلال واجهات برمجة التطبيقات (APIs) وتصدير البيانات. يتم تكوين طرق الاندماج مع كل منظمة وفقًا لبنيتها التحتية التقنية ومتطلباتها التنظيمية."
+            "question": "How does Mutqin integrate with current systems?",
+            "answer": "Mutqin is designed to integrate with existing systems through APIs and data exports. Integration approaches are configured with each organization according to its technical infrastructure and regulatory requirements."
           },
           {
-            "question": "هل متقِن يعمل حاليًا أم في مرحلة تجريبية؟",
-            "answer": "متقِن حاليًا في مرحلة تجريبية مع مجموعة مختارة من الشركاء المؤسسين. نعمل معًا على صقل المنصة بناءً على أنشطة التطوير المهني المستمر الحقيقية قبل النشر الأوسع."
+            "question": "Is Mutqin already live or in pilot?",
+            "answer": "Mutqin is currently in a pilot phase with a select group of founding partners. We are working together to refine the platform based on real CME/CPD activities before broader deployment."
           }
         ]
       }
     },
     "hero": {
-      "headline": "تجربة تطوير مهني سلسة ومتكاملة",
-      "subline": "منصّة رقمية توحّد عمل جهات التطوير، والاعتماد، والتنفيذ، والرعاة، والممارسين الصحيين في مسار واحد واضح.",
-      "ctaPrimary": "استكشف الفعاليات المعتمدة"
+      "headline": "Seamless, integrated CME/CPD experience",
+      "subline": "A single platform that unifies providers, accrediting bodies, execution partners, sponsors, and health practitioners in one clear activity journey.",
+      "ctaPrimary": "Explore accredited activities"
     },
     "activitiesPreview": {
-      "title": "أنشطة تطوير مهني بساعات معتمدة",
-      "description": "استكشف أنشطة التطوير المهني المستمر المعتمدة، واختر ما يناسب تخصّصك وجدولك ليضيف ساعات حقيقية إلى ملفك المهني.",
-      "demoLabel": "عرض توضيحي ببيانات افتراضية",
+      "title": "Accredited CME/CPD activities",
+      "description": "Explore accredited continuing professional development activities and choose what fits your specialty and schedule to add real hours to your professional profile.",
+      "demoLabel": "Demo view with sample data",
       "filters": {
-        "specialty": "التخصّص",
-        "format": "نوع الحضور",
-        "city": "المدينة",
-        "date": "الفترة",
-        "moreFilters": "فلاتر إضافية"
+        "specialty": "Specialty",
+        "format": "Format",
+        "city": "City",
+        "date": "Date",
+        "moreFilters": "More filters"
       },
       "card": {
-        "accredited": "معتمد من الهيئة",
-        "hours": "ساعة",
-        "hoursPlural": "ساعات"
+        "accredited": "SCFHS Accredited",
+        "hours": "hour",
+        "hoursPlural": "hours"
       }
     }
   },
   "myJourney": {
-    "title": "رحلتي التعليمية",
-    "summary": "{activities} فعالية · {attended} حضرت · {hours} ساعة",
-    "manageTickets": "إدارة التذاكر",
-    "manageCertificates": "إدارة الشهادات",
+    "title": "My Journey",
+    "summary": "{activities} activities · {attended} attended · {hours} hours",
+    "manageTickets": "Manage tickets",
+    "manageCertificates": "Manage certificates",
     "status": {
-      "registered": "مسجل",
-      "attended": "حضرت",
-      "missed": "غبت"
+      "registered": "Registered",
+      "attended": "Attended",
+      "missed": "Missed"
     },
-    "selectActivity": "اختر فعالية من رحلتك لعرض التفاصيل.",
+    "selectActivity": "Select an activity from your journey to see details.",
     "steps": {
-      "registered": "تم التسجيل",
-      "checkedIn": "تم تسجيل الحضور",
-      "hoursPosted": "تم تسجيل الساعات",
-      "certificateIssued": "تم إصدار الشهادة",
-      "reviewSubmitted": "تم تقديم التقييم"
+      "registered": "Registered",
+      "checkedIn": "Checked in",
+      "hoursPosted": "Hours posted",
+      "certificateIssued": "Certificate issued",
+      "reviewSubmitted": "Review submitted"
     },
     "actions": {
-      "openTicket": "فتح التذكرة",
-      "downloadCertificate": "تحميل الشهادة",
-      "rateActivity": "تقييم الفعالية",
-      "viewDetails": "عرض التفاصيل"
+      "openTicket": "Open ticket",
+      "downloadCertificate": "Download certificate",
+      "rateActivity": "Rate activity",
+      "viewDetails": "View details"
     },
     "ticket": {
-      "label": "تذكرة",
-      "unavailable": "التذكرة غير متاحة"
+      "label": "Ticket",
+      "unavailable": "Ticket not available"
     },
     "certificate": {
-      "label": "شهادة",
-      "unavailable": "الشهادة غير متاحة"
+      "label": "Certificate",
+      "unavailable": "Certificate not available"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "role": "الدور",
+      "selectRole": "اختر الدور",
+      "submit": "تسجيل الدخول",
+      "loggingIn": "جارٍ تسجيل الدخول...",
+      "quickLogin": "تسجيل سريع",
+      "or": "أو",
+      "errors": {
+        "selectRole": "يرجى اختيار الدور",
+        "invalidCredentials": "بيانات الاعتماد غير صحيحة"
+      },
+      "roles": {
+        "HCP": "ممارس صحي",
+        "ORGANIZER": "منظم",
+        "VENDOR": "مزود",
+        "REGULATOR": "جهة تنظيمية",
+        "EVENT_MANAGER": "مدير حدث"
+      }
     }
   }
 }

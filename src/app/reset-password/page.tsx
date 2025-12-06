@@ -61,11 +61,11 @@ export default function ResetPasswordPage() {
         <div className="max-w-md mx-auto">
           <LiquidGlassCard blurIntensity="lg" className="p-8 md:p-12 text-center">
             <h1 className="text-2xl font-bold text-[var(--label)] mb-4">
-              {language === 'ar' ? 'تم إرسال رابط إعادة التعيين' : 'Reset Link Sent'}
+              {language === 'ar' ? '    ' : 'Reset Link Sent'}
             </h1>
             <p className="text-[var(--secondary-label)] mb-6">
               {language === 'ar'
-                ? 'تحقق من بريدك الإلكتروني للحصول على رابط إعادة تعيين كلمة المرور'
+                ? '          '
                 : 'Check your email for a password reset link'}
             </p>
             <Link href="/auth/login">
@@ -82,11 +82,11 @@ export default function ResetPasswordPage() {
       <div className="max-w-md mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-[var(--label)] mb-4">
-            {language === 'ar' ? 'إعادة تعيين كلمة المرور' : 'Reset Password'}
+            {language === 'ar' ? '   ' : 'Reset Password'}
           </h1>
           <p className="text-lg text-[var(--secondary-label)]">
             {language === 'ar'
-              ? 'أدخل بريدك الإلكتروني لإرسال رابط إعادة التعيين'
+              ? '      '
               : 'Enter your email to receive a reset link'}
           </p>
         </div>
@@ -125,7 +125,7 @@ export default function ResetPasswordPage() {
               {isSubmitting
                 ? t('common.loading')
                 : language === 'ar'
-                ? 'إرسال رابط إعادة التعيين'
+                ? '   '
                 : 'Send Reset Link'}
             </GlassButton>
 

@@ -37,11 +37,11 @@ export default function SponsorshipPackages() {
         {
             id: 'pkg1',
             name: 'Gold Package',
-            nameAr: 'الحزمة الذهبية',
+            nameAr: ' ',
             tier: 'Gold',
             price: 50000,
             description: 'Premium sponsorship package with maximum visibility',
-            descriptionAr: 'حزمة رعاية مميزة مع أقصى قدر من الرؤية',
+            descriptionAr: '       ',
             features: [
                 { id: 'f1', name: 'Logo on event materials', included: true },
                 { id: 'f2', name: 'Booth space', included: true },
@@ -67,19 +67,19 @@ export default function SponsorshipPackages() {
     };
 
     const handleDeletePackage = (id: string) => {
-        if (confirm(language === 'ar' ? 'هل أنت متأكد من الحذف؟' : 'Are you sure you want to delete this package?')) {
+        if (confirm(language === 'ar' ? '    ' : 'Are you sure you want to delete this package?')) {
             setPackages(packages.filter(p => p.id !== id));
         }
     };
 
-    const title = language === 'ar' ? 'حزم الرعاية' : 'Sponsorship Packages';
-    const createPackageText = language === 'ar' ? 'إنشاء حزمة جديدة' : 'Create New Package';
-    const tierText = language === 'ar' ? 'المستوى' : 'Tier';
-    const priceText = language === 'ar' ? 'السعر (ريال سعودي)' : 'Price (SAR)';
-    const descriptionText = language === 'ar' ? 'الوصف' : 'Description';
-    const featuresText = language === 'ar' ? 'المميزات' : 'Features';
-    const maxEventsText = language === 'ar' ? 'الحد الأقصى للفعاليات' : 'Max Events';
-    const durationText = language === 'ar' ? 'المدة (شهور)' : 'Duration (Months)';
+    const title = language === 'ar' ? ' ' : 'Sponsorship Packages';
+    const createPackageText = language === 'ar' ? '  ' : 'Create New Package';
+    const tierText = language === 'ar' ? '' : 'Tier';
+    const priceText = language === 'ar' ? ' ( )' : 'Price (SAR)';
+    const descriptionText = language === 'ar' ? '' : 'Description';
+    const featuresText = language === 'ar' ? '' : 'Features';
+    const maxEventsText = language === 'ar' ? '  ' : 'Max Events';
+    const durationText = language === 'ar' ? ' ()' : 'Duration (Months)';
 
     return (
         <div className="space-y-6">
@@ -144,7 +144,7 @@ export default function SponsorshipPackages() {
                                         size="sm"
                                         onClick={() => setEditingPackage(pkg)}
                                     >
-                                        {language === 'ar' ? 'تعديل' : 'Edit'}
+                                        {language === 'ar' ? '' : 'Edit'}
                                     </GlassButton>
                                     <GlassButton
                                         variant="outline"
@@ -214,7 +214,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
 
     const handleSave = () => {
         if (!formData.name || !formData.tier || !formData.price) {
-            alert(language === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
+            alert(language === 'ar' ? '    ' : 'Please fill all required fields');
             return;
         }
         onSave(formData as SponsorshipPackage);
@@ -245,19 +245,19 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
             <LiquidGlassCard blurIntensity="xl" interactive={false} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                 <div className="p-6 space-y-6">
                     <h3 className="text-xl font-bold text-[var(--label)]">
-                        {pkg ? (language === 'ar' ? 'تعديل الحزمة' : 'Edit Package') : (language === 'ar' ? 'حزمة جديدة' : 'New Package')}
+                        {pkg ? (language === 'ar' ? ' ' : 'Edit Package') : (language === 'ar' ? ' ' : 'New Package')}
                     </h3>
 
                     <div className="space-y-4">
                         <div>
-                            <Label>{language === 'ar' ? 'الاسم (إنجليزي)' : 'Name (English)'}</Label>
+                            <Label>{language === 'ar' ? ' ()' : 'Name (English)'}</Label>
                             <Input
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             />
                         </div>
                         <div>
-                            <Label>{language === 'ar' ? 'الاسم (عربي)' : 'Name (Arabic)'}</Label>
+                            <Label>{language === 'ar' ? ' ()' : 'Name (Arabic)'}</Label>
                             <Input
                                 value={formData.nameAr}
                                 onChange={(e) => setFormData({ ...formData, nameAr: e.target.value })}
@@ -265,7 +265,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>{language === 'ar' ? 'المستوى' : 'Tier'}</Label>
+                                <Label>{language === 'ar' ? '' : 'Tier'}</Label>
                                 <Select value={formData.tier} onValueChange={(val) => setFormData({ ...formData, tier: val as SponsorshipPackage['tier'] })}>
                                     <SelectTrigger>
                                         <SelectValue />
@@ -280,7 +280,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                                 </Select>
                             </div>
                             <div>
-                                <Label>{language === 'ar' ? 'السعر' : 'Price'}</Label>
+                                <Label>{language === 'ar' ? '' : 'Price'}</Label>
                                 <Input
                                     type="number"
                                     value={formData.price}
@@ -289,7 +289,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                             </div>
                         </div>
                         <div>
-                            <Label>{language === 'ar' ? 'الوصف' : 'Description'}</Label>
+                            <Label>{language === 'ar' ? '' : 'Description'}</Label>
                             <Textarea
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -298,7 +298,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>{language === 'ar' ? 'الحد الأقصى للفعاليات' : 'Max Events'}</Label>
+                                <Label>{language === 'ar' ? '  ' : 'Max Events'}</Label>
                                 <Input
                                     type="number"
                                     value={formData.maxEvents}
@@ -306,7 +306,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                                 />
                             </div>
                             <div>
-                                <Label>{language === 'ar' ? 'المدة (شهور)' : 'Duration (Months)'}</Label>
+                                <Label>{language === 'ar' ? ' ()' : 'Duration (Months)'}</Label>
                                 <Input
                                     type="number"
                                     value={formData.duration}
@@ -318,7 +318,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                         {/* Features */}
                         <div>
                             <div className="flex items-center justify-between mb-2">
-                                <Label>{language === 'ar' ? 'المميزات' : 'Features'}</Label>
+                                <Label>{language === 'ar' ? '' : 'Features'}</Label>
                                 <GlassButton variant="outline" size="sm" onClick={addFeature} className="flex items-center justify-center gap-2">
                                     <Plus className="h-4 w-4" />
                                 </GlassButton>
@@ -329,7 +329,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                                         <Input
                                             value={feature.name}
                                             onChange={(e) => updateFeature(index, 'name', e.target.value)}
-                                            placeholder={language === 'ar' ? 'اسم الميزة' : 'Feature name'}
+                                            placeholder={language === 'ar' ? ' ' : 'Feature name'}
                                         />
                                         <Checkbox
                                             checked={feature.included}
@@ -350,11 +350,11 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
 
                     <div className="flex justify-end gap-2 pt-4">
                         <GlassButton variant="outline" onClick={onCancel} className="flex items-center justify-center gap-2">
-                            {language === 'ar' ? 'إلغاء' : 'Cancel'}
+                            {language === 'ar' ? '' : 'Cancel'}
                         </GlassButton>
                         <GlassButton onClick={handleSave} className="gap-2 flex items-center justify-center">
                             <Save className="h-4 w-4" />
-                            {language === 'ar' ? 'حفظ' : 'Save'}
+                            {language === 'ar' ? '' : 'Save'}
                         </GlassButton>
                     </div>
                 </div>

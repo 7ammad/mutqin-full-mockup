@@ -89,7 +89,7 @@ function ConfirmResetPasswordPageContent() {
       <div className="min-h-screen bg-[var(--system-background)] flex items-center justify-center">
         <LiquidGlassCard blurIntensity="lg" className="p-8 text-center">
           <p className="text-[var(--label)]">
-            {language === 'ar' ? 'رابط غير صحيح' : 'Invalid reset link'}
+            {language === 'ar' ? '  ' : 'Invalid reset link'}
           </p>
         </LiquidGlassCard>
       </div>
@@ -101,11 +101,11 @@ function ConfirmResetPasswordPageContent() {
       <div className="min-h-screen bg-[var(--system-background)] flex items-center justify-center">
         <LiquidGlassCard blurIntensity="lg" className="p-8 text-center">
           <h1 className="text-2xl font-bold text-[var(--label)] mb-4">
-            {language === 'ar' ? 'تم إعادة تعيين كلمة المرور بنجاح' : 'Password Reset Successful'}
+            {language === 'ar' ? '     ' : 'Password Reset Successful'}
           </h1>
           <p className="text-[var(--secondary-label)]">
             {language === 'ar'
-              ? 'جاري التوجيه إلى صفحة تسجيل الدخول...'
+              ? '     ...'
               : 'Redirecting to login...'}
           </p>
         </LiquidGlassCard>
@@ -118,11 +118,11 @@ function ConfirmResetPasswordPageContent() {
       <div className="max-w-md mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-[var(--label)] mb-4">
-            {language === 'ar' ? 'تعيين كلمة مرور جديدة' : 'Set New Password'}
+            {language === 'ar' ? '   ' : 'Set New Password'}
           </h1>
           <p className="text-lg text-[var(--secondary-label)]">
             {language === 'ar'
-              ? 'أدخل كلمة المرور الجديدة'
+              ? '   '
               : 'Enter your new password'}
           </p>
         </div>
@@ -179,7 +179,7 @@ function ConfirmResetPasswordPageContent() {
               {isSubmitting
                 ? t('common.loading')
                 : language === 'ar'
-                ? 'تعيين كلمة المرور'
+                ? '  '
                 : 'Set Password'}
             </GlassButton>
           </form>

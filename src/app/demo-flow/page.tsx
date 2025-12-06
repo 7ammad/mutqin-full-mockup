@@ -2,25 +2,25 @@ import Link from 'next/link';
 import DemoFlowClient from './DemoFlowClient';
 
 const statusLabels: Record<string, string> = {
-  draft: 'مسودة / Draft',
-  pending_review: 'قيد المراجعة / Pending review',
-  approved: 'معتمد / Approved',
-  published: 'منشور / Published',
-  closed: 'مغلق / Closed',
+  draft: ' / Draft',
+  pending_review: '  / Pending review',
+  approved: ' / Approved',
+  published: ' / Published',
+  closed: ' / Closed',
 };
 
 export default function DemoFlowPage() {
   return (
     <main dir="rtl" className="max-w-5xl mx-auto px-4 py-8 space-y-4 font-[Cairo]">
       <header className="space-y-2 text-right">
-        <h1 className="text-2xl font-semibold">تجربة التدفق التجريبي</h1>
+        <h1 className="text-2xl font-semibold">  </h1>
         <p className="text-sm text-gray-600">
           Demo of the end-to-end lifecycle with mocked APIs (no real backend).
         </p>
       </header>
 
       <section className="border rounded p-4 bg-white text-right space-y-2">
-        <h2 className="text-lg font-semibold">معرفات التجربة / Demo IDs</h2>
+        <h2 className="text-lg font-semibold">  / Demo IDs</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-700">
           <div>eventId: evt-1</div>
           <div>organizerId: org-1</div>
@@ -30,7 +30,7 @@ export default function DemoFlowPage() {
           <div>accreditationId: acc-1</div>
         </div>
         <div className="text-xs text-gray-500">
-          الحالات / Status examples:
+           / Status examples:
           <div className="flex flex-wrap gap-2 mt-1">
             {Object.entries(statusLabels).map(([key, label]) => (
               <span key={key} className="px-2 py-1 rounded-full bg-gray-100 text-gray-800">
@@ -42,9 +42,9 @@ export default function DemoFlowPage() {
       </section>
 
       <section className="border rounded p-4 bg-white text-right space-y-2">
-        <h2 className="text-lg font-semibold">لوحة سيناريو منفصلة</h2>
+        <h2 className="text-lg font-semibold">  </h2>
         <p className="text-sm text-gray-700">
-          هذه شاشة تحكم للعرض التوضيحي. استخدم الروابط للانتقال إلى لوحات الشخصيات للمهام اليومية.
+              .        .
         </p>
         <div className="flex flex-wrap gap-2 justify-end">
           <Link href="/dashboard/organizer" className="px-3 py-2 border rounded text-sm bg-gray-50 hover:bg-gray-100">

@@ -80,7 +80,7 @@ export default function AdvancedMarketplace() {
     });
 
     const specialties = [
-        { id: 'all', label: language === 'ar' ? 'الكل' : 'All' },
+        { id: 'all', label: language === 'ar' ? '' : 'All' },
         { id: 'cardiology', label: t('specialties.cardiology') },
         { id: 'pediatrics', label: t('specialties.pediatrics') },
         { id: 'generalsurgery', label: t('specialties.generalSurgery') },
@@ -89,17 +89,17 @@ export default function AdvancedMarketplace() {
     ];
 
     const regions = [
-        { id: 'all', label: language === 'ar' ? 'الكل' : 'All' },
+        { id: 'all', label: language === 'ar' ? '' : 'All' },
         { id: 'riyadh', label: t('regions.riyadh') },
         { id: 'jeddah', label: t('regions.jeddah') },
         { id: 'dammam', label: t('regions.dammam') },
     ];
 
-    const title = language === 'ar' ? 'السوق المتقدم' : 'Advanced Marketplace';
-    const searchPlaceholder = language === 'ar' ? 'ابحث عن فعاليات...' : 'Search events...';
-    const filtersText = language === 'ar' ? 'الفلاتر' : 'Filters';
-    const sortByText = language === 'ar' ? 'ترتيب حسب' : 'Sort By';
-    const opportunitiesText = language === 'ar' ? 'فرص الرعاية' : 'Sponsorship Opportunities';
+    const title = language === 'ar' ? ' ' : 'Advanced Marketplace';
+    const searchPlaceholder = language === 'ar' ? '  ...' : 'Search events...';
+    const filtersText = language === 'ar' ? '' : 'Filters';
+    const sortByText = language === 'ar' ? ' ' : 'Sort By';
+    const opportunitiesText = language === 'ar' ? ' ' : 'Sponsorship Opportunities';
 
     return (
         <div className="space-y-6">
@@ -134,10 +134,10 @@ export default function AdvancedMarketplace() {
                                 <SelectValue placeholder={sortByText} />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="relevance">{language === 'ar' ? 'الأكثر صلة' : 'Relevance'}</SelectItem>
-                                <SelectItem value="date">{language === 'ar' ? 'التاريخ' : 'Date'}</SelectItem>
-                                <SelectItem value="cme">{language === 'ar' ? 'ساعات التعليم' : 'CME Hours'}</SelectItem>
-                                <SelectItem value="specialty">{language === 'ar' ? 'التخصص' : 'Specialty'}</SelectItem>
+                                <SelectItem value="relevance">{language === 'ar' ? ' ' : 'Relevance'}</SelectItem>
+                                <SelectItem value="date">{language === 'ar' ? '' : 'Date'}</SelectItem>
+                                <SelectItem value="cme">{language === 'ar' ? ' ' : 'CME Hours'}</SelectItem>
+                                <SelectItem value="specialty">{language === 'ar' ? '' : 'Specialty'}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -148,7 +148,7 @@ export default function AdvancedMarketplace() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                                        {language === 'ar' ? 'التخصص' : 'Specialty'}
+                                        {language === 'ar' ? '' : 'Specialty'}
                                     </label>
                                     <Select value={selectedSpecialty} onValueChange={setSelectedSpecialty}>
                                         <SelectTrigger>
@@ -165,7 +165,7 @@ export default function AdvancedMarketplace() {
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                                        {language === 'ar' ? 'المنطقة' : 'Region'}
+                                        {language === 'ar' ? '' : 'Region'}
                                     </label>
                                     <Select value={selectedRegion} onValueChange={setSelectedRegion}>
                                         <SelectTrigger>
@@ -183,7 +183,7 @@ export default function AdvancedMarketplace() {
                             </div>
                             <div>
                                 <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                                    {language === 'ar' ? 'الأيام حتى الفعالية' : 'Days Until Event'} ({dateRange[0]} - {dateRange[1]})
+                                    {language === 'ar' ? '  ' : 'Days Until Event'} ({dateRange[0]} - {dateRange[1]})
                                 </label>
                                 <Slider
                                     min={0}
@@ -209,8 +209,8 @@ export default function AdvancedMarketplace() {
 
                 {filteredEvents.length === 0 ? (
                     <EmptyState
-                        title={language === 'ar' ? 'لا توجد نتائج' : 'No Results'}
-                        description={language === 'ar' ? 'جرب تغيير الفلاتر أو البحث' : 'Try adjusting your filters or search'}
+                        title={language === 'ar' ? '  ' : 'No Results'}
+                        description={language === 'ar' ? '    ' : 'Try adjusting your filters or search'}
                         icon={Search}
                     />
                 ) : (
@@ -223,11 +223,11 @@ export default function AdvancedMarketplace() {
                                     variant="full"
                                     showDescription={true}
                                     sponsorshipPackage={{
-                                        name: language === 'ar' ? 'حزمة ذهبية' : 'Gold Package',
+                                        name: language === 'ar' ? ' ' : 'Gold Package',
                                         value: 50000,
                                     }}
                                     actionButton={{
-                                        label: language === 'ar' ? 'رعاية الفعالية' : 'Sponsor Event',
+                                        label: language === 'ar' ? ' ' : 'Sponsor Event',
                                         onClick: () => console.log('Sponsor:', event.id),
                                         variant: 'blue',
                                     }}
@@ -239,7 +239,7 @@ export default function AdvancedMarketplace() {
                                     className="w-full gap-2"
                                 >
                                     <Eye className="h-4 w-4" />
-                                    {language === 'ar' ? 'عرض الفرصة' : 'View Opportunity'}
+                                    {language === 'ar' ? ' ' : 'View Opportunity'}
                                 </GlassButton>
                             </div>
                         ))}

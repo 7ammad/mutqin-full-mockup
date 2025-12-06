@@ -3,7 +3,7 @@ export function MedicalOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
     "name": "Mutqin",
-    "alternateName": "مُتْقِن",
+    "alternateName": "",
     "url": "https://mutqin.sa",
     "description": "Accredited continuing medical education platform aligned with SCFHS standards",
     "medicalSpecialty": [

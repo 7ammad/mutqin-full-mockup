@@ -63,7 +63,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
             ]);
             
             showToast(
-                language === "ar" ? "تم تسجيل الوصول بنجاح" : "Check-in successful",
+                language === "ar" ? "   " : "Check-in successful",
                 "success"
             );
         } catch (err) {
@@ -79,7 +79,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
             ]);
             
             showToast(
-                language === "ar" ? "فشل تسجيل الوصول" : "Check-in failed",
+                language === "ar" ? "  " : "Check-in failed",
                 "info"
             );
         }
@@ -94,10 +94,10 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
     if (acceptedAssignments.length === 0) {
         return (
             <EmptyState
-                title={language === "ar" ? "لا توجد تكليفات مقبولة" : "No accepted assignments"}
-                titleAr={language === "ar" ? "لا توجد تكليفات مقبولة" : undefined}
-                description={language === "ar" ? "لا توجد تكليفات مقبولة لفتح وحدة تسجيل الوصول. اقبل تكليفاً من صندوق الوارد أولاً." : "No accepted assignments to open check-in console. Accept an assignment from Inbox first."}
-                descriptionAr={language === "ar" ? "لا توجد تكليفات مقبولة لفتح وحدة تسجيل الوصول. اقبل تكليفاً من صندوق الوارد أولاً." : undefined}
+                title={language === "ar" ? "   " : "No accepted assignments"}
+                titleAr={language === "ar" ? "   " : undefined}
+                description={language === "ar" ? "       .      ." : "No accepted assignments to open check-in console. Accept an assignment from Inbox first."}
+                descriptionAr={language === "ar" ? "       .      ." : undefined}
                 icon={Activity}
             />
         );
@@ -107,13 +107,13 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
     if (selectedEventId && !selectedEvent) {
         return (
             <EmptyState
-                title={language === "ar" ? "فعالية غير موجودة" : "Event not found"}
-                titleAr={language === "ar" ? "فعالية غير موجودة" : undefined}
-                description={language === "ar" ? "الفعالية المحددة غير موجودة أو غير مقبولة. اختر فعالية من صندوق الوارد." : "The selected event does not exist or is not accepted. Select an event from Inbox."}
-                descriptionAr={language === "ar" ? "الفعالية المحددة غير موجودة أو غير مقبولة. اختر فعالية من صندوق الوارد." : undefined}
+                title={language === "ar" ? "  " : "Event not found"}
+                titleAr={language === "ar" ? "  " : undefined}
+                description={language === "ar" ? "      .     ." : "The selected event does not exist or is not accepted. Select an event from Inbox."}
+                descriptionAr={language === "ar" ? "      .     ." : undefined}
                 icon={Activity}
-                actionLabel={language === "ar" ? "فتح صندوق الوارد" : "Open Inbox"}
-                actionLabelAr={language === "ar" ? "فتح صندوق الوارد" : undefined}
+                actionLabel={language === "ar" ? "  " : "Open Inbox"}
+                actionLabelAr={language === "ar" ? "  " : undefined}
                 onAction={() => {
                     const params = new URLSearchParams();
                     params.set("tab", "inbox");
@@ -129,7 +129,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
             {!selectedEvent && (
                 <div className="space-y-4">
                     <h2 className="text-xl font-semibold text-[var(--label)]">
-                        {language === "ar" ? "اختر الفعالية" : "Select Event"}
+                        {language === "ar" ? " " : "Select Event"}
                     </h2>
                     <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {acceptedAssignments.map(({ assignment, event }) => {
@@ -141,7 +141,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
                                         context="event-manager"
                                         variant="compact"
                                         actionButton={{
-                                            label: language === "ar" ? "فتح تسجيل الوصول" : "Open Check-In",
+                                            label: language === "ar" ? "  " : "Open Check-In",
                                             onClick: () => router.push(`/dashboard/event-manager?tab=live-ops&eventId=${event.id}`),
                                             variant: "default",
                                         }}
@@ -172,7 +172,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
                                 size="sm"
                                 onClick={() => router.push("/dashboard/event-manager?tab=live-ops")}
                             >
-                                {language === "ar" ? "تغيير الفعالية" : "Change Event"}
+                                {language === "ar" ? " " : "Change Event"}
                             </GlassButton>
                         </div>
                     </LiquidGlassCard>
@@ -181,7 +181,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
                     <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                         <h3 className="text-lg font-semibold text-[var(--label)] mb-4 flex items-center gap-2">
                             <QrCode className="h-5 w-5" />
-                            {language === "ar" ? "ماسح QR" : "QR Scanner"}
+                            {language === "ar" ? " QR" : "QR Scanner"}
                         </h3>
                         <MobileQRScanner onScan={handleScan} />
                     </LiquidGlassCard>
@@ -190,11 +190,11 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
                     <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                         <h3 className="text-lg font-semibold text-[var(--label)] mb-4 flex items-center gap-2">
                             <Search className="h-5 w-5" />
-                            {language === "ar" ? "بحث يدوي" : "Manual Search"}
+                            {language === "ar" ? " " : "Manual Search"}
                         </h3>
                         <div className="flex gap-2">
                             <Input
-                                placeholder={language === "ar" ? "أدخل رقم التذكرة" : "Enter ticket ID"}
+                                placeholder={language === "ar" ? "  " : "Enter ticket ID"}
                                 value={manualTicketId}
                                 onChange={(e) => setManualTicketId(e.target.value)}
                                 onKeyDown={(e) => {
@@ -209,7 +209,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
                                 onClick={handleManualCheckIn}
                                 disabled={!manualTicketId.trim()}
                             >
-                                {language === "ar" ? "تسجيل" : "Check In"}
+                                {language === "ar" ? "" : "Check In"}
                             </GlassButton>
                         </div>
                     </LiquidGlassCard>
@@ -218,7 +218,7 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
                     {recentScans.length > 0 && (
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                                {language === "ar" ? "المسوحات الأخيرة" : "Recent Scans"}
+                                {language === "ar" ? " " : "Recent Scans"}
                             </h3>
                             <div className="space-y-2">
                                 {recentScans.map((scan, idx) => (
@@ -253,10 +253,10 @@ export default function EventManagerLiveOpsTab({ assignmentsData }: EventManager
                                             }
                                         >
                                             {scan.result === "checked_in"
-                                                ? language === "ar" ? "تم التسجيل" : "Checked In"
+                                                ? language === "ar" ? " " : "Checked In"
                                                 : scan.result === "duplicate"
-                                                ? language === "ar" ? "مكرر" : "Duplicate"
-                                                : language === "ar" ? "غير صالح" : "Invalid"}
+                                                ? language === "ar" ? "" : "Duplicate"
+                                                : language === "ar" ? " " : "Invalid"}
                                         </Badge>
                                     </div>
                                 ))}

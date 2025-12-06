@@ -9,7 +9,7 @@ export type DemoHcpSummary = {
 
 export const demoHcpSummary: DemoHcpSummary = {
   id: 'hcp-1',
-  name: 'د. أحمد',
+  name: '. ',
   targetHours: 40,
   completedHours: 18,
   inProgressHours: 6,

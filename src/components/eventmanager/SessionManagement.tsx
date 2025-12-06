@@ -30,7 +30,7 @@ export default function SessionManagement({ eventId }: SessionManagementProps) {
     const [sessions, setSessions] = useState<Session[]>([
         {
             id: '1',
-            title: language === 'ar' ? 'الجلسة الافتتاحية' : 'Opening Session',
+            title: language === 'ar' ? ' ' : 'Opening Session',
             startTime: '09:00',
             endTime: '10:00',
             speaker: 'Dr. Ahmed Al-Mansour',
@@ -40,7 +40,7 @@ export default function SessionManagement({ eventId }: SessionManagementProps) {
         },
         {
             id: '2',
-            title: language === 'ar' ? 'محاضرة رئيسية' : 'Keynote Lecture',
+            title: language === 'ar' ? ' ' : 'Keynote Lecture',
             startTime: '10:30',
             endTime: '12:00',
             speaker: 'Dr. Sarah Al-Otaibi',
@@ -50,7 +50,7 @@ export default function SessionManagement({ eventId }: SessionManagementProps) {
         },
         {
             id: '3',
-            title: language === 'ar' ? 'ورشة عمل' : 'Workshop',
+            title: language === 'ar' ? ' ' : 'Workshop',
             startTime: '14:00',
             endTime: '16:00',
             speaker: 'Dr. Mohammed Al-Rashid',
@@ -78,21 +78,21 @@ export default function SessionManagement({ eventId }: SessionManagementProps) {
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
     }
 
-    const title = language === 'ar' ? 'إدارة الجلسات' : 'Session Management';
-    const speakerText = language === 'ar' ? 'المتحدث' : 'Speaker';
-    const timeText = language === 'ar' ? 'الوقت' : 'Time';
-    const attendanceText = language === 'ar' ? 'الحضور' : 'Attendance';
-    const startText = language === 'ar' ? 'بدء' : 'Start';
-    const endText = language === 'ar' ? 'إنهاء' : 'End';
-    const upcomingText = language === 'ar' ? 'قادمة' : 'Upcoming';
-    const activeText = language === 'ar' ? 'نشطة' : 'Active';
-    const completedText = language === 'ar' ? 'مكتملة' : 'Completed';
+    const title = language === 'ar' ? ' ' : 'Session Management';
+    const speakerText = language === 'ar' ? '' : 'Speaker';
+    const timeText = language === 'ar' ? '' : 'Time';
+    const attendanceText = language === 'ar' ? '' : 'Attendance';
+    const startText = language === 'ar' ? '' : 'Start';
+    const endText = language === 'ar' ? '' : 'End';
+    const upcomingText = language === 'ar' ? '' : 'Upcoming';
+    const activeText = language === 'ar' ? '' : 'Active';
+    const completedText = language === 'ar' ? '' : 'Completed';
 
     return (
         <div className="space-y-6">

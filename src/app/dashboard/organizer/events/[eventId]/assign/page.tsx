@@ -63,12 +63,12 @@ export default function AssignEventManagerPage({ params }: PageProps) {
         notFound();
     }
 
-    const title = language === 'ar' ? 'تعيين مدير الفعالية' : 'Assign Event Manager';
+    const title = language === 'ar' ? '  ' : 'Assign Event Manager';
     const description = language === 'ar' 
-        ? 'قم بتعيين مدير فعالية لتنفيذ هذا الحدث.'
+        ? '      .'
         : 'Assign event execution to an Event Manager vendor.';
-    const backButton = language === 'ar' ? 'رجوع' : 'Go Back';
-    const assignButton = language === 'ar' ? 'تعيين مدير فعالية' : 'Assign Event Manager';
+    const backButton = language === 'ar' ? '' : 'Go Back';
+    const assignButton = language === 'ar' ? '  ' : 'Assign Event Manager';
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-6xl">
@@ -85,7 +85,7 @@ export default function AssignEventManagerPage({ params }: PageProps) {
                 <div className="space-y-4">
                     <div>
                         <h2 className="text-2xl font-bold text-[var(--label)] mb-4">
-                            {language === 'ar' ? 'تفاصيل الحدث' : 'Event Details'}
+                            {language === 'ar' ? ' ' : 'Event Details'}
                         </h2>
                         <p className="text-[var(--secondary-label)]">
                             {event.titleEn || event.titleAr || 'Event'}
@@ -95,7 +95,7 @@ export default function AssignEventManagerPage({ params }: PageProps) {
                     <div className="pt-4 border-t border-[var(--border)]">
                         <p className="text-sm text-[var(--secondary-label)] mb-4">
                             {language === 'ar' 
-                                ? 'هذه الصفحة قيد التطوير. سيتم إضافة واجهة تعيين مدير الفعالية قريباً.'
+                                ? '   .       .'
                                 : 'This page is under development. Event Manager assignment interface will be added soon.'}
                         </p>
                     </div>

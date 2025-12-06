@@ -33,16 +33,16 @@ export default function ForgotPasswordPage() {
         }, 1000);
     };
 
-    const title = language === 'ar' ? 'استعادة كلمة المرور' : 'Forgot Password';
+    const title = language === 'ar' ? '  ' : 'Forgot Password';
     const description = language === 'ar'
-        ? 'أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور'
+        ? '         '
         : 'Enter your email and we\'ll send you a password reset link';
-    const emailLabel = language === 'ar' ? 'البريد الإلكتروني' : 'Email';
-    const sendButton = language === 'ar' ? 'إرسال' : 'Send Reset Link';
+    const emailLabel = language === 'ar' ? ' ' : 'Email';
+    const sendButton = language === 'ar' ? '' : 'Send Reset Link';
     const successMessage = language === 'ar'
-        ? 'تم إرسال رابط إعادة التعيين إلى بريدك الإلكتروني'
+        ? '       '
         : 'Reset link sent to your email';
-    const backToLogin = language === 'ar' ? 'العودة لتسجيل الدخول' : 'Back to Login';
+    const backToLogin = language === 'ar' ? '  ' : 'Back to Login';
 
     if (isSubmitted) {
         return (
@@ -89,7 +89,7 @@ export default function ForgotPasswordPage() {
                         className="w-full flex items-center justify-center gap-2"
                         disabled={isLoading}
                     >
-                        {isLoading ? (language === 'ar' ? 'جاري الإرسال...' : 'Sending...') : sendButton}
+                        {isLoading ? (language === 'ar' ? ' ...' : 'Sending...') : sendButton}
                     </GlassButton>
                 </form>
 

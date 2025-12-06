@@ -24,7 +24,7 @@ function formatHours(hours: number, language: 'ar' | 'en', t: (key: string) => s
     const template = t(formatKey);
     
     if (language === 'ar') {
-        const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        const arabicDigits = ['', '', '', '', '', '', '', '', '', ''];
         const hoursStr = hours.toString().split('').map(d => {
             const digit = parseInt(d);
             return isNaN(digit) ? d : arabicDigits[digit];
@@ -62,7 +62,7 @@ export default function TicketCard({
                 </Badge>
                 {status === 'upcoming' && (
                     <Badge className="bg-[var(--apple-blue)]/10 text-[var(--apple-blue)] border-[var(--apple-blue)]/30 text-xs font-medium ml-auto">
-                        {language === 'ar' ? 'قادمة' : 'Upcoming'}
+                        {language === 'ar' ? '' : 'Upcoming'}
                     </Badge>
                 )}
                 {status === 'past' && registrationStatus && (
@@ -72,8 +72,8 @@ export default function TicketCard({
                         registrationStatus === 'missed' && "bg-red-500/10 text-red-500 border border-red-500/30"
                     )}>
                         {registrationStatus === 'attended' 
-                            ? (language === 'ar' ? 'حضر' : 'Attended')
-                            : (language === 'ar' ? 'غاب' : 'Missed')}
+                            ? (language === 'ar' ? '' : 'Attended')
+                            : (language === 'ar' ? '' : 'Missed')}
                     </Badge>
                 )}
             </div>
@@ -113,7 +113,7 @@ export default function TicketCard({
                         size="sm"
                         className="flex-1 bg-[var(--apple-green)] hover:opacity-90 text-white dark:text-slate-900 h-8 text-xs"
                     >
-                        {language === 'ar' ? 'فتح التذكرة' : 'Open ticket'}
+                        {language === 'ar' ? ' ' : 'Open ticket'}
                     </Button>
                 )}
                 {onViewDetails && (
@@ -123,7 +123,7 @@ export default function TicketCard({
                         size="sm"
                         className="text-xs text-sky-400 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-200 h-8 px-3"
                     >
-                        {language === 'ar' ? 'عرض التفاصيل' : 'View details'}
+                        {language === 'ar' ? ' ' : 'View details'}
                     </Button>
                 )}
             </div>

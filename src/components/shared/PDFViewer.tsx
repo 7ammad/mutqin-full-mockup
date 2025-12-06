@@ -88,7 +88,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                         <ChevronLeft className="w-4 h-4" />
                     </GlassButton>
                     <span className="text-sm text-[var(--label)] px-3">
-                        {language === 'ar' ? 'صفحة' : 'Page'} {pageNumber} {language === 'ar' ? 'من' : 'of'} {numPages}
+                        {language === 'ar' ? '' : 'Page'} {pageNumber} {language === 'ar' ? '' : 'of'} {numPages}
                     </span>
                     <GlassButton
                         onClick={goToNextPage}
@@ -142,7 +142,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                 {loading && (
                     <div className="py-12 text-center">
                         <p className="text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'جاري التحميل...' : 'Loading...'}
+                            {language === 'ar' ? ' ...' : 'Loading...'}
                         </p>
                     </div>
                 )}
@@ -150,7 +150,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                 {error && (
                     <div className="py-12 text-center">
                         <p className="text-[var(--apple-red)]">
-                            {language === 'ar' ? 'خطأ في تحميل PDF' : 'Error loading PDF'}: {error}
+                            {language === 'ar' ? '   PDF' : 'Error loading PDF'}: {error}
                         </p>
                     </div>
                 )}
@@ -163,7 +163,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                         loading={
                             <div className="py-12 text-center">
                                 <p className="text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'جاري التحميل...' : 'Loading...'}
+                                    {language === 'ar' ? ' ...' : 'Loading...'}
                                 </p>
                             </div>
                         }

@@ -13,7 +13,7 @@ export function RegulatorOnboarding({ onComplete, onSkip }: RegulatorOnboardingP
     const steps = [
         {
             title: "Welcome, Regulator!",
-            titleAr: "مرحباً، المعتمد!",
+            titleAr: " !",
             content: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
@@ -29,12 +29,12 @@ export function RegulatorOnboarding({ onComplete, onSkip }: RegulatorOnboardingP
             contentAr: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
-                        راجع طلبات الفعاليات، راقب الامتثال، وتتبع تحليلات التعليم الطبي الوطنية.
+                                 .
                     </p>
                     <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                         <Shield className="w-8 h-8 text-[var(--apple-blue)] mb-2" />
-                        <p className="font-medium text-[var(--label)]">قائمة الاعتماد</p>
-                        <p className="text-sm text-[var(--secondary-label)]">راجع ووافق على طلبات الفعاليات</p>
+                        <p className="font-medium text-[var(--label)]"> </p>
+                        <p className="text-sm text-[var(--secondary-label)]">    </p>
                     </LiquidGlassCard>
                 </div>
             ),

@@ -133,7 +133,7 @@ export function JourneyDetailsPanel({ selected }: JourneyDetailsPanelProps) {
                 {/* Step Progression Timeline */}
                 <div className="space-y-3">
                     <h3 className="text-sm font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'التقدم' : 'Progress'}
+                        {language === 'ar' ? '' : 'Progress'}
                     </h3>
                     <div className="space-y-2">
                         {steps.map((step, index) => (

@@ -48,17 +48,17 @@ export default function ContentCreation() {
     };
 
     const handleDeleteContent = (id: string) => {
-        if (confirm(language === 'ar' ? 'هل أنت متأكد من الحذف؟' : 'Are you sure you want to delete this content?')) {
+        if (confirm(language === 'ar' ? '    ' : 'Are you sure you want to delete this content?')) {
             setContentItems(contentItems.filter(c => c.id !== id));
         }
     };
 
-    const title = language === 'ar' ? 'إنشاء المحتوى' : 'Content Creation';
-    const createContentText = language === 'ar' ? 'إنشاء محتوى جديد' : 'Create New Content';
-    const typeText = language === 'ar' ? 'النوع' : 'Type';
-    const titleText = language === 'ar' ? 'العنوان' : 'Title';
-    const contentText = language === 'ar' ? 'المحتوى' : 'Content';
-    const urlText = language === 'ar' ? 'الرابط' : 'URL';
+    const title = language === 'ar' ? ' ' : 'Content Creation';
+    const createContentText = language === 'ar' ? '  ' : 'Create New Content';
+    const typeText = language === 'ar' ? '' : 'Type';
+    const titleText = language === 'ar' ? '' : 'Title';
+    const contentText = language === 'ar' ? '' : 'Content';
+    const urlText = language === 'ar' ? '' : 'URL';
 
     return (
         <div className="space-y-6">
@@ -112,7 +112,7 @@ export default function ContentCreation() {
                                         size="sm"
                                         onClick={() => setEditingItem(item)}
                                     >
-                                        {language === 'ar' ? 'تعديل' : 'Edit'}
+                                        {language === 'ar' ? '' : 'Edit'}
                                     </GlassButton>
                                     <GlassButton
                                         variant="outline"
@@ -163,7 +163,7 @@ function ContentEditor({ content, onSave, onCancel }: ContentEditorProps) {
 
     const handleSave = () => {
         if (!formData.title || !formData.content) {
-            alert(language === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
+            alert(language === 'ar' ? '    ' : 'Please fill all required fields');
             return;
         }
         onSave(formData as ContentItem);
@@ -174,33 +174,33 @@ function ContentEditor({ content, onSave, onCancel }: ContentEditorProps) {
             <LiquidGlassCard blurIntensity="xl" interactive={false} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                 <div className="p-6 space-y-6">
                     <h3 className="text-xl font-bold text-[var(--label)]">
-                        {content ? (language === 'ar' ? 'تعديل المحتوى' : 'Edit Content') : (language === 'ar' ? 'محتوى جديد' : 'New Content')}
+                        {content ? (language === 'ar' ? ' ' : 'Edit Content') : (language === 'ar' ? ' ' : 'New Content')}
                     </h3>
 
                     <div className="space-y-4">
                         <div>
-                            <Label>{language === 'ar' ? 'النوع' : 'Type'}</Label>
+                            <Label>{language === 'ar' ? '' : 'Type'}</Label>
                             <Select value={formData.type} onValueChange={(val) => setFormData({ ...formData, type: val as ContentItem['type'] })}>
                                 <SelectTrigger>
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent glass={true}>
-                                    <SelectItem value="text">{language === 'ar' ? 'نص' : 'Text'}</SelectItem>
-                                    <SelectItem value="image">{language === 'ar' ? 'صورة' : 'Image'}</SelectItem>
-                                    <SelectItem value="video">{language === 'ar' ? 'فيديو' : 'Video'}</SelectItem>
-                                    <SelectItem value="link">{language === 'ar' ? 'رابط' : 'Link'}</SelectItem>
+                                    <SelectItem value="text">{language === 'ar' ? '' : 'Text'}</SelectItem>
+                                    <SelectItem value="image">{language === 'ar' ? '' : 'Image'}</SelectItem>
+                                    <SelectItem value="video">{language === 'ar' ? '' : 'Video'}</SelectItem>
+                                    <SelectItem value="link">{language === 'ar' ? '' : 'Link'}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
                         <div>
-                            <Label>{language === 'ar' ? 'العنوان' : 'Title'}</Label>
+                            <Label>{language === 'ar' ? '' : 'Title'}</Label>
                             <Input
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                             />
                         </div>
                         <div>
-                            <Label>{language === 'ar' ? 'المحتوى' : 'Content'}</Label>
+                            <Label>{language === 'ar' ? '' : 'Content'}</Label>
                             <Textarea
                                 value={formData.content}
                                 onChange={(e) => setFormData({ ...formData, content: e.target.value })}
@@ -209,7 +209,7 @@ function ContentEditor({ content, onSave, onCancel }: ContentEditorProps) {
                         </div>
                         {(formData.type === 'image' || formData.type === 'video' || formData.type === 'link') && (
                             <div>
-                                <Label>{language === 'ar' ? 'الرابط' : 'URL'}</Label>
+                                <Label>{language === 'ar' ? '' : 'URL'}</Label>
                                 <Input
                                     value={formData.url}
                                     onChange={(e) => setFormData({ ...formData, url: e.target.value })}
@@ -219,7 +219,7 @@ function ContentEditor({ content, onSave, onCancel }: ContentEditorProps) {
                         )}
                         {(formData.type === 'image' || formData.type === 'video') && (
                             <div>
-                                <Label>{language === 'ar' ? 'رفع ملف' : 'Upload File'}</Label>
+                                <Label>{language === 'ar' ? ' ' : 'Upload File'}</Label>
                                 <FileUpload
                                     accept={formData.type === 'image' ? 'image/*' : 'video/*'}
                                     onFilesSelected={(files) => {
@@ -231,15 +231,15 @@ function ContentEditor({ content, onSave, onCancel }: ContentEditorProps) {
                             </div>
                         )}
                         <div>
-                            <Label>{language === 'ar' ? 'الحالة' : 'Status'}</Label>
+                            <Label>{language === 'ar' ? '' : 'Status'}</Label>
                             <Select value={formData.status} onValueChange={(val) => setFormData({ ...formData, status: val as ContentItem['status'] })}>
                                 <SelectTrigger>
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent glass={true}>
-                                    <SelectItem value="draft">{language === 'ar' ? 'مسودة' : 'Draft'}</SelectItem>
-                                    <SelectItem value="published">{language === 'ar' ? 'منشور' : 'Published'}</SelectItem>
-                                    <SelectItem value="archived">{language === 'ar' ? 'مؤرشف' : 'Archived'}</SelectItem>
+                                    <SelectItem value="draft">{language === 'ar' ? '' : 'Draft'}</SelectItem>
+                                    <SelectItem value="published">{language === 'ar' ? '' : 'Published'}</SelectItem>
+                                    <SelectItem value="archived">{language === 'ar' ? '' : 'Archived'}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -247,11 +247,11 @@ function ContentEditor({ content, onSave, onCancel }: ContentEditorProps) {
 
                     <div className="flex justify-end gap-2 pt-4">
                         <GlassButton variant="outline" onClick={onCancel} className="flex items-center justify-center gap-2">
-                            {language === 'ar' ? 'إلغاء' : 'Cancel'}
+                            {language === 'ar' ? '' : 'Cancel'}
                         </GlassButton>
                         <GlassButton onClick={handleSave} className="gap-2 flex items-center justify-center">
                             <Save className="h-4 w-4" />
-                            {language === 'ar' ? 'حفظ' : 'Save'}
+                            {language === 'ar' ? '' : 'Save'}
                         </GlassButton>
                     </div>
                 </div>

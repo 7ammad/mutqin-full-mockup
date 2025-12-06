@@ -19,11 +19,11 @@ export default function Navbar() {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const personas: { id: Persona; labelAr: string; labelEn: string; icon: React.ElementType }[] = [
-        { id: 'ORGANIZER', labelAr: 'المنظم', labelEn: 'Organizer', icon: Building2 },
-        { id: 'VENDOR', labelAr: 'الداعم', labelEn: 'Vendor', icon: Briefcase },
-        { id: 'REGULATOR', labelAr: 'المعتمد', labelEn: 'Regulator', icon: Shield },
-        { id: 'HCP', labelAr: 'الممارس الصحي', labelEn: 'HCP', icon: Stethoscope },
-        { id: 'EVENT_MANAGER', labelAr: 'مدير الفعاليات', labelEn: 'Event Manager', icon: Calendar },
+        { id: 'ORGANIZER', labelAr: '', labelEn: 'Organizer', icon: Building2 },
+        { id: 'VENDOR', labelAr: '', labelEn: 'Vendor', icon: Briefcase },
+        { id: 'REGULATOR', labelAr: '', labelEn: 'Regulator', icon: Shield },
+        { id: 'HCP', labelAr: ' ', labelEn: 'HCP', icon: Stethoscope },
+        { id: 'EVENT_MANAGER', labelAr: ' ', labelEn: 'Event Manager', icon: Calendar },
     ];
 
     return (
@@ -85,7 +85,7 @@ export default function Navbar() {
                         <button onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
                             className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors border border-transparent hover:border-[var(--border)] flex items-center gap-1.5"
                             aria-label="Toggle Language"
-                            title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
+                            title={language === 'ar' ? 'Switch to English' : '  '}
                         >
                             <Languages className="h-5 w-5 text-[var(--secondary-label)]" />
                             <span className="text-sm font-medium text-[var(--label)]">
@@ -97,8 +97,8 @@ export default function Navbar() {
                         {mounted && (
                             <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                                 className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors border border-transparent hover:border-[var(--border)]"
-                                aria-label={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
-                                title={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
+                                aria-label={language === 'ar' ? ' ' : 'Toggle Theme'}
+                                title={language === 'ar' ? ' ' : 'Toggle Theme'}
                             >
                                 {theme === "dark" ? (
                                     <Sun className="h-5 w-5 text-[var(--apple-yellow)]" />

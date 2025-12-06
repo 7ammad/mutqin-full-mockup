@@ -129,7 +129,7 @@ function OrganizerViewContent() {
         if (draftEvents.length > 0) {
             actions.push({
                 label: "Submit for accreditation",
-                labelAr: "تقديم للاعتماد",
+                labelAr: " ",
                 action: "submit",
                 count: draftEvents.length,
                 route: `/dashboard/organizer?tab=accreditation`,
@@ -144,7 +144,7 @@ function OrganizerViewContent() {
         if (pendingWithFeedback.length > 0) {
             actions.push({
                 label: "Respond to regulator feedback",
-                labelAr: "الرد على ملاحظات المنظم",
+                labelAr: "   ",
                 action: "respond",
                 count: pendingWithFeedback.length,
                 route: `/dashboard/organizer?tab=accreditation`,
@@ -162,7 +162,7 @@ function OrganizerViewContent() {
         if (eventsWithoutEM.length > 0) {
             actions.push({
                 label: "Assign Event Manager",
-                labelAr: "تعيين مدير الفعالية",
+                labelAr: "  ",
                 action: "assign_em",
                 count: eventsWithoutEM.length,
                 route: `/dashboard/organizer?tab=execution`,
@@ -177,7 +177,7 @@ function OrganizerViewContent() {
         if (approvedNotPublished.length > 0) {
             actions.push({
                 label: "Publish approved events",
-                labelAr: "نشر الفعاليات المعتمدة",
+                labelAr: "  ",
                 action: "publish",
                 count: approvedNotPublished.length,
                 route: `/dashboard/organizer?tab=activities&status=approved`,
@@ -205,7 +205,7 @@ function OrganizerViewContent() {
             alerts.push({
                 severity: 'overdue',
                 text: `${overdue.length} completed event${overdue.length > 1 ? 's' : ''} missing finalized attendance`,
-                textAr: `${overdue.length} فعالية مكتملة تفتقد الحضور النهائي`,
+                textAr: `${overdue.length}     `,
                 count: overdue.length,
                 route: `/dashboard/organizer?tab=execution`,
             });
@@ -224,7 +224,7 @@ function OrganizerViewContent() {
             alerts.push({
                 severity: 'due_soon',
                 text: `${dueSoon.length} event${dueSoon.length > 1 ? 's' : ''} with compliance due soon`,
-                textAr: `${dueSoon.length} فعالية مع موعد امتثال قريب`,
+                textAr: `${dueSoon.length}     `,
                 count: dueSoon.length,
                 route: `/dashboard/organizer?tab=execution`,
             });
@@ -283,14 +283,14 @@ function OrganizerViewContent() {
     // Convert DemoEvent to Event for EventCard component
     const mapToEventCard = (event: DemoEvent): Event => ({
         id: event.id,
-        titleAr: event.titleAr ?? event.title ?? 'الفعالية',
+        titleAr: event.titleAr ?? event.title ?? '',
         titleEn: event.titleEn ?? event.title ?? 'Event',
-        organizerAr: event.organizerAr ?? 'المنظم',
+        organizerAr: event.organizerAr ?? '',
         organizerEn: event.organizerEn ?? 'Organizer',
         specialty: event.specialty ?? 'General',
         cme_hours: event.cme_hours ?? 0,
         date: event.date ?? new Date().toISOString(),
-        locationAr: event.locationAr ?? 'الموقع',
+        locationAr: event.locationAr ?? '',
         locationEn: event.locationEn ?? 'Location',
         status:
             event.status === 'published'
@@ -328,11 +328,11 @@ function OrganizerViewContent() {
                             >
                             <div className="text-center p-4">
                                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                    {language === "ar" ? "مسودة" : "Draft"}
+                                    {language === "ar" ? "" : "Draft"}
                                 </p>
                                 <p className="text-2xl font-bold text-[var(--label)]">{kpis.draft}</p>
                                 <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                    {language === "ar" ? "فعاليات" : "events"}
+                                    {language === "ar" ? "" : "events"}
                                 </p>
                             </div>
                         </LiquidGlassCard>
@@ -348,11 +348,11 @@ function OrganizerViewContent() {
                             >
                             <div className="text-center p-4">
                                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                    {language === "ar" ? "قيد المراجعة" : "Pending Review"}
+                                    {language === "ar" ? " " : "Pending Review"}
                                 </p>
                                 <p className="text-2xl font-bold text-[var(--label)]">{kpis.pending_review}</p>
                                 <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                    {language === "ar" ? "فعاليات" : "events"}
+                                    {language === "ar" ? "" : "events"}
                                 </p>
                             </div>
                         </LiquidGlassCard>
@@ -368,11 +368,11 @@ function OrganizerViewContent() {
                             >
                             <div className="text-center p-4">
                                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                    {language === "ar" ? "معتمد" : "Approved"}
+                                    {language === "ar" ? "" : "Approved"}
                                 </p>
                                 <p className="text-2xl font-bold text-[var(--label)]">{kpis.approved}</p>
                                 <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                    {language === "ar" ? "فعاليات" : "events"}
+                                    {language === "ar" ? "" : "events"}
                                 </p>
                             </div>
                         </LiquidGlassCard>
@@ -388,11 +388,11 @@ function OrganizerViewContent() {
                             >
                             <div className="text-center p-4">
                                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                    {language === "ar" ? "منشور" : "Published"}
+                                    {language === "ar" ? "" : "Published"}
                                 </p>
                                 <p className="text-2xl font-bold text-[var(--label)]">{kpis.published}</p>
                                 <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                    {language === "ar" ? "فعاليات" : "events"}
+                                    {language === "ar" ? "" : "events"}
                                 </p>
                             </div>
                         </LiquidGlassCard>
@@ -408,11 +408,11 @@ function OrganizerViewContent() {
                             >
                             <div className="text-center p-4">
                                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                    {language === "ar" ? "مكتمل" : "Completed"}
+                                    {language === "ar" ? "" : "Completed"}
                                 </p>
                                 <p className="text-2xl font-bold text-[var(--label)]">{kpis.closed}</p>
                                 <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                    {language === "ar" ? "فعاليات" : "events"}
+                                    {language === "ar" ? "" : "events"}
                                 </p>
                             </div>
                         </LiquidGlassCard>
@@ -427,7 +427,7 @@ function OrganizerViewContent() {
                                 <div className="flex items-center gap-2 mb-4">
                                     <AlertCircle className="h-5 w-5 text-[var(--apple-orange)] shrink-0" />
                                     <h3 className="text-lg font-semibold text-[var(--label)]">
-                                        {language === "ar" ? "تنبيهات الالتزام" : "Compliance Alerts"}
+                                        {language === "ar" ? " " : "Compliance Alerts"}
                                     </h3>
                                 </div>
                                 <div className="space-y-3">
@@ -456,7 +456,7 @@ function OrganizerViewContent() {
                                                 onClick={() => router.push(alert.route)}
                                                 className="ml-2 shrink-0"
                                             >
-                                                <span className="text-xs">{language === "ar" ? "عرض" : "View"}</span>
+                                                <span className="text-xs">{language === "ar" ? "" : "View"}</span>
                                             </GlassButton>
                                         </div>
                                     ))}
@@ -468,10 +468,10 @@ function OrganizerViewContent() {
                                     <CheckCircle2 className="h-5 w-5 text-[var(--apple-green)] shrink-0" />
                                         <div>
                                         <h3 className="text-lg font-semibold text-[var(--label)] mb-1">
-                                            {language === "ar" ? "تنبيهات الالتزام" : "Compliance Alerts"}
+                                            {language === "ar" ? " " : "Compliance Alerts"}
                                         </h3>
                                         <p className="text-sm text-[var(--secondary-label)]">
-                                            {language === "ar" ? "جميع الفعاليات متوافقة حالياً" : "All events are currently compliant"}
+                                            {language === "ar" ? "   " : "All events are currently compliant"}
                                         </p>
                                         </div>
                                     </div>
@@ -482,7 +482,7 @@ function OrganizerViewContent() {
                         {nextActions.length > 0 ? (
                             <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                                    {language === "ar" ? "الإجراءات القادمة" : "Next Actions"}
+                                    {language === "ar" ? " " : "Next Actions"}
                             </h3>
                                 <div className="space-y-3">
                                 {nextActions.map((action, idx) => (
@@ -497,7 +497,7 @@ function OrganizerViewContent() {
                                                 {language === "ar" ? action.labelAr : action.label}
                                                     </p>
                                                     <p className="text-xs text-[var(--secondary-label)] mt-0.5">
-                                                        {action.count} {language === "ar" ? "فعالية جاهزة" : `event${action.count > 1 ? 's' : ''} ready`}
+                                                        {action.count} {language === "ar" ? " " : `event${action.count > 1 ? 's' : ''} ready`}
                                                     </p>
                                                 </div>
                                             </div>
@@ -508,7 +508,7 @@ function OrganizerViewContent() {
                                                 className="ml-2 shrink-0"
                                             >
                                                 <span className="text-xs">
-                                                    {language === "ar" ? "عرض" : action.action === "submit" ? "Submit" : action.action === "assign_em" ? "Assign" : "View"}
+                                                    {language === "ar" ? "" : action.action === "submit" ? "Submit" : action.action === "assign_em" ? "Assign" : "View"}
                                             </span>
                                             </GlassButton>
                                     </div>
@@ -518,10 +518,10 @@ function OrganizerViewContent() {
                         ) : (
                             <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                                 <h3 className="text-lg font-semibold text-[var(--label)] mb-2">
-                                    {language === "ar" ? "الإجراءات القادمة" : "Next Actions"}
+                                    {language === "ar" ? " " : "Next Actions"}
                                 </h3>
                                 <p className="text-sm text-[var(--secondary-label)]">
-                                    {language === "ar" ? "لا توجد إجراءات معلقة حالياً" : "No pending actions right now."}
+                                    {language === "ar" ? "    " : "No pending actions right now."}
                                 </p>
                             </LiquidGlassCard>
                         )}
@@ -531,7 +531,7 @@ function OrganizerViewContent() {
                     {upcomingLiveEvents.length > 0 && (
                         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                                {language === "ar" ? "الفعاليات القادمة والجارية" : "Upcoming & Live Events"}
+                                {language === "ar" ? "  " : "Upcoming & Live Events"}
                             </h3>
                             <div className="space-y-2">
                                 {upcomingLiveEvents.map((event) => {
@@ -562,21 +562,21 @@ function OrganizerViewContent() {
                                                             className="text-xs capitalize shrink-0"
                                                         >
                                                             {status === "published" 
-                                                                ? (language === "ar" ? "منشور" : "Published")
+                                                                ? (language === "ar" ? "" : "Published")
                                                                 : status === "approved"
-                                                                ? (language === "ar" ? "معتمد" : "Approved")
+                                                                ? (language === "ar" ? "" : "Approved")
                                                                 : status === "pending_review"
-                                                                ? (language === "ar" ? "قيد المراجعة" : "Pending Review")
+                                                                ? (language === "ar" ? " " : "Pending Review")
                                                                 : status}
                                                         </Badge>
                                                         {hasEM ? (
                                                             <span className="flex items-center gap-1 text-[var(--apple-green)]">
                                                                 <Users className="h-3 w-3" />
-                                                                <span>{language === "ar" ? "مدير معين" : "EM assigned"}</span>
+                                                                <span>{language === "ar" ? " " : "EM assigned"}</span>
                                                             </span>
                                                         ) : (
                                                             <span className="text-[var(--secondary-label)]">
-                                                                {language === "ar" ? "غير معين" : "Not assigned"}
+                                                                {language === "ar" ? " " : "Not assigned"}
                                                             </span>
                                                         )}
                                                     </div>
@@ -587,7 +587,7 @@ function OrganizerViewContent() {
                                                     onClick={() => router.push(buildRoute.organizerEvent(event.id, 'summary'))}
                                                     className="shrink-0"
                                                 >
-                                                    <span className="text-xs">{language === "ar" ? "فتح" : "Open"}</span>
+                                                    <span className="text-xs">{language === "ar" ? "" : "Open"}</span>
                                                 </GlassButton>
                                             </div>
                                         </div>
@@ -604,12 +604,12 @@ function OrganizerViewContent() {
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-[var(--secondary-label)]">
-                                {filteredEvents.length} {language === "ar" ? "نشاط" : "activities"}
+                                {filteredEvents.length} {language === "ar" ? "" : "activities"}
                             </p>
                         </div>
                         <GlassButton onClick={() => router.push("/dashboard/organizer/events/create")}>
                             <Plus className="h-4 w-4 mr-2" />
-                            {language === "ar" ? "إنشاء نشاط" : "Create Activity"}
+                            {language === "ar" ? " " : "Create Activity"}
                         </GlassButton>
                     </div>
 
@@ -618,7 +618,7 @@ function OrganizerViewContent() {
                         <div className="flex-1 relative">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[var(--secondary-label)]" />
                             <Input
-                                placeholder={language === "ar" ? "بحث..." : "Search..."}
+                                placeholder={language === "ar" ? "..." : "Search..."}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="pl-10"
@@ -629,19 +629,19 @@ function OrganizerViewContent() {
                             onChange={(e) => setStatusFilter(e.target.value)}
                             className="px-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--system-background)] text-[var(--label)]"
                         >
-                            <option value="all">{language === "ar" ? "جميع الحالات" : "All Statuses"}</option>
-                            <option value="draft">{language === "ar" ? "مسودة" : "Draft"}</option>
-                            <option value="pending_review">{language === "ar" ? "قيد المراجعة" : "Pending Review"}</option>
-                            <option value="approved">{language === "ar" ? "معتمد" : "Approved"}</option>
-                            <option value="published">{language === "ar" ? "منشور" : "Published"}</option>
-                            <option value="closed">{language === "ar" ? "مكتمل" : "Closed"}</option>
+                            <option value="all">{language === "ar" ? " " : "All Statuses"}</option>
+                            <option value="draft">{language === "ar" ? "" : "Draft"}</option>
+                            <option value="pending_review">{language === "ar" ? " " : "Pending Review"}</option>
+                            <option value="approved">{language === "ar" ? "" : "Approved"}</option>
+                            <option value="published">{language === "ar" ? "" : "Published"}</option>
+                            <option value="closed">{language === "ar" ? "" : "Closed"}</option>
                         </select>
                     </div>
 
                     {/* Events Grid */}
                     {loading ? (
                         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-8 text-center">
-                            <p className="text-[var(--secondary-label)]">{language === "ar" ? "جاري التحميل..." : "Loading..."}</p>
+                            <p className="text-[var(--secondary-label)]">{language === "ar" ? " ..." : "Loading..."}</p>
                         </LiquidGlassCard>
                     ) : error ? (
                         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-8 text-center">
@@ -651,7 +651,7 @@ function OrganizerViewContent() {
                     ) : filteredEvents.length === 0 ? (
                         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-8 text-center">
                             <p className="text-[var(--secondary-label)]">
-                                {language === "ar" ? "لا توجد أنشطة" : "No activities found"}
+                                {language === "ar" ? "  " : "No activities found"}
                             </p>
                         </LiquidGlassCard>
                     ) : (
@@ -662,17 +662,17 @@ function OrganizerViewContent() {
 
                                 if (status === "draft") {
                                     primaryAction = {
-                                        label: language === "ar" ? "تحرير / تقديم الاعتماد" : "Edit / Submit accreditation",
+                                        label: language === "ar" ? " /  " : "Edit / Submit accreditation",
                                         onClick: () => router.push(buildRoute.organizerEventEdit(event.id)),
                                     };
                                 } else if (status === "approved") {
                                     primaryAction = {
-                                        label: language === "ar" ? "نشر" : "Publish",
+                                        label: language === "ar" ? "" : "Publish",
                                         onClick: () => router.push(buildRoute.organizerEvent(event.id)),
                                     };
                                 } else if (status === "published") {
                                     primaryAction = {
-                                        label: language === "ar" ? "إدارة التنفيذ" : "Manage execution",
+                                        label: language === "ar" ? " " : "Manage execution",
                                         onClick: () => router.push(buildRoute.organizerEvent(event.id)),
                                     };
                                 }
@@ -699,12 +699,12 @@ function OrganizerViewContent() {
                     {/* Pending Review Section */}
                     <div>
                         <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                            {language === "ar" ? "قيد المراجعة" : "Pending Review"}
+                            {language === "ar" ? " " : "Pending Review"}
                         </h3>
                         {pendingReview.length === 0 ? (
                             <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6 text-center">
                                 <p className="text-[var(--secondary-label)]">
-                                    {language === "ar" ? "لا توجد طلبات قيد المراجعة" : "No pending review applications"}
+                                    {language === "ar" ? "    " : "No pending review applications"}
                                 </p>
                             </LiquidGlassCard>
                         ) : (
@@ -725,12 +725,12 @@ function OrganizerViewContent() {
                     {/* Decisions Section */}
                     <div>
                         <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                            {language === "ar" ? "القرارات" : "Decisions"}
+                            {language === "ar" ? "" : "Decisions"}
                         </h3>
                         {accreditationDecisions.length === 0 ? (
                             <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6 text-center">
                                 <p className="text-[var(--secondary-label)]">
-                                    {language === "ar" ? "لا توجد قرارات سابقة" : "No previous decisions"}
+                                    {language === "ar" ? "   " : "No previous decisions"}
                                 </p>
                             </LiquidGlassCard>
                         ) : (

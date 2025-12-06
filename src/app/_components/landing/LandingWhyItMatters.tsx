@@ -41,7 +41,7 @@ export function LandingWhyItMatters() {
         {/* Header */}
         <header className={`text-center mb-10 ${isRTL ? 'text-right' : 'text-left'} lg:text-center`}>
           <h2 className="text-3xl lg:text-4xl font-bold text-[var(--label)] mb-3">
-            {title || (isRTL ? 'امتثال أبسط… وضوح أعلى في المسؤوليات' : 'Simplified compliance, clearer oversight')}
+            {title || (isRTL ? ' …    ' : 'Simplified compliance, clearer oversight')}
           </h2>
           {subtitle && (
             <p className="text-lg text-[var(--secondary-label)] max-w-2xl mx-auto">

@@ -11,14 +11,14 @@ export function TestimonialsSection() {
   const testimonials = language === 'ar' 
     ? [
         {
-          quote: 'مُتْقِن ساعدني في تتبع ساعات التعليم المستمر بسهولة. المنصة سهلة الاستخدام ومتوافقة مع ممارس بلس.',
-          author: 'د. أحمد محمد',
-          role: 'طبيب استشاري',
+          quote: '       .       .',
+          author: '.  ',
+          role: ' ',
         },
         {
-          quote: 'كمنظم، أجد أن مُتْقِن يوفر جميع الأدوات التي أحتاجها لإدارة فعالياتي بكفاءة.',
-          author: 'منظمة الصحة السعودية',
-          role: 'مقدم خدمة CME',
+          quote: '           .',
+          author: '  ',
+          role: '  CME',
         },
       ]
     : [
@@ -39,7 +39,7 @@ export function TestimonialsSection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[var(--label)] mb-4">
-            {language === 'ar' ? 'ماذا يقول عملاؤنا' : 'What Our Clients Say'}
+            {language === 'ar' ? '  ' : 'What Our Clients Say'}
           </h2>
         </div>
 

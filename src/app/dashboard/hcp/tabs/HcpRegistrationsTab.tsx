@@ -205,7 +205,7 @@ export function HcpRegistrationsTab() {
         return (
             <div className="space-y-6">
                 <div className="text-center py-8 text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'جاري التحميل...' : 'Loading registrations...'}
+                    {language === 'ar' ? ' ...' : 'Loading registrations...'}
                 </div>
             </div>
         );
@@ -214,12 +214,12 @@ export function HcpRegistrationsTab() {
     if (tickets.length === 0) {
         return (
             <EmptyState
-                title={language === 'ar' ? 'لا توجد تسجيلات' : 'No registrations'}
+                title={language === 'ar' ? '  ' : 'No registrations'}
                 description={language === 'ar' 
-                    ? 'ابدأ باستكشاف الفعاليات والتسجيل فيها'
+                    ? '    '
                     : 'Start by discovering and registering for events'}
                 icon={Ticket}
-                actionLabel={language === 'ar' ? 'استكشف الفعاليات' : 'Discover events'}
+                actionLabel={language === 'ar' ? ' ' : 'Discover events'}
                 onAction={() => {
                     const params = new URLSearchParams();
                     params.set('tab', 'discover');
@@ -238,9 +238,9 @@ export function HcpRegistrationsTab() {
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
-                        <SelectItem value="current">{language === 'ar' ? 'هذا العام' : 'This year'}</SelectItem>
-                        <SelectItem value="last">{language === 'ar' ? 'العام الماضي' : 'Last year'}</SelectItem>
+                        <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
+                        <SelectItem value="current">{language === 'ar' ? ' ' : 'This year'}</SelectItem>
+                        <SelectItem value="last">{language === 'ar' ? ' ' : 'Last year'}</SelectItem>
                     </SelectContent>
                 </Select>
                 <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value as StatusFilter)}>
@@ -248,9 +248,9 @@ export function HcpRegistrationsTab() {
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
-                        <SelectItem value="upcoming">{language === 'ar' ? 'قادمة' : 'Upcoming'}</SelectItem>
-                        <SelectItem value="past">{language === 'ar' ? 'سابقة' : 'Past'}</SelectItem>
+                        <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
+                        <SelectItem value="upcoming">{language === 'ar' ? '' : 'Upcoming'}</SelectItem>
+                        <SelectItem value="past">{language === 'ar' ? '' : 'Past'}</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -305,20 +305,20 @@ export function HcpRegistrationsTab() {
                                         <button onClick={() => handleViewEvent(item.event.id)}
                                             className="text-sky-400 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-200 underline"
                                         >
-                                            {language === 'ar' ? 'عرض الفعالية' : 'View event'}
+                                            {language === 'ar' ? ' ' : 'View event'}
                                         </button>
                                         {item.ticket && (
                                             <button onClick={() => handleViewTicket(item.ticket.id, item.event.id)}
                                                 className="text-sky-400 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-200 underline"
                                             >
-                                                {language === 'ar' ? 'عرض التذكرة' : 'View ticket'}
+                                                {language === 'ar' ? ' ' : 'View ticket'}
                                             </button>
                                         )}
                                         {item.certificate && (
                                             <button onClick={() => handleViewCertificate(item.certificate!.id, item.event.id)}
                                                 className="text-sky-400 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-200 underline"
                                             >
-                                                {language === 'ar' ? 'عرض الشهادة' : 'View certificate'}
+                                                {language === 'ar' ? ' ' : 'View certificate'}
                                             </button>
                                         )}
                                     </div>
@@ -329,9 +329,9 @@ export function HcpRegistrationsTab() {
                 </div>
             ) : (
                 <EmptyState
-                    title={language === 'ar' ? 'لا توجد أنشطة' : 'No activities'}
+                    title={language === 'ar' ? '  ' : 'No activities'}
                     description={language === 'ar' 
-                        ? 'لا توجد أنشطة تطابق الفلاتر المحددة'
+                        ? '     '
                         : 'No activities match the selected filters'}
                     icon={Ticket}
                 />

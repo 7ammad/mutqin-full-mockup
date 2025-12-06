@@ -34,14 +34,14 @@ export function HcpDiscoverTab() {
 
     const mapToEventCard = (event: DemoEvent): Event => ({
         id: event.id,
-        titleAr: event.titleAr ?? event.title ?? 'الفعالية',
+        titleAr: event.titleAr ?? event.title ?? '',
         titleEn: event.titleEn ?? event.title ?? 'Event',
-        organizerAr: event.organizerAr ?? 'المنظم',
+        organizerAr: event.organizerAr ?? '',
         organizerEn: event.organizerEn ?? 'Organizer',
         specialty: event.specialty ?? 'General',
         cme_hours: event.cme_hours ?? 0,
         date: event.date ?? new Date().toISOString(),
-        locationAr: event.locationAr ?? 'الموقع',
+        locationAr: event.locationAr ?? '',
         locationEn: event.locationEn ?? 'Location',
         status:
             event.status === 'published'
@@ -193,7 +193,7 @@ export function HcpDiscoverTab() {
                         )} />
                         <Input
                             type="text"
-                            placeholder={language === 'ar' ? 'ابحث عن فعالية...' : 'Search for an event...'}
+                            placeholder={language === 'ar' ? '  ...' : 'Search for an event...'}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className={cn(
@@ -258,9 +258,9 @@ export function HcpDiscoverTab() {
                 </LiquidGlassCard>
             ) : filteredEvents.length === 0 ? (
                 <EmptyState
-                    title={language === 'ar' ? 'لا توجد فعاليات' : 'No events found'}
+                    title={language === 'ar' ? '  ' : 'No events found'}
                     description={language === 'ar' 
-                        ? 'لا توجد فعاليات تطابق البحث المحدد'
+                        ? '     '
                         : 'No events match your search criteria'}
                     icon={Sparkles}
                 />
@@ -288,7 +288,7 @@ export function HcpDiscoverTab() {
             {myRegisteredEvents.length > 0 && (
                 <div>
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'تسجيلاتك' : 'Your registrations'}
+                        {language === 'ar' ? '' : 'Your registrations'}
                     </h3>
                     <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {myRegisteredEvents.map((event) => {

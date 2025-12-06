@@ -84,17 +84,17 @@ function JourneyDetailsDropdown({ activity }: { activity: JourneyActivity }) {
                 {/* Event Details */}
                 <div className="space-y-2 text-sm">
                     <p className="text-[var(--secondary-label)]">
-                        <strong className="text-[var(--label)]">{language === 'ar' ? 'المنظم:' : 'Organizer:'}</strong> {getEventOrganizer(activity.event, language)}
+                        <strong className="text-[var(--label)]">{language === 'ar' ? ':' : 'Organizer:'}</strong> {getEventOrganizer(activity.event, language)}
                     </p>
                     <p className="text-[var(--secondary-label)]">
-                        <strong className="text-[var(--label)]">{language === 'ar' ? 'الموقع:' : 'Location:'}</strong> {getEventLocation(activity.event, language)}
+                        <strong className="text-[var(--label)]">{language === 'ar' ? ':' : 'Location:'}</strong> {getEventLocation(activity.event, language)}
                     </p>
                 </div>
 
                 {/* Step Progression Timeline */}
                 <div className="space-y-3">
                     <h3 className="text-sm font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'التقدم' : 'Progress'}
+                        {language === 'ar' ? '' : 'Progress'}
                     </h3>
                     <div className="space-y-2">
                         {steps.map((step, index) => (
@@ -377,7 +377,7 @@ export function HcpJourneyTab() {
         return (
             <div className="space-y-6">
                 <div className="text-center py-8 text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'جاري التحميل...' : 'Loading journey...'}
+                    {language === 'ar' ? ' ...' : 'Loading journey...'}
                 </div>
             </div>
         );
@@ -388,10 +388,10 @@ export function HcpJourneyTab() {
             <EmptyState
                 title={t('myJourney.title')}
                 description={language === 'ar' 
-                    ? 'ابدأ باستكشاف الفعاليات والتسجيل فيها'
+                    ? '    '
                     : 'Start by discovering and registering for events'}
                 icon={Ticket}
-                actionLabel={language === 'ar' ? 'استكشف الفعاليات' : 'Discover events'}
+                actionLabel={language === 'ar' ? ' ' : 'Discover events'}
                 onAction={() => {
                     const params = new URLSearchParams();
                     params.set('tab', 'discover');
@@ -415,9 +415,9 @@ export function HcpJourneyTab() {
                 />
             ) : (
                 <EmptyState
-                    title={language === 'ar' ? 'لا توجد أنشطة' : 'No activities'}
+                    title={language === 'ar' ? '  ' : 'No activities'}
                     description={language === 'ar' 
-                        ? 'لا توجد أنشطة مسجلة'
+                        ? '   '
                         : 'No registered activities'}
                     icon={Ticket}
                 />

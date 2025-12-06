@@ -28,52 +28,52 @@ export default function NationalAnalytics() {
     };
 
     const eventsByRegion = [
-        { name: language === 'ar' ? 'الرياض' : 'Riyadh', value: 450 },
-        { name: language === 'ar' ? 'جدة' : 'Jeddah', value: 320 },
-        { name: language === 'ar' ? 'الدمام' : 'Dammam', value: 280 },
-        { name: language === 'ar' ? 'أخرى' : 'Other', value: 200 },
+        { name: language === 'ar' ? '' : 'Riyadh', value: 450 },
+        { name: language === 'ar' ? '' : 'Jeddah', value: 320 },
+        { name: language === 'ar' ? '' : 'Dammam', value: 280 },
+        { name: language === 'ar' ? '' : 'Other', value: 200 },
     ];
 
     const eventsBySpecialty = [
-        { name: language === 'ar' ? 'طب القلب' : getSpecialtyLabel('cardiology', language), value: 280 },
-        { name: language === 'ar' ? 'طب الأطفال' : 'Pediatrics', value: 220 },
-        { name: language === 'ar' ? 'الجراحة العامة' : 'General Surgery', value: 180 },
-        { name: language === 'ar' ? 'طب الأسرة' : 'Family Medicine', value: 250 },
-        { name: language === 'ar' ? 'الطوارئ' : 'Emergency', value: 120 },
-        { name: language === 'ar' ? 'أخرى' : 'Other', value: 200 },
+        { name: language === 'ar' ? ' ' : getSpecialtyLabel('cardiology', language), value: 280 },
+        { name: language === 'ar' ? ' ' : 'Pediatrics', value: 220 },
+        { name: language === 'ar' ? ' ' : 'General Surgery', value: 180 },
+        { name: language === 'ar' ? ' ' : 'Family Medicine', value: 250 },
+        { name: language === 'ar' ? '' : 'Emergency', value: 120 },
+        { name: language === 'ar' ? '' : 'Other', value: 200 },
     ];
 
     const monthlyTrend = [
-        { month: language === 'ar' ? 'يناير' : 'Jan', events: 95, cmeHours: 3400 },
-        { month: language === 'ar' ? 'فبراير' : 'Feb', events: 110, cmeHours: 3950 },
-        { month: language === 'ar' ? 'مارس' : 'Mar', events: 125, cmeHours: 4500 },
-        { month: language === 'ar' ? 'أبريل' : 'Apr', events: 105, cmeHours: 3800 },
-        { month: language === 'ar' ? 'مايو' : 'May', events: 130, cmeHours: 4700 },
-        { month: language === 'ar' ? 'يونيو' : 'Jun', events: 140, cmeHours: 5050 },
+        { month: language === 'ar' ? '' : 'Jan', events: 95, cmeHours: 3400 },
+        { month: language === 'ar' ? '' : 'Feb', events: 110, cmeHours: 3950 },
+        { month: language === 'ar' ? '' : 'Mar', events: 125, cmeHours: 4500 },
+        { month: language === 'ar' ? '' : 'Apr', events: 105, cmeHours: 3800 },
+        { month: language === 'ar' ? '' : 'May', events: 130, cmeHours: 4700 },
+        { month: language === 'ar' ? '' : 'Jun', events: 140, cmeHours: 5050 },
     ];
 
     const approvalTrend = [
-        { month: language === 'ar' ? 'يناير' : 'Jan', approved: 85, rejected: 10, pending: 5 },
-        { month: language === 'ar' ? 'فبراير' : 'Feb', approved: 95, rejected: 8, pending: 7 },
-        { month: language === 'ar' ? 'مارس' : 'Mar', approved: 110, rejected: 12, pending: 3 },
-        { month: language === 'ar' ? 'أبريل' : 'Apr', approved: 90, rejected: 10, pending: 5 },
-        { month: language === 'ar' ? 'مايو' : 'May', approved: 115, rejected: 10, pending: 5 },
-        { month: language === 'ar' ? 'يونيو' : 'Jun', approved: 120, rejected: 15, pending: 5 },
+        { month: language === 'ar' ? '' : 'Jan', approved: 85, rejected: 10, pending: 5 },
+        { month: language === 'ar' ? '' : 'Feb', approved: 95, rejected: 8, pending: 7 },
+        { month: language === 'ar' ? '' : 'Mar', approved: 110, rejected: 12, pending: 3 },
+        { month: language === 'ar' ? '' : 'Apr', approved: 90, rejected: 10, pending: 5 },
+        { month: language === 'ar' ? '' : 'May', approved: 115, rejected: 10, pending: 5 },
+        { month: language === 'ar' ? '' : 'Jun', approved: 120, rejected: 15, pending: 5 },
     ];
 
-    const title = language === 'ar' ? 'التحليلات الوطنية' : 'National Analytics';
-    const totalEventsText = language === 'ar' ? 'إجمالي الفعاليات' : 'Total Events';
-    const totalCMEHoursText = language === 'ar' ? 'إجمالي ساعات التعليم' : 'Total CME Hours';
-    const totalHCPsText = language === 'ar' ? 'إجمالي الممارسين' : 'Total HCPs';
-    const totalOrganizersText = language === 'ar' ? 'إجمالي المنظمين' : 'Total Organizers';
-    const averageEventSizeText = language === 'ar' ? 'متوسط حجم الفعالية' : 'Average Event Size';
-    const approvalRateText = language === 'ar' ? 'معدل الموافقة' : 'Approval Rate';
-    const averageReviewTimeText = language === 'ar' ? 'متوسط وقت المراجعة' : 'Average Review Time';
-    const eventsByRegionText = language === 'ar' ? 'الفعاليات حسب المنطقة' : 'Events by Region';
-    const eventsBySpecialtyText = language === 'ar' ? 'الفعاليات حسب التخصص' : 'Events by Specialty';
-    const monthlyTrendText = language === 'ar' ? 'الاتجاه الشهري' : 'Monthly Trend';
-    const approvalTrendText = language === 'ar' ? 'اتجاه الموافقات' : 'Approval Trend';
-    const daysText = language === 'ar' ? 'أيام' : 'days';
+    const title = language === 'ar' ? ' ' : 'National Analytics';
+    const totalEventsText = language === 'ar' ? ' ' : 'Total Events';
+    const totalCMEHoursText = language === 'ar' ? '  ' : 'Total CME Hours';
+    const totalHCPsText = language === 'ar' ? ' ' : 'Total HCPs';
+    const totalOrganizersText = language === 'ar' ? ' ' : 'Total Organizers';
+    const averageEventSizeText = language === 'ar' ? '  ' : 'Average Event Size';
+    const approvalRateText = language === 'ar' ? ' ' : 'Approval Rate';
+    const averageReviewTimeText = language === 'ar' ? '  ' : 'Average Review Time';
+    const eventsByRegionText = language === 'ar' ? '  ' : 'Events by Region';
+    const eventsBySpecialtyText = language === 'ar' ? '  ' : 'Events by Specialty';
+    const monthlyTrendText = language === 'ar' ? ' ' : 'Monthly Trend';
+    const approvalTrendText = language === 'ar' ? ' ' : 'Approval Trend';
+    const daysText = language === 'ar' ? '' : 'days';
 
     return (
         <div className="space-y-6">
@@ -89,14 +89,14 @@ export default function NationalAnalytics() {
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="mtd">{language === 'ar' ? 'هذا الشهر' : 'MTD'}</SelectItem>
-                                <SelectItem value="ytd">{language === 'ar' ? 'هذه السنة' : 'YTD'}</SelectItem>
-                                <SelectItem value="12m">{language === 'ar' ? '12 شهر' : '12 Months'}</SelectItem>
+                                <SelectItem value="mtd">{language === 'ar' ? ' ' : 'MTD'}</SelectItem>
+                                <SelectItem value="ytd">{language === 'ar' ? ' ' : 'YTD'}</SelectItem>
+                                <SelectItem value="12m">{language === 'ar' ? '12 ' : '12 Months'}</SelectItem>
                             </SelectContent>
                         </Select>
                         <GlassButton variant="outline" className="gap-2 flex items-center justify-center">
                             <Download className="h-4 w-4" />
-                            {language === 'ar' ? 'تصدير' : 'Export'}
+                            {language === 'ar' ? '' : 'Export'}
                         </GlassButton>
                     </div>
                 </div>

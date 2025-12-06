@@ -60,14 +60,14 @@ export default function LearningProfile() {
     const averageRating = 4.5;
     const eventsAttended = registeredEvents.length;
 
-    const title = language === 'ar' ? 'الملف التعليمي' : 'Learning Profile';
-    const specialtyText = language === 'ar' ? 'التخصص' : 'Specialty';
-    const licenseText = language === 'ar' ? 'رقم الرخصة' : 'License Number';
-    const editText = language === 'ar' ? 'تعديل' : 'Edit';
-    const saveText = language === 'ar' ? 'حفظ' : 'Save';
-    const goalsText = language === 'ar' ? 'الأهداف التعليمية' : 'Learning Goals';
-    const progressText = language === 'ar' ? 'التقدم' : 'Progress';
-    const addGoalText = language === 'ar' ? 'إضافة هدف' : 'Add Goal';
+    const title = language === 'ar' ? ' ' : 'Learning Profile';
+    const specialtyText = language === 'ar' ? '' : 'Specialty';
+    const licenseText = language === 'ar' ? ' ' : 'License Number';
+    const editText = language === 'ar' ? '' : 'Edit';
+    const saveText = language === 'ar' ? '' : 'Save';
+    const goalsText = language === 'ar' ? ' ' : 'Learning Goals';
+    const progressText = language === 'ar' ? '' : 'Progress';
+    const addGoalText = language === 'ar' ? ' ' : 'Add Goal';
 
     return (
         <div className="space-y-6">
@@ -129,7 +129,7 @@ export default function LearningProfile() {
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                {language === 'ar' ? 'إجمالي الساعات' : 'Total Hours'}
+                                {language === 'ar' ? ' ' : 'Total Hours'}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{totalHours}</p>
                         </div>
@@ -143,7 +143,7 @@ export default function LearningProfile() {
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                {language === 'ar' ? 'الفعاليات' : 'Events Attended'}
+                                {language === 'ar' ? '' : 'Events Attended'}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{eventsAttended}</p>
                         </div>
@@ -157,7 +157,7 @@ export default function LearningProfile() {
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                {language === 'ar' ? 'التقييم المتوسط' : 'Average Rating'}
+                                {language === 'ar' ? ' ' : 'Average Rating'}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{averageRating.toFixed(1)}</p>
                         </div>
@@ -171,7 +171,7 @@ export default function LearningProfile() {
             {chartData.length > 0 && (
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'الساعات حسب التخصص' : 'Hours by Specialty'}
+                        {language === 'ar' ? '  ' : 'Hours by Specialty'}
                     </h3>
                     <Chart
                         type="bar"
@@ -203,7 +203,7 @@ export default function LearningProfile() {
                                     <div>
                                         <p className="font-medium text-[var(--label)]">{getSpecialtyLabel(goal.specialtyKey, language)}</p>
                                         <p className="text-sm text-[var(--secondary-label)]">
-                                            {goal.currentHours} / {goal.targetHours} {language === 'ar' ? 'ساعة' : 'hours'}
+                                            {goal.currentHours} / {goal.targetHours} {language === 'ar' ? '' : 'hours'}
                                         </p>
                                     </div>
                                     <div className="text-right">
@@ -222,7 +222,7 @@ export default function LearningProfile() {
                                     />
                                 </div>
                                 <p className="text-xs text-[var(--tertiary-label)] mt-2">
-                                    {language === 'ar' ? 'الموعد النهائي' : 'Deadline'}: {new Date(goal.deadline).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
+                                    {language === 'ar' ? ' ' : 'Deadline'}: {new Date(goal.deadline).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
                                 </p>
                             </div>
                         );

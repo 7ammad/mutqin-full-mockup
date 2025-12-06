@@ -16,7 +16,7 @@ export function HCPOnboarding({ onComplete, onSkip }: HCPOnboardingProps) {
     const steps = [
         {
             title: "Welcome to MedEvent KSA",
-            titleAr: "مرحباً بك في ميد إيفنت السعودية",
+            titleAr: "     ",
             content: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
@@ -39,18 +39,18 @@ export function HCPOnboarding({ onComplete, onSkip }: HCPOnboardingProps) {
             contentAr: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
-                        اكتشف وسجل في فعاليات التعليم الطبي المستمر، تتبع ساعاتك، وأدر شهاداتك في مكان واحد.
+                                     .
                     </p>
                     <div className="grid grid-cols-2 gap-4">
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                             <Search className="w-8 h-8 text-[var(--apple-blue)] mb-2" />
-                            <p className="font-medium text-[var(--label)]">البحث عن الفعاليات</p>
-                            <p className="text-sm text-[var(--secondary-label)]">ابحث عن فعاليات التعليم الطبي حسب التخصص أو المكان أو التاريخ</p>
+                            <p className="font-medium text-[var(--label)]">  </p>
+                            <p className="text-sm text-[var(--secondary-label)]">          </p>
                         </LiquidGlassCard>
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                             <Calendar className="w-8 h-8 text-[var(--apple-green)] mb-2" />
-                            <p className="font-medium text-[var(--label)]">تتبع الساعات</p>
-                            <p className="text-sm text-[var(--secondary-label)]">راقب ساعات التعليم الطبي والمتطلبات</p>
+                            <p className="font-medium text-[var(--label)]"> </p>
+                            <p className="text-sm text-[var(--secondary-label)]">    </p>
                         </LiquidGlassCard>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ export function HCPOnboarding({ onComplete, onSkip }: HCPOnboardingProps) {
         },
         {
             title: "Register for Events",
-            titleAr: "التسجيل في الفعاليات",
+            titleAr: "  ",
             content: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
@@ -83,20 +83,20 @@ export function HCPOnboarding({ onComplete, onSkip }: HCPOnboardingProps) {
             contentAr: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
-                        التسجيل بنقرة واحدة مع ملء النماذج تلقائياً. اعرض تذاكرك وأدر التسجيلات بسهولة.
+                              .     .
                     </p>
                     <ul className="space-y-2">
                         <li className="flex items-center gap-2">
                             <CheckCircle className="w-5 h-5 text-[var(--apple-green)]" />
-                            <span className="text-[var(--label)]">عملية تسجيل سريعة</span>
+                            <span className="text-[var(--label)]">  </span>
                         </li>
                         <li className="flex items-center gap-2">
                             <CheckCircle className="w-5 h-5 text-[var(--apple-green)]" />
-                            <span className="text-[var(--label)]">إدارة التذاكر الرقمية</span>
+                            <span className="text-[var(--label)]">  </span>
                         </li>
                         <li className="flex items-center gap-2">
                             <CheckCircle className="w-5 h-5 text-[var(--apple-green)]" />
-                            <span className="text-[var(--label)]">تكامل التقويم</span>
+                            <span className="text-[var(--label)]"> </span>
                         </li>
                     </ul>
                 </div>
@@ -104,7 +104,7 @@ export function HCPOnboarding({ onComplete, onSkip }: HCPOnboardingProps) {
         },
         {
             title: "Track Your CME Hours",
-            titleAr: "تتبع ساعات التعليم الطبي",
+            titleAr: "   ",
             content: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
@@ -120,12 +120,12 @@ export function HCPOnboarding({ onComplete, onSkip }: HCPOnboardingProps) {
             contentAr: (
                 <div className="space-y-4">
                     <p className="text-[var(--label)]">
-                        راقب ساعات التعليم الطبي، اعرض محفظة الشهادات، وامزج مع مناريس بلس.
+                                  .
                     </p>
                     <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                         <Award className="w-8 h-8 text-[var(--apple-yellow)] mb-2" />
-                        <p className="font-medium text-[var(--label)]">الشهادات الرقمية</p>
-                        <p className="text-sm text-[var(--secondary-label)]">جميع شهاداتك في محفظة آمنة واحدة</p>
+                        <p className="font-medium text-[var(--label)]"> </p>
+                        <p className="text-sm text-[var(--secondary-label)]">     </p>
                     </LiquidGlassCard>
                 </div>
             ),

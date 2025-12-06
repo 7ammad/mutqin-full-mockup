@@ -32,13 +32,13 @@ export default function ReviewWorkflow() {
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [reviewSteps, setReviewSteps] = useState<ReviewStep[]>([
-        { id: 'step1', name: 'Basic Information', nameAr: 'المعلومات الأساسية', completed: false },
-        { id: 'step2', name: 'Learning Objectives', nameAr: 'أهداف التعلم', completed: false },
-        { id: 'step3', name: 'Speaker Credentials', nameAr: 'اعتماد المتحدثين', completed: false },
-        { id: 'step4', name: 'CME Hours Validation', nameAr: 'التحقق من ساعات التعليم', completed: false },
-        { id: 'step5', name: 'SFDA Compliance', nameAr: 'الامتثال للهيئة', completed: false },
-        { id: 'step6', name: 'Date/Specialty Conflicts', nameAr: 'تعارضات التاريخ/التخصص', completed: false },
-        { id: 'step7', name: 'Final Review', nameAr: 'المراجعة النهائية', completed: false },
+        { id: 'step1', name: 'Basic Information', nameAr: ' ', completed: false },
+        { id: 'step2', name: 'Learning Objectives', nameAr: ' ', completed: false },
+        { id: 'step3', name: 'Speaker Credentials', nameAr: ' ', completed: false },
+        { id: 'step4', name: 'CME Hours Validation', nameAr: '   ', completed: false },
+        { id: 'step5', name: 'SFDA Compliance', nameAr: ' ', completed: false },
+        { id: 'step6', name: 'Date/Specialty Conflicts', nameAr: ' /', completed: false },
+        { id: 'step7', name: 'Final Review', nameAr: ' ', completed: false },
     ]);
     const [reviewNotes, setReviewNotes] = useState<string>("");
     const [decision, setDecision] = useState<'approve' | 'reject' | 'request-modification' | null>(null);
@@ -66,7 +66,7 @@ export default function ReviewWorkflow() {
 
     const handleSubmitDecision = async () => {
         if (!decision || !selectedEventId) {
-            showToast(language === 'ar' ? 'يرجى اختيار قرار' : 'Please select a decision', 'info');
+            showToast(language === 'ar' ? '  ' : 'Please select a decision', 'info');
             return;
         }
 
@@ -77,12 +77,12 @@ export default function ReviewWorkflow() {
                     decision: 'approve' 
                 });
                 if (res.ok) {
-                    showToast(language === 'ar' ? 'تمت الموافقة بنجاح' : 'Approved successfully', 'success');
+                    showToast(language === 'ar' ? '  ' : 'Approved successfully', 'success');
                     router.refresh();
                 }
             } else if (decision === 'reject') {
                 if (!reviewNotes.trim()) {
-                    showToast(language === 'ar' ? 'يرجى إضافة ملاحظات للرفض' : 'Please add rejection notes', 'info');
+                    showToast(language === 'ar' ? '   ' : 'Please add rejection notes', 'info');
                     return;
                 }
                 const res = await api.reviewAccreditation({ 
@@ -91,12 +91,12 @@ export default function ReviewWorkflow() {
                     reason: reviewNotes
                 });
                 if (res.ok) {
-                    showToast(language === 'ar' ? 'تم رفض الفعالية' : 'Event rejected', 'success');
+                    showToast(language === 'ar' ? '  ' : 'Event rejected', 'success');
                     router.refresh();
                 }
             } else if (decision === 'request-modification') {
                 if (!reviewNotes.trim()) {
-                    showToast(language === 'ar' ? 'يرجى إضافة ملاحظات للتعديل' : 'Please add modification notes', 'info');
+                    showToast(language === 'ar' ? '   ' : 'Please add modification notes', 'info');
                     return;
                 }
                 const res = await api.reviewAccreditation({ 
@@ -105,7 +105,7 @@ export default function ReviewWorkflow() {
                     reason: reviewNotes
                 });
                 if (res.ok) {
-                    showToast(language === 'ar' ? 'تم طلب التعديلات' : 'Modification requested', 'success');
+                    showToast(language === 'ar' ? '  ' : 'Modification requested', 'success');
                     router.refresh();
                 }
             }
@@ -117,23 +117,23 @@ export default function ReviewWorkflow() {
             setReviewNotes("");
             setDecision(null);
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            const message = err instanceof Error ? err.message : (language === 'ar' ? ' ' : 'An error occurred');
             showToast(message, 'info');
         }
     };
 
     const allStepsCompleted = reviewSteps.every(s => s.completed);
 
-    const title = language === 'ar' ? 'سير عمل المراجعة' : 'Review Workflow';
-    const selectEventText = language === 'ar' ? 'اختر فعالية للمراجعة' : 'Select Event to Review';
-    const completedText = language === 'ar' ? 'مكتمل' : 'Completed';
-    const pendingText = language === 'ar' ? 'قيد الانتظار' : 'Pending';
-    const notesText = language === 'ar' ? 'ملاحظات المراجعة' : 'Review Notes';
-    const decisionText = language === 'ar' ? 'القرار' : 'Decision';
-    const approveText = language === 'ar' ? 'موافقة' : 'Approve';
-    const rejectText = language === 'ar' ? 'رفض' : 'Reject';
-    const requestModificationText = language === 'ar' ? 'طلب تعديلات' : 'Request Modifications';
-    const submitText = language === 'ar' ? 'إرسال القرار' : 'Submit Decision';
+    const title = language === 'ar' ? '  ' : 'Review Workflow';
+    const selectEventText = language === 'ar' ? '  ' : 'Select Event to Review';
+    const completedText = language === 'ar' ? '' : 'Completed';
+    const pendingText = language === 'ar' ? ' ' : 'Pending';
+    const notesText = language === 'ar' ? ' ' : 'Review Notes';
+    const decisionText = language === 'ar' ? '' : 'Decision';
+    const approveText = language === 'ar' ? '' : 'Approve';
+    const rejectText = language === 'ar' ? '' : 'Reject';
+    const requestModificationText = language === 'ar' ? ' ' : 'Request Modifications';
+    const submitText = language === 'ar' ? ' ' : 'Submit Decision';
 
     return (
         <div className="space-y-6">
@@ -170,7 +170,7 @@ export default function ReviewWorkflow() {
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-4 w-4 text-[var(--apple-blue)]" />
                                     <div>
-                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? 'التاريخ' : 'Date'}</p>
+                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Date'}</p>
                                         <p className="text-sm font-medium text-[var(--label)]">
                                             {new Date(selectedEvent.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
                                         </p>
@@ -179,7 +179,7 @@ export default function ReviewWorkflow() {
                                 <div className="flex items-center gap-2">
                                     <MapPin className="h-4 w-4 text-[var(--apple-green)]" />
                                     <div>
-                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? 'المكان' : 'Location'}</p>
+                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Location'}</p>
                                         <p className="text-sm font-medium text-[var(--label)]">
                                             {language === 'ar' ? selectedEvent.locationAr : selectedEvent.locationEn}
                                         </p>
@@ -188,14 +188,14 @@ export default function ReviewWorkflow() {
                                 <div className="flex items-center gap-2">
                                     <Award className="h-4 w-4 text-[var(--apple-orange)]" />
                                     <div>
-                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? 'ساعات التعليم' : 'CME Hours'}</p>
+                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? ' ' : 'CME Hours'}</p>
                                         <p className="text-sm font-medium text-[var(--label)]">{selectedEvent.cme_hours}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <User className="h-4 w-4 text-[var(--apple-purple)]" />
                                     <div>
-                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? 'المنظم' : 'Organizer'}</p>
+                                        <p className="text-xs text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Organizer'}</p>
                                         <p className="text-sm font-medium text-[var(--label)]">
                                             {getEventOrganizer(selectedEvent, language)}
                                         </p>
@@ -207,7 +207,7 @@ export default function ReviewWorkflow() {
                         {/* Review Steps */}
                         <div className="space-y-4">
                             <h3 className="text-lg font-semibold text-[var(--label)]">
-                                {language === 'ar' ? 'خطوات المراجعة' : 'Review Steps'}
+                                {language === 'ar' ? ' ' : 'Review Steps'}
                             </h3>
                             {reviewSteps.map((step, index) => (
                                 <LiquidGlassCard
@@ -256,13 +256,13 @@ export default function ReviewWorkflow() {
                                 onClick={handlePreviousStep}
                                 disabled={currentStep === 0}
                              className="flex items-center justify-center gap-2">
-                                {language === 'ar' ? 'السابق' : 'Previous'}
+                                {language === 'ar' ? '' : 'Previous'}
                             </GlassButton>
                             <GlassButton
                                 onClick={handleNextStep}
                                 disabled={currentStep === reviewSteps.length - 1}
                              className="flex items-center justify-center gap-2">
-                                {language === 'ar' ? 'التالي' : 'Next'}
+                                {language === 'ar' ? '' : 'Next'}
                             </GlassButton>
                         </div>
 
@@ -274,7 +274,7 @@ export default function ReviewWorkflow() {
                             <Textarea
                                 value={reviewNotes}
                                 onChange={(e) => setReviewNotes(e.target.value)}
-                                placeholder={language === 'ar' ? 'أضف ملاحظات المراجعة...' : 'Add review notes...'}
+                                placeholder={language === 'ar' ? '  ...' : 'Add review notes...'}
                                 rows={4}
                             />
                         </div>
@@ -324,8 +324,8 @@ export default function ReviewWorkflow() {
                     </div>
                 ) : (
                     <EmptyState
-                        title={language === 'ar' ? 'لم يتم اختيار فعالية' : 'No Event Selected'}
-                        description={language === 'ar' ? 'يرجى اختيار فعالية للمراجعة' : 'Please select an event to review'}
+                        title={language === 'ar' ? '   ' : 'No Event Selected'}
+                        description={language === 'ar' ? '   ' : 'Please select an event to review'}
                         icon={FileText}
                     />
                 )}

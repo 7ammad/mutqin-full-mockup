@@ -40,7 +40,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
 
         // Group by city (with optional chaining)
         const byCity = attendanceDataByEvent.reduce((acc, { event, checkedInCount, totalCount }) => {
-            const city = event?.city || (language === "ar" ? "غير محدد" : "Unknown");
+            const city = event?.city || (language === "ar" ? " " : "Unknown");
             if (!acc[city]) {
                 acc[city] = { checkedIn: 0, total: 0, events: 0 };
             }
@@ -94,10 +94,10 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
     if (acceptedAssignments.length === 0) {
         return (
             <EmptyState
-                title={language === "ar" ? "لا توجد تكليفات مقبولة" : "No accepted assignments"}
+                title={language === "ar" ? "   " : "No accepted assignments"}
                 description={
                     language === "ar"
-                        ? "اقبل تكليفاً من صندوق الوارد لعرض التحليلات"
+                        ? "      "
                         : "Accept an assignment from Inbox to view analytics"
                 }
                 icon={BarChart3}
@@ -113,7 +113,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                {language === "ar" ? "معدل الحضور" : "Attendance Rate"}
+                                {language === "ar" ? " " : "Attendance Rate"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{analyticsData.attendanceRate}%</p>
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
@@ -130,11 +130,11 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                {language === "ar" ? "معدل الاستثناءات" : "Exception Rate"}
+                                {language === "ar" ? " " : "Exception Rate"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{analyticsData.exceptionRate}%</p>
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === "ar" ? "لا توجد استثناءات" : "No exceptions"}
+                                {language === "ar" ? "  " : "No exceptions"}
                             </p>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-[var(--apple-orange)]/10 flex items-center justify-center">
@@ -147,11 +147,11 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                {language === "ar" ? "الفعاليات المنتهية" : "Finalized Events"}
+                                {language === "ar" ? " " : "Finalized Events"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{analyticsData.finalizedCount}</p>
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === "ar" ? `من ${acceptedAssignments.length}` : `of ${acceptedAssignments.length}`}
+                                {language === "ar" ? ` ${acceptedAssignments.length}` : `of ${acceptedAssignments.length}`}
                             </p>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-[var(--apple-green)]/10 flex items-center justify-center">
@@ -164,11 +164,11 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                {language === "ar" ? "إجمالي الفعاليات" : "Total Events"}
+                                {language === "ar" ? " " : "Total Events"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{acceptedAssignments.length}</p>
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === "ar" ? "نشطة" : "Active"}
+                                {language === "ar" ? "" : "Active"}
                             </p>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-[var(--apple-blue)]/10 flex items-center justify-center">
@@ -184,7 +184,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                     <div className="flex items-center gap-2 mb-4">
                         <BarChart3 className="h-5 w-5 text-[var(--apple-blue)]" />
                         <h3 className="text-lg font-semibold text-[var(--label)]">
-                            {language === "ar" ? "معدل الحضور حسب المدينة" : "Attendance Rate by City"}
+                            {language === "ar" ? "   " : "Attendance Rate by City"}
                         </h3>
                     </div>
                     {cityChartData.length > 0 ? (
@@ -198,7 +198,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                         />
                     ) : (
                         <div className="h-[300px] flex items-center justify-center text-[var(--secondary-label)]">
-                            {language === "ar" ? "لا توجد بيانات" : "No data available"}
+                            {language === "ar" ? "  " : "No data available"}
                         </div>
                     )}
                 </LiquidGlassCard>
@@ -207,7 +207,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                     <div className="flex items-center gap-2 mb-4">
                         <Users className="h-5 w-5 text-[var(--apple-green)]" />
                         <h3 className="text-lg font-semibold text-[var(--label)]">
-                            {language === "ar" ? "معدل الحضور حسب الفعالية" : "Attendance Rate by Event"}
+                            {language === "ar" ? "   " : "Attendance Rate by Event"}
                         </h3>
                     </div>
                     {eventChartData.length > 0 ? (
@@ -221,7 +221,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                         />
                     ) : (
                         <div className="h-[300px] flex items-center justify-center text-[var(--secondary-label)]">
-                            {language === "ar" ? "لا توجد بيانات" : "No data available"}
+                            {language === "ar" ? "  " : "No data available"}
                         </div>
                     )}
                 </LiquidGlassCard>
@@ -232,7 +232,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                 <div className="flex items-center gap-2 mb-4">
                     <BarChart3 className="h-5 w-5 text-[var(--apple-blue)]" />
                     <h3 className="text-lg font-semibold text-[var(--label)]">
-                        {language === "ar" ? "تفاصيل الأداء" : "Performance Details"}
+                        {language === "ar" ? " " : "Performance Details"}
                     </h3>
                 </div>
                 <div className="overflow-x-auto">
@@ -240,19 +240,19 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                         <thead>
                             <tr className="border-b border-[var(--system-fill)]">
                                 <th className="text-left py-3 px-4 font-semibold text-[var(--label)]">
-                                    {language === "ar" ? "الفعالية" : "Event"}
+                                    {language === "ar" ? "" : "Event"}
                                 </th>
                                 <th className="text-left py-3 px-4 font-semibold text-[var(--label)]">
-                                    {language === "ar" ? "المدينة" : "City"}
+                                    {language === "ar" ? "" : "City"}
                                 </th>
                                 <th className="text-center py-3 px-4 font-semibold text-[var(--label)]">
-                                    {language === "ar" ? "تم التحقق" : "Checked In"}
+                                    {language === "ar" ? " " : "Checked In"}
                                 </th>
                                 <th className="text-center py-3 px-4 font-semibold text-[var(--label)]">
-                                    {language === "ar" ? "الإجمالي" : "Total"}
+                                    {language === "ar" ? "" : "Total"}
                                 </th>
                                 <th className="text-center py-3 px-4 font-semibold text-[var(--label)]">
-                                    {language === "ar" ? "المعدل" : "Rate"}
+                                    {language === "ar" ? "" : "Rate"}
                                 </th>
                             </tr>
                         </thead>
@@ -260,7 +260,7 @@ export default function EventManagerAnalyticsTab({ assignmentsData }: EventManag
                             {acceptedAssignments.length === 0 ? (
                                 <tr>
                                     <td colSpan={5} className="py-12 text-center text-[var(--secondary-label)]">
-                                        {language === "ar" ? "لا توجد بيانات" : "No data available"}
+                                        {language === "ar" ? "  " : "No data available"}
                                     </td>
                                 </tr>
                             ) : (

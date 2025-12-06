@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تسجيل مدير فعاليات | مُتْقِن',
-  description: 'سجل كمدير فعاليات وأدر تنفيذ الفعاليات الطبية',
+  title: '   | ',
+  description: '      ',
 };
 
 export default function EventManagerRegisterLayout({

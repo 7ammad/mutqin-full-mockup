@@ -117,7 +117,7 @@ export default function EventManagerView() {
                   onClick={refreshAssignments}
                   className="gap-2"
                 >
-                  {language === "ar" ? "إعادة المحاولة" : "Retry"}
+                  {language === "ar" ? " " : "Retry"}
                 </GlassButton>
               </div>
             </LiquidGlassCard>
@@ -129,7 +129,7 @@ export default function EventManagerView() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-[var(--secondary-label)] mb-1">
-                    {language === "ar" ? "التكليفات النشطة" : "Active Assignments"}
+                    {language === "ar" ? " " : "Active Assignments"}
                   </p>
                   <p className="text-2xl font-bold text-[var(--label)]">{activeAssignments}</p>
                 </div>
@@ -142,7 +142,7 @@ export default function EventManagerView() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-[var(--secondary-label)] mb-1">
-                    {language === "ar" ? "قيد الانتظار" : "Pending"}
+                    {language === "ar" ? " " : "Pending"}
                   </p>
                   <p className="text-2xl font-bold text-[var(--label)]">{pendingAssignments}</p>
                 </div>
@@ -155,7 +155,7 @@ export default function EventManagerView() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-[var(--secondary-label)] mb-1">
-                    {language === "ar" ? "منتهية" : "Completed"}
+                    {language === "ar" ? "" : "Completed"}
                   </p>
                   <p className="text-2xl font-bold text-[var(--label)]">{completedAssignments}</p>
                 </div>
@@ -168,10 +168,10 @@ export default function EventManagerView() {
 
           {displayAssignments.length === 0 ? (
             <EmptyState
-              title={language === "ar" ? "لا توجد مهام حالياً" : "No assignments"}
-              description={language === "ar" ? "لا توجد تكليفات جديدة في صندوق الوارد. ستظهر المهام الجديدة هنا عند إنشاء المنظمين تكليفات جديدة." : "No new assignments in inbox. New tasks will appear here when organizers create assignments."}
+              title={language === "ar" ? "   " : "No assignments"}
+              description={language === "ar" ? "      .         ." : "No new assignments in inbox. New tasks will appear here when organizers create assignments."}
               icon={Inbox}
-              actionLabel={language === "ar" ? "إعادة تعيين البيانات التجريبية" : "Reset demo data"}
+              actionLabel={language === "ar" ? "   " : "Reset demo data"}
               onAction={async () => {
                 try {
                   await fetch('/api/demo/reset', { method: 'POST' });
@@ -188,14 +188,14 @@ export default function EventManagerView() {
               const statusLabel =
                 assignment.status === "accepted"
                   ? language === "ar"
-                    ? "نشط"
+                    ? ""
                     : "Active"
                   : assignment.status === "pending"
                   ? language === "ar"
-                    ? "قيد الانتظار"
+                    ? " "
                     : "Pending"
                   : language === "ar"
-                  ? "مرفوض"
+                  ? ""
                   : "Declined";
 
               return (
@@ -238,7 +238,7 @@ export default function EventManagerView() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div>
                         <p className="text-xs text-[var(--secondary-label)] mb-1">
-                          {language === "ar" ? "التاريخ" : "Date"}
+                          {language === "ar" ? "" : "Date"}
                         </p>
                         <p className="text-sm font-medium text-[var(--label)]">
                           {eventForDisplay.date
@@ -248,7 +248,7 @@ export default function EventManagerView() {
                       </div>
                       <div>
                         <p className="text-xs text-[var(--secondary-label)] mb-1">
-                          {language === "ar" ? "المدينة" : "City"}
+                          {language === "ar" ? "" : "City"}
                         </p>
                         <p className="text-sm font-medium text-[var(--label)]">
                           {(eventForDisplay as DemoEvent).city || "-"}
@@ -256,7 +256,7 @@ export default function EventManagerView() {
                       </div>
                       <div>
                         <p className="text-xs text-[var(--secondary-label)] mb-1">
-                          {language === "ar" ? "المكان" : "Location"}
+                          {language === "ar" ? "" : "Location"}
                         </p>
                         <p className="text-sm font-medium text-[var(--label)]">
                           {language === "ar" 
@@ -266,7 +266,7 @@ export default function EventManagerView() {
                       </div>
                       <div>
                         <p className="text-xs text-[var(--secondary-label)] mb-1">
-                          {language === "ar" ? "ساعات التعليم" : "CME Hours"}
+                          {language === "ar" ? " " : "CME Hours"}
                         </p>
                         <p className="text-sm font-medium text-[var(--label)]">
                           {eventForDisplay.cme_hours ?? "-"}
@@ -284,14 +284,14 @@ export default function EventManagerView() {
                               try {
                                 await api.respondAssignment({ assignmentId: assignment.id, decision: "accept" });
                                 await refreshAssignments();
-                                showToast(language === "ar" ? "تم قبول التكليف" : "Assignment accepted", "success");
+                                showToast(language === "ar" ? "  " : "Assignment accepted", "success");
                               } catch (err) {
-                                const message = err instanceof Error ? err.message : (language === "ar" ? "فشل قبول التكليف" : "Unable to accept assignment");
+                                const message = err instanceof Error ? err.message : (language === "ar" ? "  " : "Unable to accept assignment");
                                 showToast(message, "info");
                               }
                             }}
                           >
-                            {language === "ar" ? "قبول" : "Accept"}
+                            {language === "ar" ? "" : "Accept"}
                           </GlassButton>
                           <GlassButton
                             variant="outline"
@@ -300,14 +300,14 @@ export default function EventManagerView() {
                               try {
                                 await api.respondAssignment({ assignmentId: assignment.id, decision: "decline" });
                                 await refreshAssignments();
-                                showToast(language === "ar" ? "تم رفض التكليف" : "Assignment declined", "success");
+                                showToast(language === "ar" ? "  " : "Assignment declined", "success");
                               } catch (err) {
-                                const message = err instanceof Error ? err.message : (language === "ar" ? "فشل رفض التكليف" : "Unable to decline assignment");
+                                const message = err instanceof Error ? err.message : (language === "ar" ? "  " : "Unable to decline assignment");
                                 showToast(message, "info");
                               }
                             }}
                           >
-                            {language === "ar" ? "رفض" : "Decline"}
+                            {language === "ar" ? "" : "Decline"}
                           </GlassButton>
                         </>
                       )}
@@ -327,10 +327,10 @@ export default function EventManagerView() {
         <div className="space-y-4">
           {displayAssignments.filter(({ assignment }) => assignment.status === "accepted").length === 0 ? (
             <EmptyState
-              title={language === "ar" ? "لا توجد تكليفات مقبولة" : "No accepted assignments"}
-              description={language === "ar" ? "لا توجد تكليفات مقبولة لفتح وحدة تسجيل الوصول. اقبل تكليفاً من صندوق الوارد أولاً." : "No accepted assignments to open check-in console. Accept an assignment from Inbox first."}
+              title={language === "ar" ? "   " : "No accepted assignments"}
+              description={language === "ar" ? "       .      ." : "No accepted assignments to open check-in console. Accept an assignment from Inbox first."}
               icon={Activity}
-              actionLabel={language === "ar" ? "إعادة تعيين البيانات التجريبية" : "Reset demo data"}
+              actionLabel={language === "ar" ? "   " : "Reset demo data"}
               onAction={async () => {
                 try {
                   await fetch('/api/demo/reset', { method: 'POST' });
@@ -367,7 +367,7 @@ export default function EventManagerView() {
                       className="gap-2"
                     >
                       <Activity className="w-4 h-4" />
-                      {language === "ar" ? "فتح تسجيل الوصول" : "Open Check-In"}
+                      {language === "ar" ? "  " : "Open Check-In"}
                     </GlassButton>
                   </div>
                 </LiquidGlassCard>

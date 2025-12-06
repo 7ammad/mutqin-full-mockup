@@ -77,7 +77,7 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
         >
             <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-[var(--label)]">
-                    {language === 'ar' ? 'ماسح QR' : 'QR Scanner'}
+                    {language === 'ar' ? ' QR' : 'QR Scanner'}
                 </h3>
                 {onClose && (
                     <button onClick={onClose}
@@ -101,7 +101,7 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
                         <div className="text-center">
                             <Camera className="w-16 h-16 text-[var(--secondary-label)] mx-auto mb-2" />
                             <p className="text-sm text-[var(--secondary-label)]">
-                                {language === 'ar' ? 'اضغط لبدء المسح' : 'Click to start scanning'}
+                                {language === 'ar' ? '  ' : 'Click to start scanning'}
                             </p>
                         </div>
                     )}
@@ -113,7 +113,7 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
                         <div className="text-center">
                             <CheckCircle2 className="w-16 h-16 text-[var(--apple-green)] mx-auto mb-2" />
                             <p className="text-[var(--label)] font-medium">
-                                {language === 'ar' ? 'تم المسح بنجاح' : 'Scanned Successfully'}
+                                {language === 'ar' ? '  ' : 'Scanned Successfully'}
                             </p>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
                         className="flex-1 flex items-center justify-center gap-2"
                     >
                         <Camera className="w-4 h-4" />
-                        {language === 'ar' ? 'بدء المسح' : 'Start Scanning'}
+                        {language === 'ar' ? ' ' : 'Start Scanning'}
                     </GlassButton>
                 ) : (
                     <GlassButton
@@ -138,7 +138,7 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
                         size="default"
                         className="flex-1 items-center justify-center gap-2"
                     >
-                        {language === 'ar' ? 'إيقاف' : 'Stop'}
+                        {language === 'ar' ? '' : 'Stop'}
                     </GlassButton>
                 )}
             </div>
@@ -146,7 +146,7 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
             {scannedResult && (
                 <div className="p-3 rounded-lg bg-[var(--system-fill)]">
                     <p className="text-xs text-[var(--secondary-label)] mb-1">
-                        {language === 'ar' ? 'النتيجة' : 'Result'}
+                        {language === 'ar' ? '' : 'Result'}
                     </p>
                     <p className="text-sm font-mono text-[var(--label)] break-all">
                         {scannedResult}

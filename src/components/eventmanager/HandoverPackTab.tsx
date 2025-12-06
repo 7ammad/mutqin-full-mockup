@@ -40,18 +40,18 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
       const logSnippet = [
         {
           timestamp: new Date().toISOString(),
-          action: language === "ar" ? "تم إنشاء حزمة التسليم" : "Handover pack generated",
-          actor: language === "ar" ? "مدير الفعاليات" : "Event Manager",
+          action: language === "ar" ? "   " : "Handover pack generated",
+          actor: language === "ar" ? " " : "Event Manager",
         },
         {
           timestamp: new Date(Date.now() - 3600000).toISOString(),
-          action: language === "ar" ? "تم إتمام الحضور" : "Attendance finalized",
-          actor: language === "ar" ? "مدير الفعاليات" : "Event Manager",
+          action: language === "ar" ? "  " : "Attendance finalized",
+          actor: language === "ar" ? " " : "Event Manager",
         },
         {
           timestamp: new Date(Date.now() - 7200000).toISOString(),
-          action: language === "ar" ? "تم التحقق من الحضور" : "Attendance verified",
-          actor: language === "ar" ? "مدير الفعاليات" : "Event Manager",
+          action: language === "ar" ? "   " : "Attendance verified",
+          actor: language === "ar" ? " " : "Event Manager",
         },
       ];
 
@@ -68,7 +68,7 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
   const handleGeneratePack = (eventId: string) => {
     setGeneratedPacks((prev) => new Set(prev).add(eventId));
     showToast(
-      language === "ar" ? "تم إنشاء حزمة التسليم" : "Handover pack generated",
+      language === "ar" ? "   " : "Handover pack generated",
       "success"
     );
   };
@@ -76,7 +76,7 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
   const handlePreviewPack = (eventId: string) => {
     // Preview is just showing the data - already visible
     showToast(
-      language === "ar" ? "معاينة حزمة التسليم" : "Previewing handover pack",
+      language === "ar" ? "  " : "Previewing handover pack",
       "info"
     );
   };
@@ -85,14 +85,14 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
     return (
       <div className="space-y-6">
         <EmptyState
-          title={language === "ar" ? "لا توجد تكليفات مقبولة" : "No accepted assignments"}
+          title={language === "ar" ? "   " : "No accepted assignments"}
           description={
             language === "ar"
-              ? "اقبل تكليفاً من صندوق الوارد لإنشاء حزمة التسليم"
+              ? "       "
               : "Accept an assignment from Inbox to generate handover pack"
           }
           icon={FileText}
-          actionLabel={language === "ar" ? "إعادة تعيين البيانات التجريبية" : "Reset demo data"}
+          actionLabel={language === "ar" ? "   " : "Reset demo data"}
           onAction={async () => {
             try {
               await fetch('/api/demo/reset', { method: 'POST' });
@@ -111,7 +111,7 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-[var(--label)] flex items-center gap-2">
           <FileText className="h-6 w-6 text-[var(--apple-blue)]" />
-          {language === "ar" ? "حزمة التسليم" : "Handover Pack"}
+          {language === "ar" ? " " : "Handover Pack"}
         </h2>
       </div>
 
@@ -148,7 +148,7 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                     </div>
                     <div className="flex items-center gap-1">
                       <Users className="h-4 w-4" />
-                      {language === "ar" ? "المدينة" : "City"}: {event.city || "-"}
+                      {language === "ar" ? "" : "City"}: {event.city || "-"}
                     </div>
                   </div>
                 </div>
@@ -159,11 +159,11 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                       className="bg-[var(--apple-green)]/10 text-[var(--apple-green)] border-[var(--apple-green)]/20"
                     >
                       <CheckCircle2 className="h-3 w-3 mr-1" />
-                      {language === "ar" ? "تم الإنشاء" : "Generated"}
+                      {language === "ar" ? " " : "Generated"}
                     </Badge>
                   ) : (
                     <Badge variant="outline">
-                      {language === "ar" ? "مسودة" : "Draft"}
+                      {language === "ar" ? "" : "Draft"}
                     </Badge>
                   )}
                 </div>
@@ -177,14 +177,14 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                     <div className="flex items-center gap-2">
                       <Users className="h-5 w-5 text-[var(--apple-blue)]" />
                       <h4 className="font-semibold text-[var(--label)]">
-                        {language === "ar" ? "سجل الحضور" : "Attendance Ledger"}
+                        {language === "ar" ? " " : "Attendance Ledger"}
                       </h4>
                     </div>
                   </div>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-[var(--secondary-label)]">
-                        {language === "ar" ? "تم التحقق" : "Checked In"}
+                        {language === "ar" ? " " : "Checked In"}
                       </span>
                       <span className="font-medium text-[var(--label)]">
                         {attendanceData.checkedInCount} / {attendanceData.totalCount}
@@ -192,7 +192,7 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-[var(--secondary-label)]">
-                        {language === "ar" ? "الحالة" : "Status"}
+                        {language === "ar" ? "" : "Status"}
                       </span>
                       <Badge
                         variant={attendanceData.finalized ? "default" : "outline"}
@@ -204,10 +204,10 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                       >
                         {attendanceData.finalized
                           ? language === "ar"
-                            ? "منتهي"
+                            ? ""
                             : "Finalized"
                           : language === "ar"
-                          ? "قيد المعالجة"
+                          ? " "
                           : "In Progress"}
                       </Badge>
                     </div>
@@ -220,20 +220,20 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                     <div className="flex items-center gap-2">
                       <AlertCircle className="h-5 w-5 text-[var(--apple-orange)]" />
                       <h4 className="font-semibold text-[var(--label)]">
-                        {language === "ar" ? "ملخص الاستثناءات" : "Exceptions Summary"}
+                        {language === "ar" ? " " : "Exceptions Summary"}
                       </h4>
                     </div>
                   </div>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-[var(--secondary-label)]">
-                        {language === "ar" ? "إجمالي الاستثناءات" : "Total Exceptions"}
+                        {language === "ar" ? " " : "Total Exceptions"}
                       </span>
                       <span className="font-medium text-[var(--label)]">{exceptionsCount}</span>
                     </div>
                     {exceptionsCount === 0 && (
                       <p className="text-xs text-[var(--secondary-label)] italic">
-                        {language === "ar" ? "لا توجد استثناءات" : "No exceptions"}
+                        {language === "ar" ? "  " : "No exceptions"}
                       </p>
                     )}
                   </div>
@@ -245,13 +245,13 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                     <div className="flex items-center gap-2">
                       <Clock className="h-5 w-5 text-[var(--apple-blue)]" />
                       <h4 className="font-semibold text-[var(--label)]">
-                        {language === "ar" ? "سجل الأحداث" : "Event Log"}
+                        {language === "ar" ? " " : "Event Log"}
                       </h4>
                     </div>
                   </div>
                   <div className="space-y-2">
                     <p className="text-xs text-[var(--secondary-label)]">
-                      {language === "ar" ? "آخر 3 أحداث" : "Last 3 events"}
+                      {language === "ar" ? " 3 " : "Last 3 events"}
                     </p>
                     <div className="space-y-1 max-h-24 overflow-y-auto">
                       {logSnippet.slice(0, 3).map((log, idx) => (
@@ -277,7 +277,7 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                       onClick={() => handlePreviewPack(event.id)}
                     >
                       <Eye className="h-4 w-4 mr-2" />
-                      {language === "ar" ? "معاينة" : "Preview"}
+                      {language === "ar" ? "" : "Preview"}
                     </GlassButton>
                     <GlassButton
                       variant="outline"
@@ -285,13 +285,13 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                       onClick={() => {
                         // In real implementation, this would download the pack
                         showToast(
-                          language === "ar" ? "سيتم تنزيل الحزمة قريباً" : "Download coming soon",
+                          language === "ar" ? "   " : "Download coming soon",
                           "info"
                         );
                       }}
                     >
                       <Download className="h-4 w-4 mr-2" />
-                      {language === "ar" ? "تنزيل" : "Download"}
+                      {language === "ar" ? "" : "Download"}
                     </GlassButton>
                   </>
                 ) : (
@@ -301,7 +301,7 @@ export default function HandoverPackTab({ assignments, language }: HandoverPackT
                     onClick={() => handleGeneratePack(event.id)}
                   >
                     <FileText className="h-4 w-4 mr-2" />
-                    {language === "ar" ? "إنشاء حزمة التسليم" : "Generate Pack"}
+                    {language === "ar" ? "  " : "Generate Pack"}
                   </GlassButton>
                 )}
               </div>

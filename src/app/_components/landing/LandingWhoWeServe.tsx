@@ -49,7 +49,7 @@ export function LandingWhoWeServe() {
         {/* Header */}
         <header className={`text-center mb-10 ${isRTL ? 'text-right' : 'text-left'} lg:text-center`}>
           <h2 className="text-3xl lg:text-4xl font-bold text-[var(--label)] mb-3">
-            {title || (isRTL ? 'قيمة واضحة لكل طرف في المنظومة' : 'Clear value for every stakeholder')}
+            {title || (isRTL ? '     ' : 'Clear value for every stakeholder')}
           </h2>
           {description && (
             <p className="text-lg text-[var(--secondary-label)] max-w-2xl mx-auto">

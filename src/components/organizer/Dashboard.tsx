@@ -111,7 +111,7 @@ export default function Dashboard({ onCreateClick, onEventClick }: DashboardProp
                             registrationCount={event.status === 'Published' ? mockRegistrations : undefined}
                             capacity={mockCapacity}
                             actionButton={onEventClick ? {
-                                label: language === 'ar' ? 'عرض التفاصيل' : 'View Details',
+                                label: language === 'ar' ? ' ' : 'View Details',
                                 onClick: () => onEventClick(event.id),
                                 variant: 'default'
                             } : undefined}

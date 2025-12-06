@@ -30,14 +30,14 @@ export default function AssignmentDashboard() {
         total: assignments.length,
     };
 
-    const title = language === 'ar' ? 'لوحة المهام' : 'Assignment Dashboard';
-    const activeText = language === 'ar' ? 'نشط' : 'Active';
-    const pendingText = language === 'ar' ? 'قيد الانتظار' : 'Pending';
-    const completedText = language === 'ar' ? 'مكتمل' : 'Completed';
-    const totalText = language === 'ar' ? 'الإجمالي' : 'Total';
-    const assignedDateText = language === 'ar' ? 'تاريخ التعيين' : 'Assigned Date';
-    const viewDetailsText = language === 'ar' ? 'عرض التفاصيل' : 'View Details';
-    const allStatusText = language === 'ar' ? 'الكل' : 'All';
+    const title = language === 'ar' ? ' ' : 'Assignment Dashboard';
+    const activeText = language === 'ar' ? '' : 'Active';
+    const pendingText = language === 'ar' ? ' ' : 'Pending';
+    const completedText = language === 'ar' ? '' : 'Completed';
+    const totalText = language === 'ar' ? '' : 'Total';
+    const assignedDateText = language === 'ar' ? ' ' : 'Assigned Date';
+    const viewDetailsText = language === 'ar' ? ' ' : 'View Details';
+    const allStatusText = language === 'ar' ? '' : 'All';
 
     return (
         <div className="space-y-6">
@@ -116,7 +116,7 @@ export default function AssignmentDashboard() {
                         <div className="text-center">
                             <Calendar className="w-16 h-16 mx-auto mb-4 text-[var(--secondary-label)]" />
                             <p className="text-[var(--secondary-label)]">
-                                {language === 'ar' ? 'لا توجد مهام' : 'No assignments'}
+                                {language === 'ar' ? '  ' : 'No assignments'}
                             </p>
                         </div>
                     </LiquidGlassCard>

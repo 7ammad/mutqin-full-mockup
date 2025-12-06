@@ -70,7 +70,7 @@ export default function OverviewTab() {
     if (draftEvents.length > 0) {
       actions.push({
         label: "Submit for accreditation",
-        labelAr: "تقديم للاعتماد",
+        labelAr: " ",
         action: "submit",
         count: draftEvents.length,
         route: `/dashboard/organizer?tab=accreditation`,
@@ -81,7 +81,7 @@ export default function OverviewTab() {
     if (approvedNotPublished.length > 0) {
       actions.push({
         label: "Publish approved events",
-        labelAr: "نشر الفعاليات المعتمدة",
+        labelAr: "  ",
         action: "publish",
         count: approvedNotPublished.length,
         route: `/dashboard/organizer?tab=activities&status=approved`,
@@ -131,7 +131,7 @@ export default function OverviewTab() {
       alerts.push({
         severity: "overdue",
         text: `${overdue.length} completed event${overdue.length > 1 ? "s" : ""} missing finalized attendance`,
-        textAr: `${overdue.length} فعالية مكتملة تفتقد الحضور النهائي`,
+        textAr: `${overdue.length}     `,
         count: overdue.length,
         route: `/dashboard/organizer?tab=execution`,
       });
@@ -183,10 +183,10 @@ export default function OverviewTab() {
       {/* Next Actions */}
       {nextActions.length > 0 && (
         <DashboardSection
-          title={language === "ar" ? "الإجراءات التالية" : "Next Actions"}
+          title={language === "ar" ? " " : "Next Actions"}
           description={
             language === "ar"
-              ? "إجراءات تتطلب انتباهك"
+              ? "  "
               : "Actions that require your attention"
           }
         >
@@ -229,7 +229,7 @@ export default function OverviewTab() {
       {/* Compliance Alerts */}
       {complianceAlerts.length > 0 && (
         <DashboardSection
-          title={language === "ar" ? "تنبيهات الامتثال" : "Compliance Alerts"}
+          title={language === "ar" ? " " : "Compliance Alerts"}
         >
           <div className="space-y-3">
             {complianceAlerts.map((alert, index) => (
@@ -260,7 +260,7 @@ export default function OverviewTab() {
                     variant="outline"
                     onClick={() => router.push(alert.route)}
                   >
-                    {language === "ar" ? "عرض" : "View"}
+                    {language === "ar" ? "" : "View"}
                   </GlassButton>
                 </div>
               </LiquidGlassCard>
@@ -271,10 +271,10 @@ export default function OverviewTab() {
 
       {/* Upcoming Events */}
       <DashboardSection
-        title={language === "ar" ? "الفعاليات القادمة" : "Upcoming Events"}
+        title={language === "ar" ? " " : "Upcoming Events"}
         description={
           language === "ar"
-            ? "الفعاليات القادمة التي تحتاج إلى متابعة"
+            ? "     "
             : "Upcoming events that need attention"
         }
         headerActions={
@@ -284,7 +284,7 @@ export default function OverviewTab() {
             onClick={() => router.push("/dashboard/organizer/events/create")}
           >
             <Plus className="h-4 w-4 mr-2" />
-            {language === "ar" ? "إنشاء فعالية" : "Create Event"}
+            {language === "ar" ? " " : "Create Event"}
           </GlassButton>
         }
       >
@@ -299,12 +299,12 @@ export default function OverviewTab() {
             <EmptyState
               title={
                 language === "ar"
-                  ? "لا توجد فعاليات قادمة"
+                  ? "   "
                   : "No upcoming events"
               }
               description={
                 language === "ar"
-                  ? "ابدأ بإنشاء فعالية جديدة"
+                  ? "   "
                   : "Start by creating a new event"
               }
               icon={Calendar}

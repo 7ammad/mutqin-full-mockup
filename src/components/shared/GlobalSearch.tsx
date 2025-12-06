@@ -23,9 +23,9 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
     const [isOpen, setIsOpen] = useState(false);
     const [recentSearches, setRecentSearches] = useState<string[]>([]);
     const [popularSearches] = useState([
-        language === 'ar' ? 'مؤتمر القلب' : 'Cardiology Conference',
-        language === 'ar' ? 'ورشة التمريض' : 'Nursing Workshop',
-        language === 'ar' ? 'طب الأطفال' : getSpecialtyLabel('pediatrics', language),
+        language === 'ar' ? ' ' : 'Cardiology Conference',
+        language === 'ar' ? ' ' : 'Nursing Workshop',
+        language === 'ar' ? ' ' : getSpecialtyLabel('pediatrics', language),
     ]);
     const searchRef = useRef<HTMLDivElement>(null);
 
@@ -111,7 +111,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                         setIsOpen(true);
                     }}
                     onFocus={() => setIsOpen(true)}
-                    placeholder={placeholder || (language === 'ar' ? 'ابحث عن فعاليات...' : 'Search events...')}
+                    placeholder={placeholder || (language === 'ar' ? '  ...' : 'Search events...')}
                     className="pl-10 pr-10 w-full"
                 />
                 {query && (
@@ -120,7 +120,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                             setIsOpen(false);
                         }}
                         className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors"
-                        aria-label={language === 'ar' ? 'مسح البحث' : 'Clear search'}
+                        aria-label={language === 'ar' ? ' ' : 'Clear search'}
                     >
                         <X className="w-4 h-4 text-[var(--secondary-label)]" />
                     </button>
@@ -139,7 +139,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                             {searchResults.length > 0 ? (
                                 <>
                                     <p className="text-xs font-medium text-[var(--secondary-label)] px-2 py-1">
-                                        {language === 'ar' ? 'النتائج' : 'Results'} ({searchResults.length})
+                                        {language === 'ar' ? '' : 'Results'} ({searchResults.length})
                                     </p>
                                     {searchResults.map((event) => (
                                         <button key={event.id}
@@ -160,7 +160,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                                 </>
                             ) : (
                                 <div className="p-4 text-center text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'لا توجد نتائج' : 'No results found'}
+                                    {language === 'ar' ? '  ' : 'No results found'}
                                 </div>
                             )}
                         </div>
@@ -172,7 +172,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                                     <div className="flex items-center gap-2 mb-2">
                                         <Clock className="w-4 h-4 text-[var(--secondary-label)]" />
                                         <p className="text-xs font-medium text-[var(--secondary-label)]">
-                                            {language === 'ar' ? 'البحث الأخير' : 'Recent Searches'}
+                                            {language === 'ar' ? ' ' : 'Recent Searches'}
                                         </p>
                                     </div>
                                     <div className="space-y-1">
@@ -193,7 +193,7 @@ export function GlobalSearch({ onSelect, placeholder, className }: GlobalSearchP
                                 <div className="flex items-center gap-2 mb-2">
                                     <TrendingUp className="w-4 h-4 text-[var(--secondary-label)]" />
                                     <p className="text-xs font-medium text-[var(--secondary-label)]">
-                                        {language === 'ar' ? 'البحث الشائع' : 'Popular Searches'}
+                                        {language === 'ar' ? ' ' : 'Popular Searches'}
                                     </p>
                                 </div>
                                 <div className="flex flex-wrap gap-2">

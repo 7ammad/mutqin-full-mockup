@@ -51,7 +51,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
     });
   }, [allEvents, dateFrom, dateTo]);
 
-  const title = language === 'ar' ? 'سجل القرارات' : 'Decision History';
+  const title = language === 'ar' ? ' ' : 'Decision History';
 
   const handleOpenDetail = (eventId: string) => {
     router.push(`/dashboard/regulator?tab=review&itemId=${eventId}`);
@@ -73,7 +73,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
         e.id,
         (language === 'ar' ? e.titleAr : e.titleEn) ?? e.title ?? '',
         (language === 'ar' ? e.organizerAr : e.organizerEn) ?? '',
-        e.status === 'approved' ? (language === 'ar' ? 'موافق عليه' : 'Approved') : (language === 'ar' ? 'مرفوض' : 'Rejected'),
+        e.status === 'approved' ? (language === 'ar' ? ' ' : 'Approved') : (language === 'ar' ? '' : 'Rejected'),
         e.decisionAt ? new Date(e.decisionAt).toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US') : '',
         e.rejectionCategory || '',
         e.rejectionReason || ''
@@ -92,9 +92,9 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
       a.click();
       URL.revokeObjectURL(url);
 
-      showToast(language === 'ar' ? 'تم تصدير CSV بنجاح' : 'CSV exported successfully', 'success');
+      showToast(language === 'ar' ? '  CSV ' : 'CSV exported successfully', 'success');
     } catch (error) {
-      showToast(language === 'ar' ? 'فشل التصدير' : 'Export failed', 'info');
+      showToast(language === 'ar' ? ' ' : 'Export failed', 'info');
     }
   };
 
@@ -103,10 +103,10 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
       <div className="space-y-6">
         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-12">
           <EmptyState
-            title={language === 'ar' ? 'لا توجد قرارات بعد' : 'No decisions yet'}
-            description={language === 'ar' ? 'راجع الطلبات من المعروض للمراجعة لإنشاء سجل القرارات' : 'Review items from Queue to generate history'}
+            title={language === 'ar' ? '   ' : 'No decisions yet'}
+            description={language === 'ar' ? '       ' : 'Review items from Queue to generate history'}
             icon={History}
-            actionLabel={language === 'ar' ? 'إعادة تعيين البيانات التجريبية' : 'Reset demo data'}
+            actionLabel={language === 'ar' ? '   ' : 'Reset demo data'}
             onAction={async () => {
               try {
                 await fetch('/api/demo/reset', { method: 'POST' });
@@ -137,7 +137,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
               className="gap-2"
             >
               <Filter className="h-4 w-4" />
-              {language === 'ar' ? 'الفلاتر' : 'Filters'}
+              {language === 'ar' ? '' : 'Filters'}
             </GlassButton>
             <GlassButton
               variant="default"
@@ -146,7 +146,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
               className="gap-2 flex items-center justify-center"
             >
               <Download className="h-4 w-4" />
-              {language === 'ar' ? 'تصدير' : 'Export'}
+              {language === 'ar' ? '' : 'Export'}
             </GlassButton>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                  {language === 'ar' ? 'من تاريخ' : 'From Date'}
+                  {language === 'ar' ? ' ' : 'From Date'}
                 </label>
                 <Input
                   type="date"
@@ -167,7 +167,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
               </div>
               <div>
                 <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                  {language === 'ar' ? 'إلى تاريخ' : 'To Date'}
+                  {language === 'ar' ? ' ' : 'To Date'}
                 </label>
                 <Input
                   type="date"
@@ -185,7 +185,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
                   setDateTo('');
                 }}
               >
-                {language === 'ar' ? 'مسح الفلاتر' : 'Clear Filters'}
+                {language === 'ar' ? ' ' : 'Clear Filters'}
               </GlassButton>
             )}
           </div>
@@ -223,8 +223,8 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
                             className="ml-2 flex-shrink-0"
                           >
                             {isApproved
-                              ? (language === 'ar' ? 'موافق عليه' : 'Approved')
-                              : (language === 'ar' ? 'مرفوض' : 'Rejected')
+                              ? (language === 'ar' ? ' ' : 'Approved')
+                              : (language === 'ar' ? '' : 'Rejected')
                             }
                           </Badge>
                         </div>
@@ -238,7 +238,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
                             <div className="flex items-center gap-1">
                               <Calendar className="h-3.5 w-3.5" />
                               <span>
-                                {language === 'ar' ? 'القرار:' : 'Decision:'} {new Date(event.decisionAt).toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')}
+                                {language === 'ar' ? ':' : 'Decision:'} {new Date(event.decisionAt).toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')}
                               </span>
                             </div>
                           )}
@@ -249,7 +249,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
                             <AlertCircle className="h-4 w-4 text-[var(--apple-red)] mt-0.5 flex-shrink-0" />
                             <div>
                               <span className="font-medium text-[var(--label)]">
-                                {language === 'ar' ? 'فئة الرفض:' : 'Rejection Category:'}
+                                {language === 'ar' ? ' :' : 'Rejection Category:'}
                               </span>
                               <span className="text-[var(--secondary-label)] ml-1">{event.rejectionCategory}</span>
                             </div>
@@ -258,7 +258,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
 
                         {isRejected && event.rejectionReason && (
                           <div className="mt-1 text-sm text-[var(--secondary-label)]">
-                            <span className="font-medium">{language === 'ar' ? 'السبب:' : 'Reason:'}</span> {event.rejectionReason}
+                            <span className="font-medium">{language === 'ar' ? ':' : 'Reason:'}</span> {event.rejectionReason}
                           </div>
                         )}
                       </div>
@@ -272,7 +272,7 @@ export default function RegulatorDecisionsTab({ allEvents }: Props) {
                       className="gap-2"
                     >
                       <Eye className="h-4 w-4" />
-                      {language === 'ar' ? 'عرض التفاصيل' : 'View Detail'}
+                      {language === 'ar' ? ' ' : 'View Detail'}
                     </GlassButton>
                   </div>
                 </div>

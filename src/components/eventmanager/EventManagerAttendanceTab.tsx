@@ -63,14 +63,14 @@ export default function EventManagerAttendanceTab({
     return (
       <div className="space-y-6">
         <EmptyState
-          title={language === "ar" ? "لا توجد تكليفات مقبولة" : "No accepted assignments"}
+          title={language === "ar" ? "   " : "No accepted assignments"}
           description={
             language === "ar"
-              ? "اقبل تكليفاً من صندوق الوارد لعرض بيانات الحضور"
+              ? "       "
               : "Accept an assignment from Inbox to view attendance data"
           }
           icon={ClipboardList}
-          actionLabel={language === "ar" ? "إعادة تعيين البيانات التجريبية" : "Reset demo data"}
+          actionLabel={language === "ar" ? "   " : "Reset demo data"}
           onAction={async () => {
             try {
               await fetch('/api/demo/reset', { method: 'POST' });
@@ -92,11 +92,11 @@ export default function EventManagerAttendanceTab({
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "إجمالي التحقق" : "Total Checked In"}
+                {language === "ar" ? " " : "Total Checked In"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">{totalCheckedIn}</p>
               <p className="text-xs text-[var(--secondary-label)] mt-1">
-                {language === "ar" ? `من ${totalTickets}` : `of ${totalTickets}`}
+                {language === "ar" ? ` ${totalTickets}` : `of ${totalTickets}`}
               </p>
             </div>
             <div className="h-10 w-10 rounded-full bg-[var(--apple-blue)]/10 flex items-center justify-center">
@@ -108,11 +108,11 @@ export default function EventManagerAttendanceTab({
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "منتهي" : "Finalized"}
+                {language === "ar" ? "" : "Finalized"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">{finalizedCount}</p>
               <p className="text-xs text-[var(--secondary-label)] mt-1">
-                {language === "ar" ? `من ${acceptedAssignments.length}` : `of ${acceptedAssignments.length}`}
+                {language === "ar" ? ` ${acceptedAssignments.length}` : `of ${acceptedAssignments.length}`}
               </p>
             </div>
             <div className="h-10 w-10 rounded-full bg-[var(--apple-green)]/10 flex items-center justify-center">
@@ -124,7 +124,7 @@ export default function EventManagerAttendanceTab({
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                {language === "ar" ? "الاستثناءات" : "Exceptions"}
+                {language === "ar" ? "" : "Exceptions"}
               </p>
               <p className="text-2xl font-bold text-[var(--label)]">{exceptions.length}</p>
             </div>
@@ -140,16 +140,16 @@ export default function EventManagerAttendanceTab({
         <div className="flex items-center gap-2 mb-6">
           <ClipboardList className="h-5 w-5 text-[var(--apple-blue)]" />
           <h2 className="text-xl font-semibold text-[var(--label)]">
-            {language === "ar" ? "جدول الحضور" : "Attendance Table"}
+            {language === "ar" ? " " : "Attendance Table"}
           </h2>
         </div>
 
         {attendanceDataByEvent.length === 0 ? (
           <EmptyState
-            title={language === "ar" ? "لا توجد بيانات حضور" : "No attendance data"}
+            title={language === "ar" ? "   " : "No attendance data"}
             description={
               language === "ar"
-                ? "لا توجد تذاكر مسجلة لهذه الفعاليات بعد"
+                ? "      "
                 : "No tickets registered for these events yet"
             }
             icon={Users}
@@ -160,19 +160,19 @@ export default function EventManagerAttendanceTab({
               <thead>
                 <tr className="border-b border-[var(--system-fill)]">
                   <th className="text-left py-3 px-4 font-semibold text-[var(--label)]">
-                    {language === "ar" ? "الفعالية" : "Event"}
+                    {language === "ar" ? "" : "Event"}
                   </th>
                   <th className="text-left py-3 px-4 font-semibold text-[var(--label)]">
-                    {language === "ar" ? "التاريخ" : "Date"}
+                    {language === "ar" ? "" : "Date"}
                   </th>
                   <th className="text-center py-3 px-4 font-semibold text-[var(--label)]">
-                    {language === "ar" ? "تم التحقق" : "Checked In"}
+                    {language === "ar" ? " " : "Checked In"}
                   </th>
                   <th className="text-center py-3 px-4 font-semibold text-[var(--label)]">
-                    {language === "ar" ? "الإجمالي" : "Total"}
+                    {language === "ar" ? "" : "Total"}
                   </th>
                   <th className="text-center py-3 px-4 font-semibold text-[var(--label)]">
-                    {language === "ar" ? "الحالة" : "Status"}
+                    {language === "ar" ? "" : "Status"}
                   </th>
                 </tr>
               </thead>
@@ -220,10 +220,10 @@ export default function EventManagerAttendanceTab({
                         >
                           {finalized
                             ? language === "ar"
-                              ? "منتهي"
+                              ? ""
                               : "Finalized"
                             : language === "ar"
-                            ? "قيد المعالجة"
+                            ? " "
                             : "In Progress"}
                         </Badge>
                       </div>
@@ -241,7 +241,7 @@ export default function EventManagerAttendanceTab({
         <div className="flex items-center gap-2 mb-6">
           <AlertCircle className="h-5 w-5 text-[var(--apple-orange)]" />
           <h2 className="text-xl font-semibold text-[var(--label)]">
-            {language === "ar" ? "الاستثناءات" : "Exceptions"}
+            {language === "ar" ? "" : "Exceptions"}
           </h2>
         </div>
 
@@ -250,12 +250,12 @@ export default function EventManagerAttendanceTab({
             <AlertCircle className="h-12 w-12 mx-auto mb-4 text-[var(--secondary-label)] opacity-50" />
             <p className="text-sm text-[var(--secondary-label)]">
               {language === "ar"
-                ? "لا توجد استثناءات حالياً. الاستثناءات تظهر هنا عند الحاجة إلى تجاوزات في الحضور."
+                ? "   .         ."
                 : "No exceptions currently. Exceptions appear here when attendance overrides are needed."}
             </p>
             <p className="text-xs text-[var(--secondary-label)] mt-2 opacity-75">
               {language === "ar"
-                ? "(ميزة إنشاء الاستثناءات قيد التطوير)"
+                ? "(    )"
                 : "(Exception creation feature coming soon)"}
             </p>
           </div>
@@ -269,10 +269,10 @@ export default function EventManagerAttendanceTab({
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <p className="font-medium text-[var(--label)] mb-1">
-                      {language === "ar" ? "استثناء الحضور" : "Attendance Override"}
+                      {language === "ar" ? " " : "Attendance Override"}
                     </p>
                     <p className="text-sm text-[var(--secondary-label)]">
-                      {language === "ar" ? "السبب" : "Reason"}: {exception.reason}
+                      {language === "ar" ? "" : "Reason"}: {exception.reason}
                     </p>
                   </div>
                   <Badge variant="outline" className="ml-4">

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تسجيل ممارس صحي | مُتْقِن',
-  description: 'سجل كممارس صحي وتتبع ساعات التعليم المستمر',
+  title: '   | ',
+  description: '      ',
 };
 
 export default function HCPRegisterLayout({

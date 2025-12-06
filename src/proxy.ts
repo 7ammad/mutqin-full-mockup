@@ -61,7 +61,15 @@ export function proxy(request: NextRequest) {
     pathname.startsWith('/robots.txt') ||
     pathname.startsWith('/sitemap')
   ) {
-    return NextResponse.next();
+    // Disable caching for auth pages
+    const response = NextResponse.next();
+    if (pathname.startsWith('/auth/')) {
+      response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      response.headers.set('Pragma', 'no-cache');
+      response.headers.set('Expires', '0');
+      response.headers.set('Surrogate-Control', 'no-store');
+    }
+    return response;
   }
   
   // Check if route is protected
@@ -77,17 +85,29 @@ export function proxy(request: NextRequest) {
       // Redirect to login with return URL
       const loginUrl = new URL('/auth/login', request.url);
       loginUrl.searchParams.set('redirect', pathname);
-      // No session, redirecting to login
       return NextResponse.redirect(loginUrl);
     }
 
     try {
-      const session = JSON.parse(sessionCookie.value);
+      // Decode cookie value - AuthContext uses encodeURIComponent
+      let sessionData = sessionCookie.value;
+      try {
+        // Try URL decoding first (current format from AuthContext)
+        sessionData = decodeURIComponent(sessionData);
+      } catch {
+        // Fallback: try base64 decoding (legacy format)
+        try {
+          sessionData = decodeURIComponent(escape(atob(sessionData)));
+        } catch {
+          // Use as-is if all decoding fails
+        }
+      }
+      
+      const session = JSON.parse(sessionData);
       
       // Check if session expired
       if (session.expiresAt < Date.now()) {
         const loginUrl = new URL('/auth/login', request.url);
-        // Session expired, redirecting to login
         return NextResponse.redirect(loginUrl);
       }
 
@@ -95,15 +115,13 @@ export function proxy(request: NextRequest) {
       if (session.role !== requiredRole) {
         // Redirect to their dashboard
         const slug = session.role.toLowerCase().replace('_', '-');
-        // Role mismatch, redirecting to user's dashboard
         return NextResponse.redirect(
           new URL(`/dashboard/${slug}`, request.url)
         );
       }
     } catch (e) {
-      // Invalid session
+      // Invalid session - redirect to login
       const loginUrl = new URL('/auth/login', request.url);
-      // Invalid session, redirecting to login
       return NextResponse.redirect(loginUrl);
     }
   }

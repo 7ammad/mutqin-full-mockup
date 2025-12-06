@@ -189,7 +189,7 @@ export default function HCPRegistrationPage() {
                 id="scfhsNumber"
                 type="text"
                 {...register('scfhsNumber')}
-                placeholder={language === 'ar' ? 'اختياري' : 'Optional'}
+                placeholder={language === 'ar' ? '' : 'Optional'}
               />
             </div>
 
@@ -202,7 +202,7 @@ export default function HCPRegistrationPage() {
                 id="organization"
                 type="text"
                 {...register('organization')}
-                placeholder={language === 'ar' ? 'اختياري' : 'Optional'}
+                placeholder={language === 'ar' ? '' : 'Optional'}
               />
             </div>
 

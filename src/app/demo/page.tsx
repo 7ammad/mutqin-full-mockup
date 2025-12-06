@@ -32,11 +32,11 @@ export default function DemoPage() {
 
     // Sample chart data
     const chartData = [
-        { name: language === 'ar' ? 'يناير' : 'Jan', value: 400 },
-        { name: language === 'ar' ? 'فبراير' : 'Feb', value: 300 },
-        { name: language === 'ar' ? 'مارس' : 'Mar', value: 200 },
-        { name: language === 'ar' ? 'أبريل' : 'Apr', value: 278 },
-        { name: language === 'ar' ? 'مايو' : 'May', value: 189 },
+        { name: language === 'ar' ? '' : 'Jan', value: 400 },
+        { name: language === 'ar' ? '' : 'Feb', value: 300 },
+        { name: language === 'ar' ? '' : 'Mar', value: 200 },
+        { name: language === 'ar' ? '' : 'Apr', value: 278 },
+        { name: language === 'ar' ? '' : 'May', value: 189 },
     ];
 
     const handleQRScan = (result: string) => {
@@ -48,11 +48,11 @@ export default function DemoPage() {
         <div className="container mx-auto p-6 space-y-8">
             <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'مكونات المكتبة' : 'Library Components Demo'}
+                    {language === 'ar' ? ' ' : 'Library Components Demo'}
                 </h1>
                 <p className="text-[var(--secondary-label)]">
                     {language === 'ar' 
-                        ? 'عرض جميع المكونات المستوردة من المكتبات' 
+                        ? '     ' 
                         : 'Showcase of all imported library components'}
                 </p>
             </div>
@@ -62,7 +62,7 @@ export default function DemoPage() {
                 <div className="flex items-center gap-2">
                     <CalendarIcon className="w-5 h-5 text-[var(--apple-blue)]" />
                     <h2 className="text-xl font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'التقويم' : 'Calendar'}
+                        {language === 'ar' ? '' : 'Calendar'}
                     </h2>
                 </div>
                 <Calendar
@@ -71,7 +71,7 @@ export default function DemoPage() {
                 />
                 {selectedDate && (
                     <p className="text-sm text-[var(--secondary-label)]">
-                        {language === 'ar' ? 'التاريخ المحدد:' : 'Selected date:'} {selectedDate.toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
+                        {language === 'ar' ? ' :' : 'Selected date:'} {selectedDate.toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
                     </p>
                 )}
             </section>
@@ -81,13 +81,13 @@ export default function DemoPage() {
                 <div className="flex items-center gap-2">
                     <QrCode className="w-5 h-5 text-[var(--apple-green)]" />
                     <h2 className="text-xl font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'رمز QR' : 'QR Code'}
+                        {language === 'ar' ? ' QR' : 'QR Code'}
                     </h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-[var(--label)]">
-                            {language === 'ar' ? 'إنشاء QR Code' : 'QR Code Generation'}
+                            {language === 'ar' ? ' QR Code' : 'QR Code Generation'}
                         </h3>
                         <QRCode
                             text="https://event-med.ksa"
@@ -96,7 +96,7 @@ export default function DemoPage() {
                     </div>
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-[var(--label)]">
-                            {language === 'ar' ? 'ماسح QR Code' : 'QR Code Scanner'}
+                            {language === 'ar' ? ' QR Code' : 'QR Code Scanner'}
                         </h3>
                         {!showQRScanner ? (
                             <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
@@ -107,12 +107,12 @@ export default function DemoPage() {
                                         variant="default"
                                         size="default"
                                     >
-                                        {language === 'ar' ? 'فتح الماسح' : 'Open Scanner'}
+                                        {language === 'ar' ? ' ' : 'Open Scanner'}
                                     </GlassButton>
                                     {qrScanResult && (
                                         <div className="mt-4 p-3 rounded-lg bg-[var(--system-fill)]">
                                             <p className="text-xs text-[var(--secondary-label)] mb-1">
-                                                {language === 'ar' ? 'آخر نتيجة مسح' : 'Last Scan Result'}
+                                                {language === 'ar' ? '  ' : 'Last Scan Result'}
                                             </p>
                                             <p className="text-sm font-mono text-[var(--label)] break-all">
                                                 {qrScanResult}
@@ -136,19 +136,19 @@ export default function DemoPage() {
                 <div className="flex items-center gap-2">
                     <FileText className="w-5 h-5 text-[var(--apple-purple)]" />
                     <h2 className="text-xl font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'عارض PDF' : 'PDF Viewer'}
+                        {language === 'ar' ? ' PDF' : 'PDF Viewer'}
                     </h2>
                 </div>
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                     <div className="text-center space-y-4">
                         <p className="text-[var(--secondary-label)]">
                             {language === 'ar' 
-                                ? 'سيتم استخدام عارض PDF لعرض الشهادات. يتطلب ملف PDF للاختبار.' 
+                                ? '   PDF  .   PDF .' 
                                 : 'PDF Viewer will be used for certificates. Requires a PDF file to test.'}
                         </p>
                         <p className="text-xs text-[var(--tertiary-label)]">
                             {language === 'ar' 
-                                ? 'مثال: <PDFViewer file="/path/to/certificate.pdf" />' 
+                                ? ': <PDFViewer file="/path/to/certificate.pdf" />' 
                                 : 'Example: <PDFViewer file="/path/to/certificate.pdf" />'}
                         </p>
                     </div>
@@ -160,13 +160,13 @@ export default function DemoPage() {
                 <div className="flex items-center gap-2">
                     <BarChart3 className="w-5 h-5 text-[var(--apple-orange)]" />
                     <h2 className="text-xl font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'الرسوم البيانية' : 'Charts'}
+                        {language === 'ar' ? ' ' : 'Charts'}
                     </h2>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-[var(--label)]">
-                            {language === 'ar' ? 'رسم خطي' : 'Line Chart'}
+                            {language === 'ar' ? ' ' : 'Line Chart'}
                         </h3>
                         <Chart
                             type="line"
@@ -177,7 +177,7 @@ export default function DemoPage() {
                     </div>
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-[var(--label)]">
-                            {language === 'ar' ? 'رسم عمودي' : 'Bar Chart'}
+                            {language === 'ar' ? ' ' : 'Bar Chart'}
                         </h3>
                         <Chart
                             type="bar"
@@ -188,7 +188,7 @@ export default function DemoPage() {
                     </div>
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-[var(--label)]">
-                            {language === 'ar' ? 'رسم دائري' : 'Pie Chart'}
+                            {language === 'ar' ? ' ' : 'Pie Chart'}
                         </h3>
                         <Chart
                             type="pie"
@@ -199,7 +199,7 @@ export default function DemoPage() {
                     </div>
                     <div className="space-y-2">
                         <h3 className="text-sm font-medium text-[var(--label)]">
-                            {language === 'ar' ? 'رسم مساحي' : 'Area Chart'}
+                            {language === 'ar' ? ' ' : 'Area Chart'}
                         </h3>
                         <Chart
                             type="area"
@@ -215,15 +215,15 @@ export default function DemoPage() {
             <section>
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'حالة المكونات' : 'Components Status'}
+                        {language === 'ar' ? ' ' : 'Components Status'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {[
-                            { name: 'Calendar', nameAr: 'التقويم', status: '✅ Ready' },
-                            { name: 'QR Code', nameAr: 'رمز QR', status: '✅ Ready' },
-                            { name: 'QR Scanner', nameAr: 'ماسح QR', status: '✅ Ready' },
-                            { name: 'PDF Viewer', nameAr: 'عارض PDF', status: '✅ Ready' },
-                            { name: 'Charts', nameAr: 'الرسوم البيانية', status: '✅ Ready' },
+                            { name: 'Calendar', nameAr: '', status: '✅ Ready' },
+                            { name: 'QR Code', nameAr: ' QR', status: '✅ Ready' },
+                            { name: 'QR Scanner', nameAr: ' QR', status: '✅ Ready' },
+                            { name: 'PDF Viewer', nameAr: ' PDF', status: '✅ Ready' },
+                            { name: 'Charts', nameAr: ' ', status: '✅ Ready' },
                         ].map((comp) => (
                             <div key={comp.name} className="flex items-center justify-between p-3 rounded-lg bg-[var(--system-fill)]">
                                 <span className="text-sm text-[var(--label)]">

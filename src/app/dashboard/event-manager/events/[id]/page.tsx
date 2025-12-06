@@ -90,10 +90,10 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
     const eventLocation = language === 'ar' ? (event.locationAr || event.locationEn) : (event.locationEn || event.locationAr);
     const assignmentStatus = assignment?.status || 'pending';
     const assignmentStatusLabel = assignmentStatus === 'accepted' 
-        ? (language === 'ar' ? 'مقبول' : 'Accepted')
+        ? (language === 'ar' ? '' : 'Accepted')
         : assignmentStatus === 'declined'
-        ? (language === 'ar' ? 'مرفوض' : 'Declined')
-        : (language === 'ar' ? 'قيد الانتظار' : 'Pending');
+        ? (language === 'ar' ? '' : 'Declined')
+        : (language === 'ar' ? ' ' : 'Pending');
 
     return (
         <div className="max-w-6xl mx-auto space-y-6">
@@ -106,10 +106,10 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                         className="gap-2 mb-4"
                     >
                         <ArrowLeft className="w-4 h-4" />
-                        {language === 'ar' ? 'رجوع' : 'Back to Assignments'}
+                        {language === 'ar' ? '' : 'Back to Assignments'}
                     </GlassButton>
                     <h1 className="text-xl font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'نظرة عامة على العمليات' : 'Operations Overview'}
+                        {language === 'ar' ? '   ' : 'Operations Overview'}
                     </h1>
                     <h2 className="text-2xl font-bold text-[var(--label)]">
                         {eventTitle}
@@ -123,7 +123,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                             <Calendar className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'التاريخ' : 'Date'}
+                                    {language === 'ar' ? '' : 'Date'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{eventDate}</p>
                             </div>
@@ -132,7 +132,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                             <MapPin className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'الموقع' : 'Location'}
+                                    {language === 'ar' ? '' : 'Location'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{eventLocation || '-'}</p>
                             </div>
@@ -141,7 +141,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                             <Clock className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'ساعات التعليم' : 'CME Hours'}
+                                    {language === 'ar' ? ' ' : 'CME Hours'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{event.cme_hours || '-'}</p>
                             </div>
@@ -152,7 +152,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                 {/* Assignment Status */}
                 <LiquidGlassCard blurIntensity="lg" className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'حالة التكليف' : 'Assignment Status'}
+                        {language === 'ar' ? ' ' : 'Assignment Status'}
                     </h3>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -182,17 +182,17 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                                                 setAssignment(assignmentRes.assignment);
                                             }
                                             showToast(
-                                                language === 'ar' ? 'تم قبول التكليف' : 'Assignment accepted',
+                                                language === 'ar' ? '  ' : 'Assignment accepted',
                                                 'success'
                                             );
                                         } catch (err) {
-                                            const message = err instanceof Error ? err.message : (language === 'ar' ? 'فشل قبول التكليف' : 'Failed to accept assignment');
+                                            const message = err instanceof Error ? err.message : (language === 'ar' ? '  ' : 'Failed to accept assignment');
                                             showToast(message, 'info');
                                         }
                                     }}
                                     className="gap-2"
                                 >
-                                    {language === 'ar' ? 'قبول' : 'Accept'}
+                                    {language === 'ar' ? '' : 'Accept'}
                                 </GlassButton>
                                 <GlassButton
                                     variant="outline"
@@ -208,17 +208,17 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                                                 setAssignment(assignmentRes.assignment);
                                             }
                                             showToast(
-                                                language === 'ar' ? 'تم رفض التكليف' : 'Assignment declined',
+                                                language === 'ar' ? '  ' : 'Assignment declined',
                                                 'success'
                                             );
                                         } catch (err) {
-                                            const message = err instanceof Error ? err.message : (language === 'ar' ? 'فشل رفض التكليف' : 'Failed to decline assignment');
+                                            const message = err instanceof Error ? err.message : (language === 'ar' ? '  ' : 'Failed to decline assignment');
                                             showToast(message, 'info');
                                         }
                                     }}
                                     className="gap-2"
                                 >
-                                    {language === 'ar' ? 'رفض' : 'Decline'}
+                                    {language === 'ar' ? '' : 'Decline'}
                                 </GlassButton>
                             </div>
                         )}
@@ -228,7 +228,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                 {/* Quick Actions */}
                 <LiquidGlassCard blurIntensity="lg" className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'الإجراءات السريعة' : 'Quick Actions'}
+                        {language === 'ar' ? ' ' : 'Quick Actions'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <GlassButton
@@ -237,7 +237,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                             className="gap-2 flex items-center justify-center"
                         >
                             <Activity className="w-4 h-4" />
-                            {language === 'ar' ? 'فتح تسجيل الوصول' : 'Open Check-In'}
+                            {language === 'ar' ? '  ' : 'Open Check-In'}
                         </GlassButton>
                         <GlassButton
                             variant="outline"
@@ -245,7 +245,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                             className="gap-2 flex items-center justify-center"
                         >
                             <Users className="w-4 h-4" />
-                            {language === 'ar' ? 'سجل الحضور' : 'Attendance Ledger'}
+                            {language === 'ar' ? ' ' : 'Attendance Ledger'}
                         </GlassButton>
                         <GlassButton
                             variant="outline"
@@ -253,7 +253,7 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                             className="gap-2 flex items-center justify-center"
                         >
                             <FileText className="w-4 h-4" />
-                            {language === 'ar' ? 'حزمة التسليم' : 'Handover Pack'}
+                            {language === 'ar' ? ' ' : 'Handover Pack'}
                         </GlassButton>
                     </div>
                 </LiquidGlassCard>
@@ -265,11 +265,11 @@ export default function EventManagerOpsOverviewPage({ params }: PageProps) {
                             <CheckCircle2 className="w-5 h-5 text-[var(--apple-orange)] flex-shrink-0 mt-0.5" />
                             <div>
                                 <p className="text-sm font-medium text-[var(--label)] mb-1">
-                                    {language === 'ar' ? 'ملاحظة: بيانات تجريبية' : 'Note: Demo Data'}
+                                    {language === 'ar' ? ':  ' : 'Note: Demo Data'}
                                 </p>
                                 <p className="text-xs text-[var(--secondary-label)]">
                                     {language === 'ar' 
-                                        ? 'هذه الصفحة تستخدم بيانات تجريبية. سيتم ربط البيانات الفعلية قريباً.'
+                                        ? '    .     .'
                                         : 'This page uses demo data. Real data integration coming soon.'}
                                 </p>
                             </div>

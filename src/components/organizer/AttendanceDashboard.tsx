@@ -37,13 +37,13 @@ export default function AttendanceDashboard() {
         total: d.total,
     }));
 
-    const title = language === 'ar' ? 'لوحة الحضور' : 'Attendance Dashboard';
-    const selectEventText = language === 'ar' ? 'اختر الفعالية' : 'Select Event';
-    const totalAttendeesText = language === 'ar' ? 'إجمالي الحضور' : 'Total Attendees';
-    const checkedInText = language === 'ar' ? 'تم التسجيل' : 'Checked In';
-    const attendanceRateText = language === 'ar' ? 'معدل الحضور' : 'Attendance Rate';
-    const averageCheckInText = language === 'ar' ? 'متوسط وقت التسجيل' : 'Average Check-In Time';
-    const attendanceTimelineText = language === 'ar' ? 'خط زمني للحضور' : 'Attendance Timeline';
+    const title = language === 'ar' ? ' ' : 'Attendance Dashboard';
+    const selectEventText = language === 'ar' ? ' ' : 'Select Event';
+    const totalAttendeesText = language === 'ar' ? ' ' : 'Total Attendees';
+    const checkedInText = language === 'ar' ? ' ' : 'Checked In';
+    const attendanceRateText = language === 'ar' ? ' ' : 'Attendance Rate';
+    const averageCheckInText = language === 'ar' ? '  ' : 'Average Check-In Time';
+    const attendanceTimelineText = language === 'ar' ? '  ' : 'Attendance Timeline';
 
 
     return (

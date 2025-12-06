@@ -34,27 +34,27 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
             const res = await api.createRegistration({ eventId: event.id, hcpId: 'hcp-1' });
             setTicketInfo({ ticketId: res.ticketId, status: res.status });
             showToast(
-                language === 'ar' ? 'تم التسجيل بنجاح' : 'Registration successful',
+                language === 'ar' ? '  ' : 'Registration successful',
                 "success"
             );
             onComplete();
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            const message = err instanceof Error ? err.message : (language === 'ar' ? ' ' : 'An error occurred');
             showToast(message, "info");
         }
     };
 
     const steps = [
         {
-            title: language === 'ar' ? 'معلومات الاتصال' : 'Contact Information',
+            title: language === 'ar' ? ' ' : 'Contact Information',
             fields: ['name', 'email', 'phone'],
         },
         {
-            title: language === 'ar' ? 'معلومات مهنية' : 'Professional Information',
+            title: language === 'ar' ? ' ' : 'Professional Information',
             fields: ['specialty', 'licenseNumber'],
         },
         {
-            title: language === 'ar' ? 'تأكيد التسجيل' : 'Confirmation',
+            title: language === 'ar' ? ' ' : 'Confirmation',
             fields: [],
         },
     ];
@@ -69,7 +69,7 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                 <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm text-[var(--secondary-label)]">
                         <span>
-                            {language === 'ar' ? 'الخطوة' : 'Step'} {step} {language === 'ar' ? 'من' : 'of'} {steps.length}
+                            {language === 'ar' ? '' : 'Step'} {step} {language === 'ar' ? '' : 'of'} {steps.length}
                         </span>
                         <span>{Math.round((step / steps.length) * 100)}%</span>
                     </div>
@@ -91,17 +91,17 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                             <div className="space-y-4">
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-1 block">
-                                        {language === 'ar' ? 'الاسم الكامل' : 'Full Name'}
+                                        {language === 'ar' ? ' ' : 'Full Name'}
                                     </label>
                                     <Input
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        placeholder={language === 'ar' ? 'أدخل الاسم الكامل' : 'Enter your full name'}
+                                        placeholder={language === 'ar' ? '  ' : 'Enter your full name'}
                                     />
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-1 block">
-                                        {language === 'ar' ? 'البريد الإلكتروني' : 'Email'}
+                                        {language === 'ar' ? ' ' : 'Email'}
                                     </label>
                                     <Input
                                         type="email"
@@ -112,7 +112,7 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-1 block">
-                                        {language === 'ar' ? 'رقم الهاتف' : 'Phone Number'}
+                                        {language === 'ar' ? ' ' : 'Phone Number'}
                                     </label>
                                     <Input
                                         type="tel"
@@ -133,22 +133,22 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                             <div className="space-y-4">
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-1 block">
-                                        {language === 'ar' ? 'التخصص' : 'Specialty'}
+                                        {language === 'ar' ? '' : 'Specialty'}
                                     </label>
                                     <Input
                                         value={formData.specialty}
                                         onChange={(e) => setFormData({ ...formData, specialty: e.target.value })}
-                                        placeholder={language === 'ar' ? 'أدخل تخصصك' : 'Enter your specialty'}
+                                        placeholder={language === 'ar' ? ' ' : 'Enter your specialty'}
                                     />
                                 </div>
                                 <div>
                                     <label className="text-sm font-medium text-[var(--label)] mb-1 block">
-                                        {language === 'ar' ? 'رقم الترخيص' : 'License Number'}
+                                        {language === 'ar' ? ' ' : 'License Number'}
                                     </label>
                                     <Input
                                         value={formData.licenseNumber}
                                         onChange={(e) => setFormData({ ...formData, licenseNumber: e.target.value })}
-                                        placeholder={language === 'ar' ? 'رقم الترخيص الطبي' : 'Medical license number'}
+                                        placeholder={language === 'ar' ? '  ' : 'Medical license number'}
                                     />
                                 </div>
                             </div>
@@ -160,26 +160,26 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                             <div className="text-center py-8">
                                 <CheckCircle2 className="w-16 h-16 text-[var(--apple-green)] mx-auto mb-4" />
                                 <h3 className="text-xl font-semibold text-[var(--label)] mb-2">
-                                    {language === 'ar' ? 'تأكيد التسجيل' : 'Confirm Registration'}
+                                    {language === 'ar' ? ' ' : 'Confirm Registration'}
                                 </h3>
                                 <p className="text-[var(--secondary-label)]">
                                     {language === 'ar'
-                                        ? 'يرجى مراجعة بياناتك قبل التأكيد'
+                                        ? '    '
                                         : 'Please review your information before confirming'}
                                 </p>
                             </div>
                             <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
                                 <div className="space-y-2 text-sm">
                                     <div className="flex justify-between">
-                                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'الاسم' : 'Name'}:</span>
+                                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Name'}:</span>
                                         <span className="text-[var(--label)] font-medium">{formData.name}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'البريد' : 'Email'}:</span>
+                                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Email'}:</span>
                                         <span className="text-[var(--label)] font-medium">{formData.email}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'التخصص' : 'Specialty'}:</span>
+                                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Specialty'}:</span>
                                         <span className="text-[var(--label)] font-medium">{formData.specialty}</span>
                                     </div>
                                 </div>
@@ -197,8 +197,8 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                     >
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         {step === 1
-                            ? (language === 'ar' ? 'إلغاء' : 'Cancel')
-                            : (language === 'ar' ? 'السابق' : 'Previous')}
+                            ? (language === 'ar' ? '' : 'Cancel')
+                            : (language === 'ar' ? '' : 'Previous')}
                     </GlassButton>
 
                     <GlassButton
@@ -207,8 +207,8 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                         size="default"
                     >
                         {isLastStep
-                            ? (language === 'ar' ? 'تأكيد التسجيل' : 'Confirm Registration')
-                            : (language === 'ar' ? 'التالي' : 'Next')}
+                            ? (language === 'ar' ? ' ' : 'Confirm Registration')
+                            : (language === 'ar' ? '' : 'Next')}
                         {!isLastStep && <ArrowRight className="w-4 h-4 ml-2" />}
                     </GlassButton>
                 </div>
@@ -216,7 +216,7 @@ export function RegistrationFlow({ event, onComplete, onCancel }: RegistrationFl
                 {ticketInfo && (
                     <div className="rounded-lg border bg-white/70 p-3 text-sm">
                         <div className="font-semibold text-[var(--label)]">
-                            {language === 'ar' ? 'تذكرة' : 'Ticket'}
+                            {language === 'ar' ? '' : 'Ticket'}
                         </div>
                         <div className="text-[var(--secondary-label)]">
                             ID: {ticketInfo.ticketId} — {ticketInfo.status}

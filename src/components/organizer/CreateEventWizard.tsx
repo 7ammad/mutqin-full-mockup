@@ -40,7 +40,7 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
             status: formData.needs_sponsorship ? 'Draft' : 'Published',
             is_sponsored: false,
             needs_sponsorship: formData.needs_sponsorship,
-            descriptionAr: "فعالية طبية جديدة",
+            descriptionAr: "  ",
             descriptionEn: "New medical event", // For demo
         };
 
@@ -54,16 +54,16 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
         <div className="max-w-2xl mx-auto">
             <Card glass={true} interactive={false}>
                 <CardHeader>
-                    <CardTitle className="text-[var(--label)]">إنشاء فعالية جديدة</CardTitle>
-                    <CardDescription className="text-[var(--secondary-label)]">أدخل تفاصيل الفعالية لطلب الاعتماد والنشر</CardDescription>
+                    <CardTitle className="text-[var(--label)]">  </CardTitle>
+                    <CardDescription className="text-[var(--secondary-label)]">     </CardDescription>
                 </CardHeader>
                 <form onSubmit={handleSubmit}>
                     <CardContent className="space-y-4">
                         <div className="space-y-2">
-                            <label className="text-sm font-medium text-[var(--label)]">عنوان الفعالية</label>
+                            <label className="text-sm font-medium text-[var(--label)]"> </label>
                             <Input
                                 required
-                                placeholder="مثال: مؤتمر الجراحة العامة"
+                                placeholder=":   "
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                             />
@@ -71,7 +71,7 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium">التاريخ</label>
+                                <label className="text-sm font-medium"></label>
                                 <Input
                                     required
                                     type="date"
@@ -80,10 +80,10 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium">الموقع</label>
+                                <label className="text-sm font-medium"></label>
                                 <Input
                                     required
-                                    placeholder="المدينة، المكان"
+                                    placeholder=" "
                                     value={formData.location}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                 />
@@ -92,16 +92,16 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium">التخصص</label>
+                                <label className="text-sm font-medium"></label>
                                 <Input
                                     required
-                                    placeholder="مثال: Cardiology"
+                                    placeholder=": Cardiology"
                                     value={formData.specialty}
                                     onChange={(e) => setFormData({ ...formData, specialty: e.target.value })}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium">ساعات التعليم الطبي (CME)</label>
+                                <label className="text-sm font-medium">   (CME)</label>
                                 <Input
                                     required
                                     type="number"
@@ -121,12 +121,12 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
                                     onChange={(e) => setFormData({ ...formData, needs_sponsorship: e.target.checked })}
                                 />
                                 <div className="flex-1">
-                                    <div className="font-medium text-[var(--label)]">طلب رعاية (Sponsorship)</div>
-                                    <div className="text-sm text-[var(--secondary-label)]">هل تبحث عن ممول لهذه الفعالية؟</div>
+                                    <div className="font-medium text-[var(--label)]">  (Sponsorship)</div>
+                                    <div className="text-sm text-[var(--secondary-label)]">     </div>
                                 </div>
                                 {formData.needs_sponsorship && (
                                     <Badge variant="emerald" className="animate-in fade-in zoom-in">
-                                        تمويل متوقع: 50,000 ر.س
+                                         : 50,000 .
                                     </Badge>
                                 )}
                             </label>
@@ -134,10 +134,10 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
                     </CardContent>
                     <CardFooter className="flex justify-between">
                         <Button type="button" variant="ghost" onClick={onCancel} className="flex items-center justify-center gap-2">
-                            إلغاء
+                            
                         </Button>
                         <Button type="submit" className="gap-2 flex items-center justify-center">
-                            نشر الفعالية
+                             
                             <ArrowRight className="h-4 w-4 rotate-180" />
                         </Button>
                     </CardFooter>

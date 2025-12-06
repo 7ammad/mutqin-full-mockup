@@ -48,24 +48,24 @@ export default function PostEventProcessing({ eventId }: PostEventProcessingProp
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
     }
 
-    const title = language === 'ar' ? 'معالجة ما بعد الفعالية' : 'Post-Event Processing';
-    const finalizeAttendanceText = language === 'ar' ? 'إنهاء الحضور' : 'Finalize Attendance';
-    const generateCertificatesText = language === 'ar' ? 'إنشاء الشهادات' : 'Generate Certificates';
-    const submitCMEHoursText = language === 'ar' ? 'إرسال ساعات CME' : 'Submit CME Hours';
-    const submitReportText = language === 'ar' ? 'إرسال التقرير' : 'Submit Report';
-    const completedText = language === 'ar' ? 'مكتمل' : 'Completed';
+    const title = language === 'ar' ? '   ' : 'Post-Event Processing';
+    const finalizeAttendanceText = language === 'ar' ? ' ' : 'Finalize Attendance';
+    const generateCertificatesText = language === 'ar' ? ' ' : 'Generate Certificates';
+    const submitCMEHoursText = language === 'ar' ? '  CME' : 'Submit CME Hours';
+    const submitReportText = language === 'ar' ? ' ' : 'Submit Report';
+    const completedText = language === 'ar' ? '' : 'Completed';
 
     const steps = [
         {
             id: 'attendance',
             title: finalizeAttendanceText,
-            description: language === 'ar' ? 'إنهاء قائمة الحضور النهائية' : 'Finalize attendance list',
+            description: language === 'ar' ? '   ' : 'Finalize attendance list',
             completed: attendanceFinalized,
             value: finalAttendanceCount,
             action: handleFinalizeAttendance,
@@ -73,7 +73,7 @@ export default function PostEventProcessing({ eventId }: PostEventProcessingProp
         {
             id: 'certificates',
             title: generateCertificatesText,
-            description: language === 'ar' ? 'إنشاء شهادات الحضور' : 'Generate attendance certificates',
+            description: language === 'ar' ? '  ' : 'Generate attendance certificates',
             completed: certificatesGenerated,
             value: certificatesCount,
             action: handleGenerateCertificates,
@@ -82,7 +82,7 @@ export default function PostEventProcessing({ eventId }: PostEventProcessingProp
         {
             id: 'cme',
             title: submitCMEHoursText,
-            description: language === 'ar' ? 'إرسال ساعات CME إلى المنظم' : 'Submit CME hours to organizer',
+            description: language === 'ar' ? '  CME  ' : 'Submit CME hours to organizer',
             completed: cmeHoursSubmitted,
             value: cmeHoursToSubmit,
             action: handleSubmitCMEHours,
@@ -91,9 +91,9 @@ export default function PostEventProcessing({ eventId }: PostEventProcessingProp
         {
             id: 'report',
             title: submitReportText,
-            description: language === 'ar' ? 'إرسال التقرير النهائي' : 'Submit final report',
+            description: language === 'ar' ? '  ' : 'Submit final report',
             completed: reportSubmitted,
-            value: language === 'ar' ? 'تقرير PDF' : 'PDF Report',
+            value: language === 'ar' ? ' PDF' : 'PDF Report',
             action: handleSubmitReport,
             dependsOn: cmeHoursSubmitted,
         },
@@ -200,10 +200,10 @@ export default function PostEventProcessing({ eventId }: PostEventProcessingProp
                     <div className="text-center">
                         <CheckCircle2 className="w-16 h-16 mx-auto mb-4 text-[var(--apple-green)]" />
                         <h3 className="text-xl font-bold text-[var(--label)] mb-2">
-                            {language === 'ar' ? 'تم إكمال جميع المهام' : 'All Tasks Completed'}
+                            {language === 'ar' ? '   ' : 'All Tasks Completed'}
                         </h3>
                         <p className="text-sm text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'تم إرسال التقرير النهائي إلى المنظم' : 'Final report has been submitted to organizer'}
+                            {language === 'ar' ? '     ' : 'Final report has been submitted to organizer'}
                         </p>
                     </div>
                 </LiquidGlassCard>

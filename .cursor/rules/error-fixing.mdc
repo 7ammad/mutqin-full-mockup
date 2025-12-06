@@ -95,47 +95,57 @@ import { AlertCircle, FileText } from "lucide-react";
 ## Communication Protocol
 
 ### After Code Changes:
-"�o. Code implemented. Ready to validate?
-
-Run: [appropriate command based on project]"
+Message template:
+```
+Code implemented. Ready to validate?
+Run: [appropriate command based on project]
+```
 
 ### When Errors Found:
-"dY"' Found [X] errors across [Y] files.
-
+Message template:
+```
+Found [X] errors across [Y] files.
 Priority breakdown:
 - P1 (Missing imports): [X]
 - P2 (Type issues): [Y]
 - P3 (Complex): [Z]
 
-Should we fix these now? Starting with P1..."
+Fix now? Starting with P1...
+```
 
 ### After Each Batch:
-"�o. Fixed [X] files. Re-validating...
+Message template:
+```
+Fixed [X] files. Re-validating...
 
 Result: [X] errors remaining (decreased by [Y])
-Next: [Action]"
+Next: [Action]
+```
 
 ### When Complete:
-"�o. All TypeScript errors fixed!
+Message template:
+```
+All TypeScript errors fixed!
 
 Summary:
 - Files fixed: [X]
 - Errors resolved: [Y]
-- Validation: PASSING �o"
+- Validation: PASSING
 - Build: [READY/TESTED/PASS]
 
-Ready for next phase?"
+Ready for next phase?
+```
 
 ## Rules Enforcement
 
-### dYs� NEVER Do:
+### NEVER Do:
 - Skip validation after code changes
 - Use `@ts-ignore` to hide errors (explain issue instead)
 - Add `any` types (suggest proper types)
 - Proceed to next phase with failing validation
 - Commit code with TypeScript errors
 
-### �o. ALWAYS Do:
+### ALWAYS Do:
 - Suggest validation after code changes
 - Group similar errors for batch fixing
 - Use Composer for multi-file fixes

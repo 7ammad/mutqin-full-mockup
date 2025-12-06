@@ -47,17 +47,17 @@ export default function CertificateGenerator() {
         console.log('Downloading certificate for:', attendeeId);
     };
 
-    const title = language === 'ar' ? 'مولد الشهادات' : 'Certificate Generator';
-    const selectEventText = language === 'ar' ? 'اختر الفعالية' : 'Select Event';
-    const uploadTemplateText = language === 'ar' ? 'رفع قالب الشهادة' : 'Upload Certificate Template';
-    const attendeesText = language === 'ar' ? 'الحضور' : 'Attendees';
-    const checkedInText = language === 'ar' ? 'تم التسجيل' : 'Checked In';
-    const generateText = language === 'ar' ? 'إنشاء الشهادات' : 'Generate Certificates';
-    const generatingText = language === 'ar' ? 'جاري الإنشاء...' : 'Generating...';
-    const completedText = language === 'ar' ? 'تم الإنشاء' : 'Completed';
-    const bulkDownloadText = language === 'ar' ? 'تحميل الكل' : 'Download All';
-    const downloadText = language === 'ar' ? 'تحميل' : 'Download';
-    const licenseText = language === 'ar' ? 'رقم الرخصة' : 'License Number';
+    const title = language === 'ar' ? ' ' : 'Certificate Generator';
+    const selectEventText = language === 'ar' ? ' ' : 'Select Event';
+    const uploadTemplateText = language === 'ar' ? '  ' : 'Upload Certificate Template';
+    const attendeesText = language === 'ar' ? '' : 'Attendees';
+    const checkedInText = language === 'ar' ? ' ' : 'Checked In';
+    const generateText = language === 'ar' ? ' ' : 'Generate Certificates';
+    const generatingText = language === 'ar' ? ' ...' : 'Generating...';
+    const completedText = language === 'ar' ? ' ' : 'Completed';
+    const bulkDownloadText = language === 'ar' ? ' ' : 'Download All';
+    const downloadText = language === 'ar' ? '' : 'Download';
+    const licenseText = language === 'ar' ? ' ' : 'License Number';
 
     return (
         <div className="space-y-6">
@@ -138,7 +138,7 @@ export default function CertificateGenerator() {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                        {language === 'ar' ? 'الشهادات المولدة' : 'Certificates Generated'}
+                                        {language === 'ar' ? ' ' : 'Certificates Generated'}
                                     </p>
                                     <p className="text-3xl font-bold text-[var(--label)]">{generatedCount}</p>
                                 </div>
@@ -217,7 +217,7 @@ export default function CertificateGenerator() {
                                                 ? 'text-[var(--apple-green)]'
                                                 : 'text-[var(--apple-red)]'
                                         }`}>
-                                            {attendee.checkedIn ? checkedInText : (language === 'ar' ? 'لم يتم التسجيل' : 'Not Checked In')}
+                                            {attendee.checkedIn ? checkedInText : (language === 'ar' ? '  ' : 'Not Checked In')}
                                         </span>
                                         {generationStatus === 'completed' && attendee.checkedIn && (
                                             <GlassButton

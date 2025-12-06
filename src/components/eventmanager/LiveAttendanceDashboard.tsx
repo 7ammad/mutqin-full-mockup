@@ -55,22 +55,22 @@ export default function LiveAttendanceDashboard({ eventId }: LiveAttendanceDashb
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
     }
 
-    const title = language === 'ar' ? 'لوحة الحضور المباشر' : 'Live Attendance Dashboard';
-    const totalExpectedText = language === 'ar' ? 'المتوقع' : 'Expected';
-    const checkedInText = language === 'ar' ? 'تم التسجيل' : 'Checked In';
-    const attendanceRateText = language === 'ar' ? 'معدل الحضور' : 'Attendance Rate';
-    const lastHourText = language === 'ar' ? 'آخر ساعة' : 'Last Hour';
-    const averageTimeText = language === 'ar' ? 'متوسط وقت التسجيل' : 'Avg Check-In Time';
-    const peakHourText = language === 'ar' ? 'ساعة الذروة' : 'Peak Hour';
-    const timelineText = language === 'ar' ? 'خط زمني التسجيل' : 'Check-In Timeline';
-    const liveText = language === 'ar' ? 'مباشر' : 'LIVE';
-    const minutesText = language === 'ar' ? 'دقيقة' : 'minutes';
+    const title = language === 'ar' ? '  ' : 'Live Attendance Dashboard';
+    const totalExpectedText = language === 'ar' ? '' : 'Expected';
+    const checkedInText = language === 'ar' ? ' ' : 'Checked In';
+    const attendanceRateText = language === 'ar' ? ' ' : 'Attendance Rate';
+    const lastHourText = language === 'ar' ? ' ' : 'Last Hour';
+    const averageTimeText = language === 'ar' ? '  ' : 'Avg Check-In Time';
+    const peakHourText = language === 'ar' ? ' ' : 'Peak Hour';
+    const timelineText = language === 'ar' ? '  ' : 'Check-In Timeline';
+    const liveText = language === 'ar' ? '' : 'LIVE';
+    const minutesText = language === 'ar' ? '' : 'minutes';
 
     return (
         <div className="space-y-6">

@@ -81,15 +81,15 @@ export default function ComplianceManagement() {
         }
     };
 
-    const title = language === 'ar' ? 'إدارة الامتثال' : 'Compliance Management';
-    const addLicenseText = language === 'ar' ? 'إضافة ترخيص' : 'Add License';
-    const licenseNumberText = language === 'ar' ? 'رقم الترخيص' : 'License Number';
-    const licenseTypeText = language === 'ar' ? 'نوع الترخيص' : 'License Type';
-    const issueDateText = language === 'ar' ? 'تاريخ الإصدار' : 'Issue Date';
-    const expiryDateText = language === 'ar' ? 'تاريخ الانتهاء' : 'Expiry Date';
-    const statusText = language === 'ar' ? 'الحالة' : 'Status';
-    const notesText = language === 'ar' ? 'ملاحظات' : 'Notes';
-    const documentText = language === 'ar' ? 'المستند' : 'Document';
+    const title = language === 'ar' ? ' ' : 'Compliance Management';
+    const addLicenseText = language === 'ar' ? ' ' : 'Add License';
+    const licenseNumberText = language === 'ar' ? ' ' : 'License Number';
+    const licenseTypeText = language === 'ar' ? ' ' : 'License Type';
+    const issueDateText = language === 'ar' ? ' ' : 'Issue Date';
+    const expiryDateText = language === 'ar' ? ' ' : 'Expiry Date';
+    const statusText = language === 'ar' ? '' : 'Status';
+    const notesText = language === 'ar' ? '' : 'Notes';
+    const documentText = language === 'ar' ? '' : 'Document';
 
     return (
         <div className="space-y-6">
@@ -127,10 +127,10 @@ export default function ComplianceManagement() {
                                             )}`}>
                                                 {getStatusIcon(isExpired ? 'expired' : isExpiringSoon ? 'expiring' : license.status)}
                                                 {isExpired 
-                                                    ? (language === 'ar' ? 'منتهي' : 'Expired')
+                                                    ? (language === 'ar' ? '' : 'Expired')
                                                     : isExpiringSoon
-                                                    ? (language === 'ar' ? 'ينتهي قريباً' : 'Expiring Soon')
-                                                    : (language === 'ar' ? 'نشط' : 'Active')
+                                                    ? (language === 'ar' ? ' ' : 'Expiring Soon')
+                                                    : (language === 'ar' ? '' : 'Active')
                                                 }
                                             </span>
                                         </div>
@@ -153,7 +153,7 @@ export default function ComplianceManagement() {
                                             </div>
                                             <div>
                                                 <p className="text-[var(--secondary-label)] mb-1">
-                                                    {language === 'ar' ? 'الأيام المتبقية' : 'Days Remaining'}
+                                                    {language === 'ar' ? ' ' : 'Days Remaining'}
                                                 </p>
                                                 <p className={`font-medium ${
                                                     isExpired 
@@ -162,7 +162,7 @@ export default function ComplianceManagement() {
                                                         ? 'text-[var(--apple-orange)]'
                                                         : 'text-[var(--apple-green)]'
                                                 }`}>
-                                                    {isExpired ? '0' : daysUntilExpiry} {language === 'ar' ? 'يوم' : 'days'}
+                                                    {isExpired ? '0' : daysUntilExpiry} {language === 'ar' ? '' : 'days'}
                                                 </p>
                                             </div>
                                         </div>
@@ -178,7 +178,7 @@ export default function ComplianceManagement() {
                                             size="sm"
                                             onClick={() => setEditingLicense(license)}
                                         >
-                                            {language === 'ar' ? 'تعديل' : 'Edit'}
+                                            {language === 'ar' ? '' : 'Edit'}
                                         </GlassButton>
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
 
     const handleSave = () => {
         if (!formData.licenseNumber || !formData.licenseType || !formData.issueDate || !formData.expiryDate) {
-            alert(language === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة' : 'Please fill all required fields');
+            alert(language === 'ar' ? '    ' : 'Please fill all required fields');
             return;
         }
         onSave(formData as ComplianceRecord);
@@ -234,12 +234,12 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
             <LiquidGlassCard blurIntensity="xl" interactive={false} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                 <div className="p-6 space-y-6">
                     <h3 className="text-xl font-bold text-[var(--label)]">
-                        {license ? (language === 'ar' ? 'تعديل الترخيص' : 'Edit License') : (language === 'ar' ? 'ترخيص جديد' : 'New License')}
+                        {license ? (language === 'ar' ? ' ' : 'Edit License') : (language === 'ar' ? ' ' : 'New License')}
                     </h3>
 
                     <div className="space-y-4">
                         <div>
-                            <Label>{language === 'ar' ? 'رقم الترخيص' : 'License Number'}</Label>
+                            <Label>{language === 'ar' ? ' ' : 'License Number'}</Label>
                             <Input
                                 value={formData.licenseNumber}
                                 onChange={(e) => setFormData({ ...formData, licenseNumber: e.target.value })}
@@ -248,7 +248,7 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>{language === 'ar' ? 'نوع الترخيص' : 'License Type'}</Label>
+                                <Label>{language === 'ar' ? ' ' : 'License Type'}</Label>
                                 <Select value={formData.licenseType} onValueChange={(val) => setFormData({ ...formData, licenseType: val as ComplianceRecord['licenseType'] })}>
                                     <SelectTrigger>
                                         <SelectValue />
@@ -256,27 +256,27 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
                                     <SelectContent glass={true}>
                                         <SelectItem value="SFDA">SFDA</SelectItem>
                                         <SelectItem value="MOH">MOH</SelectItem>
-                                        <SelectItem value="Other">{language === 'ar' ? 'أخرى' : 'Other'}</SelectItem>
+                                        <SelectItem value="Other">{language === 'ar' ? '' : 'Other'}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
                             <div>
-                                <Label>{language === 'ar' ? 'الحالة' : 'Status'}</Label>
+                                <Label>{language === 'ar' ? '' : 'Status'}</Label>
                                 <Select value={formData.status} onValueChange={(val) => setFormData({ ...formData, status: val as ComplianceRecord['status'] })}>
                                     <SelectTrigger>
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent glass={true}>
-                                        <SelectItem value="active">{language === 'ar' ? 'نشط' : 'Active'}</SelectItem>
-                                        <SelectItem value="pending">{language === 'ar' ? 'قيد الانتظار' : 'Pending'}</SelectItem>
-                                        <SelectItem value="expired">{language === 'ar' ? 'منتهي' : 'Expired'}</SelectItem>
+                                        <SelectItem value="active">{language === 'ar' ? '' : 'Active'}</SelectItem>
+                                        <SelectItem value="pending">{language === 'ar' ? ' ' : 'Pending'}</SelectItem>
+                                        <SelectItem value="expired">{language === 'ar' ? '' : 'Expired'}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <Label>{language === 'ar' ? 'تاريخ الإصدار' : 'Issue Date'}</Label>
+                                <Label>{language === 'ar' ? ' ' : 'Issue Date'}</Label>
                                 <Input
                                     type="date"
                                     value={formData.issueDate}
@@ -284,7 +284,7 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
                                 />
                             </div>
                             <div>
-                                <Label>{language === 'ar' ? 'تاريخ الانتهاء' : 'Expiry Date'}</Label>
+                                <Label>{language === 'ar' ? ' ' : 'Expiry Date'}</Label>
                                 <Input
                                     type="date"
                                     value={formData.expiryDate}
@@ -293,15 +293,15 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
                             </div>
                         </div>
                         <div>
-                            <Label>{language === 'ar' ? 'ملاحظات' : 'Notes'}</Label>
+                            <Label>{language === 'ar' ? '' : 'Notes'}</Label>
                             <Input
                                 value={formData.notes}
                                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                                placeholder={language === 'ar' ? 'ملاحظات إضافية...' : 'Additional notes...'}
+                                placeholder={language === 'ar' ? ' ...' : 'Additional notes...'}
                             />
                         </div>
                         <div>
-                            <Label>{language === 'ar' ? 'رفع المستند' : 'Upload Document'}</Label>
+                            <Label>{language === 'ar' ? ' ' : 'Upload Document'}</Label>
                             <FileUpload
                                 accept=".pdf,.jpg,.jpeg,.png"
                                 onFilesSelected={(files) => {
@@ -315,11 +315,11 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
 
                     <div className="flex justify-end gap-2 pt-4">
                         <GlassButton variant="outline" onClick={onCancel} className="flex items-center justify-center gap-2">
-                            {language === 'ar' ? 'إلغاء' : 'Cancel'}
+                            {language === 'ar' ? '' : 'Cancel'}
                         </GlassButton>
                         <GlassButton onClick={handleSave} className="gap-2 flex items-center justify-center">
                             <ShieldCheck className="h-4 w-4" />
-                            {language === 'ar' ? 'حفظ' : 'Save'}
+                            {language === 'ar' ? '' : 'Save'}
                         </GlassButton>
                     </div>
                 </div>

@@ -40,20 +40,20 @@ export default function CertificateGeneration({ eventId }: CertificateGeneration
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
     }
 
-    const title = language === 'ar' ? 'إنشاء الشهادات' : 'Certificate Generation';
-    const uploadTemplateText = language === 'ar' ? 'رفع قالب الشهادة' : 'Upload Certificate Template';
-    const attendeesText = language === 'ar' ? 'الحضور' : 'Attendees';
-    const generateText = language === 'ar' ? 'إنشاء الشهادات' : 'Generate Certificates';
-    const generatingText = language === 'ar' ? 'جاري الإنشاء...' : 'Generating...';
-    const completedText = language === 'ar' ? 'تم الإنشاء' : 'Completed';
-    const bulkDownloadText = language === 'ar' ? 'تحميل الكل' : 'Download All';
-    const certificatesGeneratedText = language === 'ar' ? 'الشهادات المولدة' : 'Certificates Generated';
+    const title = language === 'ar' ? ' ' : 'Certificate Generation';
+    const uploadTemplateText = language === 'ar' ? '  ' : 'Upload Certificate Template';
+    const attendeesText = language === 'ar' ? '' : 'Attendees';
+    const generateText = language === 'ar' ? ' ' : 'Generate Certificates';
+    const generatingText = language === 'ar' ? ' ...' : 'Generating...';
+    const completedText = language === 'ar' ? ' ' : 'Completed';
+    const bulkDownloadText = language === 'ar' ? ' ' : 'Download All';
+    const certificatesGeneratedText = language === 'ar' ? ' ' : 'Certificates Generated';
 
     return (
         <div className="space-y-6">

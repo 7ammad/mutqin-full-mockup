@@ -176,7 +176,7 @@ describe('Activities Preview Section', () => {
     renderWithProviders(<LandingPage />);
     
     // Title comes from i18n, so check for either English or Arabic version
-    const title = screen.getByText(/A single view of CME\/CPD activities|نظرة واحدة لأنشطة التطوير المهني المستمر/i);
+    const title = screen.getByText(/A single view of CME\/CPD activities|     /i);
     expect(title).toBeInTheDocument();
   });
 

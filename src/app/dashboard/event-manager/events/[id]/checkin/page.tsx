@@ -81,11 +81,11 @@ export default function EventCheckInPage({ params }: PageProps) {
             const ticketId = result;
             await api.checkIn({ ticketId, eventManagerId: "em-1" });
             showToast(
-                language === 'ar' ? 'تم تسجيل الوصول بنجاح' : 'Check-in successful',
+                language === 'ar' ? '   ' : 'Check-in successful',
                 'success'
             );
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === 'ar' ? 'فشل تسجيل الوصول' : 'Check-in failed');
+            const message = err instanceof Error ? err.message : (language === 'ar' ? '  ' : 'Check-in failed');
             showToast(message, 'info');
         }
     };
@@ -101,10 +101,10 @@ export default function EventCheckInPage({ params }: PageProps) {
                         className="gap-2 mb-4"
                     >
                         <ArrowLeft className="w-4 h-4" />
-                        {language === 'ar' ? 'رجوع' : 'Back to Overview'}
+                        {language === 'ar' ? '' : 'Back to Overview'}
                     </GlassButton>
                     <h1 className="text-xl font-semibold text-[var(--label)]">
-                        {language === 'ar' ? 'وحدة تسجيل الوصول' : 'Check-In Console'}
+                        {language === 'ar' ? '  ' : 'Check-In Console'}
                     </h1>
                     <h2 className="text-2xl font-bold text-[var(--label)]">
                         {eventTitle}
@@ -118,7 +118,7 @@ export default function EventCheckInPage({ params }: PageProps) {
                             <Calendar className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'التاريخ' : 'Date'}
+                                    {language === 'ar' ? '' : 'Date'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{eventDate}</p>
                             </div>
@@ -127,7 +127,7 @@ export default function EventCheckInPage({ params }: PageProps) {
                             <MapPin className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'الموقع' : 'Location'}
+                                    {language === 'ar' ? '' : 'Location'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{eventLocation || '-'}</p>
                             </div>
@@ -136,7 +136,7 @@ export default function EventCheckInPage({ params }: PageProps) {
                             <Clock className="w-5 h-5 text-[var(--secondary-label)]" />
                             <div>
                                 <p className="text-xs text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'ساعات التعليم' : 'CME Hours'}
+                                    {language === 'ar' ? ' ' : 'CME Hours'}
                                 </p>
                                 <p className="text-sm font-medium text-[var(--label)]">{event.cme_hours || '-'}</p>
                             </div>
@@ -147,7 +147,7 @@ export default function EventCheckInPage({ params }: PageProps) {
                 {/* QR Scanner */}
                 <LiquidGlassCard blurIntensity="lg" className="p-6">
                     <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                        {language === 'ar' ? 'مسح رمز QR' : 'Scan QR Code'}
+                        {language === 'ar' ? '  QR' : 'Scan QR Code'}
                     </h3>
                     <MobileQRScanner 
                         eventId={id}

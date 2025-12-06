@@ -63,7 +63,7 @@ export function OnboardingFlow({
                                 {language === 'ar' ? currentStepData.titleAr : currentStepData.title}
                             </h2>
                             <p className="text-sm text-[var(--secondary-label)] mt-1">
-                                {language === 'ar' ? 'الخطوة' : 'Step'} {currentStep + 1} {language === 'ar' ? 'من' : 'of'} {steps.length}
+                                {language === 'ar' ? '' : 'Step'} {currentStep + 1} {language === 'ar' ? '' : 'of'} {steps.length}
                             </p>
                         </div>
                         {showSkip && onSkip && (
@@ -99,7 +99,7 @@ export function OnboardingFlow({
                             disabled={isFirstStep}
                          className="flex items-center justify-center gap-2">
                             <ChevronLeft className="w-4 h-4 mr-2" />
-                            {language === 'ar' ? 'السابق' : 'Previous'}
+                            {language === 'ar' ? '' : 'Previous'}
                         </GlassButton>
 
                         <div className="flex gap-2">
@@ -109,7 +109,7 @@ export function OnboardingFlow({
                                     variant="outline"
                                     size="default"
                                  className="flex items-center justify-center gap-2">
-                                    {language === 'ar' ? 'تخطي' : 'Skip'}
+                                    {language === 'ar' ? '' : 'Skip'}
                                 </GlassButton>
                             )}
                             <GlassButton
@@ -118,8 +118,8 @@ export function OnboardingFlow({
                                 size="default"
                              className="flex items-center justify-center gap-2">
                                 {isLastStep
-                                    ? (language === 'ar' ? 'إنهاء' : 'Finish')
-                                    : (language === 'ar' ? 'التالي' : 'Next')}
+                                    ? (language === 'ar' ? '' : 'Finish')
+                                    : (language === 'ar' ? '' : 'Next')}
                                 {!isLastStep && <ChevronRight className="w-4 h-4 ml-2" />}
                             </GlassButton>
                         </div>

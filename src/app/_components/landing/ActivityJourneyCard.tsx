@@ -49,7 +49,7 @@ export function ActivityJourneyCard({ locale, activeStepIndex }: ActivityJourney
             <motion.div initial={{ opacity: 0, width: 0 }} animate={{ opacity: 1, width: 'auto' }} exit={{ opacity: 0, width: 0 }}>
               <Badge variant="outline" className="text-xs font-medium border-dashed border-[var(--tertiary-label)] text-[var(--secondary-label)] flex items-center gap-1">
                 <FileText className="h-3 w-3" />
-                {draftLabel || (isRTL ? 'مسودة' : 'Draft')}
+                {draftLabel || (isRTL ? '' : 'Draft')}
               </Badge>
             </motion.div>
           )}
@@ -60,7 +60,7 @@ export function ActivityJourneyCard({ locale, activeStepIndex }: ActivityJourney
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>
               <Badge className="bg-[var(--apple-green)]/10 text-[var(--apple-green)] border-[var(--apple-green)]/30 text-xs font-medium flex items-center gap-1">
                 <ShieldCheck className="h-3 w-3" />
-                {scfhsLabel || (isRTL ? 'معتمد' : 'SCFHS Accredited')}
+                {scfhsLabel || (isRTL ? '' : 'SCFHS Accredited')}
               </Badge>
             </motion.div>
           )}
@@ -69,23 +69,23 @@ export function ActivityJourneyCard({ locale, activeStepIndex }: ActivityJourney
 
       {/* Title */}
       <h3 className="text-xl font-bold text-[var(--label)] mb-4">
-        {cardTitle || (isRTL ? 'مؤتمر تحديثات أمراض القلب 2025' : 'Cardiology Update Conference 2025')}
+        {cardTitle || (isRTL ? '    2025' : 'Cardiology Update Conference 2025')}
       </h3>
 
       {/* Details */}
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-sm text-[var(--secondary-label)]">
           <Calendar className="h-4 w-4 text-[var(--tertiary-label)] flex-shrink-0" />
-          <span>{cardDate || (isRTL ? '15-17 مارس 2025' : 'Mar 15-17, 2025')}</span>
+          <span>{cardDate || (isRTL ? '15-17  2025' : 'Mar 15-17, 2025')}</span>
         </div>
         <div className="flex items-center gap-2 text-sm text-[var(--secondary-label)]">
           <MapPin className="h-4 w-4 text-[var(--tertiary-label)] flex-shrink-0" />
-          <span>{cardLocation || (isRTL ? 'الرياض، فندق الفيصلية' : 'Riyadh, Faisaliah Hotel')}</span>
+          <span>{cardLocation || (isRTL ? '  ' : 'Riyadh, Faisaliah Hotel')}</span>
         </div>
         <div className="pt-3 border-t border-[var(--separator)]">
           <div className="flex items-center gap-2 text-sm font-semibold text-[var(--label)]">
             <Clock className="h-4 w-4 text-[var(--apple-green)] flex-shrink-0" />
-            <span>{cardHours || (isRTL ? '18 ساعة معتمدة' : '18 Accredited Hours')}</span>
+            <span>{cardHours || (isRTL ? '18  ' : '18 Accredited Hours')}</span>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ export function ActivityJourneyCard({ locale, activeStepIndex }: ActivityJourney
             exit={{ opacity: 0, y: 10 }}
           >
             <GlassButton className="w-full">
-              {registerLabel || (isRTL ? 'سجل الآن' : 'Register Now')}
+              {registerLabel || (isRTL ? ' ' : 'Register Now')}
             </GlassButton>
           </motion.div>
         )}
@@ -110,16 +110,16 @@ export function ActivityJourneyCard({ locale, activeStepIndex }: ActivityJourney
   const attendanceContent = (
     <div className="text-center flex flex-col items-center justify-center h-full p-4">
       <QrCode className="w-24 h-24 text-[var(--label)] mb-4" />
-      <h3 className="text-lg font-bold text-[var(--label)] mb-1">{attendanceLabel || (isRTL ? 'تسجيل الحضور' : 'Record Attendance')}</h3>
-      <p className="text-sm text-[var(--secondary-label)]">{isRTL ? 'امسح الكود لتسجيل حضورك' : 'Scan the code to check-in'}</p>
+      <h3 className="text-lg font-bold text-[var(--label)] mb-1">{attendanceLabel || (isRTL ? ' ' : 'Record Attendance')}</h3>
+      <p className="text-sm text-[var(--secondary-label)]">{isRTL ? '   ' : 'Scan the code to check-in'}</p>
     </div>
   );
 
   const certificateContent = (
     <div className="text-center flex flex-col items-center justify-center h-full p-4">
       <Award className="w-20 h-20 text-[var(--apple-green)] mb-4" />
-      <h3 className="text-lg font-bold text-[var(--label)] mb-1">{certificateLabel || (isRTL ? 'شهادة إتمام' : 'Certificate of Completion')}</h3>
-      <p className="text-sm text-[var(--secondary-label)]">{isRTL ? 'تم إضافة 18 ساعة إلى سجلك' : '18 hours added to your record'}</p>
+      <h3 className="text-lg font-bold text-[var(--label)] mb-1">{certificateLabel || (isRTL ? ' ' : 'Certificate of Completion')}</h3>
+      <p className="text-sm text-[var(--secondary-label)]">{isRTL ? '  18   ' : '18 hours added to your record'}</p>
     </div>
   );
 
@@ -157,16 +157,16 @@ export function ActivityJourneyCard({ locale, activeStepIndex }: ActivityJourney
       {/* Persona Chips */}
       <div className={`flex flex-wrap gap-2 justify-center lg:${isRTL ? 'justify-end' : 'justify-start'}`}>
         <Badge variant="outline" className="text-xs font-medium border border-[var(--border)]/60 px-3 py-1.5">
-          {personaHcp || (isRTL ? 'ممارس صحي' : 'HCP')}
+          {personaHcp || (isRTL ? ' ' : 'HCP')}
         </Badge>
         <Badge variant="outline" className="text-xs font-medium border border-[var(--border)]/60 px-3 py-1.5">
-          {personaProvider || (isRTL ? 'جهة التطوير' : 'Provider')}
+          {personaProvider || (isRTL ? ' ' : 'Provider')}
         </Badge>
         <Badge variant="outline" className="text-xs font-medium border border-[var(--border)]/60 px-3 py-1.5">
-          {personaRegulator || (isRTL ? 'جهة اعتمادية' : 'Regulator')}
+          {personaRegulator || (isRTL ? ' ' : 'Regulator')}
         </Badge>
         <Badge variant="outline" className="text-xs font-medium border border-[var(--border)]/60 px-3 py-1.5">
-          {personaEventManager || (isRTL ? 'مدير فعاليات' : 'Event Manager')}
+          {personaEventManager || (isRTL ? ' ' : 'Event Manager')}
         </Badge>
       </div>
     </div>

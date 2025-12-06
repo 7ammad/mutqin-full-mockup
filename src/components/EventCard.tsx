@@ -43,7 +43,7 @@ interface EventCardProps {
 function formatDate(dateString: string, language: 'ar' | 'en'): string {
     const date = new Date(dateString);
     const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const monthsAr = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    const monthsAr = ['', '', '', '', '', '', '', '', '', '', '', ''];
     
     if (language === 'ar') {
         return `${date.getDate()} ${monthsAr[date.getMonth()]} ${date.getFullYear()}`;
@@ -65,10 +65,10 @@ function getStatusBorderColor(status: Event['status']): string {
 // Get pending reason text based on event status and language
 function getPendingReason(event: Event, language: 'ar' | 'en'): string {
     if (event.status === 'Pending Approval') {
-        return language === 'ar' ? 'اعتماد' : 'Approval';
+        return language === 'ar' ? '' : 'Approval';
     }
     if (event.needs_sponsorship) {
-        return language === 'ar' ? 'رعاية' : 'Sponsorship';
+        return language === 'ar' ? '' : 'Sponsorship';
     }
     return '';
 }
@@ -153,7 +153,7 @@ export default function EventCard({
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Badge className="bg-[var(--apple-orange)]/10 text-[var(--apple-orange)] border-[var(--apple-orange)]/30 text-xs font-medium cursor-help">
-                                        {language === 'ar' ? 'قيد الانتظار' : 'Pending'}
+                                        {language === 'ar' ? ' ' : 'Pending'}
                                     </Badge>
                                 </TooltipTrigger>
                                 <TooltipContent className="z-[9999]">
@@ -189,11 +189,11 @@ export default function EventCard({
                                 <TooltipTrigger asChild>
                                     <Badge className="bg-[var(--apple-green)]/10 text-[var(--apple-green)] border-[var(--apple-green)]/30 text-xs font-medium cursor-help flex items-center gap-1">
                                         <ShieldCheck className="h-3 w-3" />
-                                        {language === 'ar' ? 'معتمد SCFHS' : 'SCFHS Accredited'}
+                                        {language === 'ar' ? ' SCFHS' : 'SCFHS Accredited'}
                                     </Badge>
                                 </TooltipTrigger>
                                 <TooltipContent className="z-[9999]">
-                                    <p>{language === 'ar' ? 'معتمد من الهيئة السعودية للتخصصات الصحية' : 'Accredited by Saudi Commission for Health Specialties'}</p>
+                                    <p>{language === 'ar' ? '     ' : 'Accredited by Saudi Commission for Health Specialties'}</p>
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
@@ -207,11 +207,11 @@ export default function EventCard({
                                 <TooltipTrigger asChild>
                                     <Badge className="bg-[var(--apple-blue)]/10 text-[var(--apple-blue)] border-[var(--apple-blue)]/30 text-xs font-medium cursor-help flex items-center gap-1">
                                         <CheckCircle className="h-3 w-3" />
-                                        {language === 'ar' ? 'موثق' : 'Verified'}
+                                        {language === 'ar' ? '' : 'Verified'}
                                     </Badge>
                                 </TooltipTrigger>
                                 <TooltipContent className="z-[9999]">
-                                    <p>{language === 'ar' ? 'منظم موثق ومعتمد' : 'Verified and accredited organizer'}</p>
+                                    <p>{language === 'ar' ? '  ' : 'Verified and accredited organizer'}</p>
                                 </TooltipContent>
                             </Tooltip>
                         </TooltipProvider>
@@ -263,7 +263,7 @@ export default function EventCard({
                             <div className="relative px-4 py-3 flex items-center justify-center gap-2">
                                 <Clock className="h-3.5 w-3.5 text-[var(--apple-green)] flex-shrink-0" />
                                 <span className="text-base font-bold text-[var(--label)]">
-                                    {language === 'ar' ? 'معتمد' : 'Accredited'} {event.cme_hours} {t('hcp.hours')}
+                                    {language === 'ar' ? '' : 'Accredited'} {event.cme_hours} {t('hcp.hours')}
                                 </span>
                             </div>
                         </div>
@@ -281,7 +281,7 @@ export default function EventCard({
                             <div className="relative px-4 py-3">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm font-semibold text-blue-900 dark:text-blue-100 uppercase tracking-wide">
-                                        {language === 'ar' ? 'التسجيلات' : 'Registration'}
+                                        {language === 'ar' ? '' : 'Registration'}
                                     </span>
                                     <span className="text-base font-bold text-blue-900 dark:text-blue-100">
                                         {registrationCount.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')} / {capacity.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')}
@@ -357,7 +357,7 @@ export default function EventCard({
                                 </div>
                                 <div className="text-sm">
                                     <span className="text-blue-600 dark:text-blue-400 font-semibold">
-                                        {sponsorshipPackage.value.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')} {language === 'ar' ? 'ر.س' : 'SAR'}
+                                        {sponsorshipPackage.value.toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')} {language === 'ar' ? '.' : 'SAR'}
                                     </span>
                                 </div>
                             </div>

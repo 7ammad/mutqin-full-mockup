@@ -41,12 +41,12 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
             setRegisteredIds((prev) => new Set(prev).add(event.id));
             setTicketInfo({ ticketId: res.ticketId, status: res.status });
             showToast(
-                language === 'ar' ? 'تم التسجيل بنجاح' : 'Registration successful',
+                language === 'ar' ? '  ' : 'Registration successful',
                 "success"
             );
             if (onRegister) onRegister();
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            const message = err instanceof Error ? err.message : (language === 'ar' ? ' ' : 'An error occurred');
             showToast(message, "info");
         }
     };
@@ -71,7 +71,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
         } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
             navigator.clipboard.writeText(eventUrl);
             showToast(
-                language === 'ar' ? 'تم نسخ الرابط' : 'Link copied',
+                language === 'ar' ? '  ' : 'Link copied',
                 "success"
             );
         }
@@ -98,13 +98,13 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
     const tabContent = {
         overview: eventDescription,
         objectives: language === 'ar' 
-            ? 'أهداف التعلم: فهم المبادئ الأساسية والممارسات الحديثة في التخصص.'
+            ? ' :       .'
             : 'Learning Objectives: Understand fundamental principles and modern practices in the specialty.',
         agenda: language === 'ar'
-            ? 'الجدول الزمني: سيتم توفير جدول زمني تفصيلي عند التسجيل.'
+            ? ' :       .'
             : 'Schedule: Detailed agenda will be provided upon registration.',
         speakers: language === 'ar'
-            ? 'المتحدثون: سيتم الإعلان عن قائمة المتحدثين قريباً.'
+            ? ':      .'
             : 'Speakers: Speaker list will be announced soon.',
     };
 
@@ -132,7 +132,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                         variant="outline"
                                         size="sm"
                                     >
-                                        <span>{language === 'ar' ? 'إغلاق' : 'Close'}</span>
+                                        <span>{language === 'ar' ? '' : 'Close'}</span>
                                     </GlassButton>
                                 )}
                             </div>
@@ -140,14 +140,14 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                             {/* Badges */}
                             <div className="flex flex-wrap gap-2">
                                 <Badge variant="default" className="bg-[var(--apple-green)]/10 text-[var(--apple-green)]">
-                                    {event.cme_hours} {language === 'ar' ? 'ساعات' : 'Hours'} CME
+                                    {event.cme_hours} {language === 'ar' ? '' : 'Hours'} CME
                                 </Badge>
                                 <Badge variant="default" className="bg-[var(--apple-blue)]/10 text-[var(--apple-blue)]">
                                     {getSpecialtyLabel(event.specialty || '', language)}
                                 </Badge>
                                 {event.is_sponsored && (
                                     <Badge variant="default" className="bg-[var(--apple-purple)]/10 text-[var(--apple-purple)]">
-                                        {language === 'ar' ? 'برعاية' : 'Sponsored'}
+                                        {language === 'ar' ? '' : 'Sponsored'}
                                     </Badge>
                                 )}
                             </div>
@@ -160,7 +160,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     </div>
                                     <div>
                                         <p className="text-xs text-[var(--secondary-label)]">
-                                            {language === 'ar' ? 'التاريخ' : 'Date'}
+                                            {language === 'ar' ? '' : 'Date'}
                                         </p>
                                         <p className="text-sm font-medium text-[var(--label)]">
                                             {eventDate}
@@ -174,7 +174,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     </div>
                                     <div>
                                         <p className="text-xs text-[var(--secondary-label)]">
-                                            {language === 'ar' ? 'الموقع' : 'Location'}
+                                            {language === 'ar' ? '' : 'Location'}
                                         </p>
                                         <p className="text-sm font-medium text-[var(--label)]">
                                             {eventLocation}
@@ -188,10 +188,10 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     </div>
                                     <div>
                                         <p className="text-xs text-[var(--secondary-label)]">
-                                            {language === 'ar' ? 'المدة' : 'Duration'}
+                                            {language === 'ar' ? '' : 'Duration'}
                                         </p>
                                         <p className="text-sm font-medium text-[var(--label)]">
-                                            {event.cme_hours} {language === 'ar' ? 'ساعات' : 'Hours'}
+                                            {event.cme_hours} {language === 'ar' ? '' : 'Hours'}
                                         </p>
                                     </div>
                                 </div>
@@ -215,7 +215,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     size="sm"
                                 >
                                     <FileText className="h-4 w-4 shrink-0" />
-                                    <span>{language === 'ar' ? 'نظرة عامة' : 'Overview'}</span>
+                                    <span>{language === 'ar' ? ' ' : 'Overview'}</span>
                                 </GlassButton>
                                 <GlassButton
                                     onClick={() => setActiveTab('objectives')}
@@ -223,7 +223,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     size="sm"
                                 >
                                     <ListChecks className="h-4 w-4 shrink-0" />
-                                    <span>{language === 'ar' ? 'الأهداف' : 'Objectives'}</span>
+                                    <span>{language === 'ar' ? '' : 'Objectives'}</span>
                                 </GlassButton>
                                 <GlassButton
                                     onClick={() => setActiveTab('agenda')}
@@ -231,7 +231,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     size="sm"
                                 >
                                     <Calendar className="h-4 w-4 shrink-0" />
-                                    <span>{language === 'ar' ? 'الجدول' : 'Agenda'}</span>
+                                    <span>{language === 'ar' ? '' : 'Agenda'}</span>
                                 </GlassButton>
                                 <GlassButton
                                     onClick={() => setActiveTab('speakers')}
@@ -239,7 +239,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     size="sm"
                                 >
                                     <User className="h-4 w-4 shrink-0" />
-                                    <span>{language === 'ar' ? 'المتحدثون' : 'Speakers'}</span>
+                                    <span>{language === 'ar' ? '' : 'Speakers'}</span>
                                 </GlassButton>
                             </div>
 
@@ -259,7 +259,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                         {/* Registration State Card */}
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                                {language === 'ar' ? 'التسجيل' : 'Registration'}
+                                {language === 'ar' ? '' : 'Registration'}
                             </h3>
                             {!isRegistered ? (
                                 <div className="space-y-3">
@@ -271,7 +271,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                         className="w-full"
                                     >
                                         <Users className="h-4 w-4 shrink-0" />
-                                        <span>{language === 'ar' ? 'سجل الآن' : 'Register Now'}</span>
+                                        <span>{language === 'ar' ? ' ' : 'Register Now'}</span>
                                     </GlassButton>
                                     <GlassButton
                                         variant="outline"
@@ -280,13 +280,13 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                         onClick={() => {
                                             // Add to calendar functionality (placeholder)
                                             showToast(
-                                                language === 'ar' ? 'تمت إضافة الحدث إلى التقويم' : 'Event added to calendar',
+                                                language === 'ar' ? '    ' : 'Event added to calendar',
                                                 'success'
                                             );
                                         }}
                                     >
                                         <Calendar className="h-4 w-4 shrink-0" />
-                                        <span>{language === 'ar' ? 'أضف إلى التقويم' : 'Add to Calendar'}</span>
+                                        <span>{language === 'ar' ? '  ' : 'Add to Calendar'}</span>
                                     </GlassButton>
                                 </div>
                             ) : (
@@ -294,7 +294,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     {ticketInfo && (
                                         <div className="p-3 rounded-lg bg-[var(--system-fill)]/30 mb-3">
                                             <p className="text-xs text-[var(--secondary-label)] mb-1">
-                                                {language === 'ar' ? 'رقم التذكرة' : 'Ticket ID'}
+                                                {language === 'ar' ? ' ' : 'Ticket ID'}
                                             </p>
                                             <p className="text-sm font-medium text-[var(--label)]">
                                                 {ticketInfo.ticketId}
@@ -313,7 +313,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                         disabled={!ticketInfo}
                                     >
                                         <CheckCircle2 className="h-4 w-4 shrink-0" />
-                                        <span>{language === 'ar' ? 'عرض التذكرة' : 'View Ticket'}</span>
+                                        <span>{language === 'ar' ? ' ' : 'View Ticket'}</span>
                                     </GlassButton>
                                 </div>
                             )}
@@ -322,7 +322,7 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                         {/* Share Card */}
                         <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                                {language === 'ar' ? 'شارك الفعالية' : 'Share Event'}
+                                {language === 'ar' ? ' ' : 'Share Event'}
                             </h3>
                             <div className="flex flex-wrap items-center gap-2.5">
                                 <GlassButton
@@ -360,8 +360,8 @@ export function EventDetails({ event, onClose, onRegister, variant = 'hcp' }: Ev
                                     variant="ghost"
                                     size="icon"
                                     className="h-11 w-11 rounded-full border border-[var(--separator)] hover:bg-[var(--system-fill)] hover:border-[var(--separator)] transition-all duration-200 hover:scale-105"
-                                    title={language === 'ar' ? 'مشاركة' : 'Share'}
-                                    aria-label={language === 'ar' ? 'مشاركة' : 'Share'}
+                                    title={language === 'ar' ? '' : 'Share'}
+                                    aria-label={language === 'ar' ? '' : 'Share'}
                                 >
                                     <Share2 className="h-5 w-5 text-[var(--label)]" strokeWidth={2} />
                                 </GlassButton>

@@ -52,13 +52,13 @@ export default function ApplicationReviewPage({ params }: PageProps) {
         return (
             <div className="container mx-auto px-4 py-8 max-w-6xl">
                 <EmptyState
-                    title={language === 'ar' ? 'طلب غير موجود' : 'Application not found'}
-                    titleAr={language === 'ar' ? 'طلب غير موجود' : undefined}
-                    description={error || (language === 'ar' ? 'تعذّر العثور على هذا الطلب. قد يكون قد تم حذفه أو نقله.' : 'Unable to find this application. It may have been deleted or moved.')}
-                    descriptionAr={language === 'ar' ? 'تعذّر العثور على هذا الطلب. قد يكون قد تم حذفه أو نقله.' : undefined}
+                    title={language === 'ar' ? '  ' : 'Application not found'}
+                    titleAr={language === 'ar' ? '  ' : undefined}
+                    description={error || (language === 'ar' ? '    .       .' : 'Unable to find this application. It may have been deleted or moved.')}
+                    descriptionAr={language === 'ar' ? '    .       .' : undefined}
                     icon={FileText}
-                    actionLabel={language === 'ar' ? 'رجوع إلى قائمة الطلبات' : 'Back to applications'}
-                    actionLabelAr={language === 'ar' ? 'رجوع إلى قائمة الطلبات' : undefined}
+                    actionLabel={language === 'ar' ? '   ' : 'Back to applications'}
+                    actionLabelAr={language === 'ar' ? '   ' : undefined}
                     onAction={() => router.push('/dashboard/regulator/applications')}
                 />
             </div>

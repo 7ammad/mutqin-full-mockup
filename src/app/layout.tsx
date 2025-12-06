@@ -30,11 +30,11 @@ const varien = localFont({
 
 export const metadata: Metadata = {
     title: {
-        default: "Mutqin | منصة التعليم الطبي المستمر في السعودية",
+        default: "Mutqin |      ",
         template: "%s | Mutqin",
     },
-    description: "المنصة الموحدة للتعليم الطبي المستمر المعتمد. The unified platform for continuing medical education in Saudi Arabia. مُوَحَّد. مُوثَّق. مُتاح.",
-    keywords: ["CME", "Continuing Medical Education", "Saudi Arabia", "SCFHS", "Medical Training", "مُتْقِن", "التعليم الطبي المستمر", "الهيئة السعودية للتخصصات الصحية"],
+    description: "     . The unified platform for continuing medical education in Saudi Arabia. . . .",
+    keywords: ["CME", "Continuing Medical Education", "Saudi Arabia", "SCFHS", "Medical Training", "", "  ", "   "],
     authors: [{ name: "Mutqin" }],
     creator: "Mutqin",
     publisher: "Mutqin",
@@ -56,21 +56,21 @@ export const metadata: Metadata = {
         locale: "ar_SA",
         alternateLocale: ["en_US"],
         siteName: "Mutqin",
-        title: "Mutqin | منصة التعليم الطبي المستمر",
-        description: "المنصة الموحدة للتعليم الطبي المستمر المعتمد في المملكة العربية السعودية",
+        title: "Mutqin |    ",
+        description: "         ",
         images: [
             {
                 url: "/og-image.png",
                 width: 1200,
                 height: 630,
-                alt: "Mutqin - منصة التعليم الطبي المستمر",
+                alt: "Mutqin -    ",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Mutqin | منصة التعليم الطبي المستمر",
-        description: "المنصة الموحدة للتعليم الطبي المستمر المعتمد",
+        title: "Mutqin |    ",
+        description: "     ",
         images: ["/og-image.png"],
     },
     robots: {

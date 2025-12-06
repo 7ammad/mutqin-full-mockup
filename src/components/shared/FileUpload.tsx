@@ -47,7 +47,7 @@ export function FileUpload({
                     file,
                     status: 'error',
                     error: language === 'ar' 
-                        ? `الملف أكبر من ${maxSize} ميجابايت`
+                        ? `   ${maxSize} `
                         : `File exceeds ${maxSize}MB`,
                 });
             } else {
@@ -115,11 +115,11 @@ export function FileUpload({
         setFiles((prev) => prev.filter((f) => f.id !== id));
     };
 
-    const uploadText = language === 'ar' ? 'رفع ملف' : 'Upload File';
-    const dragText = language === 'ar' ? 'اسحب الملفات هنا أو انقر للاختيار' : 'Drag files here or click to select';
-    const supportedFormatsText = language === 'ar' ? 'الصيغ المدعومة' : 'Supported formats';
-    const maxSizeText = language === 'ar' ? 'الحد الأقصى للحجم' : 'Max size';
-    const removeText = language === 'ar' ? 'إزالة' : 'Remove';
+    const uploadText = language === 'ar' ? ' ' : 'Upload File';
+    const dragText = language === 'ar' ? '     ' : 'Drag files here or click to select';
+    const supportedFormatsText = language === 'ar' ? ' ' : 'Supported formats';
+    const maxSizeText = language === 'ar' ? '  ' : 'Max size';
+    const removeText = language === 'ar' ? '' : 'Remove';
 
     return (
         <div className={className}>

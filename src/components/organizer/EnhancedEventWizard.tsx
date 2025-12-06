@@ -105,24 +105,24 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
     };
 
     const stepTitles = language === 'ar' 
-        ? ['المعلومات الأساسية', 'طلب الاعتماد', 'البرنامج العلمي', 'المتحدثون', 'التسويق', 'التسعير', 'المراجعة']
+        ? [' ', ' ', ' ', '', '', '', '']
         : ['Basic Information', 'Accreditation', 'Scientific Program', 'Speakers', 'Marketing', 'Pricing', 'Review'];
 
     const renderStep1 = () => (
         <div className="space-y-4">
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'عنوان الفعالية (عربي)' : 'Event Title (Arabic)'}
+                    {language === 'ar' ? '  ()' : 'Event Title (Arabic)'}
                 </label>
                 <Input
                     value={formData.titleAr}
                     onChange={(e) => setFormData({ ...formData, titleAr: e.target.value })}
-                    placeholder={language === 'ar' ? 'مثال: مؤتمر القلب السعودي' : 'Example: Saudi Cardiology Conference'}
+                    placeholder={language === 'ar' ? ':   ' : 'Example: Saudi Cardiology Conference'}
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'عنوان الفعالية (إنجليزي)' : 'Event Title (English)'}
+                    {language === 'ar' ? '  ()' : 'Event Title (English)'}
                 </label>
                 <Input
                     value={formData.titleEn}
@@ -133,7 +133,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             <div className="grid grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'نوع الفعالية' : 'Event Type'}
+                        {language === 'ar' ? ' ' : 'Event Type'}
                     </label>
                     <select
                         value={formData.eventType}
@@ -147,7 +147,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'التنسيق' : 'Format'}
+                        {language === 'ar' ? '' : 'Format'}
                     </label>
                     <select
                         value={formData.format}
@@ -163,7 +163,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             <div className="grid grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'تاريخ البداية' : 'Start Date'}
+                        {language === 'ar' ? ' ' : 'Start Date'}
                     </label>
                     <Input
                         type="date"
@@ -173,7 +173,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'تاريخ النهاية' : 'End Date'}
+                        {language === 'ar' ? ' ' : 'End Date'}
                     </label>
                     <Input
                         type="date"
@@ -184,17 +184,17 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'الموقع (عربي)' : 'Location (Arabic)'}
+                    {language === 'ar' ? ' ()' : 'Location (Arabic)'}
                 </label>
                 <Input
                     value={formData.locationAr}
                     onChange={(e) => setFormData({ ...formData, locationAr: e.target.value })}
-                    placeholder={language === 'ar' ? 'الرياض - فندق شيراتون' : 'Riyadh - Sheraton Hotel'}
+                    placeholder={language === 'ar' ? ' -  ' : 'Riyadh - Sheraton Hotel'}
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'الموقع (إنجليزي)' : 'Location (English)'}
+                    {language === 'ar' ? ' ()' : 'Location (English)'}
                 </label>
                 <Input
                     value={formData.locationEn}
@@ -204,7 +204,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'السعة المتوقعة' : 'Expected Capacity'}
+                    {language === 'ar' ? ' ' : 'Expected Capacity'}
                 </label>
                 <Input
                     type="number"
@@ -220,28 +220,28 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
         <div className="space-y-4">
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'رئيس اللجنة العلمية' : 'Scientific Committee Chair'}
+                    {language === 'ar' ? '  ' : 'Scientific Committee Chair'}
                 </label>
                 <Input
                     value={formData.scientificCommitteeChair}
                     onChange={(e) => setFormData({ ...formData, scientificCommitteeChair: e.target.value })}
-                    placeholder={language === 'ar' ? 'رقم التصنيف' : 'Classification Number'}
+                    placeholder={language === 'ar' ? ' ' : 'Classification Number'}
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'أهداف التعلم (SMART)' : 'Learning Objectives (SMART)'}
+                    {language === 'ar' ? '  (SMART)' : 'Learning Objectives (SMART)'}
                 </label>
                 <Textarea
                     value={formData.learningObjectives}
                     onChange={(e) => setFormData({ ...formData, learningObjectives: e.target.value })}
-                    placeholder={language === 'ar' ? 'اكتب الأهداف بصيغة SMART...' : 'Write objectives in SMART format...'}
+                    placeholder={language === 'ar' ? '   SMART...' : 'Write objectives in SMART format...'}
                     className="min-h-[100px]"
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'الجمهور المستهدف' : 'Target Audience'}
+                    {language === 'ar' ? ' ' : 'Target Audience'}
                 </label>
                 <div className="flex flex-wrap gap-2">
                     {specialties.map(spec => {
@@ -276,12 +276,12 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'المنهجية التعليمية' : 'Educational Methodology'}
+                    {language === 'ar' ? ' ' : 'Educational Methodology'}
                 </label>
                 <Textarea
                     value={formData.educationalMethodology}
                     onChange={(e) => setFormData({ ...formData, educationalMethodology: e.target.value })}
-                    placeholder={language === 'ar' ? 'وصف المنهجية...' : 'Describe methodology...'}
+                    placeholder={language === 'ar' ? ' ...' : 'Describe methodology...'}
                 />
             </div>
             <div className="flex items-center gap-3 p-4 border border-[var(--separator)] rounded-lg">
@@ -292,7 +292,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                     className="w-5 h-5"
                 />
                 <span className="text-sm text-[var(--label)]">
-                    {language === 'ar' ? 'الكشف عن التحيز التجاري' : 'Disclosure of commercial bias'}
+                    {language === 'ar' ? '   ' : 'Disclosure of commercial bias'}
                 </span>
             </div>
         </div>
@@ -302,7 +302,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-[var(--label)]">
-                    {language === 'ar' ? 'الجلسات' : 'Sessions'}
+                    {language === 'ar' ? '' : 'Sessions'}
                 </h3>
                 <GlassButton
                     variant="outline"
@@ -314,7 +314,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                         });
                     }}
                 >
-                    {language === 'ar' ? 'إضافة جلسة' : 'Add Session'}
+                    {language === 'ar' ? ' ' : 'Add Session'}
                 </GlassButton>
             </div>
             <div className="space-y-3">
@@ -328,7 +328,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                                     newSessions[index].title = e.target.value;
                                     setFormData({ ...formData, sessions: newSessions });
                                 }}
-                                placeholder={language === 'ar' ? 'عنوان الجلسة' : 'Session Title'}
+                                placeholder={language === 'ar' ? ' ' : 'Session Title'}
                             />
                             <Input
                                 type="number"
@@ -342,7 +342,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                                         totalCMEHours: newSessions.reduce((sum, s) => sum + s.duration, 0)
                                     });
                                 }}
-                                placeholder={language === 'ar' ? 'المدة (ساعة)' : 'Duration (hours)'}
+                                placeholder={language === 'ar' ? ' ()' : 'Duration (hours)'}
                             />
                         </div>
                     </LiquidGlassCard>
@@ -350,7 +350,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             </div>
             <div className="p-4 bg-[var(--apple-green)]/10 rounded-lg">
                 <p className="text-sm text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'إجمالي ساعات CME' : 'Total CME Hours'}
+                    {language === 'ar' ? '  CME' : 'Total CME Hours'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--apple-green)]">
                     {formData.totalCMEHours}
@@ -363,7 +363,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
         <div className="space-y-4">
             <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-[var(--label)]">
-                    {language === 'ar' ? 'المتحدثون' : 'Speakers'}
+                    {language === 'ar' ? '' : 'Speakers'}
                 </h3>
                 <GlassButton
                     variant="outline"
@@ -375,7 +375,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                         });
                     }}
                 >
-                    {language === 'ar' ? 'إضافة متحدث' : 'Add Speaker'}
+                    {language === 'ar' ? ' ' : 'Add Speaker'}
                 </GlassButton>
             </div>
             <div className="space-y-3">
@@ -389,7 +389,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                                     newSpeakers[index].name = e.target.value;
                                     setFormData({ ...formData, speakers: newSpeakers });
                                 }}
-                                placeholder={language === 'ar' ? 'اسم المتحدث' : 'Speaker Name'}
+                                placeholder={language === 'ar' ? ' ' : 'Speaker Name'}
                             />
                             <Input
                                 value={speaker.specialty}
@@ -398,7 +398,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                                     newSpeakers[index].specialty = e.target.value;
                                     setFormData({ ...formData, speakers: newSpeakers });
                                 }}
-                                placeholder={language === 'ar' ? 'التخصص' : 'Specialty'}
+                                placeholder={language === 'ar' ? '' : 'Specialty'}
                             />
                             <FileUpload
                                 accept=".pdf"
@@ -422,33 +422,33 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
         <div className="space-y-4">
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'وصف التسويق' : 'Marketing Description'}
+                    {language === 'ar' ? ' ' : 'Marketing Description'}
                 </label>
                 <Textarea
                     value={formData.marketingDescription}
                     onChange={(e) => setFormData({ ...formData, marketingDescription: e.target.value })}
-                    placeholder={language === 'ar' ? 'وصف الفعالية للتسويق...' : 'Event description for marketing...'}
+                    placeholder={language === 'ar' ? '  ...' : 'Event description for marketing...'}
                     className="min-h-[100px]"
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'معاينة وسائل التواصل' : 'Social Media Preview'}
+                    {language === 'ar' ? '  ' : 'Social Media Preview'}
                 </label>
                 <Textarea
                     value={formData.socialMediaPreview}
                     onChange={(e) => setFormData({ ...formData, socialMediaPreview: e.target.value })}
-                    placeholder={language === 'ar' ? 'نص للمشاركة على وسائل التواصل...' : 'Text for social media sharing...'}
+                    placeholder={language === 'ar' ? '    ...' : 'Text for social media sharing...'}
                 />
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'قالب البريد الإلكتروني' : 'Email Template'}
+                    {language === 'ar' ? '  ' : 'Email Template'}
                 </label>
                 <Textarea
                     value={formData.emailTemplate}
                     onChange={(e) => setFormData({ ...formData, emailTemplate: e.target.value })}
-                    placeholder={language === 'ar' ? 'محتوى البريد الإلكتروني...' : 'Email content...'}
+                    placeholder={language === 'ar' ? '  ...' : 'Email content...'}
                     className="min-h-[100px]"
                 />
             </div>
@@ -460,7 +460,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             <div className="grid grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'رسوم التسجيل' : 'Registration Fee'}
+                        {language === 'ar' ? ' ' : 'Registration Fee'}
                     </label>
                     <Input
                         type="number"
@@ -471,7 +471,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                        {language === 'ar' ? 'رسوم التسجيل المبكر' : 'Early Bird Fee'}
+                        {language === 'ar' ? '  ' : 'Early Bird Fee'}
                     </label>
                     <Input
                         type="number"
@@ -483,7 +483,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'موعد انتهاء التسجيل المبكر' : 'Early Bird Deadline'}
+                    {language === 'ar' ? '   ' : 'Early Bird Deadline'}
                 </label>
                 <Input
                     type="date"
@@ -493,7 +493,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                    {language === 'ar' ? 'أكواد الخصم' : 'Discount Codes'}
+                    {language === 'ar' ? ' ' : 'Discount Codes'}
                 </label>
                 <div className="space-y-2">
                     {formData.discountCodes.map((code, index) => (
@@ -517,7 +517,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                                     });
                                 }}
                             >
-                                {language === 'ar' ? 'حذف' : 'Remove'}
+                                {language === 'ar' ? '' : 'Remove'}
                             </GlassButton>
                         </div>
                     ))}
@@ -531,7 +531,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                             });
                         }}
                     >
-                        {language === 'ar' ? 'إضافة كود' : 'Add Code'}
+                        {language === 'ar' ? ' ' : 'Add Code'}
                     </GlassButton>
                 </div>
             </div>
@@ -542,31 +542,31 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
         <div className="space-y-4">
             <LiquidGlassCard blurIntensity="lg" className="p-6">
                 <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                    {language === 'ar' ? 'ملخص الفعالية' : 'Event Summary'}
+                    {language === 'ar' ? ' ' : 'Event Summary'}
                 </h3>
                 <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'العنوان' : 'Title'}:</span>
+                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Title'}:</span>
                         <span className="text-[var(--label)] font-medium">{formData.titleEn || formData.titleAr}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'التاريخ' : 'Date'}:</span>
+                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Date'}:</span>
                         <span className="text-[var(--label)] font-medium">{formData.startDate}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'الموقع' : 'Location'}:</span>
+                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Location'}:</span>
                         <span className="text-[var(--label)] font-medium">{formData.locationEn || formData.locationAr}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'ساعات CME' : 'CME Hours'}:</span>
+                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? ' CME' : 'CME Hours'}:</span>
                         <span className="text-[var(--label)] font-medium">{formData.totalCMEHours}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'الجلسات' : 'Sessions'}:</span>
+                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Sessions'}:</span>
                         <span className="text-[var(--label)] font-medium">{formData.sessions.length}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? 'المتحدثون' : 'Speakers'}:</span>
+                        <span className="text-[var(--secondary-label)]">{language === 'ar' ? '' : 'Speakers'}:</span>
                         <span className="text-[var(--label)] font-medium">{formData.speakers.length}</span>
                     </div>
                 </div>
@@ -579,7 +579,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                     className="w-5 h-5"
                 />
                 <span className="text-sm text-[var(--label)]">
-                    {language === 'ar' ? 'طلب رعاية لهذه الفعالية' : 'Request sponsorship for this event'}
+                    {language === 'ar' ? '   ' : 'Request sponsorship for this event'}
                 </span>
             </div>
         </div>
@@ -658,7 +658,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                         {stepTitles[currentStep - 1]}
                     </h2>
                     <p className="text-sm text-[var(--secondary-label)] mt-1">
-                        {language === 'ar' ? `الخطوة ${currentStep} من 7` : `Step ${currentStep} of 7`}
+                        {language === 'ar' ? ` ${currentStep}  7` : `Step ${currentStep} of 7`}
                     </p>
                 </div>
                 {renderStepContent()}
@@ -672,8 +672,8 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                  className="flex items-center justify-center gap-2">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     {currentStep === 1 
-                        ? (language === 'ar' ? 'إلغاء' : 'Cancel')
-                        : (language === 'ar' ? 'السابق' : 'Previous')
+                        ? (language === 'ar' ? '' : 'Cancel')
+                        : (language === 'ar' ? '' : 'Previous')
                     }
                 </GlassButton>
                 {currentStep < 7 ? (
@@ -682,7 +682,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                         onClick={handleNext}
                         disabled={!canProceed()}
                      className="flex items-center justify-center gap-2">
-                        {language === 'ar' ? 'التالي' : 'Next'}
+                        {language === 'ar' ? '' : 'Next'}
                         <ArrowRight className="w-4 h-4 ml-2" />
                     </GlassButton>
                 ) : (
@@ -691,7 +691,7 @@ export default function EnhancedEventWizard({ onCancel, onComplete }: EnhancedEv
                         onClick={handleSubmit}
                         disabled={!canProceed()}
                      className="flex items-center justify-center gap-2">
-                        {language === 'ar' ? 'إرسال' : 'Submit'}
+                        {language === 'ar' ? '' : 'Submit'}
                         <CheckCircle2 className="w-4 h-4 ml-2" />
                     </GlassButton>
                 )}

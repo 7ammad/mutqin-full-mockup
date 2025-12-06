@@ -103,9 +103,9 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
     router.push(`/dashboard/regulator?tab=review&itemId=${eventId}`);
   };
 
-  const title = language === 'ar' ? 'المعروض للمراجعة' : 'Queue';
-  const searchPlaceholder = language === 'ar' ? 'ابحث...' : 'Search...';
-  const filtersText = language === 'ar' ? 'عوامل التصفية' : 'Filters';
+  const title = language === 'ar' ? ' ' : 'Queue';
+  const searchPlaceholder = language === 'ar' ? '...' : 'Search...';
+  const filtersText = language === 'ar' ? ' ' : 'Filters';
 
   return (
     <div className="space-y-6">
@@ -115,7 +115,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                {language === 'ar' ? 'قيد المراجعة' : 'Pending'}
+                {language === 'ar' ? ' ' : 'Pending'}
               </p>
               <p className="text-2xl font-bold text-[var(--label)] mt-1">
                 {kpiData.pending}
@@ -131,7 +131,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                {language === 'ar' ? 'جديد اليوم' : 'New Today'}
+                {language === 'ar' ? ' ' : 'New Today'}
               </p>
               <p className="text-2xl font-bold text-[var(--label)] mt-1">
                 {kpiData.newToday}
@@ -147,7 +147,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                {language === 'ar' ? 'قريب الاستحقاق' : 'Due Soon'}
+                {language === 'ar' ? ' ' : 'Due Soon'}
               </p>
               <p className="text-2xl font-bold text-[var(--apple-orange)] mt-1">
                 {kpiData.dueSoon}
@@ -194,14 +194,14 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                 {uniqueSpecialties.length > 0 && (
                   <div>
                     <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                      {language === 'ar' ? 'التخصص' : 'Specialty'}
+                      {language === 'ar' ? '' : 'Specialty'}
                     </label>
                     <Select value={selectedSpecialty} onValueChange={setSelectedSpecialty}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent glass={true}>
-                        <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
+                        <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
                         {uniqueSpecialties.map(spec => (
                           <SelectItem key={spec} value={spec}>{spec}</SelectItem>
                         ))}
@@ -213,14 +213,14 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                 {uniqueCities.length > 0 && (
                   <div>
                     <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                      {language === 'ar' ? 'المدينة' : 'City'}
+                      {language === 'ar' ? '' : 'City'}
                     </label>
                     <Select value={selectedCity} onValueChange={setSelectedCity}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent glass={true}>
-                        <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
+                        <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
                         {uniqueCities.map(city => (
                           <SelectItem key={city} value={city}>{city}</SelectItem>
                         ))}
@@ -232,14 +232,14 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                 {uniqueTypes.length > 0 && (
                   <div>
                     <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                      {language === 'ar' ? 'النوع' : 'Type'}
+                      {language === 'ar' ? '' : 'Type'}
                     </label>
                     <Select value={selectedType} onValueChange={setSelectedType}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent glass={true}>
-                        <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
+                        <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
                         {uniqueTypes.map(type => (
                           <SelectItem key={type} value={type}>{type}</SelectItem>
                         ))}
@@ -256,15 +256,15 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
       {/* Results */}
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-[var(--label)]">
-          {language === 'ar' ? 'النتائج' : 'Results'} ({filteredEvents.length})
+          {language === 'ar' ? '' : 'Results'} ({filteredEvents.length})
         </h3>
 
         {filteredEvents.length === 0 ? (
           <EmptyState
-            title={language === 'ar' ? 'لا توجد طلبات بانتظار المراجعة' : 'No pending applications'}
-            description={language === 'ar' ? 'لا توجد طلبات حالياً في المعروض للمراجعة. تظهر العناصر هنا عند إرسال مقدمي الخدمات طلبات الاعتماد.' : 'No applications pending review. New items appear when Providers submit accreditation.'}
+            title={language === 'ar' ? '    ' : 'No pending applications'}
+            description={language === 'ar' ? '      .         .' : 'No applications pending review. New items appear when Providers submit accreditation.'}
             icon={Inbox}
-            actionLabel={language === 'ar' ? 'إعادة تعيين البيانات التجريبية' : 'Reset demo data'}
+            actionLabel={language === 'ar' ? '   ' : 'Reset demo data'}
             onAction={async () => {
               try {
                 await fetch('/api/demo/reset', { method: 'POST' });
@@ -294,7 +294,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                           {title}
                         </h4>
                         <Badge variant="outline" className="ml-2 capitalize flex-shrink-0">
-                          {language === 'ar' ? 'قيد المراجعة' : 'Pending review'}
+                          {language === 'ar' ? ' ' : 'Pending review'}
                         </Badge>
                       </div>
                       <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--secondary-label)]">
@@ -324,7 +324,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                           <div className="flex items-center gap-1">
                             <Clock className="h-3.5 w-3.5" />
                             <span>
-                              {language === 'ar' ? 'تاريخ الإرسال:' : 'Submitted:'} {new Date(event.submittedAt).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
+                              {language === 'ar' ? ' :' : 'Submitted:'} {new Date(event.submittedAt).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
                             </span>
                           </div>
                         )}
@@ -338,7 +338,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                         className="gap-2"
                       >
                         <Eye className="h-4 w-4" />
-                        {language === 'ar' ? 'مراجعة الطلب' : 'Review Application'}
+                        {language === 'ar' ? ' ' : 'Review Application'}
                       </GlassButton>
                       <div className="flex gap-2">
                         <GlassButton
@@ -348,7 +348,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                           className="gap-2"
                         >
                           <CheckSquare className="h-4 w-4" />
-                          {language === 'ar' ? 'قرار' : 'Decision'}
+                          {language === 'ar' ? '' : 'Decision'}
                         </GlassButton>
                         <GlassButton
                           variant="outline"
@@ -357,7 +357,7 @@ export default function RegulatorQueueTab({ queueEvents }: Props) {
                           className="gap-2"
                         >
                           <ListChecks className="h-4 w-4" />
-                          {language === 'ar' ? 'قائمة' : 'Checklist'}
+                          {language === 'ar' ? '' : 'Checklist'}
                         </GlassButton>
                       </div>
                     </div>

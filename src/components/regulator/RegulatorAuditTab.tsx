@@ -105,12 +105,12 @@ export default function RegulatorAuditTab({ allEvents }: Props) {
 
   const getStatusBadge = (status: AttendanceRecordsStatus | HoursRegistrationStatus) => {
     const statusLabels: Record<string, { ar: string; en: string; variant: "default" | "destructive" | "outline" }> = {
-      not_started: { ar: 'لم يبدأ', en: 'Not Started', variant: 'outline' },
-      in_progress: { ar: 'قيد التنفيذ', en: 'In Progress', variant: 'default' },
-      submitted: { ar: 'مقدّم', en: 'Submitted', variant: 'default' },
-      accepted: { ar: 'مقبول', en: 'Accepted', variant: 'default' },
-      returned_for_fix: { ar: 'مطلوب تصحيح', en: 'Returned for Fix', variant: 'outline' },
-      overdue: { ar: 'متأخر', en: 'Overdue', variant: 'destructive' }
+      not_started: { ar: ' ', en: 'Not Started', variant: 'outline' },
+      in_progress: { ar: ' ', en: 'In Progress', variant: 'default' },
+      submitted: { ar: '', en: 'Submitted', variant: 'default' },
+      accepted: { ar: '', en: 'Accepted', variant: 'default' },
+      returned_for_fix: { ar: ' ', en: 'Returned for Fix', variant: 'outline' },
+      overdue: { ar: '', en: 'Overdue', variant: 'destructive' }
     };
 
     const label = statusLabels[status] || statusLabels.not_started;
@@ -160,23 +160,23 @@ export default function RegulatorAuditTab({ allEvents }: Props) {
       a.click();
       URL.revokeObjectURL(url);
 
-      showToast(language === 'ar' ? 'تم تصدير CSV بنجاح' : 'CSV exported successfully', 'success');
+      showToast(language === 'ar' ? '  CSV ' : 'CSV exported successfully', 'success');
     } catch (error) {
-      showToast(language === 'ar' ? 'فشل التصدير' : 'Export failed', 'info');
+      showToast(language === 'ar' ? ' ' : 'Export failed', 'info');
     }
   };
 
-  const title = language === 'ar' ? 'المتابعة والالتزام' : 'Monitoring';
+  const title = language === 'ar' ? ' ' : 'Monitoring';
 
   if (complianceData.length === 0) {
     return (
       <div className="space-y-6">
         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-12">
           <EmptyState
-            title={language === 'ar' ? 'لا توجد بيانات متاحة' : 'No compliance data available'}
-            description={language === 'ar' ? 'لا توجد فعاليات منتهية للمتابعة' : 'No ended activities to monitor'}
+            title={language === 'ar' ? '   ' : 'No compliance data available'}
+            description={language === 'ar' ? '    ' : 'No ended activities to monitor'}
             icon={Shield}
-            actionLabel={language === 'ar' ? 'إعادة تعيين البيانات التجريبية' : 'Reset demo data'}
+            actionLabel={language === 'ar' ? '   ' : 'Reset demo data'}
             onAction={async () => {
               try {
                 await fetch('/api/demo/reset', { method: 'POST' });
@@ -206,7 +206,7 @@ export default function RegulatorAuditTab({ allEvents }: Props) {
             className="gap-2 flex items-center justify-center"
           >
             <Download className="h-4 w-4" />
-            {language === 'ar' ? 'تصدير' : 'Export'}
+            {language === 'ar' ? '' : 'Export'}
           </GlassButton>
         </div>
 
@@ -216,31 +216,31 @@ export default function RegulatorAuditTab({ allEvents }: Props) {
             <thead>
               <tr className="border-b border-[var(--separator)]">
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'الفعالية' : 'Activity'}
+                  {language === 'ar' ? '' : 'Activity'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'المنظم' : 'Provider'}
+                  {language === 'ar' ? '' : 'Provider'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'تاريخ الانتهاء' : 'Ended At'}
+                  {language === 'ar' ? ' ' : 'Ended At'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'سجلات الحضور' : 'Attendance Records'}
+                  {language === 'ar' ? ' ' : 'Attendance Records'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'استحقاق الحضور' : 'Attendance Due'}
+                  {language === 'ar' ? ' ' : 'Attendance Due'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'تسجيل الساعات' : 'Hours Registration'}
+                  {language === 'ar' ? ' ' : 'Hours Registration'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'استحقاق الساعات' : 'Hours Due'}
+                  {language === 'ar' ? ' ' : 'Hours Due'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'معدل الاستثناءات' : 'Exception Rate'}
+                  {language === 'ar' ? ' ' : 'Exception Rate'}
                 </th>
                 <th className="text-left p-3 text-sm font-semibold text-[var(--label)]">
-                  {language === 'ar' ? 'الإجراءات' : 'Actions'}
+                  {language === 'ar' ? '' : 'Actions'}
                 </th>
               </tr>
             </thead>
@@ -321,7 +321,7 @@ export default function RegulatorAuditTab({ allEvents }: Props) {
                           className="gap-2"
                         >
                           <Eye className="h-4 w-4" />
-                          {language === 'ar' ? 'عرض الطلب' : 'View Application'}
+                          {language === 'ar' ? ' ' : 'View Application'}
                         </GlassButton>
                         <GlassButton
                           variant="outline"
@@ -330,7 +330,7 @@ export default function RegulatorAuditTab({ allEvents }: Props) {
                           className="gap-2"
                         >
                           <Building2 className="h-4 w-4" />
-                          {language === 'ar' ? 'عرض المزود' : 'View Provider'}
+                          {language === 'ar' ? ' ' : 'View Provider'}
                         </GlassButton>
                       </div>
                     </td>

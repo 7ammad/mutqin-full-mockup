@@ -61,7 +61,7 @@ export default function MarketplaceFeed({ onSponsorClick }: MarketplaceFeedProps
                                 className="w-full gap-2"
                             >
                                 <Eye className="h-4 w-4" />
-                                {language === 'ar' ? 'عرض الفرصة' : 'View Opportunity'}
+                                {language === 'ar' ? ' ' : 'View Opportunity'}
                             </GlassButton>
                         </div>
                     ))}

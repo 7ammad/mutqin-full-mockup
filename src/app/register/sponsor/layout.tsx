@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تسجيل راعٍ | مُتْقِن',
-  description: 'سجل كراعٍ وادعم الفعاليات الطبية',
+  title: '  | ',
+  description: '    ',
 };
 
 export default function SponsorRegisterLayout({

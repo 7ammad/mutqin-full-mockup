@@ -52,14 +52,14 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
             {/* Event Manager Assignment */}
             <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                 <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                    {language === 'ar' ? 'تعيين مدير الفعالية' : 'Event Manager Assignment'}
+                    {language === 'ar' ? '  ' : 'Event Manager Assignment'}
                 </h3>
                 <div className="space-y-3">
                     {assignment ? (
                         <>
                             <div className="flex items-center justify-between">
                                 <span className="text-sm text-[var(--secondary-label)]">
-                                    {language === 'ar' ? 'مدير الفعالية' : 'Event Manager'}
+                                    {language === 'ar' ? ' ' : 'Event Manager'}
                                 </span>
                                 <Badge
                                     className={
@@ -71,10 +71,10 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
                                     }
                                 >
                                     {assignment.status === 'accepted'
-                                        ? language === 'ar' ? 'مقبول' : 'Accepted'
+                                        ? language === 'ar' ? '' : 'Accepted'
                                         : assignment.status === 'pending'
-                                        ? language === 'ar' ? 'قيد الانتظار' : 'Pending'
-                                        : language === 'ar' ? 'مرفوض' : 'Declined'}
+                                        ? language === 'ar' ? ' ' : 'Pending'
+                                        : language === 'ar' ? '' : 'Declined'}
                                 </Badge>
                             </div>
                             {assignment.eventManagerId && (
@@ -85,7 +85,7 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
                                     className="w-full justify-between"
                                 >
                                     <span className="text-sm">
-                                        {language === 'ar' ? 'عرض لوحة مدير الفعالية' : 'View Event Manager Dashboard'}
+                                        {language === 'ar' ? '   ' : 'View Event Manager Dashboard'}
                                     </span>
                                     <ExternalLink className="h-4 w-4" />
                                 </GlassButton>
@@ -93,7 +93,7 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
                         </>
                     ) : (
                         <div className="text-sm text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'لم يتم تعيين مدير فعالية' : 'No Event Manager assigned'}
+                            {language === 'ar' ? '    ' : 'No Event Manager assigned'}
                         </div>
                     )}
                 </div>
@@ -103,12 +103,12 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
             <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                 <h3 className="text-lg font-semibold text-[var(--label)] mb-4 flex items-center gap-2">
                     <ClipboardList className="h-5 w-5" />
-                    {language === 'ar' ? 'سجلات الحضور' : 'Attendance Records'}
+                    {language === 'ar' ? ' ' : 'Attendance Records'}
                 </h3>
                 <div className="space-y-3">
                     <div className="flex items-center justify-between">
                         <span className="text-sm text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'الحالة' : 'Status'}
+                            {language === 'ar' ? '' : 'Status'}
                         </span>
                         <Badge
                             className={
@@ -120,16 +120,16 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
                             }
                         >
                             {complianceData?.attendanceRecords.status === 'submitted'
-                                ? language === 'ar' ? 'مقدم' : 'Submitted'
+                                ? language === 'ar' ? '' : 'Submitted'
                                 : complianceData?.attendanceRecords.status === 'overdue'
-                                ? language === 'ar' ? 'متأخر' : 'Overdue'
-                                : language === 'ar' ? 'لم يبدأ' : 'Not Started'}
+                                ? language === 'ar' ? '' : 'Overdue'
+                                : language === 'ar' ? ' ' : 'Not Started'}
                         </Badge>
                     </div>
                     {complianceData?.attendanceRecords.dueAt && (
                         <div className="flex items-center justify-between">
                             <span className="text-sm text-[var(--secondary-label)]">
-                                {language === 'ar' ? 'تاريخ الاستحقاق' : 'Due Date'}
+                                {language === 'ar' ? ' ' : 'Due Date'}
                             </span>
                             <span className="text-sm font-medium text-[var(--label)]">
                                 {new Date(complianceData.attendanceRecords.dueAt).toLocaleDateString(
@@ -140,7 +140,7 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
                     )}
                     <div className="flex items-center justify-between">
                         <span className="text-sm text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'عدد السجلات' : 'Record Count'}
+                            {language === 'ar' ? ' ' : 'Record Count'}
                         </span>
                         <span className="text-sm font-medium text-[var(--label)]">
                             {attendanceRecords.length} / {eventTickets.length}
@@ -153,12 +153,12 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
             <LiquidGlassCard blurIntensity="md" interactive={false} className="p-6">
                 <h3 className="text-lg font-semibold text-[var(--label)] mb-4 flex items-center gap-2">
                     <CheckCircle2 className="h-5 w-5" />
-                    {language === 'ar' ? 'تسجيل الساعات' : 'Hours Registration'}
+                    {language === 'ar' ? ' ' : 'Hours Registration'}
                 </h3>
                 <div className="space-y-3">
                     <div className="flex items-center justify-between">
                         <span className="text-sm text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'الحالة' : 'Status'}
+                            {language === 'ar' ? '' : 'Status'}
                         </span>
                         <Badge
                             className={
@@ -170,16 +170,16 @@ export default function ExecutionTab({ event }: ExecutionTabProps) {
                             }
                         >
                             {complianceData?.hoursRegistration.status === 'submitted'
-                                ? language === 'ar' ? 'مقدم' : 'Submitted'
+                                ? language === 'ar' ? '' : 'Submitted'
                                 : complianceData?.hoursRegistration.status === 'overdue'
-                                ? language === 'ar' ? 'متأخر' : 'Overdue'
-                                : language === 'ar' ? 'لم يبدأ' : 'Not Started'}
+                                ? language === 'ar' ? '' : 'Overdue'
+                                : language === 'ar' ? ' ' : 'Not Started'}
                         </Badge>
                     </div>
                     {complianceData?.hoursRegistration.dueAt && (
                         <div className="flex items-center justify-between">
                             <span className="text-sm text-[var(--secondary-label)]">
-                                {language === 'ar' ? 'تاريخ الاستحقاق' : 'Due Date'}
+                                {language === 'ar' ? ' ' : 'Due Date'}
                             </span>
                             <span className="text-sm font-medium text-[var(--label)]">
                                 {new Date(complianceData.hoursRegistration.dueAt).toLocaleDateString(

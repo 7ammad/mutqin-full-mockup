@@ -11,25 +11,25 @@ export function WhatIsMutqinSection() {
   const pillars = [
     {
       icon: Shield,
-      title: language === 'ar' ? 'موثق' : 'Verified',
+      title: language === 'ar' ? '' : 'Verified',
       description: language === 'ar' 
-        ? 'جميع الفعاليات معتمدة من الهيئة السعودية للتخصصات الصحية'
+        ? '       '
         : 'All events accredited by SCFHS',
       color: 'var(--apple-blue)',
     },
     {
       icon: Users,
-      title: language === 'ar' ? 'موحد' : 'Unified',
+      title: language === 'ar' ? '' : 'Unified',
       description: language === 'ar'
-        ? 'منصة واحدة لجميع أصحاب المصلحة في التعليم الطبي المستمر'
+        ? '        '
         : 'One platform for all CME stakeholders',
       color: 'var(--apple-green)',
     },
     {
       icon: Zap,
-      title: language === 'ar' ? 'يمكن الوصول إليه' : 'Accessible',
+      title: language === 'ar' ? '  ' : 'Accessible',
       description: language === 'ar'
-        ? 'سهل الاستخدام ومتاح باللغتين العربية والإنجليزية'
+        ? '     '
         : 'Easy to use, available in Arabic and English',
       color: 'var(--apple-purple)',
     },
@@ -43,18 +43,18 @@ export function WhatIsMutqinSection() {
           <div className="space-y-6">
             {/* Badge */}
             <Badge className="bg-[var(--apple-blue)]/10 text-[var(--apple-blue)] border-[var(--apple-blue)]/20">
-              {language === 'ar' ? 'منصة التعليم الطبي المستمر' : 'CME Platform'}
+              {language === 'ar' ? '   ' : 'CME Platform'}
             </Badge>
 
             {/* AR Headline */}
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--label)]">
-              {language === 'ar' ? 'ما هو متقن؟' : 'What is Mutqin?'}
+              {language === 'ar' ? '  ' : 'What is Mutqin?'}
             </h2>
 
             {/* EN Subline */}
             <p className="text-xl text-[var(--secondary-label)]">
               {language === 'ar'
-                ? 'منصة موحدة للتعليم الطبي المستمر المعتمد في المملكة العربية السعودية'
+                ? '         '
                 : 'Saudi Arabia\'s unified platform for accredited Continuing Medical Education'}
             </p>
 
@@ -94,7 +94,7 @@ export function WhatIsMutqinSection() {
           <div className="relative">
             <div className="w-full h-[500px] rounded-ios-lg bg-gradient-to-br from-[var(--apple-blue)]/10 to-[var(--apple-purple)]/10 border border-[var(--border)] flex items-center justify-center">
               <p className="text-[var(--secondary-label)] text-sm">
-                {language === 'ar' ? 'سيتم إضافة الرسم التوضيحي هنا' : 'Illustration placeholder'}
+                {language === 'ar' ? '    ' : 'Illustration placeholder'}
               </p>
             </div>
           </div>

@@ -235,13 +235,13 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
       a.click();
       URL.revokeObjectURL(url);
 
-      showToast(language === 'ar' ? 'تم تصدير CSV بنجاح' : 'CSV exported successfully', 'success');
+      showToast(language === 'ar' ? '  CSV ' : 'CSV exported successfully', 'success');
     } catch (error) {
-      showToast(language === 'ar' ? 'فشل التصدير' : 'Export failed', 'info');
+      showToast(language === 'ar' ? ' ' : 'Export failed', 'info');
     }
   };
 
-  const title = language === 'ar' ? 'التحليلات والرؤى' : 'Analytics & Insights';
+  const title = language === 'ar' ? ' ' : 'Analytics & Insights';
 
   return (
     <div className="space-y-6">
@@ -258,7 +258,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
             className="gap-2 flex items-center justify-center"
           >
             <Download className="h-4 w-4" />
-            {language === 'ar' ? 'تصدير CSV' : 'Export CSV'}
+            {language === 'ar' ? ' CSV' : 'Export CSV'}
           </GlassButton>
         </div>
 
@@ -268,10 +268,10 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
               <AlertCircle className="h-5 w-5 text-[var(--apple-yellow)] mt-0.5 flex-shrink-0" />
               <div>
                 <p className="text-sm font-medium text-[var(--label)]">
-                  {language === 'ar' ? 'بيانات مفقودة في البذرة التجريبية' : 'Missing data in demo seed'}
+                  {language === 'ar' ? '    ' : 'Missing data in demo seed'}
                 </p>
                 <p className="text-xs text-[var(--secondary-label)] mt-1">
-                  {language === 'ar' ? 'الحقول المفقودة:' : 'Missing fields:'} {analytics.missingFields.join(', ')}
+                  {language === 'ar' ? ' :' : 'Missing fields:'} {analytics.missingFields.join(', ')}
                 </p>
               </div>
             </div>
@@ -284,7 +284,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                  {language === 'ar' ? 'إجمالي الطلبات' : 'Total Submissions'}
+                  {language === 'ar' ? ' ' : 'Total Submissions'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--label)] mt-1">
                   {analytics.totalSubmissions}
@@ -298,7 +298,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                  {language === 'ar' ? 'معدل الموافقة' : 'Approval Rate'}
+                  {language === 'ar' ? ' ' : 'Approval Rate'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--apple-green)] mt-1">
                   {analytics.approvalRate}%
@@ -312,7 +312,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                  {language === 'ar' ? 'قيد المراجعة الآن' : 'Pending Now'}
+                  {language === 'ar' ? '  ' : 'Pending Now'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--apple-orange)] mt-1">
                   {analytics.pending}
@@ -326,7 +326,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                  {language === 'ar' ? 'متوسط وقت القرار' : 'Median Decision Time'}
+                  {language === 'ar' ? '  ' : 'Median Decision Time'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--label)] mt-1">
                   {analytics.medianDecisionTime !== null
@@ -342,7 +342,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                  {language === 'ar' ? 'سجلات الحضور المتأخرة' : 'Overdue Attendance'}
+                  {language === 'ar' ? '  ' : 'Overdue Attendance'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--apple-red)] mt-1">
                   {analytics.overdueAttendanceRecords}
@@ -356,7 +356,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                  {language === 'ar' ? 'تسجيل الساعات المتأخر' : 'Overdue Hours'}
+                  {language === 'ar' ? '  ' : 'Overdue Hours'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--apple-red)] mt-1">
                   {analytics.overdueHoursRegistration}
@@ -371,13 +371,13 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
         {analytics.hasDistributionData && (
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-              {language === 'ar' ? 'التوزيع' : 'Distribution'}
+              {language === 'ar' ? '' : 'Distribution'}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {analytics.topSpecialties.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-[var(--secondary-label)] mb-3">
-                    {language === 'ar' ? 'حسب التخصص' : 'By Specialty'}
+                    {language === 'ar' ? ' ' : 'By Specialty'}
                   </h4>
                   <div className="space-y-2">
                     {analytics.topSpecialties.map(([spec, count]) => (
@@ -393,7 +393,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
               {analytics.topCities.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-[var(--secondary-label)] mb-3">
-                    {language === 'ar' ? 'حسب المدينة' : 'By City'}
+                    {language === 'ar' ? ' ' : 'By City'}
                   </h4>
                   <div className="space-y-2">
                     {analytics.topCities.map(([city, count]) => (
@@ -409,7 +409,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
               {analytics.topTypes.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-[var(--secondary-label)] mb-3">
-                    {language === 'ar' ? 'حسب النوع' : 'By Type'}
+                    {language === 'ar' ? ' ' : 'By Type'}
                   </h4>
                   <div className="space-y-2">
                     {analytics.topTypes.map(([type, count]) => (
@@ -429,13 +429,13 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
         {analytics.hasTimeData && (
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-              {language === 'ar' ? 'الاختناقات' : 'Bottlenecks'}
+              {language === 'ar' ? '' : 'Bottlenecks'}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {analytics.slowestSpecialties.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-[var(--secondary-label)] mb-3">
-                    {language === 'ar' ? 'أبطأ التخصصات' : 'Slowest Specialties'}
+                    {language === 'ar' ? ' ' : 'Slowest Specialties'}
                   </h4>
                   <div className="space-y-2">
                     {analytics.slowestSpecialties.map(({ specialty, median }) => (
@@ -451,7 +451,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
               {analytics.slowestProviders.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-[var(--secondary-label)] mb-3">
-                    {language === 'ar' ? 'أبطأ مقدمي الخدمات' : 'Slowest Providers'}
+                    {language === 'ar' ? '  ' : 'Slowest Providers'}
                   </h4>
                   <div className="space-y-2">
                     {analytics.slowestProviders.map(({ provider, median }) => {
@@ -467,7 +467,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
                             className="gap-1"
                           >
                             <Building2 className="h-3 w-3" />
-                            {language === 'ar' ? 'عرض' : 'View'}
+                            {language === 'ar' ? '' : 'View'}
                           </GlassButton>
                         </div>
                       );
@@ -483,13 +483,13 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
         {analytics.hasQualityData && (
           <div>
             <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-              {language === 'ar' ? 'الجودة' : 'Quality'}
+              {language === 'ar' ? '' : 'Quality'}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {analytics.rejectionRates.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-[var(--secondary-label)] mb-3">
-                    {language === 'ar' ? 'معدل الرفض حسب المزود' : 'Rejection Rate by Provider'}
+                    {language === 'ar' ? '   ' : 'Rejection Rate by Provider'}
                   </h4>
                   <div className="space-y-2">
                     {analytics.rejectionRates.map(({ provider, rejectionRate }) => {
@@ -505,7 +505,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
                             className="gap-1"
                           >
                             <Building2 className="h-3 w-3" />
-                            {language === 'ar' ? 'عرض' : 'View'}
+                            {language === 'ar' ? '' : 'View'}
                           </GlassButton>
                         </div>
                       );
@@ -517,7 +517,7 @@ export default function RegulatorAnalyticsTab({ allEvents }: Props) {
               {analytics.topReasons.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-[var(--secondary-label)] mb-3">
-                    {language === 'ar' ? 'أسباب الرفض الأكثر شيوعاً' : 'Top Rejection Reasons'}
+                    {language === 'ar' ? '   ' : 'Top Rejection Reasons'}
                   </h4>
                   <div className="space-y-2">
                     {analytics.topReasons.map(([reason, count]) => (

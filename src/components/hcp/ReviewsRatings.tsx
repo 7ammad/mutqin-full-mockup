@@ -32,10 +32,10 @@ export default function ReviewsRatings() {
             id: '1',
             eventId: '1',
             eventTitle: 'Saudi Cardiology Conference 2025',
-            eventTitleAr: 'مؤتمر القلب السعودي 2025',
+            eventTitleAr: '   2025',
             rating: 5,
             comment: language === 'ar' 
-                ? 'مؤتمر ممتاز مع محتوى عالي الجودة ومتحدثين متميزين'
+                ? '       '
                 : 'Excellent conference with high-quality content and outstanding speakers',
             date: '2025-03-20',
             helpful: 12,
@@ -52,13 +52,13 @@ export default function ReviewsRatings() {
 
     const handleSubmitReview = async () => {
         if (!newReview.eventId || !newReview.rating || !newReview.comment) {
-            showToast(language === 'ar' ? 'يرجى ملء جميع الحقول' : 'Please fill all fields', 'info');
+            showToast(language === 'ar' ? '   ' : 'Please fill all fields', 'info');
             return;
         }
 
         const event = events.find(e => e.id === newReview.eventId);
         if (!event) {
-            showToast(language === 'ar' ? 'الحدث غير موجود' : 'Event not found', 'info');
+            showToast(language === 'ar' ? '  ' : 'Event not found', 'info');
             return;
         }
 
@@ -85,25 +85,25 @@ export default function ReviewsRatings() {
                 setReviews([review, ...reviews]);
                 setNewReview({ eventId: '', rating: 0, comment: '' });
                 setShowForm(false);
-                showToast(language === 'ar' ? 'تم إرسال المراجعة بنجاح' : 'Review submitted successfully', 'success');
+                showToast(language === 'ar' ? '   ' : 'Review submitted successfully', 'success');
             }
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            const message = err instanceof Error ? err.message : (language === 'ar' ? ' ' : 'An error occurred');
             showToast(message, 'info');
         }
     };
 
-    const title = language === 'ar' ? 'التقييمات والمراجعات' : 'Reviews & Ratings';
-    const averageRatingText = language === 'ar' ? 'التقييم المتوسط' : 'Average Rating';
-    const totalReviewsText = language === 'ar' ? 'إجمالي المراجعات' : 'Total Reviews';
-    const writeReviewText = language === 'ar' ? 'كتابة مراجعة' : 'Write Review';
-    const selectEventText = language === 'ar' ? 'اختر الفعالية' : 'Select Event';
-    const yourRatingText = language === 'ar' ? 'تقييمك' : 'Your Rating';
-    const yourCommentText = language === 'ar' ? 'تعليقك' : 'Your Comment';
-    const submitText = language === 'ar' ? 'إرسال' : 'Submit';
-    const cancelText = language === 'ar' ? 'إلغاء' : 'Cancel';
-    const helpfulText = language === 'ar' ? 'مفيد' : 'Helpful';
-    const noReviewsText = language === 'ar' ? 'لا توجد مراجعات بعد' : 'No reviews yet';
+    const title = language === 'ar' ? ' ' : 'Reviews & Ratings';
+    const averageRatingText = language === 'ar' ? ' ' : 'Average Rating';
+    const totalReviewsText = language === 'ar' ? ' ' : 'Total Reviews';
+    const writeReviewText = language === 'ar' ? ' ' : 'Write Review';
+    const selectEventText = language === 'ar' ? ' ' : 'Select Event';
+    const yourRatingText = language === 'ar' ? '' : 'Your Rating';
+    const yourCommentText = language === 'ar' ? '' : 'Your Comment';
+    const submitText = language === 'ar' ? '' : 'Submit';
+    const cancelText = language === 'ar' ? '' : 'Cancel';
+    const helpfulText = language === 'ar' ? '' : 'Helpful';
+    const noReviewsText = language === 'ar' ? '   ' : 'No reviews yet';
 
     return (
         <div className="space-y-6">
@@ -210,7 +210,7 @@ export default function ReviewsRatings() {
                             <Textarea
                                 value={newReview.comment}
                                 onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
-                                placeholder={language === 'ar' ? 'اكتب مراجعتك هنا...' : 'Write your review here...'}
+                                placeholder={language === 'ar' ? '  ...' : 'Write your review here...'}
                                 className="min-h-[100px]"
                             />
                         </div>
@@ -285,7 +285,7 @@ export default function ReviewsRatings() {
                                     </button>
                                     {review.replies && (
                                         <span className="text-sm text-[var(--secondary-label)]">
-                                            {review.replies} {language === 'ar' ? 'ردود' : 'replies'}
+                                            {review.replies} {language === 'ar' ? '' : 'replies'}
                                         </span>
                                     )}
                                 </div>

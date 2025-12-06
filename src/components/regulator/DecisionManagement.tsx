@@ -40,12 +40,12 @@ export default function DecisionManagement() {
 
     const handleSubmitDecision = async () => {
         if (!selectedEventId || !decision) {
-            showToast(language === 'ar' ? 'يرجى اختيار فعالية وقرار' : 'Please select an event and decision', 'info');
+            showToast(language === 'ar' ? '   ' : 'Please select an event and decision', 'info');
             return;
         }
 
         if ((decision === 'reject' || decision === 'request-modification') && !notes.trim()) {
-            showToast(language === 'ar' ? 'يرجى إضافة ملاحظات' : 'Please add notes', 'info');
+            showToast(language === 'ar' ? '  ' : 'Please add notes', 'info');
             return;
         }
 
@@ -62,14 +62,14 @@ export default function DecisionManagement() {
                     eventId: selectedEventId,
                     decision,
                     notes,
-                    reviewer: language === 'ar' ? 'د. خالد الفهد' : 'Dr. Khalid Al-Fahd',
+                    reviewer: language === 'ar' ? '.  ' : 'Dr. Khalid Al-Fahd',
                     timestamp: new Date().toISOString(),
                     status: 'sent',
                 };
 
                 setDecisions([...decisions, newDecision]);
                 showToast(
-                    language === 'ar' ? 'تم إرسال القرار بنجاح' : 'Decision sent successfully',
+                    language === 'ar' ? '   ' : 'Decision sent successfully',
                     'success'
                 );
                 router.refresh();
@@ -80,20 +80,20 @@ export default function DecisionManagement() {
                 setNotes("");
             }
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            const message = err instanceof Error ? err.message : (language === 'ar' ? ' ' : 'An error occurred');
             showToast(message, 'info');
         }
     };
 
-    const title = language === 'ar' ? 'إدارة القرارات' : 'Decision Management';
-    const selectEventText = language === 'ar' ? 'اختر فعالية' : 'Select Event';
-    const decisionText = language === 'ar' ? 'القرار' : 'Decision';
-    const notesText = language === 'ar' ? 'ملاحظات' : 'Notes';
-    const submitText = language === 'ar' ? 'إرسال القرار' : 'Submit Decision';
-    const approveText = language === 'ar' ? 'موافقة' : 'Approve';
-    const rejectText = language === 'ar' ? 'رفض' : 'Reject';
-    const requestModificationText = language === 'ar' ? 'طلب تعديلات' : 'Request Modifications';
-    const decisionHistoryText = language === 'ar' ? 'سجل القرارات' : 'Decision History';
+    const title = language === 'ar' ? ' ' : 'Decision Management';
+    const selectEventText = language === 'ar' ? ' ' : 'Select Event';
+    const decisionText = language === 'ar' ? '' : 'Decision';
+    const notesText = language === 'ar' ? '' : 'Notes';
+    const submitText = language === 'ar' ? ' ' : 'Submit Decision';
+    const approveText = language === 'ar' ? '' : 'Approve';
+    const rejectText = language === 'ar' ? '' : 'Reject';
+    const requestModificationText = language === 'ar' ? ' ' : 'Request Modifications';
+    const decisionHistoryText = language === 'ar' ? ' ' : 'Decision History';
 
 
     return (
@@ -135,7 +135,7 @@ export default function DecisionManagement() {
                                     {getEventOrganizer(selectedEvent, language)}
                                 </p>
                                 <p className="text-sm text-[var(--secondary-label)]">
-                                    {new Date(selectedEvent.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')} • {selectedEvent.cme_hours} {language === 'ar' ? 'ساعة تعليم' : 'CME hours'}
+                                    {new Date(selectedEvent.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')} • {selectedEvent.cme_hours} {language === 'ar' ? ' ' : 'CME hours'}
                                 </p>
                             </div>
                         </LiquidGlassCard>
@@ -155,7 +155,7 @@ export default function DecisionManagement() {
                                     <div className="text-left">
                                         <p className="font-semibold">{approveText}</p>
                                         <p className="text-xs text-[var(--secondary-label)]">
-                                            {language === 'ar' ? 'الموافقة على الفعالية' : 'Approve the event'}
+                                            {language === 'ar' ? '  ' : 'Approve the event'}
                                         </p>
                                     </div>
                                 </GlassButton>
@@ -168,7 +168,7 @@ export default function DecisionManagement() {
                                     <div className="text-left">
                                         <p className="font-semibold">{rejectText}</p>
                                         <p className="text-xs text-[var(--secondary-label)]">
-                                            {language === 'ar' ? 'رفض الفعالية' : 'Reject the event'}
+                                            {language === 'ar' ? ' ' : 'Reject the event'}
                                         </p>
                                     </div>
                                 </GlassButton>
@@ -181,7 +181,7 @@ export default function DecisionManagement() {
                                     <div className="text-left">
                                         <p className="font-semibold">{requestModificationText}</p>
                                         <p className="text-xs text-[var(--secondary-label)]">
-                                            {language === 'ar' ? 'طلب تعديلات' : 'Request modifications'}
+                                            {language === 'ar' ? ' ' : 'Request modifications'}
                                         </p>
                                     </div>
                                 </GlassButton>
@@ -197,13 +197,13 @@ export default function DecisionManagement() {
                                 <Textarea
                                     value={notes}
                                     onChange={(e) => setNotes(e.target.value)}
-                                    placeholder={language === 'ar' ? 'أضف ملاحظات مفصلة...' : 'Add detailed notes...'}
+                                    placeholder={language === 'ar' ? '  ...' : 'Add detailed notes...'}
                                     rows={5}
                                     required
                                 />
                                 <p className="text-xs text-[var(--secondary-label)] mt-2">
                                     {language === 'ar' 
-                                        ? 'الملاحظات مطلوبة للرفض أو طلب التعديلات'
+                                        ? '     '
                                         : 'Notes are required for rejection or modification requests'}
                                 </p>
                             </div>
@@ -221,8 +221,8 @@ export default function DecisionManagement() {
                     </div>
                 ) : (
                     <EmptyState
-                        title={language === 'ar' ? 'لم يتم اختيار فعالية' : 'No Event Selected'}
-                        description={language === 'ar' ? 'يرجى اختيار فعالية لإدارة القرار' : 'Please select an event to manage decision'}
+                        title={language === 'ar' ? '   ' : 'No Event Selected'}
+                        description={language === 'ar' ? '    ' : 'Please select an event to manage decision'}
                         icon={FileText}
                     />
                 )}
@@ -294,8 +294,8 @@ export default function DecisionManagement() {
                                                 : 'bg-[var(--apple-orange)]/10 text-[var(--apple-orange)]'
                                         }`}>
                                             {dec.status === 'sent' 
-                                                ? (language === 'ar' ? 'تم الإرسال' : 'Sent')
-                                                : (language === 'ar' ? 'قيد الانتظار' : 'Pending')
+                                                ? (language === 'ar' ? ' ' : 'Sent')
+                                                : (language === 'ar' ? ' ' : 'Pending')
                                             }
                                         </span>
                                     </div>

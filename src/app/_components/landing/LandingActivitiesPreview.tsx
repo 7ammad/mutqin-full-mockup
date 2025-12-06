@@ -33,110 +33,110 @@ type LandingEvent = {
 const mockActivities: LandingEvent[] = [
   {
     id: '1',
-    name: 'مؤتمر أمراض القلب المتقدم 2025',
+    name: '    2025',
     nameEn: 'Advanced Cardiology Conference 2025',
-    provider: 'الجمعية السعودية لأمراض القلب',
+    provider: '   ',
     providerEn: 'Saudi Heart Association',
     specialty: 'cardiology',
-    specialtyAr: 'أمراض القلب',
-    format: 'حضوري',
+    specialtyAr: ' ',
+    format: '',
     formatEn: 'In-Person',
-    dateRange: '15-17 مارس 2025',
+    dateRange: '15-17  2025',
     dateRangeEn: 'Mar 15-17, 2025',
     hours: 18,
-    city: 'الرياض',
+    city: '',
     cityEn: 'Riyadh',
-    location: 'فندق الفيصلية',
+    location: ' ',
     locationEn: 'Faisaliah Hotel',
   },
   {
     id: '2',
-    name: 'ورشة طب الطوارئ للأطفال',
+    name: '   ',
     nameEn: 'Pediatric Emergency Medicine Workshop',
-    provider: 'مدينة الملك فهد الطبية',
+    provider: '   ',
     providerEn: 'King Fahd Medical City',
     specialty: 'pediatrics',
-    specialtyAr: 'طب الأطفال',
-    format: 'هجين',
+    specialtyAr: ' ',
+    format: '',
     formatEn: 'Hybrid',
-    dateRange: '8-10 أبريل 2025',
+    dateRange: '8-10  2025',
     dateRangeEn: 'Apr 8-10, 2025',
     hours: 12,
-    city: 'الرياض',
+    city: '',
     cityEn: 'Riyadh',
-    location: 'مدينة الملك فهد الطبية',
+    location: '   ',
     locationEn: 'King Fahd Medical City',
   },
   {
     id: '3',
-    name: 'ندوة تحديث طب الأسرة',
+    name: '   ',
     nameEn: 'Family Medicine Update Seminar',
-    provider: 'معهد الرعاية الأولية',
+    provider: '  ',
     providerEn: 'Primary Care Institute',
     specialty: 'family_medicine',
-    specialtyAr: 'طب الأسرة',
-    format: 'افتراضي',
+    specialtyAr: ' ',
+    format: '',
     formatEn: 'Virtual',
-    dateRange: '5 مايو 2025',
+    dateRange: '5  2025',
     dateRangeEn: 'May 5, 2025',
     hours: 6,
-    city: 'افتراضي',
+    city: '',
     cityEn: 'Virtual',
-    location: 'منصة متقن',
+    location: ' ',
     locationEn: 'Mutqin Platform',
   },
   {
     id: '4',
-    name: 'ندوة تقنيات الجراحة',
+    name: '  ',
     nameEn: 'Surgical Techniques Symposium',
-    provider: 'الجمعية السعودية للجراحة',
+    provider: '  ',
     providerEn: 'Saudi Surgical Society',
     specialty: 'general_surgery',
-    specialtyAr: 'الجراحة العامة',
-    format: 'حضوري',
+    specialtyAr: ' ',
+    format: '',
     formatEn: 'In-Person',
-    dateRange: '12-14 يونيو 2025',
+    dateRange: '12-14  2025',
     dateRangeEn: 'Jun 12-14, 2025',
     hours: 24,
-    city: 'جدة',
+    city: '',
     cityEn: 'Jeddah',
-    location: 'مركز الملك فهد الثقافي',
+    location: '   ',
     locationEn: 'King Fahd Cultural Center',
   },
   {
     id: '5',
-    name: 'الصحة النفسية في الرعاية الأولية',
+    name: '    ',
     nameEn: 'Mental Health in Primary Care',
-    provider: 'الهيئة الوطنية للصحة النفسية',
+    provider: '   ',
     providerEn: 'Mental Health Authority',
     specialty: 'psychiatry',
-    specialtyAr: 'الطب النفسي',
-    format: 'افتراضي',
+    specialtyAr: ' ',
+    format: '',
     formatEn: 'Virtual',
-    dateRange: '20 يوليو 2025',
+    dateRange: '20  2025',
     dateRangeEn: 'Jul 20, 2025',
     hours: 8,
-    city: 'افتراضي',
+    city: '',
     cityEn: 'Virtual',
-    location: 'منصة متقن',
+    location: ' ',
     locationEn: 'Mutqin Platform',
   },
   {
     id: '6',
-    name: 'مؤتمر تطورات الأورام',
+    name: '  ',
     nameEn: 'Oncology Advances Conference',
-    provider: 'الجمعية السعودية للأورام',
+    provider: '  ',
     providerEn: 'Saudi Oncology Society',
     specialty: 'oncology',
-    specialtyAr: 'الأورام',
-    format: 'هجين',
+    specialtyAr: '',
+    format: '',
     formatEn: 'Hybrid',
-    dateRange: '25-27 أغسطس 2025',
+    dateRange: '25-27  2025',
     dateRangeEn: 'Aug 25-27, 2025',
     hours: 20,
-    city: 'الدمام',
+    city: '',
     cityEn: 'Dammam',
-    location: 'مستشفى الملك فهد التخصصي',
+    location: '   ',
     locationEn: 'King Fahd Specialist Hospital',
   },
 ];
@@ -149,7 +149,7 @@ const formatDateRange = (start: string, end: string, isRTL: boolean): string => 
     const endDate = new Date(end);
     
     if (isRTL) {
-      const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+      const months = ['', '', '', '', '', '', '', '', '', '', '', ''];
       const startDay = startDate.getDate();
       const startMonth = months[startDate.getMonth()];
       const startYear = startDate.getFullYear();
@@ -193,14 +193,14 @@ export function LandingActivitiesPreview() {
 
   const isRTL = language === 'ar';
 
-  // Map Arabic specialty text to specialty codes for translation
+  // Map specialty text to specialty codes for translation
   const specialtyCodeMap: Record<string, string> = {
-    'طب الأسرة': 'family_medicine',
-    'طب الأطفال': 'pediatrics',
-    'أمراض القلب': 'cardiology',
-    'الجراحة العامة': 'general_surgery',
-    'الطب النفسي': 'psychiatry',
-    'الأورام': 'oncology',
+    'Family Medicine': 'family_medicine',
+    'Pediatrics': 'pediatrics',
+    'Cardiology': 'cardiology',
+    'General Surgery': 'general_surgery',
+    'Psychiatry': 'psychiatry',
+    'Oncology': 'oncology',
   };
 
   // Filter activities
@@ -250,7 +250,7 @@ export function LandingActivitiesPreview() {
               {/* Left: Title + Subtitle */}
               <div className={`md:max-w-xl space-y-2`}>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[var(--label)]">
-                  {title || (isRTL ? 'أنشطة تطوير مهني بساعات معتمدة' : 'Accredited CME/CPD activities')}
+                  {title || (isRTL ? '    ' : 'Accredited CME/CPD activities')}
                 </h2>
                 {subtitle && (
                   <p className="text-sm md:text-base text-[var(--secondary-label)] leading-relaxed">
@@ -293,7 +293,7 @@ export function LandingActivitiesPreview() {
                   dir={isRTL ? 'rtl' : 'ltr'}
                   className="px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--system-background)] text-[var(--label)] text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]/20"
                 >
-                  <option value="">{filters?.specialty || (isRTL ? 'التخصّص' : 'Specialty')}</option>
+                  <option value="">{filters?.specialty || (isRTL ? '' : 'Specialty')}</option>
                   {specialties.map((specialty, index) => (
                     <option key={`specialty-${specialty}-${index}`} value={specialty}>
                       {getSpecialtyName(specialty)}
@@ -308,7 +308,7 @@ export function LandingActivitiesPreview() {
                   dir={isRTL ? 'rtl' : 'ltr'}
                   className="px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--system-background)] text-[var(--label)] text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]/20"
                 >
-                  <option value="">{filters?.format || (isRTL ? 'نوع الحضور' : 'Format')}</option>
+                  <option value="">{filters?.format || (isRTL ? ' ' : 'Format')}</option>
                   {formats.map((format, index) => (
                     <option key={`format-${format}-${index}`} value={format}>
                       {format}
@@ -323,7 +323,7 @@ export function LandingActivitiesPreview() {
                   dir={isRTL ? 'rtl' : 'ltr'}
                   className="px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--system-background)] text-[var(--label)] text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]/20"
                 >
-                  <option value="">{filters?.city || (isRTL ? 'المدينة' : 'City')}</option>
+                  <option value="">{filters?.city || (isRTL ? '' : 'City')}</option>
                   {cities.map((city, index) => (
                     <option key={`city-${city}-${index}`} value={city}>
                       {city}
@@ -335,7 +335,7 @@ export function LandingActivitiesPreview() {
                       <button dir={isRTL ? 'rtl' : 'ltr'}
                         className="px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--system-background)] text-[var(--label)] text-xs md:text-sm hover:bg-[var(--system-fill)] transition-colors inline-flex items-center justify-center"
                       >
-                        {filters?.moreFilters || (isRTL ? 'فلاتر إضافية' : 'More filters')}
+                        {filters?.moreFilters || (isRTL ? ' ' : 'More filters')}
                       </button>
                     </div>
                   </div>
@@ -374,7 +374,7 @@ export function LandingActivitiesPreview() {
                     >
               {/* Card content */}
               <div className="relative z-10 p-4 md:p-5 space-y-3">
-                {/* Top Row: Tags (نوع الحضور + التخصص) */}
+                {/* Top Row: Tags (  + ) */}
                 <div className={`flex items-center gap-2 flex-wrap ${isRTL ? 'justify-end' : 'justify-start'}`}>
                   {/* Format Badge */}
                   <Badge variant="outline" className="text-xs font-medium border border-[var(--border)]/60 dark:border-[var(--border)]/40">
@@ -404,7 +404,7 @@ export function LandingActivitiesPreview() {
                     <div className="relative px-3 py-2 flex items-center justify-center gap-1.5">
                         <Clock className="h-3.5 w-3.5 text-[var(--apple-green)] flex-shrink-0" />
                       <span className="text-sm font-semibold text-[var(--label)]">
-                        {cardLabels?.accredited || (isRTL ? 'معتمد' : 'Accredited')} {activity.hours} {activity.hours === 1 ? (cardLabels?.hours || (isRTL ? 'ساعة' : 'hour')) : (cardLabels?.hoursPlural || (isRTL ? 'ساعات' : 'hours'))}
+                        {cardLabels?.accredited || (isRTL ? '' : 'Accredited')} {activity.hours} {activity.hours === 1 ? (cardLabels?.hours || (isRTL ? '' : 'hour')) : (cardLabels?.hoursPlural || (isRTL ? '' : 'hours'))}
                         </span>
                       </div>
                     </div>
@@ -429,7 +429,7 @@ export function LandingActivitiesPreview() {
                 ) : (
                   <div className="text-center py-12">
                     <p className="text-[var(--secondary-label)]">
-                      {isRTL ? 'لا توجد أنشطة متاحة' : 'No activities found'}
+                      {isRTL ? '   ' : 'No activities found'}
                     </p>
                   </div>
                 )}

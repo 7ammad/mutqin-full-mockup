@@ -29,7 +29,7 @@ interface HcpEventCardProps {
 function formatDate(dateString: string, language: 'ar' | 'en'): string {
     const date = new Date(dateString);
     const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const monthsAr = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    const monthsAr = ['', '', '', '', '', '', '', '', '', '', '', ''];
     
     if (language === 'ar') {
         return `${date.getDate()} ${monthsAr[date.getMonth()]} ${date.getFullYear()}`;
@@ -45,7 +45,7 @@ function formatHours(hours: number, language: 'ar' | 'en', t: (key: string) => s
     // Replace {hours} placeholder
     if (language === 'ar') {
         // Convert to Arabic-Indic numerals
-        const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        const arabicDigits = ['', '', '', '', '', '', '', '', '', ''];
         const hoursStr = hours.toString().split('').map(d => {
             const digit = parseInt(d);
             return isNaN(digit) ? d : arabicDigits[digit];
@@ -96,7 +96,7 @@ export default function HcpEventCard({
                         {getSpecialtyLabel(event.specialty || '', language)}
                     </Badge>
                     
-                    {/* SCFHS Accreditation Badge - Only "SCFHS" / "معتمد" */}
+                    {/* SCFHS Accreditation Badge - Only "SCFHS" / "" */}
                     <Badge className="bg-[var(--apple-green)]/10 text-[var(--apple-green)] border-[var(--apple-green)]/30 text-xs font-medium flex items-center gap-1">
                         <ShieldCheck className="h-3 w-3" />
                         {t('event.scfhsChip')}
@@ -111,8 +111,8 @@ export default function HcpEventCard({
                             isPast && registrationStatus !== 'attended' && registrationStatus !== 'missed' && "bg-[var(--system-fill)] text-[var(--secondary-label)] border border-[var(--border)]",
                             !isPast && "bg-[var(--apple-green)]/10 text-[var(--apple-green)] border border-[var(--apple-green)]/30"
                         )}>
-                            {isPast && registrationStatus === 'attended' && (language === 'ar' ? 'حضر' : 'Attended')}
-                            {isPast && registrationStatus === 'missed' && (language === 'ar' ? 'غاب' : 'Missed')}
+                            {isPast && registrationStatus === 'attended' && (language === 'ar' ? '' : 'Attended')}
+                            {isPast && registrationStatus === 'missed' && (language === 'ar' ? '' : 'Missed')}
                             {!isPast && t('hcp.discover.registeredChip')}
                         </Badge>
                     )}

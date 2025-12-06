@@ -205,7 +205,7 @@ export default function MyTickets() {
         return (
             <div className="space-y-6">
                 <div className="text-center py-8 text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'جاري التحميل...' : 'Loading registrations...'}
+                    {language === 'ar' ? ' ...' : 'Loading registrations...'}
                 </div>
             </div>
         );
@@ -219,7 +219,7 @@ export default function MyTickets() {
                 title={t('hcp.myTickets')}
                 description={t('hcp.discover.noRegistrations')}
                 icon={Ticket}
-                actionLabel={language === 'ar' ? 'استكشف الفعاليات' : 'Discover events'}
+                actionLabel={language === 'ar' ? ' ' : 'Discover events'}
                 onAction={() => {
                     const params = new URLSearchParams();
                     params.set('tab', 'discover');
@@ -236,7 +236,7 @@ export default function MyTickets() {
                 <div>
                     <p className="text-sm text-[var(--secondary-label)]">
                         {language === 'ar' 
-                            ? 'جميع الأنشطة التي سجّلت فيها، من الأولى إلى الأخيرة'
+                            ? '        '
                             : 'All the activities you registered for, from first to latest.'}
                     </p>
                 </div>
@@ -245,9 +245,9 @@ export default function MyTickets() {
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
-                        <SelectItem value="current">{language === 'ar' ? 'هذا العام' : 'This year'}</SelectItem>
-                        <SelectItem value="last">{language === 'ar' ? 'العام الماضي' : 'Last year'}</SelectItem>
+                        <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
+                        <SelectItem value="current">{language === 'ar' ? ' ' : 'This year'}</SelectItem>
+                        <SelectItem value="last">{language === 'ar' ? ' ' : 'Last year'}</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -282,15 +282,15 @@ export default function MyTickets() {
                                     : "bg-[var(--apple-green)]/10 text-[var(--apple-green)] border border-[var(--apple-green)]/30"
                             )}>
                                 {nextRegistration.status === 'today' 
-                                    ? (language === 'ar' ? 'اليوم' : 'Today')
-                                    : (language === 'ar' ? 'قادم' : 'Upcoming')}
+                                    ? (language === 'ar' ? '' : 'Today')
+                                    : (language === 'ar' ? '' : 'Upcoming')}
                             </Badge>
                             <Button
                                 onClick={() => handleViewTicket(nextRegistration.ticket.id, nextRegistration.event.id)}
                                 size="sm"
                                 className="bg-[var(--apple-green)] hover:opacity-90 text-white dark:text-slate-900 h-8 px-3 text-xs"
                             >
-                                {language === 'ar' ? 'فتح التذكرة' : 'View ticket'}
+                                {language === 'ar' ? ' ' : 'View ticket'}
                             </Button>
                         </div>
                     </div>
@@ -305,7 +305,7 @@ export default function MyTickets() {
                     onClick={() => setStatusFilter('all')}
                     className="text-xs"
                 >
-                    {language === 'ar' ? 'الكل' : 'All'}
+                    {language === 'ar' ? '' : 'All'}
                 </GlassButton>
                 <GlassButton
                     variant={statusFilter === 'upcoming' ? 'default' : 'outline'}
@@ -313,7 +313,7 @@ export default function MyTickets() {
                     onClick={() => setStatusFilter('upcoming')}
                     className="text-xs"
                 >
-                    {language === 'ar' ? 'قادمة' : 'Upcoming'}
+                    {language === 'ar' ? '' : 'Upcoming'}
                 </GlassButton>
                 <GlassButton
                     variant={statusFilter === 'past' ? 'default' : 'outline'}
@@ -321,7 +321,7 @@ export default function MyTickets() {
                     onClick={() => setStatusFilter('past')}
                     className="text-xs"
                 >
-                    {language === 'ar' ? 'سابقة' : 'Past'}
+                    {language === 'ar' ? '' : 'Past'}
                 </GlassButton>
             </div>
 
@@ -354,9 +354,9 @@ export default function MyTickets() {
                 </div>
             ) : (
                 <EmptyState
-                    title={language === 'ar' ? 'لا توجد أنشطة' : 'No activities'}
+                    title={language === 'ar' ? '  ' : 'No activities'}
                     description={language === 'ar' 
-                        ? 'لا توجد أنشطة تطابق الفلاتر المحددة'
+                        ? '     '
                         : 'No activities match the selected filters'}
                     icon={Ticket}
                 />

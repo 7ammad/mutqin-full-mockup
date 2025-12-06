@@ -14,16 +14,16 @@ export default function PageTitle() {
         // Dynamic titles for HCP tabs
         if (role === 'HCP') {
             if (tab === 'discover') {
-                return language === 'ar' ? 'استكشاف الفعاليات' : 'Discover Events';
+                return language === 'ar' ? ' ' : 'Discover Events';
             }
             if (tab === 'registrations' || tab === 'journey') {
-                return language === 'ar' ? 'رحلة التطوير المهني' : 'My Journey';
+                return language === 'ar' ? '  ' : 'My Journey';
             }
             if (tab === 'files') {
-                return language === 'ar' ? 'ملفاتي' : 'My Files';
+                return language === 'ar' ? '' : 'My Files';
             }
             if (tab === 'credits' || tab === 'certs_reviews') {
-                return language === 'ar' ? 'الساعات المعتمدة' : 'CME Credits';
+                return language === 'ar' ? ' ' : 'CME Credits';
             }
             return t('page.hcp.title');
         }
@@ -31,7 +31,7 @@ export default function PageTitle() {
         // Dynamic titles for Organizer tabs
         if (role === 'ORGANIZER') {
             if (tab === 'overview') {
-                return language === 'ar' ? 'لوحة تحكم المنظم' : 'Organizer Dashboard';
+                return language === 'ar' ? '  ' : 'Organizer Dashboard';
             }
             return t('page.organizer.title');
         }
@@ -52,17 +52,17 @@ export default function PageTitle() {
             }
             if (tab === 'registrations' || tab === 'journey') {
                 return language === 'ar' 
-                    ? 'جميع الأنشطة التي سجّلت فيها، من الأولى إلى الأخيرة'
+                    ? '        '
                     : 'All the activities you registered for, from first to latest.';
             }
             if (tab === 'files') {
                 return language === 'ar' 
-                    ? 'الوصول السريع إلى تذاكرك وشهاداتك'
+                    ? '    '
                     : 'Quick access to your tickets and certificates.';
             }
             if (tab === 'credits' || tab === 'certs_reviews') {
                 return language === 'ar' 
-                    ? 'سجل الساعات المعتمدة والشهادات الخاصة بك'
+                    ? '     '
                     : 'Your accredited activities, certificates, and CME balance';
             }
             return t('page.hcp.subtitle');
@@ -72,7 +72,7 @@ export default function PageTitle() {
         if (role === 'ORGANIZER') {
             if (tab === 'overview') {
                 return language === 'ar' 
-                    ? 'إدارة الفعاليات والاعتمادات والرعايات'
+                    ? '   '
                     : 'Manage events, accreditations, and sponsorships';
             }
             return t('page.organizer.subtitle');

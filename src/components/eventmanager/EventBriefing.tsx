@@ -20,7 +20,7 @@ export default function EventBriefing({ eventId }: EventBriefingProps) {
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
@@ -30,32 +30,32 @@ export default function EventBriefing({ eventId }: EventBriefingProps) {
     const expectedAttendees = 200;
     const confirmedAttendees = 145;
     const sessions = [
-        { title: language === 'ar' ? 'الجلسة الافتتاحية' : 'Opening Session', time: '09:00 - 10:00', speaker: 'Dr. Ahmed' },
-        { title: language === 'ar' ? 'محاضرة رئيسية' : 'Keynote Lecture', time: '10:30 - 12:00', speaker: 'Dr. Sarah' },
-        { title: language === 'ar' ? 'ورشة عمل' : 'Workshop', time: '14:00 - 16:00', speaker: 'Dr. Mohammed' },
+        { title: language === 'ar' ? ' ' : 'Opening Session', time: '09:00 - 10:00', speaker: 'Dr. Ahmed' },
+        { title: language === 'ar' ? ' ' : 'Keynote Lecture', time: '10:30 - 12:00', speaker: 'Dr. Sarah' },
+        { title: language === 'ar' ? ' ' : 'Workshop', time: '14:00 - 16:00', speaker: 'Dr. Mohammed' },
     ];
     const logistics = [
-        language === 'ar' ? 'تجهيز القاعة الرئيسية' : 'Main hall setup',
-        language === 'ar' ? 'تجهيز قاعات الورش' : 'Workshop rooms setup',
-        language === 'ar' ? 'تجهيز منطقة التسجيل' : 'Registration area setup',
-        language === 'ar' ? 'تجهيز منطقة الاستراحة' : 'Break area setup',
+        language === 'ar' ? '  ' : 'Main hall setup',
+        language === 'ar' ? '  ' : 'Workshop rooms setup',
+        language === 'ar' ? '  ' : 'Registration area setup',
+        language === 'ar' ? '  ' : 'Break area setup',
     ];
 
-    const title = language === 'ar' ? 'ملخص الفعالية' : 'Event Briefing';
-    const eventDetailsText = language === 'ar' ? 'تفاصيل الفعالية' : 'Event Details';
-    const expectedAttendeesText = language === 'ar' ? 'الحضور المتوقع' : 'Expected Attendees';
-    const confirmedAttendeesText = language === 'ar' ? 'الحضور المؤكد' : 'Confirmed Attendees';
-    const agendaText = language === 'ar' ? 'الجدول الزمني' : 'Agenda';
+    const title = language === 'ar' ? ' ' : 'Event Briefing';
+    const eventDetailsText = language === 'ar' ? ' ' : 'Event Details';
+    const expectedAttendeesText = language === 'ar' ? ' ' : 'Expected Attendees';
+    const confirmedAttendeesText = language === 'ar' ? ' ' : 'Confirmed Attendees';
+    const agendaText = language === 'ar' ? ' ' : 'Agenda';
 
-    const timeText = language === 'ar' ? 'الوقت' : 'Time';
-    const speakerText = language === 'ar' ? 'المتحدث' : 'Speaker';
-    const checklistText = language === 'ar' ? 'قائمة المهام' : 'Checklist';
-    const markCompleteText = language === 'ar' ? 'تم' : 'Complete';
-    const dateText = language === 'ar' ? 'التاريخ' : 'Date';
-    const locationText = language === 'ar' ? 'الموقع' : 'Location';
-    const organizerText = language === 'ar' ? 'المنظم' : 'Organizer';
-    const specialtyText = language === 'ar' ? 'التخصص' : 'Specialty';
-    const cmeHoursText = language === 'ar' ? 'ساعات التعليم الطبي' : 'CME Hours';
+    const timeText = language === 'ar' ? '' : 'Time';
+    const speakerText = language === 'ar' ? '' : 'Speaker';
+    const checklistText = language === 'ar' ? ' ' : 'Checklist';
+    const markCompleteText = language === 'ar' ? '' : 'Complete';
+    const dateText = language === 'ar' ? '' : 'Date';
+    const locationText = language === 'ar' ? '' : 'Location';
+    const organizerText = language === 'ar' ? '' : 'Organizer';
+    const specialtyText = language === 'ar' ? '' : 'Specialty';
+    const cmeHoursText = language === 'ar' ? '  ' : 'CME Hours';
 
     return (
         <div className="space-y-6">
@@ -109,7 +109,7 @@ export default function EventBriefing({ eventId }: EventBriefingProps) {
                         <Clock className="w-5 h-5 text-[var(--apple-orange)]" />
                         <div>
                             <p className="text-sm text-[var(--secondary-label)]">{cmeHoursText}</p>
-                            <p className="text-[var(--label)] font-medium">{event.cme_hours} {language === 'ar' ? 'ساعة' : 'hours'}</p>
+                            <p className="text-[var(--label)] font-medium">{event.cme_hours} {language === 'ar' ? '' : 'hours'}</p>
                         </div>
                     </div>
                 </div>

@@ -27,10 +27,10 @@ export default function CampaignBuilder() {
     });
 
     const campaignTypes = [
-        { id: 'email', label: language === 'ar' ? 'بريد إلكتروني' : 'Email', icon: Mail },
-        { id: 'push', label: language === 'ar' ? 'إشعار' : 'Push Notification', icon: Bell },
+        { id: 'email', label: language === 'ar' ? ' ' : 'Email', icon: Mail },
+        { id: 'push', label: language === 'ar' ? '' : 'Push Notification', icon: Bell },
         { id: 'sms', label: 'SMS', icon: MessageSquare },
-        { id: 'social', label: language === 'ar' ? 'وسائل التواصل' : 'Social Media', icon: MessageSquare },
+        { id: 'social', label: language === 'ar' ? ' ' : 'Social Media', icon: MessageSquare },
     ];
 
     const handleSave = () => {
@@ -56,17 +56,17 @@ export default function CampaignBuilder() {
         );
     };
 
-    const title = language === 'ar' ? 'بناء الحملة' : 'Campaign Builder';
-    const campaignNameText = language === 'ar' ? 'اسم الحملة' : 'Campaign Name';
-    const campaignTypeText = language === 'ar' ? 'نوع الحملة' : 'Campaign Type';
-    const subjectText = language === 'ar' ? 'الموضوع' : 'Subject';
-    const contentText = language === 'ar' ? 'المحتوى' : 'Content';
-    const scheduleText = language === 'ar' ? 'جدولة' : 'Schedule';
-    const scheduledDateText = language === 'ar' ? 'التاريخ والوقت' : 'Date & Time';
-    const saveText = language === 'ar' ? 'حفظ' : 'Save';
-    const sendText = language === 'ar' ? 'إرسال' : 'Send';
-    const myCampaignsText = language === 'ar' ? 'حملاتي' : 'My Campaigns';
-    const createNewText = language === 'ar' ? 'إنشاء جديد' : 'Create New';
+    const title = language === 'ar' ? ' ' : 'Campaign Builder';
+    const campaignNameText = language === 'ar' ? ' ' : 'Campaign Name';
+    const campaignTypeText = language === 'ar' ? ' ' : 'Campaign Type';
+    const subjectText = language === 'ar' ? '' : 'Subject';
+    const contentText = language === 'ar' ? '' : 'Content';
+    const scheduleText = language === 'ar' ? '' : 'Schedule';
+    const scheduledDateText = language === 'ar' ? ' ' : 'Date & Time';
+    const saveText = language === 'ar' ? '' : 'Save';
+    const sendText = language === 'ar' ? '' : 'Send';
+    const myCampaignsText = language === 'ar' ? '' : 'My Campaigns';
+    const createNewText = language === 'ar' ? ' ' : 'Create New';
 
     return (
         <div className="space-y-6">
@@ -85,7 +85,7 @@ export default function CampaignBuilder() {
                         <Input
                             value={currentCampaign.name || ''}
                             onChange={(e) => setCurrentCampaign({ ...currentCampaign, name: e.target.value })}
-                            placeholder={language === 'ar' ? 'أدخل اسم الحملة' : 'Enter campaign name'}
+                            placeholder={language === 'ar' ? '  ' : 'Enter campaign name'}
                         />
                     </div>
 
@@ -124,7 +124,7 @@ export default function CampaignBuilder() {
                             <Input
                                 value={currentCampaign.subject || ''}
                                 onChange={(e) => setCurrentCampaign({ ...currentCampaign, subject: e.target.value })}
-                                placeholder={language === 'ar' ? 'موضوع البريد الإلكتروني' : 'Email subject'}
+                                placeholder={language === 'ar' ? '  ' : 'Email subject'}
                             />
                         </div>
                     )}
@@ -136,7 +136,7 @@ export default function CampaignBuilder() {
                         <Textarea
                             value={currentCampaign.content || ''}
                             onChange={(e) => setCurrentCampaign({ ...currentCampaign, content: e.target.value })}
-                            placeholder={language === 'ar' ? 'اكتب محتوى الحملة هنا...' : 'Write campaign content here...'}
+                            placeholder={language === 'ar' ? '   ...' : 'Write campaign content here...'}
                             className="min-h-[150px]"
                         />
                     </div>

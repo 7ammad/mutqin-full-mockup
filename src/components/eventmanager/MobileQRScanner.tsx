@@ -50,7 +50,7 @@ export default function MobileQRScanner({ onScan, onClose }: MobileQRScannerProp
             setIsScanning(true);
         } catch (error) {
             console.error("Failed to start scanner:", error);
-            setError(language === 'ar' ? 'فشل بدء الماسح' : 'Failed to start scanner');
+            setError(language === 'ar' ? '  ' : 'Failed to start scanner');
         }
     };
 
@@ -75,12 +75,12 @@ export default function MobileQRScanner({ onScan, onClose }: MobileQRScannerProp
         };
     }, [isScanning, handleStop]);
 
-    const title = language === 'ar' ? 'ماسح QR للموبايل' : 'Mobile QR Scanner';
-    const startScanningText = language === 'ar' ? 'بدء المسح' : 'Start Scanning';
-    const stopScanningText = language === 'ar' ? 'إيقاف' : 'Stop';
-    const scannedSuccessfullyText = language === 'ar' ? 'تم المسح بنجاح' : 'Scanned Successfully';
-    const resultText = language === 'ar' ? 'النتيجة' : 'Result';
-    const clickToStartText = language === 'ar' ? 'اضغط لبدء المسح' : 'Click to start scanning';
+    const title = language === 'ar' ? ' QR ' : 'Mobile QR Scanner';
+    const startScanningText = language === 'ar' ? ' ' : 'Start Scanning';
+    const stopScanningText = language === 'ar' ? '' : 'Stop';
+    const scannedSuccessfullyText = language === 'ar' ? '  ' : 'Scanned Successfully';
+    const resultText = language === 'ar' ? '' : 'Result';
+    const clickToStartText = language === 'ar' ? '  ' : 'Click to start scanning';
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">

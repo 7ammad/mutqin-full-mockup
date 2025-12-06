@@ -41,24 +41,24 @@ export default function EventAssignment({ eventId, onAssign }: EventAssignmentPr
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
     }
 
-    const title = language === 'ar' ? 'تعيين مدير فعاليات' : 'Assign Event Manager';
-    const searchPlaceholder = language === 'ar' ? 'ابحث عن مدير فعاليات...' : 'Search event managers...';
-    const eventDetailsText = language === 'ar' ? 'تفاصيل الفعالية' : 'Event Details';
-    const availableManagersText = language === 'ar' ? 'مديرو الفعاليات المتاحون' : 'Available Event Managers';
-    const contractTermsText = language === 'ar' ? 'شروط العقد' : 'Contract Terms';
-    const assignText = language === 'ar' ? 'تعيين' : 'Assign';
-    const ratingText = language === 'ar' ? 'التقييم' : 'Rating';
-    const eventsManagedText = language === 'ar' ? 'الفعاليات المُدارة' : 'Events Managed';
-    const completionRateText = language === 'ar' ? 'معدل الإنجاز' : 'Completion Rate';
-    const specialtiesText = language === 'ar' ? 'التخصصات' : 'Specialties';
-    const serviceAreasText = language === 'ar' ? 'مناطق الخدمة' : 'Service Areas';
-    const pricingText = language === 'ar' ? 'التسعير' : 'Pricing';
+    const title = language === 'ar' ? '  ' : 'Assign Event Manager';
+    const searchPlaceholder = language === 'ar' ? '   ...' : 'Search event managers...';
+    const eventDetailsText = language === 'ar' ? ' ' : 'Event Details';
+    const availableManagersText = language === 'ar' ? '  ' : 'Available Event Managers';
+    const contractTermsText = language === 'ar' ? ' ' : 'Contract Terms';
+    const assignText = language === 'ar' ? '' : 'Assign';
+    const ratingText = language === 'ar' ? '' : 'Rating';
+    const eventsManagedText = language === 'ar' ? ' ' : 'Events Managed';
+    const completionRateText = language === 'ar' ? ' ' : 'Completion Rate';
+    const specialtiesText = language === 'ar' ? '' : 'Specialties';
+    const serviceAreasText = language === 'ar' ? ' ' : 'Service Areas';
+    const pricingText = language === 'ar' ? '' : 'Pricing';
 
     return (
         <div className="space-y-6">
@@ -89,7 +89,7 @@ export default function EventAssignment({ eventId, onAssign }: EventAssignmentPr
                     <div className="flex items-center gap-2">
                         <Users className="w-5 h-5 text-[var(--apple-green)]" />
                         <span className="text-[var(--secondary-label)]">
-                            {event.specialty} • {event.cme_hours} {language === 'ar' ? 'ساعة CME' : 'CME hours'}
+                            {event.specialty} • {event.cme_hours} {language === 'ar' ? ' CME' : 'CME hours'}
                         </span>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ export default function EventAssignment({ eventId, onAssign }: EventAssignmentPr
                 <div className="space-y-3">
                     {availableManagers.length === 0 ? (
                         <div className="text-center py-8 text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'لا توجد نتائج' : 'No results found'}
+                            {language === 'ar' ? '  ' : 'No results found'}
                         </div>
                     ) : (
                         availableManagers.map((manager) => {
@@ -136,7 +136,7 @@ export default function EventAssignment({ eventId, onAssign }: EventAssignmentPr
                                                 </h4>
                                                 {manager.verified && (
                                                     <div className="px-2 py-1 rounded-full bg-[var(--apple-green)]/10 text-[var(--apple-green)] text-xs font-medium">
-                                                        {language === 'ar' ? 'متحقق' : 'Verified'}
+                                                        {language === 'ar' ? '' : 'Verified'}
                                                     </div>
                                                 )}
                                             </div>
@@ -196,7 +196,7 @@ export default function EventAssignment({ eventId, onAssign }: EventAssignmentPr
                     <Textarea
                         value={contractTerms}
                         onChange={(e) => setContractTerms(e.target.value)}
-                        placeholder={language === 'ar' ? 'أدخل شروط العقد...' : 'Enter contract terms...'}
+                        placeholder={language === 'ar' ? '  ...' : 'Enter contract terms...'}
                         className="min-h-[100px]"
                     />
                     <div className="mt-4">

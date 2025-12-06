@@ -425,7 +425,7 @@ export default function DemoFlowClient() {
       </div>
 
       <section className="text-sm text-gray-700 space-y-1">
-        <div>المعرفات الجاهزة للاستخدام في التدفق:</div>
+        <div>    :</div>
         <div className="flex flex-wrap gap-3">
           <span>eventId: {defaultIds.eventId}</span>
           <span>organizerId: {defaultIds.organizerId}</span>

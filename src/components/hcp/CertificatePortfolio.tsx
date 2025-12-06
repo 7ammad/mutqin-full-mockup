@@ -64,17 +64,17 @@ export default function CertificatePortfolio() {
         console.log('Downloading certificate:', cert.certificateNumber);
     };
 
-    const title = language === 'ar' ? 'محفظة الشهادات' : 'Certificate Portfolio';
-    const totalHoursText = language === 'ar' ? 'إجمالي الساعات المعتمدة' : 'Total Accredited Hours';
-    const searchPlaceholder = language === 'ar' ? 'ابحث عن شهادة...' : 'Search certificates...';
-    const allYearsText = language === 'ar' ? 'جميع السنوات' : 'All Years';
-    const viewText = language === 'ar' ? 'عرض' : 'View';
-    const downloadText = language === 'ar' ? 'تحميل' : 'Download';
-    const noCertificatesText = language === 'ar' ? 'لا توجد شهادات متاحة' : 'No certificates available';
-    const certificateNumberText = language === 'ar' ? 'رقم الشهادة' : 'Certificate Number';
-    const issuedText = language === 'ar' ? 'صدرت في' : 'Issued on';
-    const hoursText = language === 'ar' ? 'ساعة' : 'hours';
-    const verifiedText = language === 'ar' ? 'متحقق' : 'Verified';
+    const title = language === 'ar' ? ' ' : 'Certificate Portfolio';
+    const totalHoursText = language === 'ar' ? '  ' : 'Total Accredited Hours';
+    const searchPlaceholder = language === 'ar' ? '  ...' : 'Search certificates...';
+    const allYearsText = language === 'ar' ? ' ' : 'All Years';
+    const viewText = language === 'ar' ? '' : 'View';
+    const downloadText = language === 'ar' ? '' : 'Download';
+    const noCertificatesText = language === 'ar' ? '   ' : 'No certificates available';
+    const certificateNumberText = language === 'ar' ? ' ' : 'Certificate Number';
+    const issuedText = language === 'ar' ? ' ' : 'Issued on';
+    const hoursText = language === 'ar' ? '' : 'hours';
+    const verifiedText = language === 'ar' ? '' : 'Verified';
 
     return (
         <div className="space-y-6">
@@ -88,7 +88,7 @@ export default function CertificatePortfolio() {
                         <p className="text-sm text-[var(--secondary-label)] mb-1">{totalHoursText}</p>
                         <p className="text-3xl font-bold text-[var(--label)]">{totalHours}</p>
                         <p className="text-sm text-[var(--tertiary-label)] mt-1">
-                            {certificates.length} {language === 'ar' ? 'شهادة' : 'certificates'}
+                            {certificates.length} {language === 'ar' ? '' : 'certificates'}
                         </p>
                     </div>
                     <div className="p-3 rounded-full bg-[var(--apple-green)]/10">
@@ -179,7 +179,7 @@ export default function CertificatePortfolio() {
                                         className="flex-1 gap-2"
                                     >
                                         <Eye className="h-4 w-4" />
-                                        {language === 'ar' ? 'عرض الشهادة' : 'View Certificate'}
+                                        {language === 'ar' ? ' ' : 'View Certificate'}
                                     </GlassButton>
                                     <GlassButton
                                         variant="outline"
@@ -222,7 +222,7 @@ export default function CertificatePortfolio() {
                                     size="sm"
                                     onClick={() => setSelectedCertificate(null)}
                                 >
-                                    {language === 'ar' ? 'إغلاق' : 'Close'}
+                                    {language === 'ar' ? '' : 'Close'}
                                 </GlassButton>
                             </div>
                             <div className="border border-[var(--separator)] rounded-lg overflow-hidden">

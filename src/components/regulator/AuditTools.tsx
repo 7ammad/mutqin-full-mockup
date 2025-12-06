@@ -41,20 +41,20 @@ export default function AuditTools() {
             id: 'audit1',
             eventId: '1',
             auditType: 'random',
-            auditor: language === 'ar' ? 'د. خالد الفهد' : 'Dr. Khalid Al-Fahd',
+            auditor: language === 'ar' ? '.  ' : 'Dr. Khalid Al-Fahd',
             auditDate: '2025-01-15',
             findings: 'All documentation verified. Event compliant.',
-            findingsAr: 'تم التحقق من جميع الوثائق. الفعالية متوافقة.',
+            findingsAr: '    .  .',
             status: 'completed',
         },
         {
             id: 'audit2',
             eventId: '2',
             auditType: 'targeted',
-            auditor: language === 'ar' ? 'د. فاطمة الزهراء' : 'Dr. Fatima Al-Zahra',
+            auditor: language === 'ar' ? '.  ' : 'Dr. Fatima Al-Zahra',
             auditDate: '2025-01-20',
             findings: 'Minor documentation issues found. Corrective action required.',
-            findingsAr: 'تم العثور على مشاكل وثائقية طفيفة. إجراء تصحيحي مطلوب.',
+            findingsAr: '     .   .',
             status: 'in-progress',
         },
     ]);
@@ -80,11 +80,11 @@ export default function AuditTools() {
 
     const handleScheduleAudit = () => {
         if (!selectedEventId || !auditType) {
-            alert(language === 'ar' ? 'يرجى اختيار فعالية ونوع التدقيق' : 'Please select an event and audit type');
+            alert(language === 'ar' ? '    ' : 'Please select an event and audit type');
             return;
         }
 
-        alert(language === 'ar' ? 'تم جدولة التدقيق' : 'Audit scheduled');
+        alert(language === 'ar' ? '  ' : 'Audit scheduled');
         setSelectedEventId(null);
         setAuditNotes("");
     };
@@ -105,27 +105,27 @@ export default function AuditTools() {
     const getTypeLabel = (type: string) => {
         switch (type) {
             case 'random':
-                return language === 'ar' ? 'عشوائي' : 'Random';
+                return language === 'ar' ? '' : 'Random';
             case 'targeted':
-                return language === 'ar' ? 'موجه' : 'Targeted';
+                return language === 'ar' ? '' : 'Targeted';
             case 'complaint-based':
-                return language === 'ar' ? 'بناءً على شكوى' : 'Complaint-Based';
+                return language === 'ar' ? '  ' : 'Complaint-Based';
             default:
                 return type;
         }
     };
 
 
-    const downloadReportText = language === 'ar' ? 'تحميل التقرير' : 'Download Report';
-    const scheduleAuditText = language === 'ar' ? 'جدولة تدقيق جديد' : 'Schedule New Audit';
-    const selectEventText = language === 'ar' ? 'اختر الفعالية' : 'Select Event';
-    const auditTypeText = language === 'ar' ? 'نوع التدقيق' : 'Audit Type';
-    const notesText = language === 'ar' ? 'ملاحظات' : 'Notes';
-    const scheduleText = language === 'ar' ? 'جدولة' : 'Schedule';
-    const auditHistoryText = language === 'ar' ? 'سجل التدقيق' : 'Audit History';
-    const searchPlaceholder = language === 'ar' ? 'ابحث في سجل التدقيق...' : 'Search audit history...';
-    const filterByTypeText = language === 'ar' ? 'فلترة حسب النوع' : 'Filter by Type';
-    const filterByStatusText = language === 'ar' ? 'فلترة حسب الحالة' : 'Filter by Status';
+    const downloadReportText = language === 'ar' ? ' ' : 'Download Report';
+    const scheduleAuditText = language === 'ar' ? '  ' : 'Schedule New Audit';
+    const selectEventText = language === 'ar' ? ' ' : 'Select Event';
+    const auditTypeText = language === 'ar' ? ' ' : 'Audit Type';
+    const notesText = language === 'ar' ? '' : 'Notes';
+    const scheduleText = language === 'ar' ? '' : 'Schedule';
+    const auditHistoryText = language === 'ar' ? ' ' : 'Audit History';
+    const searchPlaceholder = language === 'ar' ? '   ...' : 'Search audit history...';
+    const filterByTypeText = language === 'ar' ? '  ' : 'Filter by Type';
+    const filterByStatusText = language === 'ar' ? '  ' : 'Filter by Status';
 
     return (
         <div className="space-y-6">
@@ -164,9 +164,9 @@ export default function AuditTools() {
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="random">{language === 'ar' ? 'عشوائي' : 'Random'}</SelectItem>
-                                <SelectItem value="targeted">{language === 'ar' ? 'موجه' : 'Targeted'}</SelectItem>
-                                <SelectItem value="complaint-based">{language === 'ar' ? 'بناءً على شكوى' : 'Complaint-Based'}</SelectItem>
+                                <SelectItem value="random">{language === 'ar' ? '' : 'Random'}</SelectItem>
+                                <SelectItem value="targeted">{language === 'ar' ? '' : 'Targeted'}</SelectItem>
+                                <SelectItem value="complaint-based">{language === 'ar' ? '  ' : 'Complaint-Based'}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -178,7 +178,7 @@ export default function AuditTools() {
                         <Textarea
                             value={auditNotes}
                             onChange={(e) => setAuditNotes(e.target.value)}
-                            placeholder={language === 'ar' ? 'أضف ملاحظات للتدقيق...' : 'Add audit notes...'}
+                            placeholder={language === 'ar' ? '  ...' : 'Add audit notes...'}
                             rows={3}
                         />
                     </div>
@@ -212,10 +212,10 @@ export default function AuditTools() {
                                 <SelectValue placeholder={filterByTypeText} />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
-                                <SelectItem value="random">{language === 'ar' ? 'عشوائي' : 'Random'}</SelectItem>
-                                <SelectItem value="targeted">{language === 'ar' ? 'موجه' : 'Targeted'}</SelectItem>
-                                <SelectItem value="complaint-based">{language === 'ar' ? 'بناءً على شكوى' : 'Complaint-Based'}</SelectItem>
+                                <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
+                                <SelectItem value="random">{language === 'ar' ? '' : 'Random'}</SelectItem>
+                                <SelectItem value="targeted">{language === 'ar' ? '' : 'Targeted'}</SelectItem>
+                                <SelectItem value="complaint-based">{language === 'ar' ? '  ' : 'Complaint-Based'}</SelectItem>
                             </SelectContent>
                         </Select>
                         <Select value={filterStatus} onValueChange={setFilterStatus}>
@@ -223,10 +223,10 @@ export default function AuditTools() {
                                 <SelectValue placeholder={filterByStatusText} />
                             </SelectTrigger>
                             <SelectContent glass={true}>
-                                <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
-                                <SelectItem value="scheduled">{language === 'ar' ? 'مجدول' : 'Scheduled'}</SelectItem>
-                                <SelectItem value="in-progress">{language === 'ar' ? 'قيد التنفيذ' : 'In Progress'}</SelectItem>
-                                <SelectItem value="completed">{language === 'ar' ? 'مكتمل' : 'Completed'}</SelectItem>
+                                <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
+                                <SelectItem value="scheduled">{language === 'ar' ? '' : 'Scheduled'}</SelectItem>
+                                <SelectItem value="in-progress">{language === 'ar' ? ' ' : 'In Progress'}</SelectItem>
+                                <SelectItem value="completed">{language === 'ar' ? '' : 'Completed'}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -235,8 +235,8 @@ export default function AuditTools() {
                 <div className="space-y-4">
                     {filteredRecords.length === 0 ? (
                         <EmptyState
-                            title={language === 'ar' ? 'لا توجد سجلات' : 'No Records'}
-                            description={language === 'ar' ? 'لا توجد سجلات تدقيق' : 'No audit records found'}
+                            title={language === 'ar' ? '  ' : 'No Records'}
+                            description={language === 'ar' ? '   ' : 'No audit records found'}
                             icon={FileText}
                         />
                     ) : (
@@ -272,12 +272,12 @@ export default function AuditTools() {
                                         <div className="flex flex-col gap-2 items-end">
                                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(record.status)}`}>
                                                 {record.status === 'completed' 
-                                                    ? (language === 'ar' ? 'مكتمل' : 'Completed')
+                                                    ? (language === 'ar' ? '' : 'Completed')
                                                     : record.status === 'in-progress'
-                                                    ? (language === 'ar' ? 'قيد التنفيذ' : 'In Progress')
+                                                    ? (language === 'ar' ? ' ' : 'In Progress')
                                                     : record.status === 'scheduled'
-                                                    ? (language === 'ar' ? 'مجدول' : 'Scheduled')
-                                                    : (language === 'ar' ? 'ملغى' : 'Cancelled')
+                                                    ? (language === 'ar' ? '' : 'Scheduled')
+                                                    : (language === 'ar' ? '' : 'Cancelled')
                                                 }
                                             </span>
                                             {record.reportUrl && (

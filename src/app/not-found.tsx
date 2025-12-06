@@ -10,14 +10,14 @@ export default function NotFound() {
   const router = useRouter();
   const { language } = useLanguage();
 
-  const title = language === 'ar' ? 'الصفحة غير موجودة' : 'Page Not Found';
+  const title = language === 'ar' ? '  ' : 'Page Not Found';
 
   const description = language === 'ar'
-    ? 'عذراً، الصفحة التي تحاول الوصول إليها غير موجودة.'
+    ? '       .'
     : "Sorry, the page you're looking for doesn't exist.";
   
-  const homeButton = language === 'ar' ? 'العودة إلى الرئيسية' : 'Go Home';
-  const backButton = language === 'ar' ? 'رجوع' : 'Go Back';
+  const homeButton = language === 'ar' ? '  ' : 'Go Home';
+  const backButton = language === 'ar' ? '' : 'Go Back';
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--system-background)] px-4">

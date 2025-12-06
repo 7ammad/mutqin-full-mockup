@@ -87,7 +87,7 @@ export function Footer() {
               <a
                 href="mailto:contact@mutqin.sa"
                 className="flex items-center gap-2 hover:text-[var(--apple-blue)] transition-colors"
-                aria-label={language === 'ar' ? 'إرسال بريد إلكتروني إلى contact@mutqin.sa' : 'Send email to contact@mutqin.sa'}
+                aria-label={language === 'ar' ? '    contact@mutqin.sa' : 'Send email to contact@mutqin.sa'}
               >
                 <Mail className="w-4 h-4" aria-hidden="true" />
                 contact@mutqin.sa
@@ -95,7 +95,7 @@ export function Footer() {
               <a
                 href="tel:+966112345678"
                 className="flex items-center gap-2 hover:text-[var(--apple-blue)] transition-colors"
-                aria-label={language === 'ar' ? 'اتصل بنا على +966 11 234 5678' : 'Call us at +966 11 234 5678'}
+                aria-label={language === 'ar' ? '   +966 11 234 5678' : 'Call us at +966 11 234 5678'}
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
                 +966 11 234 5678
@@ -106,7 +106,7 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-sm font-semibold text-[var(--label)] mb-4">
-              {language === 'ar' ? 'روابط سريعة' : 'Quick Links'}
+              {language === 'ar' ? ' ' : 'Quick Links'}
             </h4>
             <ul className="space-y-2">
               <li>
@@ -147,7 +147,7 @@ export function Footer() {
           {/* Legal Links */}
           <div>
             <h4 className="text-sm font-semibold text-[var(--label)] mb-4">
-              {language === 'ar' ? 'قانوني' : 'Legal'}
+              {language === 'ar' ? '' : 'Legal'}
             </h4>
             <ul className="space-y-2">
               <li>

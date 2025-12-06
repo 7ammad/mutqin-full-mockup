@@ -127,10 +127,10 @@ export default function ExecutionFlow({
             <div className="flex items-center gap-2 mb-2">
               <Activity className="h-5 w-5 text-[var(--apple-blue)]" />
               <h3 className="text-xl font-semibold text-[var(--label)]">
-                {language === 'ar' ? 'التشغيل المباشر' : 'Now Operating'}
+                {language === 'ar' ? ' ' : 'Now Operating'}
               </h3>
               <Badge variant="outline" className="bg-[var(--apple-green)]/10 text-[var(--apple-green)] border-[var(--apple-green)]/20">
-                {language === 'ar' ? 'نشط' : 'Active'}
+                {language === 'ar' ? '' : 'Active'}
               </Badge>
             </div>
             {event && (
@@ -162,11 +162,11 @@ export default function ExecutionFlow({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                  {language === 'ar' ? 'تم التحقق' : 'Checked In'}
+                  {language === 'ar' ? ' ' : 'Checked In'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--label)]">{attendanceData.checkedInCount}</p>
                 <p className="text-xs text-[var(--secondary-label)] mt-1">
-                  {language === 'ar' ? `من ${attendanceData.totalCount}` : `of ${attendanceData.totalCount}`}
+                  {language === 'ar' ? ` ${attendanceData.totalCount}` : `of ${attendanceData.totalCount}`}
                 </p>
               </div>
               <div className="h-10 w-10 rounded-full bg-[var(--apple-blue)]/10 flex items-center justify-center">
@@ -178,7 +178,7 @@ export default function ExecutionFlow({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                  {language === 'ar' ? 'إجمالي التذاكر' : 'Total Tickets'}
+                  {language === 'ar' ? ' ' : 'Total Tickets'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--label)]">{attendanceData.totalCount}</p>
               </div>
@@ -191,7 +191,7 @@ export default function ExecutionFlow({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                  {language === 'ar' ? 'الأخطاء' : 'Errors'}
+                  {language === 'ar' ? '' : 'Errors'}
                 </p>
                 <p className="text-2xl font-bold text-[var(--label)]">{errorCount}</p>
               </div>
@@ -208,24 +208,24 @@ export default function ExecutionFlow({
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-semibold text-[var(--label)]">
-              {language === 'ar' ? 'تدفق التنفيذ' : 'Execution Flow'}
+              {language === 'ar' ? ' ' : 'Execution Flow'}
             </h3>
             <p className="text-xs text-[var(--secondary-label)]">
-              {language === 'ar' ? 'اتبع الخطوات: التحقق من التذاكر → إنهاء الحضور → إصدار الشهادة' : 'Follow steps: Check-in → Finalize → Issue Certificate'}
+              {language === 'ar' ? ' :    →   →  ' : 'Follow steps: Check-in → Finalize → Issue Certificate'}
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
             <Badge variant="outline" className="capitalize">
-              {language === 'ar' ? 'التكليف' : 'Assignment'}: {assignmentStatus}
+              {language === 'ar' ? '' : 'Assignment'}: {assignmentStatus}
             </Badge>
             <Badge variant="outline" className="capitalize">
-              {language === 'ar' ? 'التذكرة' : 'Ticket'}: {ticketStatus}
+              {language === 'ar' ? '' : 'Ticket'}: {ticketStatus}
             </Badge>
             <Badge variant="outline">
-              {language === 'ar' ? 'منتهي' : 'Finalized'}: {attendanceFinalized ? (language === 'ar' ? 'نعم' : 'yes') : (language === 'ar' ? 'لا' : 'no')}
+              {language === 'ar' ? '' : 'Finalized'}: {attendanceFinalized ? (language === 'ar' ? '' : 'yes') : (language === 'ar' ? '' : 'no')}
             </Badge>
             <Badge variant="outline">
-              {language === 'ar' ? 'الفعالية' : 'Event'}: {normalizedEventStatus}
+              {language === 'ar' ? '' : 'Event'}: {normalizedEventStatus}
             </Badge>
           </div>
         </div>
@@ -238,7 +238,7 @@ export default function ExecutionFlow({
             disabled={assignmentStatus !== 'pending'}
            className="flex items-center justify-center gap-2">
             <CheckCircle2 className="w-4 h-4 mr-2" />
-            {language === 'ar' ? 'قبول التكليف' : 'Accept Assignment'}
+            {language === 'ar' ? ' ' : 'Accept Assignment'}
           </GlassButton>
           <GlassButton
             variant="default"
@@ -247,7 +247,7 @@ export default function ExecutionFlow({
             disabled={checkInDisabled}
            className="flex items-center justify-center gap-2">
             <Ticket className="w-4 h-4 mr-2" />
-            {language === 'ar' ? 'التحقق من التذكرة' : 'Check-in Ticket'}
+            {language === 'ar' ? '  ' : 'Check-in Ticket'}
           </GlassButton>
           <GlassButton
             variant="default"
@@ -256,7 +256,7 @@ export default function ExecutionFlow({
             disabled={finalizeDisabled}
            className="flex items-center justify-center gap-2">
             <Clock className="w-4 h-4 mr-2" />
-            {language === 'ar' ? 'إنهاء الحضور' : 'Finalize Attendance'}
+            {language === 'ar' ? ' ' : 'Finalize Attendance'}
           </GlassButton>
           <GlassButton
             variant="default"
@@ -265,7 +265,7 @@ export default function ExecutionFlow({
             disabled={certDisabled}
            className="flex items-center justify-center gap-2">
             <Award className="w-4 h-4 mr-2" />
-            {language === 'ar' ? 'إصدار الشهادة' : 'Issue Certificate'}
+            {language === 'ar' ? ' ' : 'Issue Certificate'}
           </GlassButton>
         </div>
 
@@ -273,7 +273,7 @@ export default function ExecutionFlow({
         <div className="rounded-lg border bg-white/70 p-3 text-sm flex items-center justify-between">
           <div>
             <div className="font-semibold text-[var(--label)]">
-              {language === 'ar' ? 'الشهادة' : 'Certificate'}
+              {language === 'ar' ? '' : 'Certificate'}
             </div>
             <div className="text-[var(--secondary-label)]">ID: {certificate.id}</div>
           </div>

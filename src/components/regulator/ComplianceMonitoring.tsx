@@ -38,7 +38,7 @@ export default function ComplianceMonitoring() {
             type: 'late-registration',
             severity: 'medium',
             description: 'CME hours not registered within 21-day window',
-            descriptionAr: 'ساعات التعليم لم يتم تسجيلها خلال 21 يوم',
+            descriptionAr: '      21 ',
             status: 'open',
             reportedDate: '2025-01-10',
         },
@@ -48,7 +48,7 @@ export default function ComplianceMonitoring() {
             type: 'missing-documentation',
             severity: 'low',
             description: 'Missing attendance records',
-            descriptionAr: 'سجلات الحضور مفقودة',
+            descriptionAr: '  ',
             status: 'in-progress',
             reportedDate: '2025-01-15',
         },
@@ -58,7 +58,7 @@ export default function ComplianceMonitoring() {
             type: 'expired-license',
             severity: 'high',
             description: 'SFDA license expired',
-            descriptionAr: 'ترخيص الهيئة منتهي',
+            descriptionAr: '  ',
             status: 'open',
             reportedDate: '2025-01-20',
         },
@@ -106,30 +106,30 @@ export default function ComplianceMonitoring() {
     };
 
     const complianceTrend = [
-        { month: language === 'ar' ? 'يناير' : 'Jan', issues: 12, resolved: 10 },
-        { month: language === 'ar' ? 'فبراير' : 'Feb', issues: 15, resolved: 12 },
-        { month: language === 'ar' ? 'مارس' : 'Mar', issues: 10, resolved: 9 },
-        { month: language === 'ar' ? 'أبريل' : 'Apr', issues: 8, resolved: 7 },
+        { month: language === 'ar' ? '' : 'Jan', issues: 12, resolved: 10 },
+        { month: language === 'ar' ? '' : 'Feb', issues: 15, resolved: 12 },
+        { month: language === 'ar' ? '' : 'Mar', issues: 10, resolved: 9 },
+        { month: language === 'ar' ? '' : 'Apr', issues: 8, resolved: 7 },
     ];
 
     const issueTypeDistribution = [
-        { name: language === 'ar' ? 'تسجيل متأخر' : 'Late Registration', value: 5 },
-        { name: language === 'ar' ? 'وثائق مفقودة' : 'Missing Documentation', value: 3 },
-        { name: language === 'ar' ? 'مخالفة' : 'Violation', value: 2 },
-        { name: language === 'ar' ? 'ترخيص منتهي' : 'Expired License', value: 1 },
+        { name: language === 'ar' ? ' ' : 'Late Registration', value: 5 },
+        { name: language === 'ar' ? ' ' : 'Missing Documentation', value: 3 },
+        { name: language === 'ar' ? '' : 'Violation', value: 2 },
+        { name: language === 'ar' ? ' ' : 'Expired License', value: 1 },
     ];
 
-    const title = language === 'ar' ? 'مراقبة الامتثال' : 'Compliance Monitoring';
-    const totalIssuesText = language === 'ar' ? 'إجمالي القضايا' : 'Total Issues';
-    const openIssuesText = language === 'ar' ? 'قضايا مفتوحة' : 'Open Issues';
-    const resolvedIssuesText = language === 'ar' ? 'قضايا محلولة' : 'Resolved Issues';
-    const criticalIssuesText = language === 'ar' ? 'قضايا حرجة' : 'Critical Issues';
-    const filterByStatusText = language === 'ar' ? 'تصفية حسب الحالة' : 'Filter by Status';
-    const filterBySeverityText = language === 'ar' ? 'تصفية حسب الخطورة' : 'Filter by Severity';
+    const title = language === 'ar' ? ' ' : 'Compliance Monitoring';
+    const totalIssuesText = language === 'ar' ? ' ' : 'Total Issues';
+    const openIssuesText = language === 'ar' ? ' ' : 'Open Issues';
+    const resolvedIssuesText = language === 'ar' ? ' ' : 'Resolved Issues';
+    const criticalIssuesText = language === 'ar' ? ' ' : 'Critical Issues';
+    const filterByStatusText = language === 'ar' ? '  ' : 'Filter by Status';
+    const filterBySeverityText = language === 'ar' ? '  ' : 'Filter by Severity';
 
-    const reportedText = language === 'ar' ? 'تم الإبلاغ' : 'Reported';
-    const complianceTrendText = language === 'ar' ? 'اتجاه الامتثال' : 'Compliance Trend';
-    const issueDistributionText = language === 'ar' ? 'توزيع القضايا' : 'Issue Distribution';
+    const reportedText = language === 'ar' ? ' ' : 'Reported';
+    const complianceTrendText = language === 'ar' ? ' ' : 'Compliance Trend';
+    const issueDistributionText = language === 'ar' ? ' ' : 'Issue Distribution';
 
     return (
         <div className="space-y-6">
@@ -170,10 +170,10 @@ export default function ComplianceMonitoring() {
                             <SelectValue placeholder={filterByStatusText} />
                         </SelectTrigger>
                         <SelectContent glass={true}>
-                            <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
-                            <SelectItem value="open">{language === 'ar' ? 'مفتوح' : 'Open'}</SelectItem>
-                            <SelectItem value="in-progress">{language === 'ar' ? 'قيد المعالجة' : 'In Progress'}</SelectItem>
-                            <SelectItem value="resolved">{language === 'ar' ? 'محلول' : 'Resolved'}</SelectItem>
+                            <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
+                            <SelectItem value="open">{language === 'ar' ? '' : 'Open'}</SelectItem>
+                            <SelectItem value="in-progress">{language === 'ar' ? ' ' : 'In Progress'}</SelectItem>
+                            <SelectItem value="resolved">{language === 'ar' ? '' : 'Resolved'}</SelectItem>
                         </SelectContent>
                     </Select>
                     <Select value={filterSeverity} onValueChange={setFilterSeverity}>
@@ -181,11 +181,11 @@ export default function ComplianceMonitoring() {
                             <SelectValue placeholder={filterBySeverityText} />
                         </SelectTrigger>
                         <SelectContent glass={true}>
-                            <SelectItem value="all">{language === 'ar' ? 'الكل' : 'All'}</SelectItem>
-                            <SelectItem value="critical">{language === 'ar' ? 'حرج' : 'Critical'}</SelectItem>
-                            <SelectItem value="high">{language === 'ar' ? 'عالي' : 'High'}</SelectItem>
-                            <SelectItem value="medium">{language === 'ar' ? 'متوسط' : 'Medium'}</SelectItem>
-                            <SelectItem value="low">{language === 'ar' ? 'منخفض' : 'Low'}</SelectItem>
+                            <SelectItem value="all">{language === 'ar' ? '' : 'All'}</SelectItem>
+                            <SelectItem value="critical">{language === 'ar' ? '' : 'Critical'}</SelectItem>
+                            <SelectItem value="high">{language === 'ar' ? '' : 'High'}</SelectItem>
+                            <SelectItem value="medium">{language === 'ar' ? '' : 'Medium'}</SelectItem>
+                            <SelectItem value="low">{language === 'ar' ? '' : 'Low'}</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
@@ -196,7 +196,7 @@ export default function ComplianceMonitoring() {
                         <div className="text-center py-12">
                             <CheckCircle2 className="h-12 w-12 mx-auto mb-4 text-[var(--tertiary-label)]" />
                             <p className="text-[var(--secondary-label)]">
-                                {language === 'ar' ? 'لا توجد قضايا' : 'No issues found'}
+                                {language === 'ar' ? '  ' : 'No issues found'}
                             </p>
                         </div>
                     ) : (
@@ -228,10 +228,10 @@ export default function ComplianceMonitoring() {
                                             </span>
                                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(issue.status)}`}>
                                                 {issue.status === 'resolved' 
-                                                    ? (language === 'ar' ? 'محلول' : 'Resolved')
+                                                    ? (language === 'ar' ? '' : 'Resolved')
                                                     : issue.status === 'in-progress'
-                                                    ? (language === 'ar' ? 'قيد المعالجة' : 'In Progress')
-                                                    : (language === 'ar' ? 'مفتوح' : 'Open')
+                                                    ? (language === 'ar' ? ' ' : 'In Progress')
+                                                    : (language === 'ar' ? '' : 'Open')
                                                 }
                                             </span>
                                         </div>

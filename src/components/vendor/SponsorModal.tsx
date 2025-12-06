@@ -26,16 +26,16 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!license.trim()) {
-            setError(language === 'ar' ? "رقم ترخيص الهيئة مطلوب" : "SFDA license number is required");
+            setError(language === 'ar' ? "   " : "SFDA license number is required");
             return;
         }
         if (!license.startsWith("MDS-REQ")) {
-            setError(language === 'ar' ? "صيغة الترخيص غير صحيحة (يجب أن تبدأ بـ MDS-REQ)" : "Invalid license format (must start with MDS-REQ)");
+            setError(language === 'ar' ? "    (    MDS-REQ)" : "Invalid license format (must start with MDS-REQ)");
             return;
         }
 
         if (!eventId) {
-            setError(language === 'ar' ? "معرف الحدث مطلوب" : "Event ID is required");
+            setError(language === 'ar' ? "  " : "Event ID is required");
             return;
         }
 
@@ -49,7 +49,7 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
             if (res.ok) {
                 setIsSuccess(true);
                 showToast(
-                    language === 'ar' ? 'تم شراء الرعاية بنجاح' : 'Sponsorship purchased successfully',
+                    language === 'ar' ? '   ' : 'Sponsorship purchased successfully',
                     'success'
                 );
 
@@ -61,7 +61,7 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
                 }, 1500);
             }
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            const message = err instanceof Error ? err.message : (language === 'ar' ? ' ' : 'An error occurred');
             setError(message);
             showToast(message, 'info');
         }
@@ -71,7 +71,7 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            title={isSuccess ? "تم إرسال العرض بنجاح" : "تقديم عرض رعاية"}
+            title={isSuccess ? "   " : "  "}
         >
             {isSuccess ? (
                 <div className="flex flex-col items-center justify-center py-8 space-y-4 text-center animate-in zoom-in">
@@ -79,8 +79,8 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
                         <CheckCircle2 className="h-8 w-8" />
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-[var(--apple-green)]">تم اعتماد الرعاية!</h3>
-                        <p className="text-[var(--secondary-label)] mt-2">جاري تحويلك إلى واجهة الممارس الصحي...</p>
+                        <h3 className="text-xl font-bold text-[var(--apple-green)]">  !</h3>
+                        <p className="text-[var(--secondary-label)] mt-2">     ...</p>
                     </div>
                 </div>
             ) : (
@@ -88,13 +88,13 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
                     <div className="p-4 bg-[var(--apple-blue)]/10 rounded-ios flex gap-3 items-start backdrop-blur-sm border border-[var(--apple-blue)]/20">
                         <ShieldCheck className="h-5 w-5 text-[var(--apple-blue)] mt-0.5" />
                         <div className="text-sm text-[var(--label)]">
-                            <p className="font-semibold mb-1">التحقق من الامتثال</p>
-                            <p className="text-[var(--secondary-label)]">يجب إدخال رقم ترخيص الهيئة العامة للغذاء والدواء (SFDA) للمتابعة.</p>
+                            <p className="font-semibold mb-1">  </p>
+                            <p className="text-[var(--secondary-label)]">        (SFDA) .</p>
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-[var(--label)]">رقم الترخيص (SFDA License)</label>
+                        <label className="text-sm font-medium text-[var(--label)]">  (SFDA License)</label>
                         <Input
                             placeholder="MDS-REQ-XXXX-XXX"
                             value={license}
@@ -109,10 +109,10 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
 
                     <div className="flex justify-end gap-2 pt-4">
                         <Button type="button" variant="ghost" onClick={onClose} className="flex items-center justify-center gap-2">
-                            إلغاء
+                            
                         </Button>
                         <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2">
-                            تأكيد الرعاية
+                             
                         </Button>
                     </div>
                 </form>

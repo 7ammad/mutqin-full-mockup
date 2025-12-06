@@ -60,15 +60,15 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
     if (!selectedEvent) return [];
     const flags: string[] = [];
     if (!selectedEvent.sfda_license) {
-      flags.push(language === 'ar' ? 'رخصة الهيئة مفقودة' : 'Missing SFDA License');
+      flags.push(language === 'ar' ? '  ' : 'Missing SFDA License');
     }
     if (!selectedEvent.descriptionAr && !selectedEvent.descriptionEn) {
-      flags.push(language === 'ar' ? 'وصف مفقود' : 'Missing Description');
+      flags.push(language === 'ar' ? ' ' : 'Missing Description');
     }
     if (selectedEvent.submittedAt) {
       const daysSinceSubmission = (Date.now() - new Date(selectedEvent.submittedAt).getTime()) / (1000 * 60 * 60 * 24);
       if (daysSinceSubmission > 5) {
-        flags.push(language === 'ar' ? 'قريب الاستحقاق' : 'Due Soon');
+        flags.push(language === 'ar' ? ' ' : 'Due Soon');
       }
     }
     // Mock: high-volume provider check
@@ -76,7 +76,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
       (language === 'ar' ? e.organizerAr : e.organizerEn) === organizer
     );
     if (providerEvents.length > 3) {
-      flags.push(language === 'ar' ? 'مزود عالي الحجم' : 'High-Volume Provider');
+      flags.push(language === 'ar' ? '  ' : 'High-Volume Provider');
     }
     return flags;
   }, [selectedEvent, queueEvents, organizer, language]);
@@ -87,23 +87,23 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
     const trail = [];
     if (selectedEvent.submittedAt) {
       trail.push({
-        action: language === 'ar' ? 'تم التقديم' : 'Submitted',
+        action: language === 'ar' ? ' ' : 'Submitted',
         timestamp: selectedEvent.submittedAt,
         actor: organizer
       });
     }
     if (selectedEvent.decisionAt) {
       trail.push({
-        action: language === 'ar' ? 'قرار سابق' : 'Previous Decision',
+        action: language === 'ar' ? ' ' : 'Previous Decision',
         timestamp: selectedEvent.decisionAt,
-        actor: language === 'ar' ? 'مراجع' : 'Reviewer'
+        actor: language === 'ar' ? '' : 'Reviewer'
       });
     }
     // Add a mock recent review entry
     trail.push({
-      action: language === 'ar' ? 'تم فتح المراجعة' : 'Review Opened',
+      action: language === 'ar' ? '  ' : 'Review Opened',
       timestamp: new Date().toISOString(),
-      actor: language === 'ar' ? 'نظام' : 'System'
+      actor: language === 'ar' ? '' : 'System'
     });
     return trail.slice(-3); // Last 3 entries
   }, [selectedEvent, organizer, language]);
@@ -113,8 +113,8 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
       <div className="space-y-6">
         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-12">
           <EmptyState
-            title={language === 'ar' ? 'اختر من المعروض للمراجعة' : 'Select from Queue'}
-            description={language === 'ar' ? 'اختر طلباً من المعروض لبدء المراجعة' : 'Select an application from the Queue to begin review'}
+            title={language === 'ar' ? '   ' : 'Select from Queue'}
+            description={language === 'ar' ? '     ' : 'Select an application from the Queue to begin review'}
             icon={Eye}
           />
           <div className="flex justify-center mt-6">
@@ -122,7 +122,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
               variant="default"
               onClick={handleBackToQueue}
              className="flex items-center justify-center gap-2">
-              {language === 'ar' ? 'الذهاب إلى المعروض' : 'Go to Queue'}
+              {language === 'ar' ? '  ' : 'Go to Queue'}
             </GlassButton>
           </div>
         </LiquidGlassCard>
@@ -135,7 +135,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
       <div className="space-y-6">
         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-12">
           <div className="text-center text-[var(--secondary-label)]">
-            {language === 'ar' ? 'جاري التحميل...' : 'Loading...'}
+            {language === 'ar' ? ' ...' : 'Loading...'}
           </div>
         </LiquidGlassCard>
       </div>
@@ -147,8 +147,8 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
       <div className="space-y-6">
         <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-12">
           <EmptyState
-            title={language === 'ar' ? 'الحدث غير موجود' : 'Event not found'}
-            description={language === 'ar' ? 'تعذر العثور على الحدث المطلوب' : 'The requested event could not be found'}
+            title={language === 'ar' ? '  ' : 'Event not found'}
+            description={language === 'ar' ? '    ' : 'The requested event could not be found'}
             icon={Eye}
           />
           <div className="flex justify-center mt-6">
@@ -156,7 +156,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
               variant="default"
               onClick={handleBackToQueue}
              className="flex items-center justify-center gap-2">
-              {language === 'ar' ? 'العودة إلى المعروض' : 'Back to Queue'}
+              {language === 'ar' ? '  ' : 'Back to Queue'}
             </GlassButton>
           </div>
         </LiquidGlassCard>
@@ -174,7 +174,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
         className="gap-2 flex items-center justify-center"
       >
         <ArrowLeft className="h-4 w-4" />
-        {language === 'ar' ? 'العودة إلى المعروض' : 'Back to Queue'}
+        {language === 'ar' ? '  ' : 'Back to Queue'}
       </GlassButton>
 
       {/* Two-Column Layout */}
@@ -184,7 +184,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
           <div>
             <h2 className="text-2xl font-bold text-[var(--label)] mb-2 flex items-center gap-2">
               <Eye className="h-6 w-6 text-[var(--apple-blue)]" />
-              {language === 'ar' ? 'ملخص الطلب' : 'Application Summary'}
+              {language === 'ar' ? ' ' : 'Application Summary'}
             </h2>
             <Badge variant="outline" className="capitalize">
               {selectedEvent.status.replace('_', ' ')}
@@ -202,7 +202,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                 <Users className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                    {language === 'ar' ? 'المنظم' : 'Provider'}
+                    {language === 'ar' ? '' : 'Provider'}
                   </p>
                   <p className="text-sm font-medium text-[var(--label)]">{organizer}</p>
                 </div>
@@ -213,7 +213,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <MapPin className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'الموقع' : 'Location'}
+                      {language === 'ar' ? '' : 'Location'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">{location}</p>
                   </div>
@@ -225,7 +225,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <MapPin className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'المدينة' : 'City'}
+                      {language === 'ar' ? '' : 'City'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">{selectedEvent.city}</p>
                   </div>
@@ -237,7 +237,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <FileText className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'التخصص' : 'Specialty'}
+                      {language === 'ar' ? '' : 'Specialty'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">{getSpecialtyLabel(selectedEvent.specialty || '', language)}</p>
                   </div>
@@ -249,7 +249,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <FileText className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'نوع النشاط' : 'Activity Type'}
+                      {language === 'ar' ? ' ' : 'Activity Type'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">{selectedEvent.activityType}</p>
                   </div>
@@ -261,7 +261,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <Calendar className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'تاريخ الفعالية' : 'Event Date'}
+                      {language === 'ar' ? ' ' : 'Event Date'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">
                       {new Date(selectedEvent.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}
@@ -275,7 +275,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <Award className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'ساعات التعليم الطبي' : 'CME Hours'}
+                      {language === 'ar' ? '  ' : 'CME Hours'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">{selectedEvent.cme_hours}</p>
                   </div>
@@ -287,7 +287,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <Calendar className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'تاريخ التقديم' : 'Submitted At'}
+                      {language === 'ar' ? ' ' : 'Submitted At'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">
                       {new Date(selectedEvent.submittedAt).toLocaleString(language === 'ar' ? 'ar-SA' : 'en-US')}
@@ -301,7 +301,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                   <FileText className="h-5 w-5 text-[var(--secondary-label)] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide">
-                      {language === 'ar' ? 'رخصة الهيئة' : 'SFDA License'}
+                      {language === 'ar' ? ' ' : 'SFDA License'}
                     </p>
                     <p className="text-sm font-medium text-[var(--label)]">{selectedEvent.sfda_license}</p>
                   </div>
@@ -315,7 +315,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
             <div className="border-t border-[var(--separator)] pt-4 mt-4">
               <h3 className="text-sm font-semibold text-[var(--label)] mb-3 flex items-center gap-2">
                 <AlertTriangle className="h-4 w-4 text-[var(--apple-orange)]" />
-                {language === 'ar' ? 'علامات المخاطر' : 'Risk Flags'}
+                {language === 'ar' ? ' ' : 'Risk Flags'}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {riskFlags.map((flag, idx) => (
@@ -332,7 +332,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
             <div className="border-t border-[var(--separator)] pt-4 mt-4">
               <h3 className="text-sm font-semibold text-[var(--label)] mb-3 flex items-center gap-2">
                 <History className="h-4 w-4 text-[var(--secondary-label)]" />
-                {language === 'ar' ? 'آخر التغييرات' : 'Recent Activity'}
+                {language === 'ar' ? ' ' : 'Recent Activity'}
               </h3>
               <div className="space-y-2">
                 {auditTrailSnippet.map((entry, idx) => (
@@ -342,7 +342,7 @@ export default function RegulatorReviewTab({ itemId, queueEvents, onDecision }: 
                       <span className="font-medium text-[var(--label)]">{entry.action}</span>
                       {' '}
                       <span className="text-[var(--secondary-label)]">
-                        {language === 'ar' ? 'بواسطة' : 'by'} {entry.actor}
+                        {language === 'ar' ? '' : 'by'} {entry.actor}
                       </span>
                       {' '}
                       <span className="text-[var(--secondary-label)]">

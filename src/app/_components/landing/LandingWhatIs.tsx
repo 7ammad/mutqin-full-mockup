@@ -17,10 +17,10 @@ export function LandingWhatIs() {
 
   // System visual tiles
   const systemTiles = [
-    { icon: Building2, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'providers') || (isRTL ? 'جهات التطوير' : 'Providers') },
-    { icon: Shield, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'regulators') || (isRTL ? 'جهات اعتمادية' : 'Regulators') },
-    { icon: Stethoscope, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'hcps') || (isRTL ? 'ممارسون صحيون' : 'HCPs') },
-    { icon: Briefcase, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'sponsors') || (isRTL ? 'رعاة' : 'Sponsors') },
+    { icon: Building2, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'providers') || (isRTL ? ' ' : 'Providers') },
+    { icon: Shield, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'regulators') || (isRTL ? ' ' : 'Regulators') },
+    { icon: Stethoscope, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'hcps') || (isRTL ? ' ' : 'HCPs') },
+    { icon: Briefcase, label: getNestedTranslation(language, 'landing', 'whatIs', 'visual', 'sponsors') || (isRTL ? '' : 'Sponsors') },
   ];
 
   return (
@@ -30,11 +30,11 @@ export function LandingWhatIs() {
           {/* Left: Text Content */}
           <div className="space-y-6">
             <h2 className="text-3xl lg:text-4xl font-bold text-[var(--label)]">
-              {title || (isRTL ? 'متقِن هو نظام تشغيل موحّد لفعاليات التعليم الطبي المستمر' : 'Mutqin is the operating system for accredited CPD activities')}
+              {title || (isRTL ? '        ' : 'Mutqin is the operating system for accredited CPD activities')}
             </h2>
             
             <p className="text-lg text-[var(--secondary-label)] leading-relaxed">
-              {body || (isRTL ? 'يربط متقِن جهات التطوير والاعتماد والرقابة والمستشفيات والرعاة والممارسين الصحيين في مسار عمل واحد من تصميم النشاط إلى الساعات المسجلة.' : 'Mutqin connects providers, accreditors, regulators, hospitals, sponsors, and HCPs in one workflow from activity design to recorded credits.')}
+              {body || (isRTL ? '                   .' : 'Mutqin connects providers, accreditors, regulators, hospitals, sponsors, and HCPs in one workflow from activity design to recorded credits.')}
             </p>
 
             {/* Mini Pillars */}

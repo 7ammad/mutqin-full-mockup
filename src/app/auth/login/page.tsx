@@ -11,15 +11,14 @@ import { Input } from '@/components/ui/input';
 import { MOCK_USERS } from '@/lib/mockData';
 import { LoadingSkeleton } from '@/components/shared/LoadingSkeleton';
 
-// Force dynamic rendering - prevent caching of login page
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Note: dynamic rendering is handled by the layout.tsx file
+// Client components cannot export dynamic/revalidate config
 
 function LoginForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { login, isAuthenticated } = useAuth();
-    const { language } = useLanguage();
+    const { t } = useLanguage();
     const roleParam = searchParams?.get('role');
     const initialRole = roleParam && ['ORGANIZER', 'VENDOR', 'REGULATOR', 'HCP', 'EVENT_MANAGER'].includes(roleParam.toUpperCase())
         ? roleParam.toUpperCase() as Persona
@@ -50,7 +49,7 @@ function LoginForm() {
         setIsLoading(true);
 
         if (!selectedRole) {
-            setError(language === 'ar' ? 'يرجى اختيار الدور' : 'Please select a role');
+            setError(t('auth.login.errors.selectRole'));
             setIsLoading(false);
             return;
         }
@@ -62,11 +61,7 @@ function LoginForm() {
             // Don't reset loading here as the redirect will unmount the component
         } catch (err) {
             console.error('[Login] Error:', err);
-            setError(
-                language === 'ar' 
-                    ? 'بيانات الاعتماد غير صحيحة' 
-                    : 'Invalid credentials'
-            );
+            setError(t('auth.login.errors.invalidCredentials'));
             setIsLoading(false);
         }
     };
@@ -80,33 +75,19 @@ function LoginForm() {
         }
     };
 
-    const roles: { id: Persona; labelAr: string; labelEn: string }[] = [
-        { id: 'HCP', labelAr: 'ممارس صحي', labelEn: 'Healthcare Professional' },
-        { id: 'ORGANIZER', labelAr: 'منظم', labelEn: 'Organizer' },
-        { id: 'VENDOR', labelAr: 'مزود', labelEn: 'Vendor' },
-        { id: 'REGULATOR', labelAr: 'جهة تنظيمية', labelEn: 'Regulator' },
-        { id: 'EVENT_MANAGER', labelAr: 'مدير حدث', labelEn: 'Event Manager' },
-    ];
-
-    const pageTitle = language === 'ar' ? 'تسجيل الدخول' : 'Login';
-    const emailLabel = language === 'ar' ? 'البريد الإلكتروني' : 'Email';
-    const passwordLabel = language === 'ar' ? 'كلمة المرور' : 'Password';
-    const roleLabel = language === 'ar' ? 'الدور' : 'Role';
-    const loginButton = language === 'ar' ? 'تسجيل الدخول' : 'Login';
-    const quickLoginText = language === 'ar' ? 'تسجيل سريع' : 'Quick Login';
-    const orText = language === 'ar' ? 'أو' : 'Or';
+    const roles: Persona[] = ['HCP', 'ORGANIZER', 'VENDOR', 'REGULATOR', 'EVENT_MANAGER'];
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-[var(--system-background)] px-4">
             <LiquidGlassCard className="w-full max-w-md p-8" blurIntensity="lg">
                 <h1 className="text-3xl font-bold text-[var(--label)] mb-6 text-center">
-                    {pageTitle}
+                    {t('auth.login.title')}
                 </h1>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                            {roleLabel}
+                            {t('auth.login.role')}
                         </label>
                         <select
                             value={selectedRole}
@@ -114,10 +95,10 @@ function LoginForm() {
                             className="w-full px-4 py-2 rounded-2xl bg-white/10 dark:bg-white/5 border border-white/20 text-[var(--label)] focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]"
                             required
                         >
-                            <option value="">{language === 'ar' ? 'اختر الدور' : 'Select Role'}</option>
+                            <option value="">{t('auth.login.selectRole')}</option>
                             {roles.map((role) => (
-                                <option key={role.id} value={role.id}>
-                                    {language === 'ar' ? role.labelAr : role.labelEn}
+                                <option key={role} value={role}>
+                                    {t(`auth.login.roles.${role}`)}
                                 </option>
                             ))}
                         </select>
@@ -125,7 +106,7 @@ function LoginForm() {
 
                     <div>
                         <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                            {emailLabel}
+                            {t('auth.login.email')}
                         </label>
                         <Input
                             type="email"
@@ -139,13 +120,13 @@ function LoginForm() {
 
                     <div>
                         <label className="block text-sm font-medium text-[var(--label)] mb-2">
-                            {passwordLabel}
+                            {t('auth.login.password')}
                         </label>
                         <Input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder={language === 'ar' ? 'كلمة المرور' : 'Password'}
+                            placeholder={t('auth.login.password')}
                             required
                             className="w-full"
                         />
@@ -162,24 +143,24 @@ function LoginForm() {
                         className="w-full flex items-center justify-center gap-2"
                         disabled={isLoading}
                     >
-                        {isLoading ? (language === 'ar' ? 'جارٍ تسجيل الدخول...' : 'Logging in...') : loginButton}
+                        {isLoading ? t('auth.login.loggingIn') : t('auth.login.submit')}
                     </GlassButton>
                 </form>
 
                 <div className="mt-6 pt-6 border-t border-[var(--separator)]">
                     <p className="text-sm text-[var(--secondary-label)] text-center mb-4">
-                        {quickLoginText}
+                        {t('auth.login.quickLogin')}
                     </p>
                     <div className="grid grid-cols-2 gap-2">
                         {roles.map((role) => (
                             <GlassButton
-                                key={role.id}
+                                key={role}
                                 variant="outline"
                                 size="sm"
-                                onClick={() => handleQuickLogin(role.id)}
+                                onClick={() => handleQuickLogin(role)}
                                 className="text-xs"
                             >
-                                {language === 'ar' ? role.labelAr : role.labelEn}
+                                {t(`auth.login.roles.${role}`)}
                             </GlassButton>
                         ))}
                     </div>

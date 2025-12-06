@@ -32,9 +32,9 @@ export default function Reporting({ eventId }: ReportingProps) {
     };
 
     const performanceMetrics = [
-        { name: language === 'ar' ? 'الكفاءة' : 'Efficiency', value: 98 },
-        { name: language === 'ar' ? 'الدقة' : 'Accuracy', value: 96 },
-        { name: language === 'ar' ? 'السرعة' : 'Speed', value: 95 },
+        { name: language === 'ar' ? '' : 'Efficiency', value: 98 },
+        { name: language === 'ar' ? '' : 'Accuracy', value: 96 },
+        { name: language === 'ar' ? '' : 'Speed', value: 95 },
     ];
 
     const handleGenerateReport = () => {
@@ -53,24 +53,24 @@ export default function Reporting({ eventId }: ReportingProps) {
         return (
             <LiquidGlassCard blurIntensity="lg" className="p-12">
                 <div className="text-center text-[var(--secondary-label)]">
-                    {language === 'ar' ? 'الفعالية غير موجودة' : 'Event not found'}
+                    {language === 'ar' ? '  ' : 'Event not found'}
                 </div>
             </LiquidGlassCard>
         );
     }
 
-    const title = language === 'ar' ? 'التقارير' : 'Reporting';
-    const performanceMetricsText = language === 'ar' ? 'مقاييس الأداء' : 'Performance Metrics';
-    const generateReportText = language === 'ar' ? 'إنشاء التقرير' : 'Generate Report';
-    const downloadReportText = language === 'ar' ? 'تحميل التقرير' : 'Download Report';
-    const sendToOrganizerText = language === 'ar' ? 'إرسال إلى المنظم' : 'Send to Organizer';
-    const totalAttendeesText = language === 'ar' ? 'إجمالي الحضور' : 'Total Attendees';
-    const attendanceRateText = language === 'ar' ? 'معدل الحضور' : 'Attendance Rate';
-    const averageCheckInText = language === 'ar' ? 'متوسط وقت التسجيل' : 'Avg Check-In Time';
-    const certificateTimeText = language === 'ar' ? 'وقت إنشاء الشهادات' : 'Certificate Generation Time';
-    const cmeHoursText = language === 'ar' ? 'ساعات CME' : 'CME Hours';
-    const performanceScoreText = language === 'ar' ? 'نقاط الأداء' : 'Performance Score';
-    const minutesText = language === 'ar' ? 'دقيقة' : 'minutes';
+    const title = language === 'ar' ? '' : 'Reporting';
+    const performanceMetricsText = language === 'ar' ? ' ' : 'Performance Metrics';
+    const generateReportText = language === 'ar' ? ' ' : 'Generate Report';
+    const downloadReportText = language === 'ar' ? ' ' : 'Download Report';
+    const sendToOrganizerText = language === 'ar' ? '  ' : 'Send to Organizer';
+    const totalAttendeesText = language === 'ar' ? ' ' : 'Total Attendees';
+    const attendanceRateText = language === 'ar' ? ' ' : 'Attendance Rate';
+    const averageCheckInText = language === 'ar' ? '  ' : 'Avg Check-In Time';
+    const certificateTimeText = language === 'ar' ? '  ' : 'Certificate Generation Time';
+    const cmeHoursText = language === 'ar' ? ' CME' : 'CME Hours';
+    const performanceScoreText = language === 'ar' ? ' ' : 'Performance Score';
+    const minutesText = language === 'ar' ? '' : 'minutes';
 
     return (
         <div className="space-y-6">
@@ -145,7 +145,7 @@ export default function Reporting({ eventId }: ReportingProps) {
             {/* Detailed Stats */}
             <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                 <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
-                    {language === 'ar' ? 'تفاصيل التقرير' : 'Report Details'}
+                    {language === 'ar' ? ' ' : 'Report Details'}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex justify-between items-center p-3 rounded-lg bg-[var(--system-fill)]/30">
@@ -166,7 +166,7 @@ export default function Reporting({ eventId }: ReportingProps) {
                     </div>
                     <div className="flex justify-between items-center p-3 rounded-lg bg-[var(--system-fill)]/30">
                         <span className="text-[var(--secondary-label)]">
-                            {language === 'ar' ? 'تم التسجيل' : 'Checked In'}
+                            {language === 'ar' ? ' ' : 'Checked In'}
                         </span>
                         <span className="text-[var(--label)] font-medium">{reportData.checkedIn}</span>
                     </div>

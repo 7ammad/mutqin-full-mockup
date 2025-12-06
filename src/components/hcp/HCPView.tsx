@@ -161,7 +161,7 @@ function CreditsTab({
         const grouped: Record<string, typeof filteredItems> = {};
         filteredItems.forEach((item) => {
             if (!item.dateCompleted) {
-                const noDateKey = language === 'ar' ? 'بدون تاريخ' : 'No Date';
+                const noDateKey = language === 'ar' ? ' ' : 'No Date';
                 if (!grouped[noDateKey]) grouped[noDateKey] = [];
                 grouped[noDateKey].push(item);
                 return;
@@ -177,7 +177,7 @@ function CreditsTab({
     const specialtyBreakdown = useMemo(() => {
         const breakdown: Record<string, number> = {};
         filteredItems.forEach((item) => {
-            const specialty = item.specialty || (language === 'ar' ? 'عام' : 'General');
+            const specialty = item.specialty || (language === 'ar' ? '' : 'General');
             breakdown[specialty] = (breakdown[specialty] || 0) + item.hours;
         });
         return Object.entries(breakdown)
@@ -219,7 +219,7 @@ function CreditsTab({
                 <div>
                     <p className="text-sm text-[var(--secondary-label)]">
                         {language === "ar" 
-                            ? "سجل الساعات المعتمدة حسب السنوات والحالة"
+                            ? "     "
                             : "Record of accredited hours by year and status"}
                     </p>
                 </div>
@@ -229,7 +229,7 @@ function CreditsTab({
                     disabled
                     className="text-xs text-[var(--secondary-label)]"
                 >
-                    {language === "ar" ? "تنزيل كشف الساعات" : "Download hours statement"}
+                    {language === "ar" ? "  " : "Download hours statement"}
                 </Button>
             </div>
 
@@ -239,11 +239,11 @@ function CreditsTab({
                     <div className="flex items-center justify-between">
                         <div className="flex-1">
                             <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                {language === "ar" ? "إجمالي الساعات المسجلة" : "Total hours this period"}
+                                {language === "ar" ? "  " : "Total hours this period"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{creditsData.earned + creditsData.pending}</p>
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === "ar" ? "ساعة" : "hours"}
+                                {language === "ar" ? "" : "hours"}
                             </p>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-[var(--apple-green)]/10 flex items-center justify-center shrink-0">
@@ -255,11 +255,11 @@ function CreditsTab({
                     <div className="flex items-center justify-between">
                         <div className="flex-1">
                             <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                {language === "ar" ? "قيد الانتظار" : "Pending"}
+                                {language === "ar" ? " " : "Pending"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{creditsData.pending}</p>
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === "ar" ? "ساعة" : "hours"}
+                                {language === "ar" ? "" : "hours"}
                             </p>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-[var(--apple-orange)]/10 flex items-center justify-center shrink-0">
@@ -271,11 +271,11 @@ function CreditsTab({
                     <div className="flex items-center justify-between">
                         <div className="flex-1">
                             <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
-                                {language === "ar" ? "مكتسب" : "Posted"}
+                                {language === "ar" ? "" : "Posted"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{creditsData.posted}</p>
                             <p className="text-xs text-[var(--secondary-label)] mt-1">
-                                {language === "ar" ? "ساعة" : "hours"}
+                                {language === "ar" ? "" : "hours"}
                             </p>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-[var(--apple-blue)]/10 flex items-center justify-center shrink-0">
@@ -290,7 +290,7 @@ function CreditsTab({
                 <div className="space-y-3">
                     <div className="flex items-center justify-between">
                         <p className="text-sm font-medium text-[var(--label)]">
-                            {language === "ar" ? "هدف الهيئة للسنة الحالية: ٤٠ ساعة" : "SCFHS target for current year: 40 hours"}
+                            {language === "ar" ? "   :  " : "SCFHS target for current year: 40 hours"}
                         </p>
                         <p className="text-sm font-semibold text-[var(--label)]">
                             {creditsData.posted} / 40
@@ -312,36 +312,36 @@ function CreditsTab({
                     <div className="flex items-center gap-2 mb-4">
                         <Filter className="h-4 w-4 text-[var(--secondary-label)]" />
                         <h3 className="text-lg font-semibold text-[var(--label)]">
-                            {language === "ar" ? "تصفية" : "Filter"}
+                            {language === "ar" ? "" : "Filter"}
                         </h3>
                     </div>
                     <div className="space-y-4">
                         <div>
                             <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                                {language === "ar" ? "الفترة" : "Period"}
+                                {language === "ar" ? "" : "Period"}
                             </label>
                             <select
                                 value={periodFilter}
                                 onChange={(e) => setPeriodFilter(e.target.value as typeof periodFilter)}
                                 className="w-full px-3 py-2 rounded-lg border border-[var(--separator)] bg-[var(--system-background)] text-[var(--label)] focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]/20"
                             >
-                                <option value="all">{language === "ar" ? "الكل" : "All"}</option>
-                                <option value="this_year">{language === "ar" ? "السنة الحالية" : "Current year"}</option>
-                                <option value="last_12_months">{language === "ar" ? "العام الماضي" : "Last year"}</option>
+                                <option value="all">{language === "ar" ? "" : "All"}</option>
+                                <option value="this_year">{language === "ar" ? " " : "Current year"}</option>
+                                <option value="last_12_months">{language === "ar" ? " " : "Last year"}</option>
                             </select>
                         </div>
                         <div>
                             <label className="text-sm font-medium text-[var(--label)] mb-2 block">
-                                {language === "ar" ? "الحالة" : "Status"}
+                                {language === "ar" ? "" : "Status"}
                             </label>
                             <select
                                 value={statusFilter}
                                 onChange={(e) => setStatusFilter(e.target.value as typeof statusFilter)}
                                 className="w-full px-3 py-2 rounded-lg border border-[var(--separator)] bg-[var(--system-background)] text-[var(--label)] focus:outline-none focus:ring-2 focus:ring-[var(--apple-blue)]/20"
                             >
-                                <option value="all">{language === "ar" ? "الكل" : "All"}</option>
-                                <option value="posted">{language === "ar" ? "مكتمل" : "Completed"}</option>
-                                <option value="pending">{language === "ar" ? "قيد الانتظار" : "Pending"}</option>
+                                <option value="all">{language === "ar" ? "" : "All"}</option>
+                                <option value="posted">{language === "ar" ? "" : "Completed"}</option>
+                                <option value="pending">{language === "ar" ? " " : "Pending"}</option>
                             </select>
                         </div>
                         {hasActiveFilters && (
@@ -352,7 +352,7 @@ function CreditsTab({
                                 className="w-full gap-2"
                             >
                                 <X className="h-4 w-4 shrink-0" />
-                                <span>{language === "ar" ? "مسح المرشحات" : "Clear filters"}</span>
+                                <span>{language === "ar" ? " " : "Clear filters"}</span>
                             </Button>
                         )}
                     </div>
@@ -361,24 +361,24 @@ function CreditsTab({
                 {/* Right Column: Compact Credits Log */}
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                     <h2 className="text-xl font-bold text-[var(--label)] mb-6">
-                        {language === "ar" ? "سجل الساعات" : "Credits Log"}
+                        {language === "ar" ? " " : "Credits Log"}
                     </h2>
 
                     {mergedItems.length === 0 ? (
                         <EmptyState
-                            title={language === "ar" ? "لا توجد أنشطة معتمدة حتى الآن" : "No accredited activities yet"}
+                            title={language === "ar" ? "     " : "No accredited activities yet"}
                             description={language === "ar" 
-                                ? "سجل في فعالية لبدء كسب الاعتمادات" 
+                                ? "     " 
                                 : "Register for an event to start earning credits"}
                             icon={BarChart3}
-                            actionLabel={language === "ar" ? "تصفح الفعاليات" : "Browse events"}
+                            actionLabel={language === "ar" ? " " : "Browse events"}
                             onAction={() => router.push(buildRoute.hcpTab('discover'))}
                         />
                     ) : filteredItems.length === 0 ? (
                         <div className="text-center py-12 space-y-4">
                             <p className="text-[var(--secondary-label)]">
                                 {language === "ar" 
-                                    ? "لا توجد أنشطة مطابقة للمرشِّحات" 
+                                    ? "    " 
                                     : "No activities match these filters"}
                             </p>
                             {hasActiveFilters && (
@@ -389,7 +389,7 @@ function CreditsTab({
                                     className="gap-2"
                                 >
                                     <X className="h-4 w-4 shrink-0" />
-                                    <span>{language === "ar" ? "مسح المرشحات" : "Clear filters"}</span>
+                                    <span>{language === "ar" ? " " : "Clear filters"}</span>
                                 </Button>
                             )}
                         </div>
@@ -398,8 +398,8 @@ function CreditsTab({
                             {Object.entries(itemsByYear)
                                 .sort(([a], [b]) => {
                                     // Sort years descending, "No Date" at end
-                                    if (a === (language === 'ar' ? 'بدون تاريخ' : 'No Date')) return 1;
-                                    if (b === (language === 'ar' ? 'بدون تاريخ' : 'No Date')) return -1;
+                                    if (a === (language === 'ar' ? ' ' : 'No Date')) return 1;
+                                    if (b === (language === 'ar' ? ' ' : 'No Date')) return -1;
                                     return Number(b) - Number(a);
                                 })
                                 .map(([year, items]) => (
@@ -437,7 +437,7 @@ function CreditsTab({
                                                                 variant="outline"
                                                                 className="text-xs px-2 py-0.5"
                                                             >
-                                                                {item.hours} {language === "ar" ? "ساعة معتمدة" : "CME hours"}
+                                                                {item.hours} {language === "ar" ? " " : "CME hours"}
                                                             </Badge>
                                                             <Badge
                                                                 variant="outline"
@@ -450,10 +450,10 @@ function CreditsTab({
                                                                 }
                                                             >
                                                                 {item.status === "posted"
-                                                                    ? language === "ar" ? "مكتمل" : "Completed"
+                                                                    ? language === "ar" ? "" : "Completed"
                                                                     : item.status === "earned"
-                                                                    ? language === "ar" ? "مكتسب" : "Earned"
-                                                                    : language === "ar" ? "قيد الانتظار" : "Pending"}
+                                                                    ? language === "ar" ? "" : "Earned"
+                                                                    : language === "ar" ? " " : "Pending"}
                                                             </Badge>
                                                             {item.certificateId && (
                                                                 <Button
@@ -468,7 +468,7 @@ function CreditsTab({
                                                                     }}
                                                                     className="text-xs h-7 px-2 text-sky-400 hover:text-sky-300 dark:text-sky-300 dark:hover:text-sky-200"
                                                                 >
-                                                                    {language === "ar" ? "فتح الشهادة" : "Open certificate"}
+                                                                    {language === "ar" ? " " : "Open certificate"}
                                                                 </Button>
                                                             )}
                                                         </div>

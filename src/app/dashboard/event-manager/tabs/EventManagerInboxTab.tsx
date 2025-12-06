@@ -36,11 +36,11 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
         setLoading(prev => ({ ...prev, [assignmentId]: true }));
         try {
             await api.respondAssignment({ assignmentId, decision: "accept" });
-            showToast(language === "ar" ? "تم قبول التكليف" : "Assignment accepted", "success");
+            showToast(language === "ar" ? "  " : "Assignment accepted", "success");
             // Refresh will be handled by parent
             window.location.reload();
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === "ar" ? "فشل قبول التكليف" : "Unable to accept assignment");
+            const message = err instanceof Error ? err.message : (language === "ar" ? "  " : "Unable to accept assignment");
             showToast(message, "info");
         } finally {
             setLoading(prev => ({ ...prev, [assignmentId]: false }));
@@ -51,10 +51,10 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
         setLoading(prev => ({ ...prev, [assignmentId]: true }));
         try {
             await api.respondAssignment({ assignmentId, decision: "decline" });
-            showToast(language === "ar" ? "تم رفض التكليف" : "Assignment declined", "success");
+            showToast(language === "ar" ? "  " : "Assignment declined", "success");
             window.location.reload();
         } catch (err) {
-            const message = err instanceof Error ? err.message : (language === "ar" ? "فشل رفض التكليف" : "Unable to decline assignment");
+            const message = err instanceof Error ? err.message : (language === "ar" ? "  " : "Unable to decline assignment");
             showToast(message, "info");
         } finally {
             setLoading(prev => ({ ...prev, [assignmentId]: false }));
@@ -77,7 +77,7 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                {language === "ar" ? "التكليفات النشطة" : "Active Assignments"}
+                                {language === "ar" ? " " : "Active Assignments"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{stats.active}</p>
                         </div>
@@ -90,7 +90,7 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                {language === "ar" ? "قيد الانتظار" : "Pending"}
+                                {language === "ar" ? " " : "Pending"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{stats.pending}</p>
                         </div>
@@ -103,7 +103,7 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-[var(--secondary-label)] mb-1">
-                                {language === "ar" ? "مرفوض" : "Declined"}
+                                {language === "ar" ? "" : "Declined"}
                             </p>
                             <p className="text-2xl font-bold text-[var(--label)]">{stats.declined}</p>
                         </div>
@@ -117,8 +117,8 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
             {/* Assignments List */}
             {assignmentsData.length === 0 ? (
                 <EmptyState
-                    title={language === "ar" ? "لا توجد مهام حالياً" : "No assignments"}
-                    description={language === "ar" ? "لا توجد تكليفات جديدة في صندوق الوارد. ستظهر المهام الجديدة هنا عند إنشاء المنظمين تكليفات جديدة." : "No new assignments in inbox. New tasks will appear here when organizers create assignments."}
+                    title={language === "ar" ? "   " : "No assignments"}
+                    description={language === "ar" ? "      .         ." : "No new assignments in inbox. New tasks will appear here when organizers create assignments."}
                     icon={Inbox}
                 />
             ) : (
@@ -127,10 +127,10 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
                         const eventData = convertDemoEventToEvent(event);
                         const statusLabel =
                             assignment.status === "accepted"
-                                ? language === "ar" ? "نشط" : "Active"
+                                ? language === "ar" ? "" : "Active"
                                 : assignment.status === "pending"
-                                ? language === "ar" ? "قيد الانتظار" : "Pending"
-                                : language === "ar" ? "مرفوض" : "Declined";
+                                ? language === "ar" ? " " : "Pending"
+                                : language === "ar" ? "" : "Declined";
 
                         return (
                             <div key={assignment.id} className="relative">
@@ -144,7 +144,7 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
                                             ? undefined
                                             : assignment.status === "accepted"
                                             ? {
-                                                  label: language === "ar" ? "فتح التشغيل المباشر" : "Open Live Ops",
+                                                  label: language === "ar" ? "  " : "Open Live Ops",
                                                   onClick: () => handleViewLiveOps(event.id),
                                                   variant: "default",
                                               }
@@ -172,7 +172,7 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
                                             onClick={() => handleAccept(assignment.id)}
                                             disabled={loading[assignment.id]}
                                         >
-                                            {language === "ar" ? "قبول" : "Accept"}
+                                            {language === "ar" ? "" : "Accept"}
                                         </GlassButton>
                                         <GlassButton
                                             variant="outline"
@@ -180,7 +180,7 @@ export default function EventManagerInboxTab({ assignmentsData }: EventManagerIn
                                             onClick={() => handleDecline(assignment.id)}
                                             disabled={loading[assignment.id]}
                                         >
-                                            {language === "ar" ? "رفض" : "Decline"}
+                                            {language === "ar" ? "" : "Decline"}
                                         </GlassButton>
                                     </div>
                                 )}
