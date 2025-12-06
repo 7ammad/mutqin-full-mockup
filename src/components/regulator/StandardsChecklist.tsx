@@ -395,7 +395,7 @@ export default function StandardsChecklist() {
                         ))}
 
                         <div className="flex justify-end">
-                            <GlassButton onClick={handleSave} className="gap-2">
+                            <GlassButton onClick={handleSave} className="gap-2 flex items-center justify-center">
                                 <Save className="h-4 w-4" />
                                 {saveText}
                             </GlassButton>

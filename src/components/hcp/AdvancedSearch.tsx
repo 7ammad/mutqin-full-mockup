@@ -9,7 +9,7 @@ import { Filter, X, Sparkles } from "lucide-react";
 import { usePersona } from "@/context/PersonaContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Event } from "@/lib/mockData";
-import EventCard from "@/components/EventCard";
+import { ActivityCard } from "@/components/shared/ActivityCard";
 import { cn } from "@/lib/utils";
 
 export default function AdvancedSearch() {
@@ -111,10 +111,11 @@ export default function AdvancedSearch() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {recommendations.map((event) => (
-                            <EventCard
+                            <ActivityCard
                                 key={event.id}
                                 event={event}
-                                variant="default"
+                                context="hcp"
+                                variant="full"
                                 showDescription={false}
                             />
                         ))}
@@ -154,10 +155,11 @@ export default function AdvancedSearch() {
                 ) : (
                     <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {filteredEvents.map((event) => (
-                            <EventCard
+                            <ActivityCard
                                 key={event.id}
                                 event={event}
-                                variant="default"
+                                context="hcp"
+                                variant="full"
                                 showDescription={true}
                             />
                         ))}

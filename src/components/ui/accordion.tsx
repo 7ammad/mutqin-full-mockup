@@ -77,8 +77,7 @@ export function AccordionTrigger({ children, className }: AccordionTriggerProps)
   };
 
   return (
-    <button
-      type="button"
+    <button type="button"
       onClick={() => context.toggleItem(itemContext.value)}
       onKeyDown={handleKeyDown}
       className={cn(

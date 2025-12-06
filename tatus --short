@@ -1,0 +1,10 @@
+warning: in the working copy of '.claude/settings.local.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Docs/COMPLETE_SITEMAP.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Docs/IOS_DESIGN_SYSTEM.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Docs/RBAC.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'playwright.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/MockApiProvider.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/auth/login/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/dashboard/event-manager/events/[id]/attendance/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/dashboard/event-manager/events/[id]/checkin/page.tsx', LF will be replaced by CRLF the next time Git touches it

@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass-card";
 import { GlassButton } from "@/components/ui/glass-button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from "@/context/LanguageContext";
 import { BarChart3, TrendingUp, Eye, MousePointerClick, Users, DollarSign, Download } from "lucide-react";
 import { Chart } from "@/components/shared/Chart";
+import { buildRoute } from "@/lib/routes";
 
 export default function CampaignAnalytics() {
+    const router = useRouter();
     const { t, language } = useLanguage();
     const [selectedCampaign, setSelectedCampaign] = useState<string>("all");
     const [timeRange, setTimeRange] = useState<string>("30d");
@@ -79,13 +82,24 @@ export default function CampaignAnalytics() {
                             </SelectTrigger>
                             <SelectContent glass={true}>
                                 <SelectItem value="all">{language === 'ar' ? 'جميع الحملات' : 'All Campaigns'}</SelectItem>
-                                {campaigns.map(camp => (
-                                    <SelectItem key={camp.id} value={camp.id}>
-                                        {camp.name}
+                                {campaigns.map((campaign) => (
+                                    <SelectItem key={campaign.id} value={campaign.id}>
+                                        {campaign.name}
                                     </SelectItem>
                                 ))}
                             </SelectContent>
                         </Select>
+                        {selectedCampaign !== "all" && (
+                            <GlassButton
+                                variant="outline"
+                                size="sm"
+                                onClick={() => router.push(buildRoute.vendorCampaign(selectedCampaign))}
+                                className="gap-2"
+                            >
+                                <Eye className="h-4 w-4" />
+                                {language === 'ar' ? 'عرض الحملة' : 'View Campaign'}
+                            </GlassButton>
+                        )}
                         <Select value={timeRange} onValueChange={setTimeRange}>
                             <SelectTrigger className="w-[150px]">
                                 <SelectValue placeholder={timeRangeText} />
@@ -97,7 +111,7 @@ export default function CampaignAnalytics() {
                                 <SelectItem value="1y">{language === 'ar' ? 'سنة واحدة' : '1 Year'}</SelectItem>
                             </SelectContent>
                         </Select>
-                        <GlassButton variant="outline" className="gap-2">
+                        <GlassButton variant="outline" className="gap-2 flex items-center justify-center">
                             <Download className="h-4 w-4" />
                             {language === 'ar' ? 'تصدير' : 'Export'}
                         </GlassButton>

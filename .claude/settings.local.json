@@ -3,7 +3,14 @@
     "allow": [
       "Bash(npm run lint:*)",
       "Bash(npm run build:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm test:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(npm run dev:*)",
+      "Bash(taskkill:*)",
+      "Bash(cat:*)",
+      "Bash(cmd /c \"npx tsc --noEmit\")"
     ],
     "deny": [],
     "ask": []

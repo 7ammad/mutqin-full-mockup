@@ -114,7 +114,7 @@ export class ErrorBoundary extends Component<Props, State> {
                   onClick={this.handleReset}
                   variant="default"
                   size="default"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 justify-center"
                 >
                   <RefreshCw className="w-4 h-4" />
                   Try Again
@@ -123,7 +123,7 @@ export class ErrorBoundary extends Component<Props, State> {
                   onClick={this.handleReload}
                   variant="outline"
                   size="default"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 justify-center"
                 >
                   <Home className="w-4 h-4" />
                   Reload Page

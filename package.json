@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/validate-env.js && next build",
+    "build:skip-validation": "next build",
     "start": "next start",
+    "validate:env": "node scripts/validate-env.js",
     "lint": "eslint",
     "analyze": "node scripts/bundle-analyzer.js",
     "type-check": "next typegen && tsc --noEmit",

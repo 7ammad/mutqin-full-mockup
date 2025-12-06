@@ -1,16 +1,21 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { usePersona } from "@/context/PersonaContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import EventCard from "@/components/EventCard";
+import { GlassButton } from "@/components/ui/glass-button";
+import { ActivityCard } from "@/components/shared/ActivityCard";
+import { Eye } from "lucide-react";
+import { buildRoute } from "@/lib/routes";
 
 interface MarketplaceFeedProps {
     onSponsorClick: (eventId: string) => void;
 }
 
 export default function MarketplaceFeed({ onSponsorClick }: MarketplaceFeedProps) {
+    const router = useRouter();
     const { events } = usePersona();
     const { t, language } = useLanguage();
 
@@ -33,21 +38,32 @@ export default function MarketplaceFeed({ onSponsorClick }: MarketplaceFeedProps
             ) : (
                 <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {opportunities.map((event) => (
-                        <EventCard
-                            key={event.id}
-                            event={event}
-                            variant="vendor"
-                            showDescription={true}
-                            sponsorshipPackage={{
-                                name: t('vendor.goldPackage'),
-                                value: 50000,
-                            }}
-                            actionButton={{
-                                label: t('vendor.sponsorEvent'),
-                                onClick: () => onSponsorClick(event.id),
-                                variant: 'blue',
-                            }}
-                        />
+                        <div key={event.id} className="space-y-3">
+                            <ActivityCard
+                                event={event}
+                                context="sponsor"
+                                variant="full"
+                                showDescription={true}
+                                sponsorshipPackage={{
+                                    name: t('vendor.goldPackage'),
+                                    value: 50000,
+                                }}
+                                actionButton={{
+                                    label: t('vendor.sponsorEvent'),
+                                    onClick: () => onSponsorClick(event.id),
+                                    variant: 'blue',
+                                }}
+                            />
+                            <GlassButton
+                                variant="outline"
+                                size="sm"
+                                onClick={() => router.push(buildRoute.vendorEvent(event.id))}
+                                className="w-full gap-2"
+                            >
+                                <Eye className="h-4 w-4" />
+                                {language === 'ar' ? 'عرض الفرصة' : 'View Opportunity'}
+                            </GlassButton>
+                        </div>
                     ))}
                 </div>
             )}

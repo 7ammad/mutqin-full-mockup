@@ -4,26 +4,201 @@ import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Persona } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
-import { 
-    Moon, 
-    Sun, 
-    Stethoscope, 
-    Languages, 
+import {
+    Moon,
+    Sun,
+    Languages,
     Menu,
     X,
     User,
-    LogOut
+    LogOut,
+    FileText,
+    HelpCircle,
+    Calendar,
+    Package,
+    Building2,
+    ClipboardList,
+    Inbox,
+    Eye,
+    History,
+    Shield,
+    BarChart3,
+    LayoutDashboard,
+    Activity,
+    CheckCircle2,
+    Users
 } from "lucide-react";
+import { MutqinLogo } from "@/components/MutqinLogo";
 import UserDropdown from "@/components/UserDropdown";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import PageTitle from "@/components/PageTitle";
 import { GlassButton } from "@/components/ui/glass-button";
+import { Badge } from "@/components/ui/badge";
+import CompactCMETracker from "@/components/hcp/CompactCMETracker";
 
-export default function DashboardLayout({ 
-    children, 
-    role 
-}: { 
+type NavItem = {
+    key: string;
+    icon: typeof FileText;
+    label: { en: string; ar: string };
+    path: string;
+    count?: number;
+};
+
+// Navigation configuration per persona
+const getNavItemsForPersona = (persona: Persona, language: 'en' | 'ar'): NavItem[] => {
+    switch (persona) {
+        case 'REGULATOR':
+            return [
+                {
+                    key: 'queue',
+                    icon: Inbox,
+                    label: { en: 'Queue', ar: 'المعروض للمراجعة' },
+                    path: '/dashboard/regulator?tab=queue'
+                },
+                {
+                    key: 'review',
+                    icon: Eye,
+                    label: { en: 'Review Workspace', ar: 'مساحة المراجعة' },
+                    path: '/dashboard/regulator?tab=review'
+                },
+                {
+                    key: 'decisions',
+                    icon: History,
+                    label: { en: 'Decisions', ar: 'القرارات' },
+                    path: '/dashboard/regulator?tab=decisions'
+                },
+                {
+                    key: 'monitoring',
+                    icon: Shield,
+                    label: { en: 'Monitoring', ar: 'المتابعة والالتزام' },
+                    path: '/dashboard/regulator?tab=monitoring'
+                },
+                {
+                    key: 'analytics',
+                    icon: BarChart3,
+                    label: { en: 'Analytics', ar: 'التحليلات' },
+                    path: '/dashboard/regulator?tab=analytics'
+                }
+            ];
+        case 'ORGANIZER':
+            return [
+                {
+                    key: 'overview',
+                    icon: LayoutDashboard,
+                    label: { en: 'Overview', ar: 'نظرة عامة' },
+                    path: '/dashboard/organizer?tab=overview'
+                },
+                {
+                    key: 'activities',
+                    icon: Activity,
+                    label: { en: 'Activities', ar: 'الأنشطة' },
+                    path: '/dashboard/organizer?tab=activities'
+                },
+                {
+                    key: 'accreditation',
+                    icon: CheckCircle2,
+                    label: { en: 'Accreditation', ar: 'الاعتماد' },
+                    path: '/dashboard/organizer?tab=accreditation'
+                },
+                {
+                    key: 'execution',
+                    icon: ClipboardList,
+                    label: { en: 'Execution & Compliance', ar: 'التنفيذ والامتثال' },
+                    path: '/dashboard/organizer?tab=execution'
+                },
+                {
+                    key: 'sponsors',
+                    icon: Users,
+                    label: { en: 'Sponsors', ar: 'الرعاة' },
+                    path: '/dashboard/organizer?tab=sponsors'
+                }
+            ];
+        case 'VENDOR':
+            return [
+                {
+                    key: 'campaigns',
+                    icon: Package,
+                    label: { en: 'Campaigns', ar: 'الحملات' },
+                    path: '/dashboard/vendor?tab=campaigns'
+                },
+                {
+                    key: 'events',
+                    icon: Calendar,
+                    label: { en: 'Events', ar: 'الفعاليات' },
+                    path: '/dashboard/vendor?tab=events'
+                }
+            ];
+        case 'HCP':
+            return [
+                {
+                    key: 'discover',
+                    icon: Calendar,
+                    label: { en: 'Discover', ar: 'استكشف' },
+                    path: '/dashboard/hcp?tab=discover'
+                },
+                {
+                    key: 'journey',
+                    icon: ClipboardList,
+                    label: { en: 'My Journey', ar: 'رحلة التطوير المهني' },
+                    path: '/dashboard/hcp?tab=journey'
+                },
+                {
+                    key: 'files',
+                    icon: FileText,
+                    label: { en: 'My Files', ar: 'ملفاتي' },
+                    path: '/dashboard/hcp?tab=files'
+                },
+                {
+                    key: 'credits',
+                    icon: BarChart3,
+                    label: { en: 'CME Credits', ar: 'الساعات المعتمدة' },
+                    path: '/dashboard/hcp?tab=credits'
+                }
+            ];
+        case 'EVENT_MANAGER':
+            return [
+                {
+                    key: 'inbox',
+                    icon: Inbox,
+                    label: { en: 'Inbox', ar: 'الوارد' },
+                    path: '/dashboard/event-manager?tab=inbox'
+                },
+                {
+                    key: 'live-ops',
+                    icon: Activity,
+                    label: { en: 'Live Ops', ar: 'التشغيل المباشر' },
+                    path: '/dashboard/event-manager?tab=live-ops'
+                },
+                {
+                    key: 'attendance',
+                    icon: ClipboardList,
+                    label: { en: 'Attendance & Exceptions', ar: 'الحضور والاستثناءات' },
+                    path: '/dashboard/event-manager?tab=attendance'
+                },
+                {
+                    key: 'handover',
+                    icon: FileText,
+                    label: { en: 'Handover Pack', ar: 'حزمة التسليم' },
+                    path: '/dashboard/event-manager?tab=handover'
+                },
+                {
+                    key: 'analytics',
+                    icon: BarChart3,
+                    label: { en: 'Analytics', ar: 'التحليلات التشغيلية' },
+                    path: '/dashboard/event-manager?tab=analytics'
+                }
+            ];
+        default:
+            return [];
+    }
+};
+
+export default function DashboardLayout({
+    children,
+    role
+}: {
     children: React.ReactNode;
     role: Persona;
 }) {
@@ -32,10 +207,24 @@ export default function DashboardLayout({
     const { language, setLanguage } = useLanguage();
     const [mounted, setMounted] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    const getDefaultTab = (persona: Persona): string => {
+        switch (persona) {
+            case 'ORGANIZER': return 'overview';
+            case 'REGULATOR': return 'queue';
+            case 'HCP': return 'discover';
+            case 'EVENT_MANAGER': return 'inbox';
+            case 'VENDOR': return 'campaigns';
+            default: return 'queue';
+        }
+    };
+    const currentTab = searchParams.get('tab') || getDefaultTab(role);
 
     useEffect(() => {
         setMounted(true);
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         // On desktop (lg+), sidebar should be open by default
@@ -83,14 +272,7 @@ export default function DashboardLayout({
                 <div className="flex h-full flex-col">
                     {/* Logo Section */}
                     <div className="flex h-20 items-center justify-between border-b border-[var(--separator)] px-6">
-                        <div className="flex items-center gap-2.5">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-ios-sm bg-[var(--apple-green)] shadow-sm">
-                                <Stethoscope className="h-5 w-5 text-white" />
-                            </div>
-                            <span className="font-bold text-lg text-[var(--label)] tracking-tight">
-                                MEDEVENT
-                            </span>
-                        </div>
+                        <MutqinLogo variant="sidebar" />
                         <button
                             onClick={() => setSidebarOpen(false)}
                             className="lg:hidden p-1.5 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors"
@@ -99,9 +281,36 @@ export default function DashboardLayout({
                         </button>
                     </div>
 
-                    {/* Navigation - Role-specific menu items can be added here later */}
+                    {/* Navigation - Role-specific menu items */}
                     <nav className="flex-1 space-y-1.5 px-3 py-4">
-                        {/* Navigation items will be role-specific and added in future phases */}
+                        {getNavItemsForPersona(role, language).map((item) => {
+                            const Icon = item.icon;
+                            const isActive = currentTab === item.key;
+                            return (
+                                <button key={item.key}
+                                    onClick={() => router.push(item.path)}
+                                    className={cn(
+                                        "w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-ios-sm transition-all text-sm",
+                                        isActive
+                                            ? "bg-[var(--apple-blue)] text-white shadow-sm"
+                                            : "text-[var(--label)] hover:bg-[var(--system-fill)]"
+                                    )}
+                                >
+                                    <div className="flex items-center gap-2.5">
+                                        <Icon className="h-4 w-4 flex-shrink-0" />
+                                        <span className="font-medium truncate">{item.label[language]}</span>
+                                    </div>
+                                    {item.count !== undefined && item.count > 0 && (
+                                        <Badge
+                                            variant={isActive ? 'secondary' : 'outline'}
+                                            className="ml-auto flex-shrink-0 min-w-[20px] h-5 text-xs"
+                                        >
+                                            {item.count}
+                                        </Badge>
+                                    )}
+                                </button>
+                            );
+                        })}
                     </nav>
 
                     {/* Sidebar Footer */}
@@ -123,7 +332,7 @@ export default function DashboardLayout({
                             variant="outline"
                             size="sm"
                             onClick={logout}
-                            className="w-full"
+                            className="w-full flex items-center justify-center gap-2"
                         >
                             <LogOut className="h-4 w-4 mr-2" />
                             {language === 'ar' ? 'تسجيل الخروج' : 'Logout'}
@@ -150,8 +359,7 @@ export default function DashboardLayout({
                     <div className="h-full px-3 sm:px-4 lg:px-6 flex items-center justify-between gap-2">
                         {/* Left: Menu Button + Title Section */}
                         <div className="flex items-center gap-4 flex-1">
-                            <button
-                                onClick={() => setSidebarOpen(!sidebarOpen)}
+                            <button onClick={() => setSidebarOpen(!sidebarOpen)}
                                 className="p-2 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors lg:hidden"
                                 aria-label={language === 'ar' ? 'فتح القائمة' : 'Open menu'}
                                 aria-expanded={sidebarOpen}
@@ -166,9 +374,19 @@ export default function DashboardLayout({
 
                         {/* Right: Controls */}
                         <div className="flex items-center gap-2">
+                            {/* CME Tracker - Only for HCP */}
+                            {role === 'HCP' && (
+                                <div className="hidden sm:flex items-center">
+                                    <CompactCMETracker 
+                                        variant="circular" 
+                                        showInHeader={true}
+                                        expandable={true}
+                                    />
+                                </div>
+                            )}
+
                             {/* Language Toggle */}
-                            <button
-                                onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+                            <button onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
                                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors"
                                 aria-label="Toggle Language"
                                 title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
@@ -181,8 +399,7 @@ export default function DashboardLayout({
 
                             {/* Theme Toggle */}
                             {mounted && (
-                                <button
-                                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                                <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                                     className="p-2 rounded-ios-sm hover:bg-[var(--system-fill)] transition-colors"
                                     aria-label={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
                                     title={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
@@ -209,4 +426,5 @@ export default function DashboardLayout({
         </div>
     );
 }
+
 

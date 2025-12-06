@@ -3,13 +3,77 @@
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { Mail, Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function Footer() {
   const { language, t } = useLanguage();
 
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--secondary-system-background)]">
-      <div className="max-w-7xl mx-auto px-4 py-12">
+    <footer className="relative border-t border-[var(--border)] bg-[var(--secondary-system-background)] overflow-hidden">
+      {/* Animated ECG Line Background */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden">
+        <motion.svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 1200 200"
+          preserveAspectRatio="none"
+          initial={{ x: 0 }}
+          animate={{ x: [-1200, 0] }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          <defs>
+            <linearGradient id="ecgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="var(--apple-blue)" />
+              <stop offset="50%" stopColor="var(--apple-green)" />
+              <stop offset="100%" stopColor="var(--apple-purple)" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            d="M0,100 Q150,50 300,100 T600,100 T900,100 T1200,100"
+            fill="none"
+            stroke="url(#ecgGradient)"
+            strokeWidth="2"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ pathLength: { duration: 2, ease: "easeInOut" }, opacity: { duration: 1 } }}
+          />
+        </motion.svg>
+        <motion.svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 1200 200"
+          preserveAspectRatio="none"
+          initial={{ x: 0 }}
+          animate={{ x: [-1200, 0] }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 0.5,
+          }}
+        >
+          <defs>
+            <linearGradient id="ecgGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="var(--apple-blue)" />
+              <stop offset="50%" stopColor="var(--apple-green)" />
+              <stop offset="100%" stopColor="var(--apple-purple)" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            d="M0,120 Q150,70 300,120 T600,120 T900,120 T1200,120"
+            fill="none"
+            stroke="url(#ecgGradient2)"
+            strokeWidth="1.5"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ pathLength: { duration: 2, ease: "easeInOut", delay: 0.5 }, opacity: { duration: 1, delay: 0.5 } }}
+          />
+        </motion.svg>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand & Description */}
           <div className="col-span-1 md:col-span-2">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { usePersona } from "@/context/PersonaContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass-card";
@@ -9,12 +10,14 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
-import EventCard from "@/components/EventCard";
-import { Search, Filter, TrendingUp, Users, Calendar, MapPin } from "lucide-react";
+import { ActivityCard } from "@/components/shared/ActivityCard";
+import { Search, Filter, TrendingUp, Users, Calendar, MapPin, Eye } from "lucide-react";
 import { getEventTitle, getEventOrganizer } from "@/lib/eventTranslations";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { buildRoute } from "@/lib/routes";
 
 export default function AdvancedMarketplace() {
+    const router = useRouter();
     const { events } = usePersona();
     const { t, language } = useLanguage();
     const [searchTerm, setSearchTerm] = useState("");
@@ -213,21 +216,32 @@ export default function AdvancedMarketplace() {
                 ) : (
                     <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {filteredEvents.map((event) => (
-                            <EventCard
-                                key={event.id}
-                                event={event}
-                                variant="vendor"
-                                showDescription={true}
-                                sponsorshipPackage={{
-                                    name: language === 'ar' ? 'حزمة ذهبية' : 'Gold Package',
-                                    value: 50000,
-                                }}
-                                actionButton={{
-                                    label: language === 'ar' ? 'رعاية الفعالية' : 'Sponsor Event',
-                                    onClick: () => console.log('Sponsor:', event.id),
-                                    variant: 'blue',
-                                }}
-                            />
+                            <div key={event.id} className="space-y-3">
+                                <ActivityCard
+                                    event={event}
+                                    context="sponsor"
+                                    variant="full"
+                                    showDescription={true}
+                                    sponsorshipPackage={{
+                                        name: language === 'ar' ? 'حزمة ذهبية' : 'Gold Package',
+                                        value: 50000,
+                                    }}
+                                    actionButton={{
+                                        label: language === 'ar' ? 'رعاية الفعالية' : 'Sponsor Event',
+                                        onClick: () => console.log('Sponsor:', event.id),
+                                        variant: 'blue',
+                                    }}
+                                />
+                                <GlassButton
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => router.push(buildRoute.vendorEvent(event.id))}
+                                    className="w-full gap-2"
+                                >
+                                    <Eye className="h-4 w-4" />
+                                    {language === 'ar' ? 'عرض الفرصة' : 'View Opportunity'}
+                                </GlassButton>
+                            </div>
                         ))}
                     </div>
                 )}

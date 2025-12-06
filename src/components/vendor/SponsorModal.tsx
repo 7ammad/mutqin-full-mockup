@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { usePersona } from "@/context/PersonaContext";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
+import { api } from "@/lib/api";
+import { useToast } from "@/components/ui/toast-context";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface SponsorModalProps {
     isOpen: boolean;
@@ -14,33 +17,53 @@ interface SponsorModalProps {
 }
 
 export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalProps) {
-    const { sponsorEvent, switchPersona } = usePersona();
+    const { language } = useLanguage();
+    const { showToast } = useToast();
     const [license, setLicense] = useState("");
     const [error, setError] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!license.trim()) {
-            setError("رقم ترخيص الهيئة مطلوب");
+            setError(language === 'ar' ? "رقم ترخيص الهيئة مطلوب" : "SFDA license number is required");
             return;
         }
         if (!license.startsWith("MDS-REQ")) {
-            setError("صيغة الترخيص غير صحيحة (يجب أن تبدأ بـ MDS-REQ)");
+            setError(language === 'ar' ? "صيغة الترخيص غير صحيحة (يجب أن تبدأ بـ MDS-REQ)" : "Invalid license format (must start with MDS-REQ)");
             return;
         }
 
-        if (eventId) {
-            sponsorEvent(eventId, license);
-            setIsSuccess(true);
+        if (!eventId) {
+            setError(language === 'ar' ? "معرف الحدث مطلوب" : "Event ID is required");
+            return;
+        }
 
-            // Delay to show success state before switching
-            setTimeout(() => {
-                setIsSuccess(false);
-                setLicense("");
-                onClose();
-                switchPersona('HCP');
-            }, 1500);
+        try {
+            const res = await api.purchaseSponsorship({
+                eventId,
+                vendorId: 'vendor-1',
+                package: 'Gold'
+            });
+
+            if (res.ok) {
+                setIsSuccess(true);
+                showToast(
+                    language === 'ar' ? 'تم شراء الرعاية بنجاح' : 'Sponsorship purchased successfully',
+                    'success'
+                );
+
+                // Delay to show success state
+                setTimeout(() => {
+                    setIsSuccess(false);
+                    setLicense("");
+                    onClose();
+                }, 1500);
+            }
+        } catch (err) {
+            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            setError(message);
+            showToast(message, 'info');
         }
     };
 
@@ -85,10 +108,10 @@ export default function SponsorModal({ isOpen, onClose, eventId }: SponsorModalP
                     </div>
 
                     <div className="flex justify-end gap-2 pt-4">
-                        <Button type="button" variant="ghost" onClick={onClose}>
+                        <Button type="button" variant="ghost" onClick={onClose} className="flex items-center justify-center gap-2">
                             إلغاء
                         </Button>
-                        <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white">
+                        <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2">
                             تأكيد الرعاية
                         </Button>
                     </div>

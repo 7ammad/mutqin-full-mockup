@@ -1,0 +1,67 @@
+---
+alwaysApply: true
+---
+---
+description: Mutqin CPD Ecosystem — non-negotiable build rules (agents cannot improvise)
+globs:
+  - "**/*"
+---
+
+# Mutqin Rules (Binding)
+
+## 0) Truth sources
+- Only trust docs listed in `docs/INDEX.md`.
+- Ignore `docs/_archive/**` completely.
+- If a required detail is missing/ambiguous, STOP and request a doc update (do not invent).
+
+## 1) Architectural UI constraints (hard)
+- Global header is already implemented. **Never render any additional header/topbar inside persona views.**
+- Global sidebar lives in DashboardLayout. **Never create “local sidebars” inside persona components.**
+- Tabs must not link to missing routes. Prefer `?tab=<tabKey>` and validate tab keys.
+
+## 2) i18n rules
+- We have a language toggle. **Never show Arabic and English on the same page at the same time.**
+- All labels must be i18n keys (no hardcoded bilingual strings).
+- RTL/LTR must work; do not force RTL-only layout hacks.
+
+## 3) Data + contracts rules
+- Type safety is non-negotiable:
+  - no `any`
+  - no loosening to `unknown` without narrowing
+  - no new status strings / fields unless added to `docs/CONTRACTS.md` first
+- No new domain logic in “dashboard redesign” phase:
+  - allowed: layout, copy, wiring to existing `api.*` reads/actions
+  - not allowed: changing lifecycle rules, inventing new state machines
+
+## 4) Navigation + screen completeness
+- Sidebar tabs must match `docs/IA-SITEMAP.md` exactly:
+  - tab count per persona
+  - stable `tabKey`s
+  - default tab behavior
+- No empty screens:
+  - every tab must render meaningful UI with seeded cards/rows/charts
+  - if true empty-state is needed, still render example content + CTA
+
+## 5) Implementation discipline (scoped edits)
+For each task/commit you must output:
+1) Files changed (exact list)
+2) Commands run + exact outputs (paste)
+3) Known pre-existing failures (if any)
+4) Remaining TODOs + why blocked
+
+Never claim a command passed unless you ran it.
+
+## 6) Required verification commands (unless task explicitly excludes)
+- `npm run type-check`
+- `npm test`
+- `npx playwright test tests/e2e/demo-happy-path.spec.ts`
+
+If any are skipped, state “NOT RUN” explicitly and why.
+
+## 7) Forbidden behaviors
+- Do not add new pages/routes unless explicitly allowed.
+- Do not duplicate headers or create local nav “boxes”.
+- Do not change button labels/roles used by Playwright unless the test is updated in the same task.
+- Do not modify files outside the ALLOWED FILES list given in the task prompt.
+
+End.

@@ -245,10 +245,10 @@ export default function HCPTargeting() {
                     </div>
 
                     <div className="flex justify-end gap-2">
-                        <GlassButton variant="outline" onClick={calculateAudience}>
+                        <GlassButton variant="outline" onClick={calculateAudience} className="flex items-center justify-center gap-2">
                             {calculateText}
                         </GlassButton>
-                        <GlassButton onClick={handleSaveTarget} className="gap-2">
+                        <GlassButton onClick={handleSaveTarget} className="gap-2 flex items-center justify-center">
                             <Save className="h-4 w-4" />
                             {saveTargetText}
                         </GlassButton>

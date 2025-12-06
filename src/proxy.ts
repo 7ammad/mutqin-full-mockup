@@ -77,7 +77,7 @@ export function proxy(request: NextRequest) {
       // Redirect to login with return URL
       const loginUrl = new URL('/auth/login', request.url);
       loginUrl.searchParams.set('redirect', pathname);
-      console.log(`[Proxy] No session, redirecting to login from ${pathname}`);
+      // No session, redirecting to login
       return NextResponse.redirect(loginUrl);
     }
 
@@ -87,7 +87,7 @@ export function proxy(request: NextRequest) {
       // Check if session expired
       if (session.expiresAt < Date.now()) {
         const loginUrl = new URL('/auth/login', request.url);
-        console.log(`[Proxy] Session expired, redirecting to login`);
+        // Session expired, redirecting to login
         return NextResponse.redirect(loginUrl);
       }
 
@@ -95,7 +95,7 @@ export function proxy(request: NextRequest) {
       if (session.role !== requiredRole) {
         // Redirect to their dashboard
         const slug = session.role.toLowerCase().replace('_', '-');
-        console.log(`[Proxy] Role mismatch, redirecting to /dashboard/${slug}`);
+        // Role mismatch, redirecting to user's dashboard
         return NextResponse.redirect(
           new URL(`/dashboard/${slug}`, request.url)
         );
@@ -103,7 +103,7 @@ export function proxy(request: NextRequest) {
     } catch (e) {
       // Invalid session
       const loginUrl = new URL('/auth/login', request.url);
-      console.log(`[Proxy] Invalid session, redirecting to login: ${(e as Error).message}`);
+      // Invalid session, redirecting to login
       return NextResponse.redirect(loginUrl);
     }
   }

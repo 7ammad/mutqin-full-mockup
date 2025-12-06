@@ -10,7 +10,13 @@
     "about": "About",
     "contact": "Contact",
     "createAccount": "Create Account",
-    "login": "Login"
+    "login": "Login",
+    "signIn": "Sign in",
+    "activities": "Activities",
+    "howItWorks": "How it works",
+    "whoWeServe": "Who we serve",
+    "compliance": "Compliance & oversight",
+    "partnership": "Partnerships"
   },
   "hero": {
     "title": "Saudi Arabia's CME Platform",
@@ -331,7 +337,7 @@
     "redirecting": "Redirecting..."
   },
   "footer": {
-    "description": "The unified platform for continuing medical education in Saudi Arabia",
+    "description": "The unified platform for CME/CPD activities in Saudi healthcare.",
     "links": {
       "about": "About Mutqin",
       "pricing": "Pricing",
@@ -354,7 +360,237 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "close": "Close"
+    "close": "Close",
+    "all": "All",
+    "viewDetails": "View Details",
+    "registrationSuccessful": "Registration successful",
+    "registrationFailed": "Registration failed"
+  },
+  "specialties": {
+    "cardiology": "Cardiology",
+    "pediatrics": "Pediatrics",
+    "emergency_medicine": "Emergency Medicine",
+    "family_medicine": "Family Medicine",
+    "general_surgery": "General Surgery",
+    "oncology": "Oncology",
+    "neurology": "Neurology",
+    "orthopedics": "Orthopedics",
+    "dermatology": "Dermatology",
+    "psychiatry": "Psychiatry",
+    "endocrinology": "Endocrinology",
+    "gastroenterology": "Gastroenterology",
+    "urology": "Urology",
+    "ophthalmology": "Ophthalmology",
+    "rheumatology": "Rheumatology",
+    "pulmonology": "Pulmonology",
+    "nephrology": "Nephrology",
+    "hematology": "Hematology",
+    "infectious_diseases": "Infectious Diseases",
+    "anesthesiology": "Anesthesiology",
+    "radiology": "Radiology",
+    "pathology": "Pathology",
+    "internal_medicine": "Internal Medicine",
+    "obstetrics": "Obstetrics",
+    "gynecology": "Gynecology",
+    "ent": "ENT",
+    "plastic_surgery": "Plastic Surgery"
+  },
+  "landing": {
+    "whatIs": {
+      "title": "Mutqin is the operating system for accredited CPD activities",
+      "body": "Mutqin connects providers, accreditors, regulators, hospitals, sponsors, and HCPs in one workflow from activity design to recorded credits.",
+      "pillars": {
+        "unifiedWorkflows": "Unified workflows",
+        "sourceOfTruth": "Shared source of truth",
+        "visibility": "Real-time visibility"
+      },
+      "visual": {
+        "providers": "Providers",
+        "regulators": "Regulators",
+        "hcps": "HCPs",
+        "sponsors": "Sponsors"
+      }
+    },
+    "howItWorks": {
+      "title": "How Mutqin runs each activity from idea to credits",
+      "subtitle": "From accreditation to attendance to posted hours, Mutqin keeps every step connected, documented, and auditable.",
+      "steps": {
+        "create": {
+          "title": "Activity created",
+          "description": "CPD provider creates the activity using a unified template with objectives, faculty, agenda, and disclosures in one structured package."
+        },
+        "accredit": {
+          "title": "Accreditation submitted",
+          "description": "Single accreditation package containing all required information is submitted to the regulator through Mutqin's standardized workflow."
+        },
+        "decision": {
+          "title": "Regulator reviews",
+          "description": "Regulator reviews the submission in one queue, makes a decision based on regulations, and provides clear feedback if changes are needed."
+        },
+        "publish": {
+          "title": "Activity published",
+          "description": "Once approved, the activity is published and becomes visible to HCPs who can browse, view details, and register for the event."
+        },
+        "attendance": {
+          "title": "Event runs",
+          "description": "During the event, digital attendance is captured, compliance records are maintained, and all data is submitted in real-time through Mutqin."
+        },
+        "credits": {
+          "title": "Hours confirmed",
+          "description": "Accredited hours are confirmed and automatically appear in the HCP's record, with certificates available for download."
+        }
+      },
+      "personas": {
+        "hcp": "HCP",
+        "provider": "Provider",
+        "regulator": "Regulator",
+        "eventManager": "Event Manager"
+      },
+      "card": {
+        "title": "Cardiology Update Conference 2025",
+        "specialty": "Cardiology",
+        "location": "Riyadh, Faisaliah Hotel",
+        "date": "Mar 15-17, 2025",
+        "hours": "18 Accredited Hours",
+        "scfhs": "SCFHS Accredited"
+      }
+    },
+    "whoWeServe": {
+      "title": "Clear value for every stakeholder",
+      "description": "",
+      "hcp": {
+        "title": "HCP",
+        "benefit": "See accredited activities and your credits in one place."
+      },
+      "provider": {
+        "title": "CPD Provider",
+        "benefit": "Submit accreditation requests in a standardized format that reduces rejections and delays."
+      },
+      "regulator": {
+        "title": "Regulator / Accreditor",
+        "benefit": "View a complete audit trail from accreditation to attendance."
+      },
+      "eventManager": {
+        "title": "Event Manager",
+        "benefit": "Manage registration, attendance, and hours from a single interface."
+      },
+      "hospital": {
+        "title": "Hospital / Institution",
+        "benefit": "Track all CME/CPD activities and compliance across your organization."
+      },
+      "sponsor": {
+        "title": "Sponsor",
+        "benefit": "Sponsor activities within a transparent framework with documented requirements."
+      }
+    },
+    "compliance": {
+      "title": "Simplified compliance, clearer oversight",
+      "subtitle": "Mutqin unifies accreditation files, decisions, attendance, and hours into one audit-ready trail for each activity.",
+      "points": {
+        "auditTrail": {
+          "title": "Single audit trail per activity",
+          "description": "Every activity has one complete record from accreditation request to final hours, ready for review."
+        },
+        "alignedData": {
+          "title": "Aligned data between providers and regulators",
+          "description": "Providers and regulators work from the same structured data, reducing misalignment and errors."
+        },
+        "fewerCycles": {
+          "title": "Fewer back-and-forth cycles on accreditation",
+          "description": "Standardized submissions reach regulators complete, reducing revision rounds and delays."
+        },
+        "saudiFlows": {
+          "title": "Mirrors Saudi CPD accreditation flows",
+          "description": "Built to align with existing SCFHS and regulatory requirements, not replace them."
+        }
+      }
+    },
+    "partnership": {
+      "title": "Join as a founding partner",
+      "subline": "Mutqin is working with a small set of institutions—regulators, hospitals, CPD providers, and sponsors—to pilot real activities and refine the platform.",
+      "ctaPrimary": "Start a partnership conversation",
+      "ctaSecondary": "View a sample activity journey",
+      "whoIsBehind": {
+        "title": "Who is behind Mutqin?",
+        "body": "Mutqin is built by a Saudi team working at the intersection of healthcare education, compliance, and software. We focus on creating infrastructure that connects existing systems and workflows rather than replacing them."
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "question": "Is Mutqin a CPD provider or an infrastructure layer?",
+            "answer": "Mutqin is an infrastructure layer. We do not provide CME/CPD content or act as a CPD provider. Instead, we provide the digital platform that connects CPD providers, accrediting bodies, execution vendors, sponsors, and practitioners in one organized workflow."
+          },
+          {
+            "question": "Does Mutqin replace existing accreditation portals?",
+            "answer": "No. Mutqin does not replace official accreditation portals or change existing regulations. It connects to existing workflows and systems, providing a unified interface that follows the same requirements defined by accrediting bodies."
+          },
+          {
+            "question": "How does Mutqin integrate with current systems?",
+            "answer": "Mutqin is designed to integrate with existing systems through APIs and data exports. Integration approaches are configured with each organization according to its technical infrastructure and regulatory requirements."
+          },
+          {
+            "question": "Is Mutqin already live or in pilot?",
+            "answer": "Mutqin is currently in a pilot phase with a select group of founding partners. We are working together to refine the platform based on real CME/CPD activities before broader deployment."
+          }
+        ]
+      }
+    },
+    "hero": {
+      "headline": "Seamless, integrated CME/CPD experience",
+      "subline": "A single platform that unifies providers, accrediting bodies, execution partners, sponsors, and health practitioners in one clear activity journey.",
+      "ctaPrimary": "Explore accredited activities"
+    },
+    "activitiesPreview": {
+      "title": "Accredited CME/CPD activities",
+      "description": "Explore accredited continuing professional development activities and choose what fits your specialty and schedule to add real hours to your professional profile.",
+      "demoLabel": "Demo view with sample data",
+      "filters": {
+        "specialty": "Specialty",
+        "format": "Format",
+        "city": "City",
+        "date": "Date",
+        "moreFilters": "More filters"
+      },
+      "card": {
+        "accredited": "SCFHS Accredited",
+        "hours": "hour",
+        "hoursPlural": "hours"
+      }
+    }
+  },
+  "myJourney": {
+    "title": "My Journey",
+    "summary": "{activities} activities · {attended} attended · {hours} hours",
+    "manageTickets": "Manage tickets",
+    "manageCertificates": "Manage certificates",
+    "status": {
+      "registered": "Registered",
+      "attended": "Attended",
+      "missed": "Missed"
+    },
+    "selectActivity": "Select an activity from your journey to see details.",
+    "steps": {
+      "registered": "Registered",
+      "checkedIn": "Checked in",
+      "hoursPosted": "Hours posted",
+      "certificateIssued": "Certificate issued",
+      "reviewSubmitted": "Review submitted"
+    },
+    "actions": {
+      "openTicket": "Open ticket",
+      "downloadCertificate": "Download certificate",
+      "rateActivity": "Rate activity",
+      "viewDetails": "View details"
+    },
+    "ticket": {
+      "label": "Ticket",
+      "unavailable": "Ticket not available"
+    },
+    "certificate": {
+      "label": "Certificate",
+      "unavailable": "Certificate not available"
+    }
   }
 }
 

@@ -65,7 +65,7 @@ export function PricingSection() {
 
               <GlassButton
                 variant="outline"
-                className="w-full"
+                className="w-full flex items-center justify-center gap-2"
                 onClick={() => router.push('/register/hcp')}
               >
                 {freeTier.cta}
@@ -107,7 +107,7 @@ export function PricingSection() {
               )}
 
               <GlassButton
-                className="w-full"
+                className="w-full flex items-center justify-center gap-2"
                 onClick={() => router.push('/register/organizer')}
               >
                 {organizerTier.cta}
@@ -147,7 +147,7 @@ export function PricingSection() {
 
               <GlassButton
                 variant="outline"
-                className="w-full"
+                className="w-full flex items-center justify-center gap-2"
                 onClick={() => {
                   window.location.href = 'mailto:contact@mutqin.sa';
                 }}

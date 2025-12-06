@@ -219,8 +219,7 @@ export function FileUpload({
                                             </span>
                                         </div>
                                     )}
-                                    <button
-                                        onClick={() => handleRemove(uploadedFile.id)}
+                                    <button onClick={() => handleRemove(uploadedFile.id)}
                                         className="p-1 rounded-md hover:bg-[var(--system-fill)] transition-colors"
                                         aria-label={removeText}
                                     >

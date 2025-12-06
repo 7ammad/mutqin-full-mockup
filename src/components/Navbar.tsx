@@ -39,8 +39,7 @@ export default function Navbar() {
                         {/* Persona Switcher */}
                         <div className="hidden md:flex items-center p-1 bg-[var(--secondary-system-fill)] rounded-ios backdrop-blur-sm">
                             {personas.map((p) => (
-                                <button
-                                    key={p.id}
+                                <button key={p.id}
                                     onClick={() => switchPersona(p.id)}
                                     className={cn(
                                         "flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-ios-sm transition-all",
@@ -58,8 +57,7 @@ export default function Navbar() {
                         {/* Mobile Persona Switcher (Icon Only) */}
                         <div className="flex md:hidden items-center p-1 bg-[var(--secondary-system-fill)] rounded-ios backdrop-blur-sm">
                             {personas.map((p) => (
-                                <button
-                                    key={p.id}
+                                <button key={p.id}
                                     onClick={() => switchPersona(p.id)}
                                     className={cn(
                                         "p-2 rounded-ios-sm transition-all",
@@ -84,8 +82,7 @@ export default function Navbar() {
                         </div>
 
                         {/* Language Toggle */}
-                        <button
-                            onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+                        <button onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
                             className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors border border-transparent hover:border-[var(--border)] flex items-center gap-1.5"
                             aria-label="Toggle Language"
                             title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
@@ -98,8 +95,7 @@ export default function Navbar() {
 
                         {/* Theme Toggle */}
                         {mounted && (
-                            <button
-                                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                                 className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors border border-transparent hover:border-[var(--border)]"
                                 aria-label={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}
                                 title={language === 'ar' ? 'تبديل المظهر' : 'Toggle Theme'}

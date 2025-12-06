@@ -159,7 +159,7 @@ export default function PostEventProcessing({ eventId }: PostEventProcessingProp
                                         variant="default"
                                         size="sm"
                                         onClick={step.action}
-                                    >
+                                     className="flex items-center justify-center gap-2">
                                         {step.id === 'attendance' ? (
                                             <>
                                                 <CheckCircle2 className="w-4 h-4 mr-2" />

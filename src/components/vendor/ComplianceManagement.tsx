@@ -314,10 +314,10 @@ function LicenseEditor({ license, onSave, onCancel }: LicenseEditorProps) {
                     </div>
 
                     <div className="flex justify-end gap-2 pt-4">
-                        <GlassButton variant="outline" onClick={onCancel}>
+                        <GlassButton variant="outline" onClick={onCancel} className="flex items-center justify-center gap-2">
                             {language === 'ar' ? 'إلغاء' : 'Cancel'}
                         </GlassButton>
-                        <GlassButton onClick={handleSave} className="gap-2">
+                        <GlassButton onClick={handleSave} className="gap-2 flex items-center justify-center">
                             <ShieldCheck className="h-4 w-4" />
                             {language === 'ar' ? 'حفظ' : 'Save'}
                         </GlassButton>

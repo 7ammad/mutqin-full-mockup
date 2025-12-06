@@ -62,20 +62,17 @@ export default function UserDropdown() {
 
                         {/* Menu Items */}
                         <div className="py-1">
-                            <button
-                                className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--label)] hover:bg-[var(--system-fill)] rounded-ios-sm transition-colors"
+                            <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--label)] hover:bg-[var(--system-fill)] rounded-ios-sm transition-colors inline-flex items-center justify-center"
                             >
                                 <User className="h-4 w-4" />
                                 <span>{t('common.profile')}</span>
                             </button>
-                            <button
-                                className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--label)] hover:bg-[var(--system-fill)] rounded-ios-sm transition-colors"
+                            <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--label)] hover:bg-[var(--system-fill)] rounded-ios-sm transition-colors inline-flex items-center justify-center"
                             >
                                 <Settings className="h-4 w-4" />
                                 <span>{t('common.settings')}</span>
                             </button>
-                            <button
-                                className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--apple-red)] hover:bg-[var(--apple-red)]/10 rounded-ios-sm transition-colors"
+                            <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--apple-red)] hover:bg-[var(--apple-red)]/10 rounded-ios-sm transition-colors inline-flex items-center justify-center"
                             >
                                 <LogOut className="h-4 w-4" />
                                 <span>{t('common.logout')}</span>

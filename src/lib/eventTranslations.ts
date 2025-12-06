@@ -2,7 +2,11 @@
 import { Event } from './mockData';
 
 export function getEventTitle(event: Event, language: 'ar' | 'en'): string {
-    return language === 'ar' ? event.titleAr : event.titleEn;
+    if (language === 'ar') {
+        return event.titleAr || event.titleEn || '';
+    }
+    // For English, prefer titleEn, but if missing and titleAr exists, show a fallback
+    return event.titleEn || (event.titleAr ? 'Event' : '');
 }
 
 export function getEventOrganizer(event: Event, language: 'ar' | 'en'): string {

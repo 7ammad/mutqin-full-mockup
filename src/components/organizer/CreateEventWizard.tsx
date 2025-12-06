@@ -133,10 +133,10 @@ export default function CreateEventWizard({ onCancel }: CreateEventWizardProps) 
                         </div>
                     </CardContent>
                     <CardFooter className="flex justify-between">
-                        <Button type="button" variant="ghost" onClick={onCancel}>
+                        <Button type="button" variant="ghost" onClick={onCancel} className="flex items-center justify-center gap-2">
                             إلغاء
                         </Button>
-                        <Button type="submit" className="gap-2">
+                        <Button type="submit" className="gap-2 flex items-center justify-center">
                             نشر الفعالية
                             <ArrowRight className="h-4 w-4 rotate-180" />
                         </Button>

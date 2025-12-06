@@ -233,6 +233,32 @@ import { hoverScale } from "@/lib/design-system";
 
 ---
 
+## Dashboard & Detail Page Patterns
+
+Dashboards and entity detail pages must use the design system.
+
+- Layout:
+  - Use the shared `DashboardLayout` for all `/dashboard/...` routes.
+- KPI strips:
+  - Use `LiquidGlassCard` (or DS equivalents) with badges/text.
+- Data sections:
+  - Use `Card` + table or list components; no naked HTML lists.
+- Primary actions:
+  - Use `GlassButton` or primary `Button` variant as defined here.
+- Empty states:
+  - Use the shared `EmptyState` component with:
+    - Short title
+    - Short description
+    - Optional CTA (“Reset demo data”, “Create first X”, etc.)
+
+Constraints:
+
+- No raw Tailwind color tokens in dashboards.
+- No one-off CSS that breaks dark/light mode.
+- No mixed-language text; the layout must be language-agnostic.
+
+For CME trackers on HCP dashboard, see `UI_REVAMP_CME_TRACKER.md` for
+placement and component guidance.
 ## Best Practices
 
 ### 1. Blur Intensity

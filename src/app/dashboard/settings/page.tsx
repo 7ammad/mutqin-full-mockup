@@ -63,7 +63,7 @@ export default function SettingsPage() {
                                     <p className="text-sm text-[var(--secondary-label)] mb-4">
                                         {section.description}
                                     </p>
-                                    <Button variant="outline" size="sm">
+                                    <Button variant="outline" size="sm" className="flex items-center justify-center gap-2">
                                         Manage
                                     </Button>
                                 </div>

@@ -22,3 +22,17 @@ export default function EventDetailPage({ params }: PageProps) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -162,6 +162,7 @@
   --color-ring: hsl(var(--ring));
 
   --font-sans: var(--font-cairo);
+  --font-varien: var(--font-varien);
   --font-mono: var(--font-geist-mono);
 
   --radius-lg: var(--radius);
@@ -292,6 +293,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Hide React DevTools artifacts and browser extension injected content */
+/* Note: React DevTools may inject "@node" text - this is handled via client-side script */
 
 /* Focus styles for accessibility */
 :root {

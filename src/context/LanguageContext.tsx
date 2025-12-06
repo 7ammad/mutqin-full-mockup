@@ -9,9 +9,10 @@ interface LanguageContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
     t: (key: string) => string;
+    isHydrated: boolean;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 // Legacy translations for backward compatibility (dashboard and existing features)
 const legacyTranslations: Record<Language, Record<string, string>> = {
@@ -31,6 +32,10 @@ const legacyTranslations: Record<Language, Record<string, string>> = {
         'page.regulator.subtitle': 'مراجعة واعتماد الفعاليات الممولة',
         'page.hcp.title': 'استكشاف الفعاليات',
         'page.hcp.subtitle': 'سجل في المؤتمرات وورش العمل المعتمدة',
+        'page.hcp.registrations.subtitle': 'جميع الأنشطة التي سجّلت فيها، من الأولى إلى الأخيرة',
+        'page.hcp.files.subtitle': 'الوصول السريع إلى تذاكرك وشهاداتك',
+        'page.eventmanager.title': 'لوحة تحكم مدير الفعاليات',
+        'page.eventmanager.subtitle': 'إدارة التكليفات وتنفيذ الفعاليات',
         // Common
         'common.loading': 'جاري التحميل...',
         'common.save': 'حفظ',
@@ -83,6 +88,17 @@ const legacyTranslations: Record<Language, Record<string, string>> = {
         'hcp.hoursInMumaris': 'ساعة تعليم طبي في ممارس+',
         'hcp.allEvents': 'جميع الفعاليات',
         'hcp.cmeAccredited': 'معتمد CME',
+        // HCP Discover
+        'hcp.discover.registeredChip': 'مسجّل',
+        'hcp.discover.viewEvent': 'عرض النشاط',
+        'hcp.discover.viewTicket': 'عرض التذكرة',
+        'hcp.discover.viewDetails': 'عرض التفاصيل',
+        'hcp.discover.viewCertificate': 'عرض الشهادة',
+        'hcp.discover.hoursFormat': '{hours} ساعة معتمدة',
+        'hcp.discover.upcomingRegistrations': 'التسجيلات القادمة',
+        'hcp.discover.pastRegistrations': 'التسجيلات السابقة',
+        'hcp.discover.noRegistrations': 'لا توجد لديك تسجيلات حتى الآن. استكشف أنشطة التطوير المهني المعتمدة المناسبة لمسارك.',
+        'event.scfhsChip': 'معتمد',
         // Regulator
         'regulator.sharing': 'جاري المشاركة... يتم نشر الفعالية على LinkedIn...',
         'regulator.approvalSuccess': 'تم الاعتماد بنجاح. تم نشر الفعالية واعتماد الساعات رسمياً.',
@@ -128,6 +144,10 @@ const legacyTranslations: Record<Language, Record<string, string>> = {
         'page.regulator.subtitle': 'Review and approve funded events',
         'page.hcp.title': 'Discover Events',
         'page.hcp.subtitle': 'Register for accredited conferences and workshops',
+        'page.hcp.registrations.subtitle': 'All the activities you registered for, from first to latest.',
+        'page.hcp.files.subtitle': 'Quick access to your tickets and certificates.',
+        'page.eventmanager.title': 'Event Manager Dashboard',
+        'page.eventmanager.subtitle': 'Manage event assignments and execution',
         // Common
         'common.loading': 'Loading...',
         'common.save': 'Save',
@@ -176,6 +196,17 @@ const legacyTranslations: Record<Language, Record<string, string>> = {
         'hcp.hoursInMumaris': 'CME hours in Mumaris Plus',
         'hcp.allEvents': 'All Events',
         'hcp.cmeAccredited': 'CME Accredited',
+        // HCP Discover
+        'hcp.discover.registeredChip': 'Registered',
+        'hcp.discover.viewEvent': 'View Event',
+        'hcp.discover.viewTicket': 'View ticket',
+        'hcp.discover.viewDetails': 'View details',
+        'hcp.discover.viewCertificate': 'View certificate',
+        'hcp.discover.hoursFormat': '{hours} CME hours',
+        'hcp.discover.upcomingRegistrations': 'Upcoming registrations',
+        'hcp.discover.pastRegistrations': 'Past registrations',
+        'hcp.discover.noRegistrations': 'You have no registrations yet. Discover accredited activities that match your CPD goals.',
+        'event.scfhsChip': 'SCFHS',
         // Regulator
         'regulator.sharing': 'Sharing... Publishing event on LinkedIn...',
         'regulator.approvalSuccess': 'Approved successfully. Event published and hours officially accredited.',
@@ -208,16 +239,21 @@ const legacyTranslations: Record<Language, Record<string, string>> = {
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-    const [language, setLanguageState] = useState<Language>(() => {
-        // Initialize from localStorage if available
+    // Always start with 'ar' to match server-side default and prevent hydration mismatch
+    // Will sync with localStorage after mount
+    const [language, setLanguageState] = useState<Language>('ar');
+    const [isHydrated, setIsHydrated] = useState(false);
+
+    // Sync with localStorage after mount to prevent hydration mismatch
+    useEffect(() => {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('language') as Language;
             if (saved && (saved === 'ar' || saved === 'en')) {
-                return saved;
+                setLanguageState(saved);
             }
+            setIsHydrated(true);
         }
-        return 'ar';
-    });
+    }, []);
 
     useEffect(() => {
         // Update HTML dir and lang attributes
@@ -245,7 +281,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <LanguageContext.Provider value={{ language, setLanguage, t }}>
+        <LanguageContext.Provider value={{ language, setLanguage, t, isHydrated }}>
             {children}
         </LanguageContext.Provider>
     );

@@ -83,6 +83,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                         disabled={pageNumber <= 1}
                         variant="outline"
                         size="sm"
+                        className="flex items-center justify-center gap-2"
                     >
                         <ChevronLeft className="w-4 h-4" />
                     </GlassButton>
@@ -94,6 +95,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                         disabled={pageNumber >= numPages}
                         variant="outline"
                         size="sm"
+                        className="flex items-center justify-center gap-2"
                     >
                         <ChevronRight className="w-4 h-4" />
                     </GlassButton>
@@ -104,6 +106,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                         onClick={zoomOut}
                         variant="outline"
                         size="sm"
+                        className="flex items-center justify-center gap-2"
                     >
                         <ZoomOut className="w-4 h-4" />
                     </GlassButton>
@@ -114,6 +117,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                         onClick={zoomIn}
                         variant="outline"
                         size="sm"
+                        className="flex items-center justify-center gap-2"
                     >
                         <ZoomIn className="w-4 h-4" />
                     </GlassButton>
@@ -122,6 +126,7 @@ export function PDFViewer({ file, url, className, onLoadSuccess, height }: PDFVi
                             onClick={handleDownload}
                             variant="outline"
                             size="sm"
+                            className="flex items-center justify-center gap-2"
                         >
                             <Download className="w-4 h-4" />
                         </GlassButton>

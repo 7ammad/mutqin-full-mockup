@@ -1,0 +1,53 @@
+{
+  "version": "0.2",
+  "language": "en,ar",
+  "useGitignore": true,
+  "ignorePaths": [
+    "Docs/**",
+    "docs/**",
+    "**/Docs/**",
+    "**/docs/**",
+    "node_modules/**",
+    ".git/**",
+    "dist/**",
+    "build/**",
+    "**/*.min.js",
+    "**/*.min.css"
+  ],
+  "files": {
+    "ignore": [
+      "**/Docs/**",
+      "**/docs/**"
+    ]
+  },
+  "languageSettings": [
+    {
+      "languageId": "typescript",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "typescriptreact",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "javascript",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "javascriptreact",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "json",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "jsonc",
+      "locale": "en,ar"
+    }
+  ],
+  "words": [],
+  "ignoreWords": []
+}
+
+

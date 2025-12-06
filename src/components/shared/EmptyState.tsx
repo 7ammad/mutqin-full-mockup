@@ -60,7 +60,7 @@ export function EmptyState({
                     <GlassButton
                         variant="default"
                         onClick={onAction}
-                        className="mt-4"
+                        className="mt-4 flex items-center justify-center gap-2"
                     >
                         {displayActionLabel}
                     </GlassButton>

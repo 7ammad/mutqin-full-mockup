@@ -54,7 +54,10 @@ function LoginForm() {
         try {
             const redirect = searchParams?.get('redirect') || undefined;
             await login(email, password, selectedRole, redirect);
+            // Login successful - navigation will happen in AuthContext
+            // Don't reset loading here as the redirect will unmount the component
         } catch (err) {
+            console.error('[Login] Error:', err);
             setError(
                 language === 'ar' 
                     ? 'بيانات الاعتماد غير صحيحة' 
@@ -152,7 +155,7 @@ function LoginForm() {
 
                     <GlassButton
                         type="submit"
-                        className="w-full"
+                        className="w-full flex items-center justify-center gap-2"
                         disabled={isLoading}
                     >
                         {isLoading ? (language === 'ar' ? 'جارٍ تسجيل الدخول...' : 'Logging in...') : loginButton}

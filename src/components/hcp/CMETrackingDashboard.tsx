@@ -58,7 +58,7 @@ export default function CMETrackingDashboard() {
                     variant="outline"
                     onClick={handleSyncMumaris}
                     disabled={syncStatus === 'syncing'}
-                >
+                 className="flex items-center justify-center gap-2">
                     <RefreshCw className={`w-4 h-4 mr-2 ${syncStatus === 'syncing' ? 'animate-spin' : ''}`} />
                     {syncStatus === 'syncing' ? syncingText : syncStatus === 'success' ? syncedText : syncText}
                 </GlassButton>

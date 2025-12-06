@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Dashboard routing warning
+
+For any `/dashboard/...` work, you MUST follow: `Docs/IA-SITEMAP.md`, `Docs/L1_DASHBOARD_VIEWS.md`, `Docs/L2_DETAIL_PAGES.md`. Do not invent new routes. Do not rely on the legacy sitemap.
+
 ## Getting Started
 
 First, run the development server:

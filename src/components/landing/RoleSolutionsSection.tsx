@@ -71,7 +71,7 @@ export function RoleSolutionsSection() {
   ];
 
   return (
-    <section id="roles" className="py-20 px-4 bg-[var(--system-background)]">
+    <section id="who-we-serve" className="py-20 px-4 bg-[var(--system-background)]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[var(--label)] mb-4">
@@ -127,7 +127,7 @@ export function RoleSolutionsSection() {
 
                 <GlassButton
                   variant="outline"
-                  className="w-full mt-auto"
+                  className="w-full mt-auto flex items-center justify-center gap-2"
                   onClick={() => router.push(role.route)}
                 >
                   {role.cta}

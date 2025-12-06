@@ -51,7 +51,7 @@ export default function ForgotPasswordPage() {
                     <CheckCircle className="h-12 w-12 text-[var(--apple-green)] mx-auto mb-4" />
                     <h1 className="text-2xl font-bold text-[var(--label)] mb-2">{title}</h1>
                     <p className="text-[var(--secondary-label)] mb-6">{successMessage}</p>
-                    <GlassButton onClick={() => router.push('/auth/login')} className="w-full">
+                    <GlassButton onClick={() => router.push('/auth/login')} className="w-full flex items-center justify-center">
                         {backToLogin}
                     </GlassButton>
                 </LiquidGlassCard>
@@ -86,7 +86,7 @@ export default function ForgotPasswordPage() {
 
                     <GlassButton
                         type="submit"
-                        className="w-full"
+                        className="w-full flex items-center justify-center gap-2"
                         disabled={isLoading}
                     >
                         {isLoading ? (language === 'ar' ? 'جاري الإرسال...' : 'Sending...') : sendButton}
@@ -94,8 +94,7 @@ export default function ForgotPasswordPage() {
                 </form>
 
                 <div className="mt-6 pt-6 border-t border-[var(--separator)] text-center">
-                    <button
-                        onClick={() => router.push('/auth/login')}
+                    <button onClick={() => router.push('/auth/login')}
                         className="text-sm text-[var(--apple-blue)] hover:underline"
                     >
                         {backToLogin}
@@ -105,6 +104,11 @@ export default function ForgotPasswordPage() {
         </div>
     );
 }
+
+
+
+
+
 
 
 

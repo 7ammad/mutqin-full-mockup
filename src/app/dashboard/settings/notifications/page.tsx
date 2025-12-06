@@ -91,12 +91,26 @@ export default function NotificationSettingsPage() {
                 </div>
 
                 <div className="pt-6 mt-6 border-t border-[var(--separator)]">
-                    <Button>Save Preferences</Button>
+                    <Button className="flex items-center justify-center gap-2">Save Preferences</Button>
                 </div>
             </Card>
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

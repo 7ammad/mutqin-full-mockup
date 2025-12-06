@@ -98,3 +98,6 @@ export function can(role: Role, action: ActionId, ctx: PolicyContext): PolicyRes
 function allowIf(condition: boolean | undefined, reason: string): PolicyResult {
   return condition ? { allowed: true, reason } : { allowed: false, reason };
 }
+
+
+

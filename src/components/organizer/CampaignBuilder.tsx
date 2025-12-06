@@ -98,8 +98,7 @@ export default function CampaignBuilder() {
                                 const Icon = type.icon;
                                 const isSelected = currentCampaign.type === type.id;
                                 return (
-                                    <button
-                                        key={type.id}
+                                    <button key={type.id}
                                         onClick={() => setCurrentCampaign({ ...currentCampaign, type: type.id as Campaign['type'] })}
                                         className={`p-4 rounded-2xl border-2 transition-all ${
                                             isSelected
@@ -158,12 +157,12 @@ export default function CampaignBuilder() {
                             variant="default"
                             onClick={handleSave}
                             disabled={!currentCampaign.name || !currentCampaign.content}
-                            className="flex-1"
+                            className="flex-1 items-center justify-center gap-2"
                         >
                             {saveText}
                         </GlassButton>
                         {currentCampaign.scheduledDate && (
-                            <GlassButton variant="outline" className="flex-1">
+                            <GlassButton variant="outline" className="flex-1 items-center justify-center gap-2">
                                 <Calendar className="w-4 h-4 mr-2" />
                                 {scheduleText}
                             </GlassButton>

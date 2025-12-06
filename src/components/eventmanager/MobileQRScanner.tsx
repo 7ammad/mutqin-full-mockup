@@ -93,9 +93,8 @@ export default function MobileQRScanner({ onScan, onClose }: MobileQRScannerProp
                     <div className="flex items-center justify-between">
                         <h3 className="text-lg font-semibold text-[var(--label)]">{title}</h3>
                         {onClose && (
-                            <button
-                                onClick={onClose}
-                                className="p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors"
+                            <button onClick={onClose}
+                                className="p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors inline-flex items-center justify-center"
                             >
                                 <X className="w-5 h-5 text-[var(--secondary-label)]" />
                             </button>
@@ -162,7 +161,7 @@ export default function MobileQRScanner({ onScan, onClose }: MobileQRScannerProp
                                 onClick={handleStop}
                                 variant="outline"
                                 size="default"
-                                className="flex-1"
+                                className="flex-1 items-center justify-center gap-2"
                             >
                                 {stopScanningText}
                             </GlassButton>

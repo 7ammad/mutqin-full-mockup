@@ -8,11 +8,21 @@ export default defineConfig({
     headless: true,
     trace: 'on-first-retry',
     video: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+  expect: {
+    // Timeout for assertions
+    timeout: 5000,
   },
   projects: [
     {
+      name: 'setup',
+      testMatch: /.*\.setup\.ts/,
+    },
+    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup'],
     },
   ],
   webServer: {

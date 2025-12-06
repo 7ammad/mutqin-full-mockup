@@ -1,0 +1,17 @@
+# Ignore entire Docs folder
+Docs/
+docs/
+**/Docs/**
+**/docs/**
+
+
+
+
+
+
+
+
+
+
+
+

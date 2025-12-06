@@ -1,0 +1,56 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/Docs/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/.next": true,
+    "**/Docs": true
+  },
+  "typescript.preferences.excludePackageJsonAutoImports": "off",
+  "eslint.workingDirectories": [
+    {
+      "pattern": "./",
+      "!cwd": "Docs"
+    }
+  ],
+  "eslint.options": {
+    "ignorePattern": [
+      "**/Docs/**",
+      "**/node_modules/**",
+      "**/.next/**"
+    ]
+  },
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "cSpell.language": "en,ar",
+  "cSpell.enabledLanguageIds": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "plaintext"
+  ],
+  "cSpell.enableFiletypes": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc"
+  ]
+}

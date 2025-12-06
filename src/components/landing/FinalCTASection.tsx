@@ -12,7 +12,7 @@ export function FinalCTASection() {
   const ctaData = getNestedTranslation(language, 'cta', 'final');
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-[var(--system-background)] to-[var(--secondary-system-background)]">
+    <section id="demo" className="py-20 px-4 bg-gradient-to-b from-[var(--system-background)] to-[var(--secondary-system-background)]">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-[var(--label)] mb-4">
           {ctaData?.title}

@@ -80,9 +80,8 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
                     {language === 'ar' ? 'ماسح QR' : 'QR Scanner'}
                 </h3>
                 {onClose && (
-                    <button
-                        onClick={onClose}
-                        className="p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors"
+                    <button onClick={onClose}
+                        className="p-1 rounded-full hover:bg-[var(--system-fill)] transition-colors inline-flex items-center justify-center"
                     >
                         <X className="w-5 h-5 text-[var(--secondary-label)]" />
                     </button>
@@ -137,7 +136,7 @@ export function QRScanner({ onScan, onClose, className }: QRScannerProps) {
                         onClick={handleStop}
                         variant="outline"
                         size="default"
-                        className="flex-1"
+                        className="flex-1 items-center justify-center gap-2"
                     >
                         {language === 'ar' ? 'إيقاف' : 'Stop'}
                     </GlassButton>

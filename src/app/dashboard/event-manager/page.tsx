@@ -1,16 +1,15 @@
 "use client";
 
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 import { LoadingSkeleton } from "@/components/shared/LoadingSkeleton";
 import { ErrorBoundary } from "@/components/shared/ErrorBoundary";
-
-const EventManagerView = lazy(() => import("@/components/eventmanager/EventManagerView"));
+import EventManagerDashboardShell from "./EventManagerDashboardShell";
 
 export default function EventManagerDashboard() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<LoadingSkeleton variant="dashboard" />}>
-        <EventManagerView />
+        <EventManagerDashboardShell />
       </Suspense>
     </ErrorBoundary>
   );

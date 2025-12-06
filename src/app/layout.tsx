@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cairo } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { PersonaProvider } from "@/context/PersonaContext";
@@ -12,11 +13,19 @@ import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import { MedicalOrganizationSchema } from "@/components/seo/MedicalOrganizationSchema";
 import { WebsiteSchema } from "@/components/seo/WebsiteSchema";
 import { MockApiProvider } from "./MockApiProvider";
+import { DevToolsCleanup } from "@/components/shared/DevToolsCleanup";
 
 const cairo = Cairo({
     subsets: ["arabic", "latin"],
     variable: "--font-cairo",
     display: "swap",
+});
+
+const varien = localFont({
+    src: "../../public/Varien Font/varien.otf",
+    variable: "--font-varien",
+    display: "swap",
+    weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -104,7 +113,7 @@ export default function RootLayout({
                 <WebsiteSchema />
             </head>
             <body
-                className={`${cairo.variable} font-sans antialiased bg-[var(--system-background)] text-[var(--label)] transition-colors duration-300`}
+                className={`${cairo.variable} ${varien.variable} font-sans antialiased bg-[var(--system-background)] text-[var(--label)] transition-colors duration-300`}
             >
                 <ErrorBoundaryWrapper>
                     <ThemeProvider
@@ -119,6 +128,7 @@ export default function RootLayout({
                                     <ToastProvider>
                                         <MockApiProvider />
                                         <PWARegistration />
+                                        <DevToolsCleanup />
                                         {children}
                                     </ToastProvider>
                                 </PersonaProvider>

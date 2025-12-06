@@ -104,7 +104,7 @@ export default function LandingPageBuilder() {
                                         <div className="space-y-3">
                                             <Input placeholder={language === 'ar' ? 'الاسم' : 'Name'} />
                                             <Input type="email" placeholder={language === 'ar' ? 'البريد الإلكتروني' : 'Email'} />
-                                            <GlassButton variant="default" className="w-full" style={{ backgroundColor: config.primaryColor }}>
+                                            <GlassButton variant="default" className="w-full flex items-center justify-center gap-2" style={{ backgroundColor: config.primaryColor }}>
                                                 {language === 'ar' ? 'تسجيل' : 'Register'}
                                             </GlassButton>
                                         </div>
@@ -252,8 +252,7 @@ export default function LandingPageBuilder() {
                         </label>
                         <div className="grid grid-cols-3 gap-2">
                             {(['centered', 'left', 'right'] as const).map((layout) => (
-                                <button
-                                    key={layout}
+                                <button key={layout}
                                     onClick={() => setConfig({ ...config, layout })}
                                     className={`p-4 rounded-2xl border-2 transition-all ${
                                         config.layout === layout
@@ -277,8 +276,7 @@ export default function LandingPageBuilder() {
                                 {language === 'ar' ? 'إظهار نموذج التسجيل في الصفحة' : 'Show registration form on the page'}
                             </p>
                         </div>
-                        <button
-                            onClick={() => setConfig({ ...config, showRegistrationForm: !config.showRegistrationForm })}
+                        <button onClick={() => setConfig({ ...config, showRegistrationForm: !config.showRegistrationForm })}
                             className={`relative w-14 h-8 rounded-full transition-colors ${
                                 config.showRegistrationForm ? 'bg-[var(--apple-green)]' : 'bg-[var(--system-fill)]'
                             }`}
@@ -291,7 +289,7 @@ export default function LandingPageBuilder() {
                         </button>
                     </div>
 
-                    <GlassButton variant="default" className="w-full">
+                    <GlassButton variant="default" className="w-full flex items-center justify-center gap-2">
                         <Save className="w-4 h-4 mr-2" />
                         {saveText}
                     </GlassButton>

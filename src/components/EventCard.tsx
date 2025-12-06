@@ -10,6 +10,7 @@ import { getEventTitle, getEventOrganizer, getEventLocation, getEventDescription
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
 interface EventCardProps {
     event: Event;
@@ -18,6 +19,12 @@ interface EventCardProps {
         label: string;
         onClick: () => void;
         variant?: 'default' | 'disabled' | 'emerald' | 'blue';
+        icon?: React.ReactNode;
+    };
+    secondaryButton?: {
+        label: string;
+        onClick: () => void;
+        variant?: 'default' | 'outline' | 'ghost';
         icon?: React.ReactNode;
     };
     showDescription?: boolean;
@@ -47,12 +54,12 @@ function formatDate(dateString: string, language: 'ar' | 'en'): string {
 // Get status border color
 function getStatusBorderColor(status: Event['status']): string {
     const colors = {
-        'Published': 'border-l-emerald-500',
-        'Pending Approval': 'border-l-amber-500',
-        'Draft': 'border-l-slate-400',
-        'Completed': 'border-l-slate-300',
+        'Published': 'border-l-[var(--apple-green)]',
+        'Pending Approval': 'border-l-[var(--apple-orange)]',
+        'Draft': 'border-l-[var(--border)]',
+        'Completed': 'border-l-[var(--border)]',
     };
-    return colors[status] || 'border-l-slate-400';
+    return colors[status] || 'border-l-[var(--border)]';
 }
 
 // Get pending reason text based on event status and language
@@ -70,6 +77,7 @@ export default function EventCard({
     event,
     variant = 'default',
     actionButton,
+    secondaryButton,
     showDescription = true,
     className,
     registrationCount,
@@ -136,7 +144,7 @@ export default function EventCard({
                 {/* Badges Row - Always present, fixed height */}
                 <div className="flex items-center gap-2 flex-wrap h-6 mb-3 relative flex-shrink-0" style={{ overflow: 'visible', zIndex: 1000 }}>
                     <Badge variant="outline" className="text-xs font-medium">
-                        {event.specialty}
+                        {getSpecialtyLabel(event.specialty || '', language)}
                     </Badge>
                     
                     {/* Unified Pending Badge (Yellow) with hover tooltip */}
@@ -159,22 +167,23 @@ export default function EventCard({
                         </Badge>
                     )}
 
-                    {/* Sponsored badge - Only show if NOT published (no free events when published) */}
-                    {event.is_sponsored && event.status !== 'Published' && (
+                    {/* Sponsored badge - All published events have sponsors */}
+                    {event.is_sponsored && (
                         <Badge variant="emerald" className="text-xs">
                             ✓ {t('organizer.sponsored')}
                         </Badge>
                     )}
 
-                    {/* Needs Sponsorship - Only show if not pending (to avoid duplicate) */}
-                    {event.needs_sponsorship && !isPending && (
+                    {/* Needs Sponsorship - Only show for non-published events that need sponsorship */}
+                    {event.needs_sponsorship && !isPending && event.status !== 'Published' && (
                         <Badge variant="blue" className="text-xs">
                             {t('organizer.needsSponsorship')}
                         </Badge>
                     )}
 
                     {/* Trust Indicators - SCFHS Accreditation Badge */}
-                    {variant === 'default' && event.status === 'Published' && event.sfda_license && (
+                    {/* Note: Not shown when Published - accreditation is implied by Published status */}
+                    {variant === 'default' && event.status !== 'Published' && event.sfda_license && (
                         <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger asChild>
@@ -191,7 +200,8 @@ export default function EventCard({
                     )}
 
                     {/* Verified Organizer Badge */}
-                    {variant === 'default' && event.status === 'Published' && (
+                    {/* Note: Not shown when Published - verification is implied by Published status */}
+                    {variant === 'default' && event.status !== 'Published' && (
                         <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger asChild>
@@ -356,24 +366,47 @@ export default function EventCard({
                 </div>
             </CardContent>
 
-            {/* Footer with Action Button - Conditional but same structure when present */}
-            {actionButton && (
+            {/* Footer with Action Buttons - Conditional but same structure when present */}
+            {(actionButton || secondaryButton) && (
                 <>
                     <div className="border-t border-[var(--separator)]" />
                     <CardFooter className="p-3 sm:p-4 pt-3">
-                        <Button
-                            onClick={actionButton.onClick}
-                            disabled={actionButton.variant === 'disabled'}
-                            className={cn(
-                                "w-full font-medium h-9 sm:h-10 text-sm sm:text-base",
-                                actionButton.variant === 'disabled' && "bg-[var(--system-fill)] text-[var(--tertiary-label)]",
-                                actionButton.variant === 'emerald' && "bg-[var(--apple-green)] hover:opacity-90 text-white",
-                                actionButton.variant === 'blue' && "bg-[var(--apple-blue)] hover:opacity-90 text-white"
+                        <div className={cn(
+                            "w-full gap-2 flex items-stretch",
+                            actionButton && secondaryButton ? "grid grid-cols-2" : ""
+                        )}>
+                            {actionButton && (
+                                <Button
+                                    onClick={actionButton.onClick}
+                                    disabled={actionButton.variant === 'disabled'}
+                                    className={cn(
+                                        "font-medium h-9 sm:h-10 text-sm sm:text-base flex items-center justify-center",
+                                        actionButton.variant === 'disabled' && "bg-[var(--system-fill)] text-[var(--tertiary-label)]",
+                                        actionButton.variant === 'emerald' && "bg-[var(--apple-green)] hover:opacity-90 text-white",
+                                        actionButton.variant === 'blue' && "bg-[var(--apple-blue)] hover:opacity-90 text-white",
+                                        secondaryButton ? "" : "w-full"
+                                    )}
+                                >
+                                    {actionButton.icon && <span className="mr-2">{actionButton.icon}</span>}
+                                    {actionButton.label}
+                                </Button>
                             )}
-                        >
-                            {actionButton.icon && <span className="mr-2">{actionButton.icon}</span>}
-                            {actionButton.label}
-                        </Button>
+                            {secondaryButton && (
+                                <Button
+                                    onClick={secondaryButton.onClick}
+                                    variant={secondaryButton.variant === 'outline' ? 'outline' : secondaryButton.variant === 'ghost' ? 'ghost' : 'default'}
+                                    className={cn(
+                                        "font-medium h-9 sm:h-10 text-sm sm:text-base flex items-center justify-center",
+                                        secondaryButton.variant === 'outline' && "border-[var(--apple-blue)] bg-[var(--apple-blue)]/10 text-[var(--apple-blue)] hover:bg-[var(--apple-blue)]/20 border-2",
+                                        secondaryButton.variant === 'ghost' && "bg-[var(--apple-blue)]/10 text-[var(--apple-blue)] hover:bg-[var(--apple-blue)]/20",
+                                        !secondaryButton.variant && "bg-[var(--apple-blue)]/10 text-[var(--apple-blue)] hover:bg-[var(--apple-blue)]/20",
+                                        actionButton ? "" : "w-full"
+                                    )}
+                                >
+                                    {secondaryButton.label}
+                                </Button>
+                            )}
+                        </div>
                     </CardFooter>
                 </>
             )}

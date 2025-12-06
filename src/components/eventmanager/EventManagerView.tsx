@@ -37,27 +37,11 @@ export default function EventManagerView() {
     setLoadingAssignments(true);
     setAssignmentsError("");
     
-    // Wait for MSW to be ready before making API calls
-    if (typeof window !== 'undefined') {
-      const waitForMSW = async () => {
-        const maxAttempts = 50; // 5 seconds max wait
-        let attempts = 0;
-        const windowWithMSW = window as Window & { __mswReady?: boolean };
-        while (!windowWithMSW.__mswReady && attempts < maxAttempts) {
-          await new Promise(resolve => setTimeout(resolve, 100));
-          attempts++;
-        }
-        // If MSW still not ready, log warning but continue
-        if (!windowWithMSW.__mswReady) {
-          console.warn('MSW not ready after waiting, proceeding anyway');
-        }
-      };
-      await waitForMSW();
-    }
-    
+    // Data source works immediately, no MSW waiting needed
     try {
-      const res = await api.getEventManagerAssignments({ eventManagerId: "em-1" });
-      setAssignmentsData(res.assignments);
+      const { getEventManagerAssignments } = await import('@/lib/dataSource');
+      const assignments = await getEventManagerAssignments("em-1");
+      setAssignmentsData(assignments);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Unable to load assignments";
       setAssignmentsError(message);

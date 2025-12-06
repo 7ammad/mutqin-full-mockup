@@ -12,6 +12,9 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle2, AlertCircle, Clock, FileText, Calendar, MapPin, Award, User, XCircle, AlertTriangle } from "lucide-react";
 import { getEventTitle, getEventOrganizer } from "@/lib/eventTranslations";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { api } from "@/lib/api";
+import { useToast } from "@/components/ui/toast-context";
+import { useRouter } from "next/navigation";
 
 interface ReviewStep {
     id: string;
@@ -22,8 +25,10 @@ interface ReviewStep {
 }
 
 export default function ReviewWorkflow() {
-    const { events, approveEvent } = usePersona();
+    const { events } = usePersona();
     const { language } = useLanguage();
+    const { showToast } = useToast();
+    const router = useRouter();
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [reviewSteps, setReviewSteps] = useState<ReviewStep[]>([
@@ -59,35 +64,62 @@ export default function ReviewWorkflow() {
         }
     };
 
-    const handleSubmitDecision = () => {
-        if (!decision) {
-            alert(language === 'ar' ? 'يرجى اختيار قرار' : 'Please select a decision');
+    const handleSubmitDecision = async () => {
+        if (!decision || !selectedEventId) {
+            showToast(language === 'ar' ? 'يرجى اختيار قرار' : 'Please select a decision', 'info');
             return;
         }
 
-        if (decision === 'approve' && selectedEventId) {
-            approveEvent(selectedEventId);
-            alert(language === 'ar' ? 'تمت الموافقة بنجاح' : 'Approved successfully');
-        } else if (decision === 'reject') {
-            if (!reviewNotes.trim()) {
-                alert(language === 'ar' ? 'يرجى إضافة ملاحظات للرفض' : 'Please add rejection notes');
-                return;
+        try {
+            if (decision === 'approve') {
+                const res = await api.reviewAccreditation({ 
+                    eventId: selectedEventId, 
+                    decision: 'approve' 
+                });
+                if (res.ok) {
+                    showToast(language === 'ar' ? 'تمت الموافقة بنجاح' : 'Approved successfully', 'success');
+                    router.refresh();
+                }
+            } else if (decision === 'reject') {
+                if (!reviewNotes.trim()) {
+                    showToast(language === 'ar' ? 'يرجى إضافة ملاحظات للرفض' : 'Please add rejection notes', 'info');
+                    return;
+                }
+                const res = await api.reviewAccreditation({ 
+                    eventId: selectedEventId, 
+                    decision: 'reject',
+                    reason: reviewNotes
+                });
+                if (res.ok) {
+                    showToast(language === 'ar' ? 'تم رفض الفعالية' : 'Event rejected', 'success');
+                    router.refresh();
+                }
+            } else if (decision === 'request-modification') {
+                if (!reviewNotes.trim()) {
+                    showToast(language === 'ar' ? 'يرجى إضافة ملاحظات للتعديل' : 'Please add modification notes', 'info');
+                    return;
+                }
+                const res = await api.reviewAccreditation({ 
+                    eventId: selectedEventId, 
+                    decision: 'reject',
+                    reason: reviewNotes
+                });
+                if (res.ok) {
+                    showToast(language === 'ar' ? 'تم طلب التعديلات' : 'Modification requested', 'success');
+                    router.refresh();
+                }
             }
-            alert(language === 'ar' ? 'تم رفض الفعالية' : 'Event rejected');
-        } else if (decision === 'request-modification') {
-            if (!reviewNotes.trim()) {
-                alert(language === 'ar' ? 'يرجى إضافة ملاحظات للتعديل' : 'Please add modification notes');
-                return;
-            }
-            alert(language === 'ar' ? 'تم طلب التعديلات' : 'Modification requested');
-        }
 
-        // Reset
-        setSelectedEventId(null);
-        setCurrentStep(0);
-        setReviewSteps(reviewSteps.map(s => ({ ...s, completed: false })));
-        setReviewNotes("");
-        setDecision(null);
+            // Reset
+            setSelectedEventId(null);
+            setCurrentStep(0);
+            setReviewSteps(reviewSteps.map(s => ({ ...s, completed: false })));
+            setReviewNotes("");
+            setDecision(null);
+        } catch (err) {
+            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            showToast(message, 'info');
+        }
     };
 
     const allStepsCompleted = reviewSteps.every(s => s.completed);
@@ -133,7 +165,7 @@ export default function ReviewWorkflow() {
                 {selectedEvent ? (
                     <div className="space-y-6">
                         {/* Event Summary */}
-                        <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4">
+                        <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-4 w-4 text-[var(--apple-blue)]" />
@@ -223,13 +255,13 @@ export default function ReviewWorkflow() {
                                 variant="outline"
                                 onClick={handlePreviousStep}
                                 disabled={currentStep === 0}
-                            >
+                             className="flex items-center justify-center gap-2">
                                 {language === 'ar' ? 'السابق' : 'Previous'}
                             </GlassButton>
                             <GlassButton
                                 onClick={handleNextStep}
                                 disabled={currentStep === reviewSteps.length - 1}
-                            >
+                             className="flex items-center justify-center gap-2">
                                 {language === 'ar' ? 'التالي' : 'Next'}
                             </GlassButton>
                         </div>
@@ -281,7 +313,7 @@ export default function ReviewWorkflow() {
                                 </div>
                                 <GlassButton
                                     onClick={handleSubmitDecision}
-                                    className="w-full gap-2"
+                                    className="w-full gap-2 flex items-center justify-center"
                                     disabled={!decision}
                                 >
                                     <FileText className="h-4 w-4" />

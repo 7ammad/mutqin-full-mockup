@@ -262,21 +262,18 @@ export default function DemoFlowClient() {
   const renderOrganizer = () => (
     <div className="space-y-3">
       <div className="flex flex-wrap gap-2">
-        <button
-          className="px-3 py-2 bg-blue-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-blue-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleSubmitAccreditation}
         >
           Submit Accreditation
         </button>
-        <button
-          className="px-3 py-2 bg-indigo-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-indigo-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handlePublish}
           disabled={publishDisabled}
         >
           Publish Event
         </button>
-        <button
-          className="px-3 py-2 bg-slate-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-slate-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleCreateAssignment}
         >
           Create Assignment
@@ -295,8 +292,7 @@ export default function DemoFlowClient() {
           onChange={(e) => setInputs((prev) => ({ ...prev, accreditationId: e.target.value }))}
           placeholder="accreditationId"
         />
-        <button
-          className="px-3 py-2 bg-green-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-green-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleReviewApprove}
         >
           Approve
@@ -307,8 +303,7 @@ export default function DemoFlowClient() {
           onChange={(e) => setInputs((prev) => ({ ...prev, rejectionReason: e.target.value }))}
           placeholder="Rejection reason"
         />
-        <button
-          className="px-3 py-2 bg-red-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-red-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleReviewReject}
         >
           Reject
@@ -321,29 +316,25 @@ export default function DemoFlowClient() {
   const renderEventManager = () => (
     <div className="space-y-3">
       <div className="flex flex-wrap gap-2">
-        <button
-          className="px-3 py-2 bg-teal-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-teal-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleAcceptAssignment}
           disabled={acceptDisabled}
         >
           Accept Assignment
         </button>
-        <button
-          className="px-3 py-2 bg-amber-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-amber-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleCheckIn}
           disabled={checkInDisabled}
         >
           Check-in Ticket
         </button>
-        <button
-          className="px-3 py-2 bg-emerald-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-emerald-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleFinalize}
           disabled={finalizeDisabled}
         >
           Finalize Attendance
         </button>
-        <button
-          className="px-3 py-2 bg-purple-600 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-purple-600 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleIssueCertificate}
           disabled={certificateDisabled}
         >
@@ -357,8 +348,7 @@ export default function DemoFlowClient() {
   const renderHcp = () => (
     <div className="space-y-3">
       <div className="flex flex-wrap gap-2 items-center">
-        <button
-          className="px-3 py-2 bg-blue-700 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-blue-700 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleRegister}
           disabled={registerDisabled}
         >
@@ -378,8 +368,7 @@ export default function DemoFlowClient() {
           value={inputs.reviewText}
           onChange={(e) => setInputs((prev) => ({ ...prev, reviewText: e.target.value }))}
         />
-        <button
-          className="px-3 py-2 bg-slate-700 text-white rounded disabled:opacity-40"
+        <button className="px-3 py-2 bg-slate-700 text-white rounded disabled:opacity-40 inline-flex items-center justify-center"
           onClick={handleCreateReview}
           disabled={reviewDisabled}
         >
@@ -402,8 +391,7 @@ export default function DemoFlowClient() {
           <option value="gold">gold</option>
           <option value="platinum">platinum</option>
         </select>
-        <button
-          className="px-3 py-2 bg-orange-600 text-white rounded"
+        <button className="px-3 py-2 bg-orange-600 text-white rounded inline-flex items-center justify-center"
           onClick={handlePurchaseSponsorship}
         >
           Purchase Sponsorship
@@ -425,8 +413,7 @@ export default function DemoFlowClient() {
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
         {tabs.map((tab) => (
-          <button
-            key={tab.key}
+          <button key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className={`px-3 py-2 rounded border ${
               activeTab === tab.key ? 'bg-black text-white' : 'bg-white'

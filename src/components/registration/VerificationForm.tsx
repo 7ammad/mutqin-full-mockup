@@ -132,13 +132,13 @@ export function VerificationForm({
             ))}
           </div>
           {error && (
-            <p className="mt-2 text-sm text-red-500 text-center">{error}</p>
+            <p className="mt-2 text-sm text-[var(--apple-red)] text-center">{error}</p>
           )}
         </div>
 
         <GlassButton
           type="submit"
-          className="w-full"
+          className="w-full flex items-center justify-center gap-2"
           disabled={isLoading || code.join('').length !== 6}
         >
           {isLoading ? t('common.loading') : t('verification.verify')}
@@ -153,10 +153,9 @@ export function VerificationForm({
               {t('verification.resendCountdown')} {resendCountdown}s
             </p>
           ) : (
-            <button
-              type="button"
+            <button type="button"
               onClick={handleResend}
-              className="text-sm text-[var(--apple-blue)] hover:underline font-medium"
+              className="text-sm text-[var(--apple-blue)] hover:underline font-medium inline-flex items-center justify-center"
             >
               {t('verification.resend')}
             </button>

@@ -319,7 +319,7 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                         <div>
                             <div className="flex items-center justify-between mb-2">
                                 <Label>{language === 'ar' ? 'المميزات' : 'Features'}</Label>
-                                <GlassButton variant="outline" size="sm" onClick={addFeature}>
+                                <GlassButton variant="outline" size="sm" onClick={addFeature} className="flex items-center justify-center gap-2">
                                     <Plus className="h-4 w-4" />
                                 </GlassButton>
                             </div>
@@ -349,10 +349,10 @@ function PackageEditor({ package: pkg, onSave, onCancel }: PackageEditorProps) {
                     </div>
 
                     <div className="flex justify-end gap-2 pt-4">
-                        <GlassButton variant="outline" onClick={onCancel}>
+                        <GlassButton variant="outline" onClick={onCancel} className="flex items-center justify-center gap-2">
                             {language === 'ar' ? 'إلغاء' : 'Cancel'}
                         </GlassButton>
-                        <GlassButton onClick={handleSave} className="gap-2">
+                        <GlassButton onClick={handleSave} className="gap-2 flex items-center justify-center">
                             <Save className="h-4 w-4" />
                             {language === 'ar' ? 'حفظ' : 'Save'}
                         </GlassButton>

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Users, Calendar, Award, FileCheck, Plus } from "lucide-react";
 import { DEMO_STATS } from "@/lib/mockData";
-import EventCard from "@/components/EventCard";
+import { ActivityCard } from "@/components/shared/ActivityCard";
 
 interface DashboardProps {
     onCreateClick: () => void;
@@ -88,7 +88,7 @@ export default function Dashboard({ onCreateClick, onEventClick }: DashboardProp
                         {publishedEvents.length} {t('stats.published')} • {pendingEvents.length} {t('stats.underReview')}
                     </p>
                 </div>
-                <Button onClick={onCreateClick} className="gap-2">
+                <Button onClick={onCreateClick} className="gap-2 flex items-center justify-center">
                     <Plus className="h-4 w-4" />
                     {t('organizer.createEvent')}
                 </Button>
@@ -102,10 +102,11 @@ export default function Dashboard({ onCreateClick, onEventClick }: DashboardProp
                     const mockRegistrations = 50 + (eventIdNum * 23) % 200; // Deterministic based on ID
                     const mockCapacity = event.is_sponsored && event.status === 'Published' ? 300 : undefined;
                     return (
-                        <EventCard
+                        <ActivityCard
                             key={event.id}
                             event={event}
-                            variant="organizer"
+                            context="organizer"
+                            variant="full"
                             showDescription={true}
                             registrationCount={event.status === 'Published' ? mockRegistrations : undefined}
                             capacity={mockCapacity}

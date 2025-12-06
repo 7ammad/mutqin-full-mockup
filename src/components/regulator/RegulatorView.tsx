@@ -1,115 +1,61 @@
 "use client";
 
-import { useState } from "react";
-// import { usePersona } from "@/context/PersonaContext";
-import { useLanguage } from "@/context/LanguageContext";
-import { GlassButton } from "@/components/ui/glass-button";
-import { BarChart3, Users, Clock, FileText, ClipboardCheck, Gavel, ShieldCheck, Search } from "lucide-react";
-import ApplicationQueue from "./ApplicationQueue";
-import ReviewWorkflow from "./ReviewWorkflow";
-import StandardsChecklist from "./StandardsChecklist";
-import DecisionManagement from "./DecisionManagement";
-import ComplianceMonitoring from "./ComplianceMonitoring";
-import NationalAnalytics from "./NationalAnalytics";
-import AuditTools from "./AuditTools";
-import { AccreditationPanel } from "./AccreditationPanel";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { getAllEventsFull } from "@/lib/dataSource";
+import type { DemoEvent } from "@/context/demoSeed";
+import RegulatorQueueTab from "./RegulatorQueueTab";
+import RegulatorReviewTab from "./RegulatorReviewTab";
+import RegulatorDecisionsTab from "./RegulatorDecisionsTab";
+import RegulatorAuditTab from "./RegulatorAuditTab";
+import RegulatorAnalyticsTab from "./RegulatorAnalyticsTab";
 
-type ViewType = 'QUEUE' | 'WORKFLOW' | 'CHECKLIST' | 'DECISION' | 'COMPLIANCE' | 'ANALYTICS' | 'AUDIT';
+type TabType = 'queue' | 'review' | 'decisions' | 'monitoring' | 'analytics';
 
 export default function RegulatorView() {
-    const { language } = useLanguage();
-    const [view, setView] = useState<ViewType>('QUEUE');
+  const searchParams = useSearchParams();
+  const tab = (searchParams.get('tab') || 'queue') as TabType;
+  const itemId = searchParams.get('itemId') || undefined;
 
-    const queueText = language === 'ar' ? 'قائمة التطبيقات' : 'Application Queue';
-    const workflowText = language === 'ar' ? 'سير العمل' : 'Workflow';
-    const checklistText = language === 'ar' ? 'قائمة المعايير' : 'Standards';
-    const decisionText = language === 'ar' ? 'القرارات' : 'Decisions';
-    const complianceText = language === 'ar' ? 'الامتثال' : 'Compliance';
-    const analyticsText = language === 'ar' ? 'التحليلات' : 'Analytics';
-    const auditText = language === 'ar' ? 'التدقيق' : 'Audit';
+  const [allEvents, setAllEvents] = useState<DemoEvent[]>([]);
+  const [queueEvents, setQueueEvents] = useState<DemoEvent[]>([]);
 
-    return (
-        <div className="space-y-6">
-            {/* Navigation Tabs */}
-            <div className="flex flex-wrap gap-2">
-                <GlassButton
-                    onClick={() => setView('QUEUE')}
-                    variant={view === 'QUEUE' ? 'default' : 'outline'}
-                    size="sm"
-                    className="gap-2"
-                >
-                    <FileText className="h-4 w-4" />
-                    {queueText}
-                </GlassButton>
-                <GlassButton
-                    onClick={() => setView('WORKFLOW')}
-                    variant={view === 'WORKFLOW' ? 'default' : 'outline'}
-                    size="sm"
-                    className="gap-2"
-                >
-                    <Clock className="h-4 w-4" />
-                    {workflowText}
-                </GlassButton>
-                <GlassButton
-                    onClick={() => setView('CHECKLIST')}
-                    variant={view === 'CHECKLIST' ? 'default' : 'outline'}
-                    size="sm"
-                    className="gap-2"
-                >
-                    <ClipboardCheck className="h-4 w-4" />
-                    {checklistText}
-                </GlassButton>
-                <GlassButton
-                    onClick={() => setView('DECISION')}
-                    variant={view === 'DECISION' ? 'default' : 'outline'}
-                    size="sm"
-                    className="gap-2"
-                >
-                    <Gavel className="h-4 w-4" />
-                    {decisionText}
-                </GlassButton>
-                <GlassButton
-                    onClick={() => setView('COMPLIANCE')}
-                    variant={view === 'COMPLIANCE' ? 'default' : 'outline'}
-                    size="sm"
-                    className="gap-2"
-                >
-                    <ShieldCheck className="h-4 w-4" />
-                    {complianceText}
-                </GlassButton>
-                <GlassButton
-                    onClick={() => setView('ANALYTICS')}
-                    variant={view === 'ANALYTICS' ? 'default' : 'outline'}
-                    size="sm"
-                    className="gap-2"
-                >
-                    <BarChart3 className="h-4 w-4" />
-                    {analyticsText}
-                </GlassButton>
-                <GlassButton
-                    onClick={() => setView('AUDIT')}
-                    variant={view === 'AUDIT' ? 'default' : 'outline'}
-                    size="sm"
-                    className="gap-2"
-                >
-                    <Search className="h-4 w-4" />
-                    {auditText}
-                </GlassButton>
-            </div>
+  const loadData = async () => {
+    try {
+      const events = await getAllEventsFull();
+      setAllEvents(events);
+      // Filter to pending_review for queue
+      const pending = events.filter(e => e.status === 'pending_review');
+      setQueueEvents(pending);
+    } catch (err) {
+      console.error('Failed to load regulator data:', err);
+      // Set empty arrays on error to prevent UI crashes
+      setQueueEvents([]);
+      setAllEvents([]);
+    }
+  };
 
-            {/* Content Views */}
-            {view === 'QUEUE' && (
-                <>
-                    <ApplicationQueue />
-                    <AccreditationPanel eventId="evt-1" initialStatus="pending_review" />
-                </>
-            )}
-            {view === 'WORKFLOW' && <ReviewWorkflow />}
-            {view === 'CHECKLIST' && <StandardsChecklist />}
-            {view === 'DECISION' && <DecisionManagement />}
-            {view === 'COMPLIANCE' && <ComplianceMonitoring />}
-            {view === 'ANALYTICS' && <NationalAnalytics />}
-            {view === 'AUDIT' && <AuditTools />}
-        </div>
-    );
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const handleDecision = async () => {
+    await loadData();
+  };
+
+  return (
+    <div className="space-y-6">
+      {tab === 'queue' && <RegulatorQueueTab queueEvents={queueEvents} />}
+      {tab === 'review' && (
+        <RegulatorReviewTab
+          itemId={itemId}
+          queueEvents={queueEvents}
+          onDecision={handleDecision}
+        />
+      )}
+      {tab === 'decisions' && <RegulatorDecisionsTab allEvents={allEvents} />}
+      {tab === 'monitoring' && <RegulatorAuditTab allEvents={allEvents} />}
+      {tab === 'analytics' && <RegulatorAnalyticsTab allEvents={allEvents} />}
+    </div>
+  );
 }

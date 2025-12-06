@@ -1,0 +1,128 @@
+{
+  "version": "0.2",
+  "language": "en,ar",
+  "languageSettings": [
+    {
+      "languageId": "typescript",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "typescriptreact",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "javascript",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "javascriptreact",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "json",
+      "locale": "en,ar"
+    },
+    {
+      "languageId": "jsonc",
+      "locale": "en,ar"
+    }
+  ],
+  "words": [
+    "confirmed",
+    "attended",
+    "missed",
+    "upcoming",
+    "HcpRegistrationsTab",
+    "DemoTicket",
+    "DemoEvent",
+    "DemoCertificate",
+    "RegisteredEvent",
+    "YearFilter",
+    "StatusFilter",
+    "EventStatus",
+    "RegistrationStatus",
+    "buildRoute",
+    "convertDemoEventToEvent",
+    "getHcpSummaryFull",
+    "getAllEventsFull",
+    "cardRefs",
+    "filteredJourney",
+    "groupedRegistrations",
+    "focusEventId",
+    "handleViewEvent",
+    "handleViewTicket",
+    "handleViewCertificate",
+    "qrcode",
+    "jspdf",
+    "aivenio"
+  ],
+  "ignoreWords": [
+    "cspell",
+    "tsx",
+    "tsbuildinfo"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    ".next/**",
+    "dist/**",
+    "build/**",
+    "*.min.js",
+    "package-lock.json",
+    "*.log"
+  ],
+  "flagWords": [],
+  "dictionaries": [
+    "typescript",
+    "node",
+    "npm",
+    "html",
+    "css",
+    "bash",
+    "fonts",
+    "filetypes",
+    "software-terms"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./cspell-words.txt",
+      "addWords": true
+    }
+  ],
+  "overrides": [
+    {
+      "filename": "**/*.ts",
+      "languageSettings": [
+        {
+          "locale": "en,ar"
+        }
+      ]
+    },
+    {
+      "filename": "**/*.tsx",
+      "languageSettings": [
+        {
+          "locale": "en,ar"
+        }
+      ]
+    },
+    {
+      "filename": "**/*.json",
+      "languageSettings": [
+        {
+          "locale": "en,ar"
+        }
+      ]
+    },
+    {
+      "filename": "src/locales/**/*.json",
+      "languageSettings": [
+        {
+          "locale": "en,ar"
+        }
+      ]
+    }
+  ]
+}
+
+

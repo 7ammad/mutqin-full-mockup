@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePersona } from '@/context/PersonaContext';
 import { LiquidGlassCard } from '@/components/ui/liquid-glass-card';
 import { GlassButton } from '@/components/ui/glass-button';
 import { PDFViewer } from '@/components/shared/PDFViewer';
-import { Download, FileText, Calendar, Award, Search, Filter } from 'lucide-react';
+import { Download, FileText, Calendar, Award, Search, Filter, Eye } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { buildRoute } from '@/lib/routes';
 
 interface Certificate {
     id: string;
@@ -23,6 +25,7 @@ interface Certificate {
 }
 
 export default function CertificatePortfolio() {
+    const router = useRouter();
     const { language } = useLanguage();
     const { myTickets, events } = usePersona();
     const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
@@ -172,19 +175,28 @@ export default function CertificatePortfolio() {
                                     <GlassButton
                                         variant="outline"
                                         size="sm"
-                                        onClick={() => setSelectedCertificate(cert)}
-                                        className="flex-1"
+                                        onClick={() => router.push(buildRoute.hcpCertificate(cert.id))}
+                                        className="flex-1 gap-2"
                                     >
-                                        <FileText className="w-4 h-4 mr-2" />
+                                        <Eye className="h-4 w-4" />
+                                        {language === 'ar' ? 'عرض الشهادة' : 'View Certificate'}
+                                    </GlassButton>
+                                    <GlassButton
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => setSelectedCertificate(cert)}
+                                        className="flex-1 gap-2"
+                                    >
+                                        <FileText className="w-4 h-4" />
                                         {viewText}
                                     </GlassButton>
                                     <GlassButton
                                         variant="default"
                                         size="sm"
                                         onClick={() => handleDownload(cert)}
-                                        className="flex-1"
+                                        className="flex-1 gap-2"
                                     >
-                                        <Download className="w-4 h-4 mr-2" />
+                                        <Download className="w-4 h-4" />
                                         {downloadText}
                                     </GlassButton>
                                 </div>

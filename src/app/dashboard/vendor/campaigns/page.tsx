@@ -33,14 +33,12 @@ export default function VendorCampaignsPage() {
         <div className="container mx-auto px-4 py-8">
             <div className="mb-8 flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-[var(--label)] mb-2">
-                        Campaigns
-                    </h1>
+                    
                     <p className="text-[var(--secondary-label)]">
                         Manage your sponsorship campaigns
                     </p>
                 </div>
-                <Button>Create Campaign</Button>
+                <Button className="flex items-center justify-center gap-2">Create Campaign</Button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -90,10 +88,10 @@ export default function VendorCampaignsPage() {
                         </div>
 
                         <div className="pt-4 border-t border-[var(--separator)] flex gap-2">
-                            <Button variant="outline" size="sm" className="flex-1">
+                            <Button variant="outline" size="sm" className="flex-1 items-center justify-center gap-2">
                                 View Details
                             </Button>
-                            <Button size="sm" className="flex-1">
+                            <Button size="sm" className="flex-1 items-center justify-center gap-2">
                                 Manage
                             </Button>
                         </div>
@@ -103,6 +101,20 @@ export default function VendorCampaignsPage() {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

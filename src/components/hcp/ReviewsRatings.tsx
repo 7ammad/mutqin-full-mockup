@@ -8,6 +8,8 @@ import { GlassButton } from '@/components/ui/glass-button';
 
 import { Textarea } from '@/components/ui/textarea';
 import { Star, Send, ThumbsUp, MessageSquare } from 'lucide-react';
+import { api } from '@/lib/api';
+import { useToast } from '@/components/ui/toast-context';
 
 interface Review {
     id: string;
@@ -24,6 +26,7 @@ interface Review {
 export default function ReviewsRatings() {
     const { language } = useLanguage();
     const { myTickets, events } = usePersona();
+    const { showToast } = useToast();
     const [reviews, setReviews] = useState<Review[]>([
         {
             id: '1',
@@ -47,26 +50,47 @@ export default function ReviewsRatings() {
         ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
         : 0;
 
-    const handleSubmitReview = () => {
-        if (!newReview.eventId || !newReview.rating || !newReview.comment) return;
+    const handleSubmitReview = async () => {
+        if (!newReview.eventId || !newReview.rating || !newReview.comment) {
+            showToast(language === 'ar' ? 'يرجى ملء جميع الحقول' : 'Please fill all fields', 'info');
+            return;
+        }
 
         const event = events.find(e => e.id === newReview.eventId);
-        if (!event) return;
+        if (!event) {
+            showToast(language === 'ar' ? 'الحدث غير موجود' : 'Event not found', 'info');
+            return;
+        }
 
-        const review: Review = {
-            id: `review-${Date.now()}`,
-            eventId: newReview.eventId,
-            eventTitle: event.titleEn,
-            eventTitleAr: event.titleAr,
-            rating: newReview.rating,
-            comment: newReview.comment,
-            date: new Date().toISOString(),
-            helpful: 0,
-        };
+        try {
+            const res = await api.createReview({
+                eventId: newReview.eventId,
+                hcpId: 'hcp-1',
+                rating: newReview.rating,
+                text: newReview.comment
+            });
 
-        setReviews([review, ...reviews]);
-        setNewReview({ eventId: '', rating: 0, comment: '' });
-        setShowForm(false);
+            if (res.ok) {
+                const review: Review = {
+                    id: res.reviewId,
+                    eventId: newReview.eventId,
+                    eventTitle: event.titleEn,
+                    eventTitleAr: event.titleAr,
+                    rating: newReview.rating,
+                    comment: newReview.comment,
+                    date: new Date().toISOString(),
+                    helpful: 0,
+                };
+
+                setReviews([review, ...reviews]);
+                setNewReview({ eventId: '', rating: 0, comment: '' });
+                setShowForm(false);
+                showToast(language === 'ar' ? 'تم إرسال المراجعة بنجاح' : 'Review submitted successfully', 'success');
+            }
+        } catch (err) {
+            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            showToast(message, 'info');
+        }
     };
 
     const title = language === 'ar' ? 'التقييمات والمراجعات' : 'Reviews & Ratings';
@@ -162,8 +186,7 @@ export default function ReviewsRatings() {
                             </label>
                             <div className="flex gap-2">
                                 {[1, 2, 3, 4, 5].map((star) => (
-                                    <button
-                                        key={star}
+                                    <button key={star}
                                         type="button"
                                         onClick={() => setNewReview({ ...newReview, rating: star })}
                                         className="focus:outline-none"
@@ -197,7 +220,7 @@ export default function ReviewsRatings() {
                                 variant="default"
                                 onClick={handleSubmitReview}
                                 disabled={!newReview.eventId || !newReview.rating || !newReview.comment}
-                                className="flex-1"
+                                className="flex-1 items-center justify-center gap-2"
                             >
                                 <Send className="w-4 h-4 mr-2" />
                                 {submitText}
@@ -256,7 +279,7 @@ export default function ReviewsRatings() {
                                 <p className="text-[var(--label)]">{review.comment}</p>
 
                                 <div className="flex items-center gap-4 pt-2 border-t border-[var(--separator)]">
-                                    <button className="flex items-center gap-2 text-sm text-[var(--secondary-label)] hover:text-[var(--label)] transition-colors">
+                                    <button className="flex items-center gap-2 text-sm text-[var(--secondary-label)] hover:text-[var(--label)] transition-colors inline-flex items-center justify-center">
                                         <ThumbsUp className="w-4 h-4" />
                                         {helpfulText} ({review.helpful})
                                     </button>

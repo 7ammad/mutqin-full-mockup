@@ -47,7 +47,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                     >
                         {toast.type === 'success' && <CheckCircle2 className="h-5 w-5" />}
                         <p className="text-sm font-medium flex-1">{toast.message}</p>
-                        <button onClick={() => removeToast(toast.id)} className="opacity-70 hover:opacity-100">
+                        <button
+                            onClick={() => removeToast(toast.id)}
+                            className="inline-flex items-center justify-center opacity-70 hover:opacity-100"
+                        >
                             <X className="h-4 w-4" />
                         </button>
                     </div>

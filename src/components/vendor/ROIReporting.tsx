@@ -84,7 +84,7 @@ export default function ROIReporting() {
                                 <SelectItem value="12m">{language === 'ar' ? '12 شهر' : '12 Months'}</SelectItem>
                             </SelectContent>
                         </Select>
-                        <GlassButton variant="outline" className="gap-2">
+                        <GlassButton variant="outline" className="gap-2 flex items-center justify-center">
                             <Download className="h-4 w-4" />
                             {language === 'ar' ? 'تصدير PDF' : 'Export PDF'}
                         </GlassButton>

@@ -11,6 +11,9 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle2, XCircle, AlertTriangle, FileText, Send, Clock, User } from "lucide-react";
 import { getEventTitle, getEventOrganizer } from "@/lib/eventTranslations";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { api } from "@/lib/api";
+import { useToast } from "@/components/ui/toast-context";
+import { useRouter } from "next/navigation";
 
 interface Decision {
     id: string;
@@ -23,8 +26,10 @@ interface Decision {
 }
 
 export default function DecisionManagement() {
-    const { events, approveEvent } = usePersona();
+    const { events } = usePersona();
     const { language } = useLanguage();
+    const { showToast } = useToast();
+    const router = useRouter();
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
     const [decision, setDecision] = useState<'approve' | 'reject' | 'request-modification' | null>(null);
     const [notes, setNotes] = useState<string>("");
@@ -33,46 +38,51 @@ export default function DecisionManagement() {
     const pendingEvents = events.filter(e => e.status === "Pending Approval");
     const selectedEvent = selectedEventId ? events.find(e => e.id === selectedEventId) : null;
 
-    const handleSubmitDecision = () => {
+    const handleSubmitDecision = async () => {
         if (!selectedEventId || !decision) {
-            alert(language === 'ar' ? 'يرجى اختيار فعالية وقرار' : 'Please select an event and decision');
+            showToast(language === 'ar' ? 'يرجى اختيار فعالية وقرار' : 'Please select an event and decision', 'info');
             return;
         }
 
         if ((decision === 'reject' || decision === 'request-modification') && !notes.trim()) {
-            alert(language === 'ar' ? 'يرجى إضافة ملاحظات' : 'Please add notes');
+            showToast(language === 'ar' ? 'يرجى إضافة ملاحظات' : 'Please add notes', 'info');
             return;
         }
 
-        const newDecision: Decision = {
-            id: `dec-${Date.now()}`,
-            eventId: selectedEventId,
-            decision,
-            notes,
-            reviewer: language === 'ar' ? 'د. خالد الفهد' : 'Dr. Khalid Al-Fahd',
-            timestamp: new Date().toISOString(),
-            status: 'pending',
-        };
+        try {
+            const res = await api.reviewAccreditation({
+                eventId: selectedEventId,
+                decision: decision === 'approve' ? 'approve' : 'reject',
+                reason: notes || undefined
+            });
 
-        setDecisions([...decisions, newDecision]);
+            if (res.ok) {
+                const newDecision: Decision = {
+                    id: `dec-${Date.now()}`,
+                    eventId: selectedEventId,
+                    decision,
+                    notes,
+                    reviewer: language === 'ar' ? 'د. خالد الفهد' : 'Dr. Khalid Al-Fahd',
+                    timestamp: new Date().toISOString(),
+                    status: 'sent',
+                };
 
-        if (decision === 'approve') {
-            approveEvent(selectedEventId);
+                setDecisions([...decisions, newDecision]);
+                showToast(
+                    language === 'ar' ? 'تم إرسال القرار بنجاح' : 'Decision sent successfully',
+                    'success'
+                );
+                router.refresh();
+
+                // Reset
+                setSelectedEventId(null);
+                setDecision(null);
+                setNotes("");
+            }
+        } catch (err) {
+            const message = err instanceof Error ? err.message : (language === 'ar' ? 'حدث خطأ' : 'An error occurred');
+            showToast(message, 'info');
         }
-
-        // Simulate sending
-        setTimeout(() => {
-            setDecisions(prev => prev.map(d => 
-                d.id === newDecision.id ? { ...d, status: 'sent' } : d
-            ));
-        }, 1000);
-
-        alert(language === 'ar' ? 'تم إرسال القرار بنجاح' : 'Decision sent successfully');
-
-        // Reset
-        setSelectedEventId(null);
-        setDecision(null);
-        setNotes("");
     };
 
     const title = language === 'ar' ? 'إدارة القرارات' : 'Decision Management';
@@ -116,7 +126,7 @@ export default function DecisionManagement() {
                 {selectedEvent ? (
                     <div className="space-y-6">
                         {/* Event Summary */}
-                        <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4">
+                        <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
                             <div className="space-y-2">
                                 <h3 className="font-semibold text-[var(--label)]">
                                     {getEventTitle(selectedEvent, language)}
@@ -203,7 +213,7 @@ export default function DecisionManagement() {
                         <GlassButton
                             onClick={handleSubmitDecision}
                             disabled={!decision || ((decision === 'reject' || decision === 'request-modification') && !notes.trim())}
-                            className="w-full gap-2"
+                            className="w-full gap-2 flex items-center justify-center"
                         >
                             <Send className="h-4 w-4" />
                             {submitText}
@@ -221,7 +231,7 @@ export default function DecisionManagement() {
             {/* Decision History */}
             {decisions.length > 0 && (
                 <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
-                    <h3 className="text-lg font-semibold text-[var(--label)] mb-4">
+                    <h3 className="text-lg font-semibold text-[var(--label)] mb-2">
                         {decisionHistoryText}
                     </h3>
                     <div className="space-y-4">
@@ -230,7 +240,7 @@ export default function DecisionManagement() {
                             if (!event) return null;
 
                             return (
-                                <LiquidGlassCard key={dec.id} blurIntensity="lg" interactive={false} className="p-4">
+                                <LiquidGlassCard key={dec.id} blurIntensity="lg" interactive={false} className="p-6">
                                     <div className="flex items-start justify-between mb-3">
                                         <div className="flex-1">
                                             <h4 className="font-semibold text-[var(--label)] mb-1">

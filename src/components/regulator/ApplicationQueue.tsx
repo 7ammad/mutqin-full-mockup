@@ -1,91 +1,63 @@
 "use client";
 
-import { useState } from "react";
-import { usePersona } from "@/context/PersonaContext";
+import { useMemo, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass-card";
 import { GlassButton } from "@/components/ui/glass-button";
+import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import EventCard from "@/components/EventCard";
-import { AlertCircle, MessageSquare, FileText, Search, Filter, CheckSquare, CheckCircle2 } from "lucide-react";
-import { getEventTitle, getEventOrganizer } from "@/lib/eventTranslations";
+import { FileText, Search, Filter, CheckSquare, CheckCircle2, Users, Clock } from "lucide-react";
 import { EmptyState } from "@/components/shared/EmptyState";
+import type { DemoEvent } from "@/context/demoSeed";
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
-export default function ApplicationQueue() {
-    const { events, approveEvent } = usePersona();
+interface Props {
+    queueEvents: DemoEvent[];
+    selectedEventId?: string;
+    onSelectEvent?: (eventId: string) => void;
+}
+
+export default function ApplicationQueue({ queueEvents, selectedEventId, onSelectEvent }: Props) {
     const { t, language } = useLanguage();
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedStatus, setSelectedStatus] = useState<string>("all");
     const [selectedSpecialty, setSelectedSpecialty] = useState<string>("all");
     const [sortBy, setSortBy] = useState<string>("date");
-    const [selectedEvents, setSelectedEvents] = useState<Set<string>>(new Set());
     const [showFilters, setShowFilters] = useState(false);
 
-    // Filter pending events
-    let filteredEvents = events.filter(e => e.status === "Pending Approval");
+    const filteredEvents = useMemo(() => {
+        let list = queueEvents.filter(e => e.status === "pending_review");
 
-    // Apply search filter
-    if (searchTerm) {
-        filteredEvents = filteredEvents.filter(e => {
-            const title = getEventTitle(e, language);
-            const organizer = getEventOrganizer(e, language);
-            return title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                   organizer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                   e.sfda_license?.toLowerCase().includes(searchTerm.toLowerCase());
-        });
-    }
-
-    // Apply specialty filter
-    if (selectedSpecialty !== "all") {
-        filteredEvents = filteredEvents.filter(e => 
-            e.specialty.toLowerCase().includes(selectedSpecialty.toLowerCase())
-        );
-    }
-
-    // Sort events
-    filteredEvents = [...filteredEvents].sort((a, b) => {
-        switch (sortBy) {
-            case "date":
-                return new Date(a.date).getTime() - new Date(b.date).getTime();
-            case "submission":
-                // Mock: older events = earlier submission
-                return a.id.localeCompare(b.id);
-            case "priority":
-                // Mock: conferences first
-                return a.titleEn.includes('Conference') ? -1 : 1;
-            default:
-                return 0;
+        if (searchTerm) {
+            list = list.filter(e => {
+                const title = (language === 'ar' ? e.titleAr : e.titleEn) ?? e.title ?? '';
+                const organizer = (language === 'ar' ? e.organizerAr : e.organizerEn) ?? '';
+                return title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                       organizer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                       e.sfda_license?.toLowerCase().includes(searchTerm.toLowerCase());
+            });
         }
-    });
 
-    const handleSelectEvent = (eventId: string) => {
-        setSelectedEvents(prev => {
-            const newSet = new Set(prev);
-            if (newSet.has(eventId)) {
-                newSet.delete(eventId);
-            } else {
-                newSet.add(eventId);
+        if (selectedSpecialty !== "all") {
+            list = list.filter(e => (e.specialty ?? '').toLowerCase().includes(selectedSpecialty.toLowerCase()));
+        }
+
+        return [...list].sort((a, b) => {
+            switch (sortBy) {
+                case "date":
+                    return new Date(a.date ?? 0).getTime() - new Date(b.date ?? 0).getTime();
+                case "submission":
+                    return a.id.localeCompare(b.id);
+                case "priority":
+                    return (a.titleEn ?? '').includes('Conference') ? -1 : 1;
+                default:
+                    return 0;
             }
-            return newSet;
         });
-    };
+    }, [queueEvents, searchTerm, selectedSpecialty, sortBy, language]);
 
     const handleSelectAll = () => {
-        if (selectedEvents.size === filteredEvents.length) {
-            setSelectedEvents(new Set());
-        } else {
-            setSelectedEvents(new Set(filteredEvents.map(e => e.id)));
-        }
-    };
-
-    const handleBulkApprove = () => {
-        selectedEvents.forEach(eventId => {
-            approveEvent(eventId);
-        });
-        setSelectedEvents(new Set());
-        alert(language === 'ar' ? `تم الموافقة على ${selectedEvents.size} فعالية` : `Approved ${selectedEvents.size} events`);
+        // Placeholder for future bulk operations
     };
 
     const specialties = [
@@ -103,7 +75,6 @@ export default function ApplicationQueue() {
     const sortByText = language === 'ar' ? 'ترتيب حسب' : 'Sort By';
     const pendingText = language === 'ar' ? 'فعاليات بانتظار المراجعة' : 'Events Pending Review';
     const selectAllText = language === 'ar' ? 'تحديد الكل' : 'Select All';
-    const bulkApproveText = language === 'ar' ? 'موافقة جماعية' : 'Bulk Approve';
 
     return (
         <div className="space-y-6">
@@ -170,26 +141,7 @@ export default function ApplicationQueue() {
                         </div>
                     )}
 
-                    {/* Bulk Actions */}
-                    {selectedEvents.size > 0 && (
-                        <div className="flex items-center justify-between p-4 bg-[var(--apple-blue)]/10 rounded-ios border border-[var(--apple-blue)]/20">
-                            <div className="flex items-center gap-3">
-                                <CheckSquare className="h-5 w-5 text-[var(--apple-blue)]" />
-                                <span className="text-[var(--label)] font-medium">
-                                    {selectedEvents.size} {language === 'ar' ? 'محدد' : 'selected'}
-                                </span>
-                            </div>
-                            <div className="flex gap-2">
-                                <GlassButton variant="outline" onClick={() => setSelectedEvents(new Set())}>
-                                    {language === 'ar' ? 'إلغاء التحديد' : 'Clear'}
-                                </GlassButton>
-                                <GlassButton onClick={handleBulkApprove} className="gap-2">
-                                    <CheckCircle2 className="h-4 w-4" />
-                                    {bulkApproveText}
-                                </GlassButton>
-                            </div>
-                        </div>
-                    )}
+                    {/* Bulk actions removed for API-driven queue */}
                 </div>
             </LiquidGlassCard>
 
@@ -199,7 +151,7 @@ export default function ApplicationQueue() {
                     <h3 className="text-lg font-semibold text-[var(--label)]">
                         {pendingText} ({filteredEvents.length})
                     </h3>
-                    <GlassButton variant="outline" size="sm" onClick={handleSelectAll} className="gap-2">
+                    <GlassButton variant="outline" size="sm" onClick={handleSelectAll} className="gap-2 flex items-center justify-center">
                         <CheckSquare className="h-4 w-4" />
                         {selectAllText}
                     </GlassButton>
@@ -212,22 +164,73 @@ export default function ApplicationQueue() {
                         icon={FileText}
                     />
                 ) : (
-                    <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                        {filteredEvents.map((event) => (
-                            <div key={event.id} className="relative">
-                                <Checkbox
-                                    checked={selectedEvents.has(event.id)}
-                                    onCheckedChange={() => handleSelectEvent(event.id)}
-                                    className="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur-sm"
-                                />
-                                <EventCard
-                                    event={event}
-                                    variant="regulator"
-                                    showDescription={true}
-                                    sfdaLicense={event.sfda_license}
-                                />
-                            </div>
-                        ))}
+                    <div className="grid gap-4 grid-cols-1">
+                        {filteredEvents.map((event) => {
+                            const isSelected = selectedEventId === event.id;
+                            const title = (language === 'ar' ? event.titleAr : event.titleEn) ?? event.title ?? 'Event';
+                            const organizer = (language === 'ar' ? event.organizerAr : event.organizerEn) ?? 'Organizer';
+
+                            return (
+                                <div key={event.id} onClick={() => onSelectEvent?.(event.id)} className="cursor-pointer">
+                                    <LiquidGlassCard
+                                        blurIntensity="md"
+                                        interactive={true}
+                                        className={`p-4 transition-all ${
+                                            isSelected ? 'ring-2 ring-[var(--apple-blue)] shadow-lg' : ''
+                                        }`}
+                                    >
+                                        <div className="flex items-start justify-between gap-4">
+                                            <div className="flex-1 space-y-2">
+                                                <div className="flex items-start justify-between">
+                                                    <h4 className="text-base font-semibold text-[var(--label)] line-clamp-1">
+                                                        {title}
+                                                    </h4>
+                                                    <Badge variant="outline" className="ml-2 capitalize flex-shrink-0">
+                                                        {event.status.replace('_', ' ')}
+                                                    </Badge>
+                                                </div>
+                                                <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--secondary-label)]">
+                                                    <div className="flex items-center gap-1">
+                                                        <Users className="h-3.5 w-3.5" />
+                                                        <span>{organizer}</span>
+                                                    </div>
+                                                    {event.date && (
+                                                        <div className="flex items-center gap-1">
+                                                            <Clock className="h-3.5 w-3.5" />
+                                                            <span>{new Date(event.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US')}</span>
+                                                        </div>
+                                                    )}
+                                                    {event.specialty && (
+                                                        <div className="flex items-center gap-1">
+                                                            <FileText className="h-3.5 w-3.5" />
+                                                            <span>{getSpecialtyLabel(event.specialty || '', language)}</span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                {event.sfda_license && (
+                                                    <div className="flex items-center gap-2 text-xs">
+                                                        <Badge variant="outline" className="gap-1">
+                                                            <CheckCircle2 className="h-3 w-3" />
+                                                            SFDA: {event.sfda_license}
+                                                        </Badge>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {event.cme_hours && event.cme_hours > 0 && (
+                                                <div className="text-right flex-shrink-0">
+                                                    <div className="text-xs text-[var(--secondary-label)]">
+                                                        {language === 'ar' ? 'ساعات التعليم' : 'CME Hours'}
+                                                    </div>
+                                                    <div className="text-lg font-bold text-[var(--apple-blue)]">
+                                                        {event.cme_hours}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </LiquidGlassCard>
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
             </div>

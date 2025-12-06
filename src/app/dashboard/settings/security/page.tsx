@@ -73,7 +73,7 @@ export default function SecuritySettingsPage() {
                                 minLength={6}
                             />
                         </div>
-                        <Button type="submit">Update Password</Button>
+                        <Button type="submit" className="flex items-center justify-center gap-2">Update Password</Button>
                     </form>
                 </Card>
 
@@ -113,6 +113,11 @@ export default function SecuritySettingsPage() {
         </div>
     );
 }
+
+
+
+
+
 
 
 

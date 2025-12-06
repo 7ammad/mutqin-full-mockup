@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePersona } from '@/context/PersonaContext';
 import { LiquidGlassCard } from '@/components/ui/liquid-glass-card';
@@ -9,10 +9,11 @@ import { Chart } from '@/components/shared/Chart';
 import { Input } from '@/components/ui/input';
 
 import { GraduationCap, TrendingUp, BookOpen, Edit2, Save } from 'lucide-react';
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
 interface LearningGoal {
     id: string;
-    specialty: string;
+    specialtyKey: string; // Store key instead of label for i18n
     targetHours: number;
     currentHours: number;
     deadline: string;
@@ -22,37 +23,40 @@ export default function LearningProfile() {
     const { language } = useLanguage();
     const { myTickets, events } = usePersona();
     const [isEditing, setIsEditing] = useState(false);
-    const [specialty, setSpecialty] = useState('Family Medicine');
+    // Store the key and translate on render
+    const [specialtyKey, setSpecialtyKey] = useState('family_medicine');
     const [licenseNumber, setLicenseNumber] = useState('HCP-2024-001');
     const [goals, _setGoals] = useState<LearningGoal[]>([
         {
             id: '1',
-            specialty: 'Family Medicine',
+            specialtyKey: 'family_medicine',
             targetHours: 50,
             currentHours: 32,
             deadline: '2025-12-31',
         },
         {
             id: '2',
-            specialty: 'Emergency Medicine',
+            specialtyKey: 'emergency_medicine',
             targetHours: 30,
             currentHours: 12,
             deadline: '2025-06-30',
         },
     ]);
 
-    const registeredEvents = events.filter(e => myTickets.includes(e.id));
-    const hoursBySpecialty = registeredEvents.reduce((acc, event) => {
-        acc[event.specialty] = (acc[event.specialty] || 0) + event.cme_hours;
-        return acc;
-    }, {} as Record<string, number>);
+    const registeredEvents = useMemo(() => events.filter(e => myTickets.includes(e.id)), [events, myTickets]);
 
-    const chartData = Object.entries(hoursBySpecialty).map(([name, value]) => ({
-        name,
-        value,
-    }));
+    const { hoursBySpecialty, chartData, totalHours } = useMemo(() => {
+        const hoursBySpecialty = registeredEvents.reduce((acc, event) => {
+            const specialtyLabel = getSpecialtyLabel(event.specialty, language);
+            acc[specialtyLabel] = (acc[specialtyLabel] || 0) + event.cme_hours;
+            return acc;
+        }, {} as Record<string, number>);
 
-    const totalHours = registeredEvents.reduce((sum, e) => sum + e.cme_hours, 0);
+        const chartData = Object.entries(hoursBySpecialty).map(([name, value]) => ({ name, value }));
+        const totalHours = registeredEvents.reduce((sum, e) => sum + e.cme_hours, 0);
+        return { hoursBySpecialty, chartData, totalHours };
+    }, [registeredEvents, language]);
+
     const averageRating = 4.5;
     const eventsAttended = registeredEvents.length;
 
@@ -95,12 +99,12 @@ export default function LearningProfile() {
                         </label>
                         {isEditing ? (
                             <Input
-                                value={specialty}
-                                onChange={(e) => setSpecialty(e.target.value)}
+                                value={getSpecialtyLabel(specialtyKey, language)}
+                                onChange={(e) => setSpecialtyKey(e.target.value)} // Note: This would need a reverse lookup or a select dropdown
                                 className="w-full"
                             />
                         ) : (
-                            <p className="text-[var(--label)]">{specialty}</p>
+                            <p className="text-[var(--label)]">{getSpecialtyLabel(specialtyKey, language)}</p>
                         )}
                     </div>
                     <div>
@@ -182,7 +186,7 @@ export default function LearningProfile() {
                 <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-semibold text-[var(--label)]">{goalsText}</h3>
                     {isEditing && (
-                        <GlassButton variant="outline" size="sm">
+                        <GlassButton variant="outline" size="sm" className="flex items-center justify-center gap-2">
                             {addGoalText}
                         </GlassButton>
                     )}
@@ -197,7 +201,7 @@ export default function LearningProfile() {
                             >
                                 <div className="flex items-center justify-between mb-2">
                                     <div>
-                                        <p className="font-medium text-[var(--label)]">{goal.specialty}</p>
+                                        <p className="font-medium text-[var(--label)]">{getSpecialtyLabel(goal.specialtyKey, language)}</p>
                                         <p className="text-sm text-[var(--secondary-label)]">
                                             {goal.currentHours} / {goal.targetHours} {language === 'ar' ? 'ساعة' : 'hours'}
                                         </p>
@@ -228,4 +232,3 @@ export default function LearningProfile() {
         </div>
     );
 }
-

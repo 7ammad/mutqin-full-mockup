@@ -121,7 +121,7 @@ export default function CertificateGeneration({ eventId }: CertificateGeneration
                     variant="default"
                     onClick={handleGenerate}
                     disabled={!certificateTemplate || generationStatus === 'generating' || attendeesCount <= 0}
-                    className="flex-1"
+                    className="flex-1 items-center justify-center gap-2"
                 >
                     {generationStatus === 'generating' ? (
                         <>
@@ -144,7 +144,7 @@ export default function CertificateGeneration({ eventId }: CertificateGeneration
                     <GlassButton
                         variant="outline"
                         onClick={handleBulkDownload}
-                        className="flex-1"
+                        className="flex-1 items-center justify-center gap-2"
                     >
                         <Download className="w-4 h-4 mr-2" />
                         {bulkDownloadText}

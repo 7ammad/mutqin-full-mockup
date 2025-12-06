@@ -50,7 +50,7 @@ export default function ErrorPage({
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <GlassButton
             onClick={reset}
-            className="gap-2"
+            className="gap-2 flex items-center justify-center"
           >
             <RefreshCw className="h-4 w-4" />
             {retryButton}

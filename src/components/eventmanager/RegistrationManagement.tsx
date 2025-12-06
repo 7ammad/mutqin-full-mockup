@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { QRCode } from '@/components/shared/QRCode';
 import { Download, Mail, Search, UserCheck, UserX } from 'lucide-react';
 import { getEventTitle } from '@/lib/eventTranslations';
+import { getSpecialtyLabel } from "@/lib/i18n/specialties";
 
 interface Registration {
     id: string;
@@ -36,9 +37,9 @@ export default function RegistrationManagement({ eventId }: RegistrationManageme
 
     // Mock registrations
     const [registrations, _setRegistrations] = useState<Registration[]>([
-        { id: '1', name: 'Dr. Sarah Al-Otaibi', email: 'sarah@example.com', licenseNumber: 'HCP-001', specialty: 'Family Medicine', status: 'confirmed', registeredAt: '2025-03-01', ticketId: 'TICKET-001' },
-        { id: '2', name: 'Dr. Ahmed Al-Mansour', email: 'ahmed@example.com', licenseNumber: 'HCP-002', specialty: 'Cardiology', status: 'confirmed', registeredAt: '2025-03-02', ticketId: 'TICKET-002' },
-        { id: '3', name: 'Dr. Fatima Al-Zahra', email: 'fatima@example.com', specialty: 'Pediatrics', status: 'pending', registeredAt: '2025-03-03', ticketId: 'TICKET-003' },
+        { id: '1', name: 'Dr. Sarah Al-Otaibi', email: 'sarah@example.com', licenseNumber: 'HCP-001', specialty: 'family_medicine', status: 'confirmed', registeredAt: '2025-03-01', ticketId: 'TICKET-001' },
+        { id: '2', name: 'Dr. Ahmed Al-Mansour', email: 'ahmed@example.com', licenseNumber: 'HCP-002', specialty: 'cardiology', status: 'confirmed', registeredAt: '2025-03-02', ticketId: 'TICKET-002' },
+        { id: '3', name: 'Dr. Fatima Al-Zahra', email: 'fatima@example.com', specialty: 'pediatrics', status: 'pending', registeredAt: '2025-03-03', ticketId: 'TICKET-003' },
     ]);
 
     const filteredRegistrations = registrations.filter(reg => {
@@ -100,7 +101,7 @@ export default function RegistrationManagement({ eventId }: RegistrationManageme
                 <GlassButton
                     variant="default"
                     onClick={handleDownloadTickets}
-                >
+                 className="flex items-center justify-center gap-2">
                     <Download className="w-4 h-4 mr-2" />
                     {downloadAllText}
                 </GlassButton>

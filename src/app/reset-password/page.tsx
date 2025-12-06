@@ -69,7 +69,7 @@ export default function ResetPasswordPage() {
                 : 'Check your email for a password reset link'}
             </p>
             <Link href="/auth/login">
-              <GlassButton>{t('registration.loginLink')}</GlassButton>
+              <GlassButton className="flex items-center justify-center gap-2">{t('registration.loginLink')}</GlassButton>
             </Link>
           </LiquidGlassCard>
         </div>
@@ -119,7 +119,7 @@ export default function ResetPasswordPage() {
 
             <GlassButton
               type="submit"
-              className="w-full"
+              className="w-full flex items-center justify-center gap-2"
               disabled={isSubmitting}
             >
               {isSubmitting

@@ -21,6 +21,12 @@ export default function VendorView() {
     const [view, setView] = useState<ViewType>('MARKETPLACE');
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
 
+    // Defensive: ensure view is valid, default to MARKETPLACE if unknown
+    const effectiveView: ViewType = [
+        'MARKETPLACE', 'ADVANCED_MARKETPLACE', 'PACKAGES', 'TARGETING', 
+        'CONTENT', 'ANALYTICS', 'ROI', 'COMPLIANCE'
+    ].includes(view) ? view : 'MARKETPLACE';
+
     return (
         <>
             {/* Navigation Tabs */}
@@ -99,17 +105,17 @@ export default function VendorView() {
                 </GlassButton>
             </div>
 
-            {/* Content Views */}
-            {view === 'MARKETPLACE' && (
+            {/* Content Views - Guarded by effectiveView */}
+            {effectiveView === 'MARKETPLACE' && (
                 <MarketplaceFeed onSponsorClick={setSelectedEventId} />
             )}
-            {view === 'ADVANCED_MARKETPLACE' && <AdvancedMarketplace />}
-            {view === 'PACKAGES' && <SponsorshipPackages />}
-            {view === 'TARGETING' && <HCPTargeting />}
-            {view === 'CONTENT' && <ContentCreation />}
-            {view === 'ANALYTICS' && <CampaignAnalytics />}
-            {view === 'ROI' && <ROIReporting />}
-            {view === 'COMPLIANCE' && <ComplianceManagement />}
+            {effectiveView === 'ADVANCED_MARKETPLACE' && <AdvancedMarketplace />}
+            {effectiveView === 'PACKAGES' && <SponsorshipPackages />}
+            {effectiveView === 'TARGETING' && <HCPTargeting />}
+            {effectiveView === 'CONTENT' && <ContentCreation />}
+            {effectiveView === 'ANALYTICS' && <CampaignAnalytics />}
+            {effectiveView === 'ROI' && <ROIReporting />}
+            {effectiveView === 'COMPLIANCE' && <ComplianceManagement />}
 
             {/* Sponsor Modal */}
             <SponsorModal

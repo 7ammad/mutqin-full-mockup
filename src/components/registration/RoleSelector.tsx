@@ -109,7 +109,7 @@ export function RoleSelector({ onRoleSelect }: RoleSelectorProps) {
               </p>
               <GlassButton
                 variant="outline"
-                className="w-full"
+                className="w-full flex items-center justify-center gap-2"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleRoleClick(role);

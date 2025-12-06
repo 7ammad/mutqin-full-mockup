@@ -167,7 +167,7 @@ function RegisterForm() {
 
                     <GlassButton
                         type="submit"
-                        className="w-full"
+                        className="w-full flex items-center justify-center gap-2"
                         disabled={isLoading}
                     >
                         {isLoading ? (language === 'ar' ? 'جاري الإنشاء...' : 'Creating...') : registerButton}
@@ -177,8 +177,7 @@ function RegisterForm() {
                 <div className="mt-6 pt-6 border-t border-[var(--separator)] text-center">
                     <p className="text-sm text-[var(--secondary-label)]">
                         {haveAccount}{' '}
-                        <button
-                            onClick={() => router.push('/auth/login')}
+                        <button onClick={() => router.push('/auth/login')}
                             className="text-[var(--apple-blue)] hover:underline"
                         >
                             {loginLink}
@@ -197,6 +196,20 @@ export default function RegisterPage() {
         </Suspense>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

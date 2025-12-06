@@ -21,7 +21,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
                     <h3 className="text-lg font-semibold leading-none tracking-tight text-[var(--label)]">
                         {title}
                     </h3>
-                    <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
+                    <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8 flex items-center justify-center gap-2">
                         <X className="h-4 w-4" />
                     </Button>
                 </div>

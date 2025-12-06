@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import DemoFlowClient from './DemoFlowClient';
 
 const statusLabels: Record<string, string> = {
@@ -37,6 +38,30 @@ export default function DemoFlowPage() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border rounded p-4 bg-white text-right space-y-2">
+        <h2 className="text-lg font-semibold">لوحة سيناريو منفصلة</h2>
+        <p className="text-sm text-gray-700">
+          هذه شاشة تحكم للعرض التوضيحي. استخدم الروابط للانتقال إلى لوحات الشخصيات للمهام اليومية.
+        </p>
+        <div className="flex flex-wrap gap-2 justify-end">
+          <Link href="/dashboard/organizer" className="px-3 py-2 border rounded text-sm bg-gray-50 hover:bg-gray-100">
+            Organizer
+          </Link>
+          <Link href="/dashboard/regulator" className="px-3 py-2 border rounded text-sm bg-gray-50 hover:bg-gray-100">
+            Regulator
+          </Link>
+          <Link href="/dashboard/event-manager" className="px-3 py-2 border rounded text-sm bg-gray-50 hover:bg-gray-100">
+            Event Manager
+          </Link>
+          <Link href="/dashboard/hcp" className="px-3 py-2 border rounded text-sm bg-gray-50 hover:bg-gray-100">
+            HCP
+          </Link>
+          <Link href="/dashboard/vendor" className="px-3 py-2 border rounded text-sm bg-gray-50 hover:bg-gray-100">
+            Vendor
+          </Link>
         </div>
       </section>
 

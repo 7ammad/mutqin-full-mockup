@@ -203,7 +203,7 @@ export default function EventAssignment({ eventId, onAssign }: EventAssignmentPr
                         <GlassButton
                             variant="default"
                             onClick={handleAssign}
-                            className="w-full"
+                            className="w-full flex items-center justify-center gap-2"
                         >
                             <CheckCircle2 className="w-4 h-4 mr-2" />
                             {assignText}

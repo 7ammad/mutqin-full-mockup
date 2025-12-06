@@ -151,7 +151,7 @@ export default function QRCheckInSystem() {
                             <Camera className="w-4 h-4 mr-2" />
                             {scanQRText}
                         </GlassButton>
-                        <GlassButton variant="outline" className="flex-1">
+                        <GlassButton variant="outline" className="flex-1 items-center justify-center gap-2">
                             <QrCode className="w-4 h-4 mr-2" />
                             {generateQRText}
                         </GlassButton>

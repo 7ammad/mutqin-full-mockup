@@ -59,8 +59,7 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
         const { open, setOpen } = React.useContext(SelectContext);
 
         return (
-            <button
-                ref={ref}
+            <button ref={ref}
                 type="button"
                 onClick={() => setOpen(!open)}
                 className={cn(

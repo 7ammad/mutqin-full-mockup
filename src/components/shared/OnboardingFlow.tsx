@@ -67,9 +67,8 @@ export function OnboardingFlow({
                             </p>
                         </div>
                         {showSkip && onSkip && (
-                            <button
-                                onClick={onSkip}
-                                className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors"
+                            <button onClick={onSkip}
+                                className="p-2 rounded-full hover:bg-[var(--system-fill)] transition-colors inline-flex items-center justify-center"
                             >
                                 <X className="w-5 h-5 text-[var(--secondary-label)]" />
                             </button>
@@ -98,7 +97,7 @@ export function OnboardingFlow({
                             variant="outline"
                             size="default"
                             disabled={isFirstStep}
-                        >
+                         className="flex items-center justify-center gap-2">
                             <ChevronLeft className="w-4 h-4 mr-2" />
                             {language === 'ar' ? 'السابق' : 'Previous'}
                         </GlassButton>
@@ -109,7 +108,7 @@ export function OnboardingFlow({
                                     onClick={onSkip}
                                     variant="outline"
                                     size="default"
-                                >
+                                 className="flex items-center justify-center gap-2">
                                     {language === 'ar' ? 'تخطي' : 'Skip'}
                                 </GlassButton>
                             )}
@@ -117,7 +116,7 @@ export function OnboardingFlow({
                                 onClick={handleNext}
                                 variant="default"
                                 size="default"
-                            >
+                             className="flex items-center justify-center gap-2">
                                 {isLastStep
                                     ? (language === 'ar' ? 'إنهاء' : 'Finish')
                                     : (language === 'ar' ? 'التالي' : 'Next')}

@@ -67,34 +67,58 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw new Error('Role is required');
     }
 
-    // Mock authentication - validate against mock users
-    const mockUser = MOCK_USERS.find(
-      u => u.email === email && u.password === password && u.role === selectedRole
-    );
-    
-    if (mockUser) {
-      const session = {
-        user: mockUser,
-        role: selectedRole,
-        expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 days
-      };
+    try {
+      // Mock authentication - validate against mock users
+      const mockUser = MOCK_USERS.find(
+        u => u.email === email && u.password === password && u.role === selectedRole
+      );
       
-      const sessionStr = JSON.stringify(session);
-      localStorage.setItem('auth_session', sessionStr);
-      // Set cookie for proxy
-      document.cookie = `auth_session=${sessionStr}; path=/; max-age=${7 * 24 * 60 * 60}`;
-      
-      setUser(mockUser);
-      setRole(selectedRole);
-      console.log(`[Auth] Login successful as ${selectedRole}`);
-      
-      // Redirect to intended destination or dashboard
-      const roleSlug = selectedRole.toLowerCase().replace('_', '-');
-      const destination = redirect || `/dashboard/${roleSlug}`;
-      router.push(destination);
-    } else {
-      console.log('[Auth] Login failed: Invalid credentials');
-      throw new Error('Invalid credentials');
+      if (mockUser) {
+        const session = {
+          user: mockUser,
+          role: selectedRole,
+          expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 days
+        };
+        
+        const sessionStr = JSON.stringify(session);
+        
+        // Set localStorage and cookie
+        try {
+          localStorage.setItem('auth_session', sessionStr);
+          document.cookie = `auth_session=${encodeURIComponent(sessionStr)}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
+        } catch (storageError) {
+          console.error('[Auth] Storage error:', storageError);
+          throw new Error('Failed to save session');
+        }
+        
+        setUser(mockUser);
+        setRole(selectedRole);
+        console.log(`[Auth] Login successful as ${selectedRole}`);
+        
+        // Redirect to intended destination or dashboard
+        const roleSlug = selectedRole.toLowerCase().replace('_', '-');
+        const destination = redirect || `/dashboard/${roleSlug}`;
+        
+        // Use window.location as fallback if router.push fails
+        try {
+          router.push(destination);
+          // Also use window.location as backup for mobile browsers
+          setTimeout(() => {
+            if (window.location.pathname === '/auth/login') {
+              window.location.href = destination;
+            }
+          }, 100);
+        } catch (navError) {
+          console.error('[Auth] Navigation error:', navError);
+          window.location.href = destination;
+        }
+      } else {
+        console.log('[Auth] Login failed: Invalid credentials');
+        throw new Error('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('[Auth] Login error:', error);
+      throw error;
     }
   };
 

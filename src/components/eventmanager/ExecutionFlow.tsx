@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { GlassButton } from "@/components/ui/glass-button";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass-card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Clock, Ticket, Award } from "lucide-react";
+import { CheckCircle2, Clock, Ticket, Award, Users, AlertCircle, Activity } from "lucide-react";
 import { api } from "@/lib/api";
 import { useToast } from "@/components/ui/toast-context";
+import { useLanguage } from "@/context/LanguageContext";
+import { getEventAttendanceData } from "@/context/demoStore";
+import type { DemoEvent } from "@/context/demoSeed";
 
 type AssignmentStatus = 'pending' | 'accepted' | 'declined';
 type TicketStatus = 'confirmed' | 'attended';
@@ -16,6 +19,8 @@ type ExecutionFlowProps = {
   eventStatus: string;
   assignmentId?: string;
   assignmentStatus?: AssignmentStatus;
+  onAssignmentUpdated?: () => void;
+  event?: DemoEvent;
 };
 
 const defaults = {
@@ -29,8 +34,11 @@ export default function ExecutionFlow({
   eventStatus,
   assignmentId,
   assignmentStatus: initialAssignmentStatus = 'pending',
+  onAssignmentUpdated,
+  event,
 }: ExecutionFlowProps) {
   const { showToast } = useToast();
+  const { language } = useLanguage();
   const [assignmentStatus, setAssignmentStatus] = useState<AssignmentStatus>(initialAssignmentStatus);
   const [ticketStatus, setTicketStatus] = useState<TicketStatus>('confirmed');
   const [attendanceFinalized, setAttendanceFinalized] = useState<boolean>(false);
@@ -38,6 +46,10 @@ export default function ExecutionFlow({
   const [lastResult, setLastResult] = useState<unknown>(null);
   const [lastError, setLastError] = useState<string>('');
   const normalizedEventStatus = eventStatus.toLowerCase();
+
+  useEffect(() => {
+    setAssignmentStatus(initialAssignmentStatus);
+  }, [initialAssignmentStatus]);
 
   const handleResult = async <T,>(fn: () => Promise<T>) => {
     setLastError('');
@@ -61,6 +73,7 @@ export default function ExecutionFlow({
     );
     if (res && res.ok) {
       setAssignmentStatus('accepted');
+      onAssignmentUpdated?.();
       showToast('Assignment accepted', 'success');
     }
   };
@@ -98,81 +111,170 @@ export default function ExecutionFlow({
     }
   };
 
+  const attendanceData = useMemo(() => getEventAttendanceData(eventId), [eventId]);
+  const errorCount = 0; // No errors in demo for now
+
   const checkInDisabled = assignmentStatus !== 'accepted' || normalizedEventStatus !== 'published';
   const finalizeDisabled = ticketStatus !== 'attended';
   const certDisabled = !attendanceFinalized || ticketStatus !== 'attended' || normalizedEventStatus !== 'approved';
 
   return (
-    <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4 space-y-3">
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="text-lg font-semibold text-[var(--label)]">Execution Flow (demo)</h3>
-          <p className="text-xs text-[var(--secondary-label)]">
-            assignmentId: {assignmentId ?? '—'} · eventId: {eventId} · ticketId: {defaults.ticketId}
-          </p>
+    <div className="space-y-6">
+      {/* Now Operating Panel */}
+      <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <Activity className="h-5 w-5 text-[var(--apple-blue)]" />
+              <h3 className="text-xl font-semibold text-[var(--label)]">
+                {language === 'ar' ? 'التشغيل المباشر' : 'Now Operating'}
+              </h3>
+              <Badge variant="outline" className="bg-[var(--apple-green)]/10 text-[var(--apple-green)] border-[var(--apple-green)]/20">
+                {language === 'ar' ? 'نشط' : 'Active'}
+              </Badge>
+            </div>
+            {event && (
+              <div className="space-y-1">
+                <p className="text-lg font-medium text-[var(--label)]">
+                  {language === 'ar' ? event.titleAr : event.titleEn}
+                </p>
+                <p className="text-sm text-[var(--secondary-label)]">
+                  {language === 'ar' ? event.organizerAr : event.organizerEn}
+                </p>
+                {event.date ? (
+                  <p className="text-xs text-[var(--secondary-label)]">
+                    {new Date(event.date).toLocaleDateString(language === 'ar' ? 'ar-SA' : 'en-US', {
+                      weekday: 'long',
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </p>
+                ) : null}
+              </div>
+            )}
+          </div>
         </div>
-        <div className="flex gap-2 flex-wrap">
-          <Badge variant="outline" className="capitalize">
-            Assignment: {assignmentStatus}
-          </Badge>
-          <Badge variant="outline" className="capitalize">
-            Ticket: {ticketStatus}
-          </Badge>
-          <Badge variant="outline">
-            Finalized: {attendanceFinalized ? 'yes' : 'no'}
-          </Badge>
-          <Badge variant="outline">
-            Event: {normalizedEventStatus}
-          </Badge>
-          <Badge variant="outline">
-            Accreditation: {normalizedEventStatus === 'approved' ? 'approved' : 'not approved'}
-          </Badge>
-        </div>
-      </div>
 
-      <div className="flex flex-wrap gap-2">
-        <GlassButton
-          variant="default"
-          size="sm"
-          onClick={acceptAssignment}
-          disabled={assignmentStatus !== 'pending'}
-        >
-          <CheckCircle2 className="w-4 h-4 mr-2" />
-          Accept Assignment
-        </GlassButton>
-        <GlassButton
-          variant="default"
-          size="sm"
-          onClick={checkIn}
-          disabled={checkInDisabled}
-        >
-          <Ticket className="w-4 h-4 mr-2" />
-          Check-in Ticket
-        </GlassButton>
-        <GlassButton
-          variant="default"
-          size="sm"
-          onClick={finalizeAttendance}
-          disabled={finalizeDisabled}
-        >
-          <Clock className="w-4 h-4 mr-2" />
-          Finalize Attendance
-        </GlassButton>
-        <GlassButton
-          variant="default"
-          size="sm"
-          onClick={issueCertificate}
-          disabled={certDisabled}
-        >
-          <Award className="w-4 h-4 mr-2" />
-          Issue Certificate
-        </GlassButton>
-      </div>
+        {/* Quick KPIs */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+          <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
+                  {language === 'ar' ? 'تم التحقق' : 'Checked In'}
+                </p>
+                <p className="text-2xl font-bold text-[var(--label)]">{attendanceData.checkedInCount}</p>
+                <p className="text-xs text-[var(--secondary-label)] mt-1">
+                  {language === 'ar' ? `من ${attendanceData.totalCount}` : `of ${attendanceData.totalCount}`}
+                </p>
+              </div>
+              <div className="h-10 w-10 rounded-full bg-[var(--apple-blue)]/10 flex items-center justify-center">
+                <Users className="h-5 w-5 text-[var(--apple-blue)]" />
+              </div>
+            </div>
+          </LiquidGlassCard>
+          <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
+                  {language === 'ar' ? 'إجمالي التذاكر' : 'Total Tickets'}
+                </p>
+                <p className="text-2xl font-bold text-[var(--label)]">{attendanceData.totalCount}</p>
+              </div>
+              <div className="h-10 w-10 rounded-full bg-[var(--apple-green)]/10 flex items-center justify-center">
+                <Ticket className="h-5 w-5 text-[var(--apple-green)]" />
+              </div>
+            </div>
+          </LiquidGlassCard>
+          <LiquidGlassCard blurIntensity="md" interactive={false} className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-[var(--secondary-label)] uppercase tracking-wide mb-1">
+                  {language === 'ar' ? 'الأخطاء' : 'Errors'}
+                </p>
+                <p className="text-2xl font-bold text-[var(--label)]">{errorCount}</p>
+              </div>
+              <div className="h-10 w-10 rounded-full bg-[var(--apple-orange)]/10 flex items-center justify-center">
+                <AlertCircle className="h-5 w-5 text-[var(--apple-orange)]" />
+              </div>
+            </div>
+          </LiquidGlassCard>
+        </div>
+      </LiquidGlassCard>
+
+      {/* Execution Flow Actions */}
+      <LiquidGlassCard blurIntensity="lg" interactive={false} className="p-4 space-y-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--label)]">
+              {language === 'ar' ? 'تدفق التنفيذ' : 'Execution Flow'}
+            </h3>
+            <p className="text-xs text-[var(--secondary-label)]">
+              {language === 'ar' ? 'اتبع الخطوات: التحقق من التذاكر → إنهاء الحضور → إصدار الشهادة' : 'Follow steps: Check-in → Finalize → Issue Certificate'}
+            </p>
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            <Badge variant="outline" className="capitalize">
+              {language === 'ar' ? 'التكليف' : 'Assignment'}: {assignmentStatus}
+            </Badge>
+            <Badge variant="outline" className="capitalize">
+              {language === 'ar' ? 'التذكرة' : 'Ticket'}: {ticketStatus}
+            </Badge>
+            <Badge variant="outline">
+              {language === 'ar' ? 'منتهي' : 'Finalized'}: {attendanceFinalized ? (language === 'ar' ? 'نعم' : 'yes') : (language === 'ar' ? 'لا' : 'no')}
+            </Badge>
+            <Badge variant="outline">
+              {language === 'ar' ? 'الفعالية' : 'Event'}: {normalizedEventStatus}
+            </Badge>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          <GlassButton
+            variant="default"
+            size="sm"
+            onClick={acceptAssignment}
+            disabled={assignmentStatus !== 'pending'}
+           className="flex items-center justify-center gap-2">
+            <CheckCircle2 className="w-4 h-4 mr-2" />
+            {language === 'ar' ? 'قبول التكليف' : 'Accept Assignment'}
+          </GlassButton>
+          <GlassButton
+            variant="default"
+            size="sm"
+            onClick={checkIn}
+            disabled={checkInDisabled}
+           className="flex items-center justify-center gap-2">
+            <Ticket className="w-4 h-4 mr-2" />
+            {language === 'ar' ? 'التحقق من التذكرة' : 'Check-in Ticket'}
+          </GlassButton>
+          <GlassButton
+            variant="default"
+            size="sm"
+            onClick={finalizeAttendance}
+            disabled={finalizeDisabled}
+           className="flex items-center justify-center gap-2">
+            <Clock className="w-4 h-4 mr-2" />
+            {language === 'ar' ? 'إنهاء الحضور' : 'Finalize Attendance'}
+          </GlassButton>
+          <GlassButton
+            variant="default"
+            size="sm"
+            onClick={issueCertificate}
+            disabled={certDisabled}
+           className="flex items-center justify-center gap-2">
+            <Award className="w-4 h-4 mr-2" />
+            {language === 'ar' ? 'إصدار الشهادة' : 'Issue Certificate'}
+          </GlassButton>
+        </div>
 
       {certificate && (
         <div className="rounded-lg border bg-white/70 p-3 text-sm flex items-center justify-between">
           <div>
-            <div className="font-semibold text-[var(--label)]">Certificate</div>
+            <div className="font-semibold text-[var(--label)]">
+              {language === 'ar' ? 'الشهادة' : 'Certificate'}
+            </div>
             <div className="text-[var(--secondary-label)]">ID: {certificate.id}</div>
           </div>
           <a
@@ -185,19 +287,7 @@ export default function ExecutionFlow({
           </a>
         </div>
       )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-        <div>
-          <p className="font-semibold text-[var(--label)]">Last result</p>
-          <pre className="bg-white border rounded p-2 overflow-auto">
-            {lastResult ? JSON.stringify(lastResult, null, 2) : '—'}
-          </pre>
-        </div>
-        <div>
-          <p className="font-semibold text-[var(--label)]">Last error</p>
-          <p className="text-[var(--secondary-label)]">{lastError || '—'}</p>
-        </div>
-      </div>
     </LiquidGlassCard>
+    </div>
   );
 }

@@ -173,7 +173,7 @@ function ConfirmResetPasswordPageContent() {
 
             <GlassButton
               type="submit"
-              className="w-full"
+              className="w-full flex items-center justify-center gap-2"
               disabled={isSubmitting}
             >
               {isSubmitting

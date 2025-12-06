@@ -183,7 +183,7 @@ export default function AuditTools() {
                         />
                     </div>
 
-                    <GlassButton onClick={handleScheduleAudit} className="w-full gap-2">
+                    <GlassButton onClick={handleScheduleAudit} className="w-full gap-2 flex items-center justify-center">
                         <Calendar className="h-4 w-4" />
                         {scheduleText}
                     </GlassButton>
@@ -281,7 +281,7 @@ export default function AuditTools() {
                                                 }
                                             </span>
                                             {record.reportUrl && (
-                                                <GlassButton variant="outline" size="sm" className="gap-1">
+                                                <GlassButton variant="outline" size="sm" className="gap-1 flex items-center justify-center">
                                                     <Download className="h-3 w-3" />
                                                     {downloadReportText}
                                                 </GlassButton>

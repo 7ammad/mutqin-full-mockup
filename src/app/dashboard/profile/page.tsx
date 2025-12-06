@@ -15,9 +15,7 @@ export default function ProfilePage() {
     return (
         <div className="container mx-auto px-4 py-8 max-w-2xl">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-[var(--label)] mb-2">
-                    Profile
-                </h1>
+                
                 <p className="text-[var(--secondary-label)]">
                     Manage your account information
                 </p>
@@ -30,7 +28,7 @@ export default function ProfilePage() {
                             <User className="h-10 w-10 text-white" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-semibold text-[var(--label)]">
+                            <h2 className="text-2xl font-bold text-[var(--label)] mb-4">
                                 {userSession.name}
                             </h2>
                             <p className="text-[var(--secondary-label)]">
@@ -78,13 +76,18 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="pt-4 border-t border-[var(--separator)]">
-                        <Button type="submit">Save Changes</Button>
+                        <Button type="submit" className="flex items-center justify-center gap-2">Save Changes</Button>
                     </div>
                 </form>
             </Card>
         </div>
     );
 }
+
+
+
+
+
 
 
 

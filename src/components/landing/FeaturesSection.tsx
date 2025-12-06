@@ -16,7 +16,7 @@ export function FeaturesSection() {
   }
 
   return (
-    <section id="features" className="py-20 px-4 bg-[var(--system-background)]">
+    <section id="why-it-matters" className="py-20 px-4 bg-[var(--system-background)]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[var(--label)] mb-4">

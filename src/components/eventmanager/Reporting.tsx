@@ -85,7 +85,7 @@ export default function Reporting({ eventId }: ReportingProps) {
                     <GlassButton
                         variant="default"
                         onClick={handleGenerateReport}
-                    >
+                     className="flex items-center justify-center gap-2">
                         <FileText className="w-4 h-4 mr-2" />
                         {generateReportText}
                     </GlassButton>
@@ -179,7 +179,7 @@ export default function Reporting({ eventId }: ReportingProps) {
                     <GlassButton
                         variant="default"
                         onClick={handleDownloadReport}
-                        className="flex-1"
+                        className="flex-1 items-center justify-center gap-2"
                     >
                         <Download className="w-4 h-4 mr-2" />
                         {downloadReportText}
@@ -187,7 +187,7 @@ export default function Reporting({ eventId }: ReportingProps) {
                     <GlassButton
                         variant="outline"
                         onClick={handleSendToOrganizer}
-                        className="flex-1"
+                        className="flex-1 items-center justify-center gap-2"
                     >
                         <Send className="w-4 h-4 mr-2" />
                         {sendToOrganizerText}

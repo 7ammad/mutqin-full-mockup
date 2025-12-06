@@ -7,6 +7,7 @@ import { LiquidGlassCard } from '@/components/ui/liquid-glass-card';
 import { Chart } from '@/components/shared/Chart';
 import { Users, CheckCircle2, Clock, TrendingUp, AlertCircle } from 'lucide-react';
 import { getEventTitle } from '@/lib/eventTranslations';
+import { getEventAttendanceData } from '@/context/demoStore';
 
 interface LiveAttendanceDashboardProps {
     eventId: string;
@@ -17,26 +18,29 @@ export default function LiveAttendanceDashboard({ eventId }: LiveAttendanceDashb
     const { events } = usePersona();
     const event = events.find(e => e.id === eventId);
 
-    // Mock live data
+    // Get real attendance data from demoStore
+    const attendanceDataFromStore = getEventAttendanceData(eventId);
     const [attendanceData, setAttendanceData] = useState({
-        totalExpected: 200,
-        checkedIn: 145,
-        checkedInLastHour: 12,
-        averageCheckInTime: 2.5,
-        peakHour: '09:00 - 10:00',
+        totalExpected: attendanceDataFromStore.totalCount,
+        checkedIn: attendanceDataFromStore.checkedInCount,
+        checkedInLastHour: 0, // Will be updated by interval
+        averageCheckInTime: 2.5, // Mock - would come from real data
+        peakHour: '09:00 - 10:00', // Mock - would come from real data
     });
 
-    // Simulate real-time updates
+    // Update from store periodically (simulating real-time updates)
     useEffect(() => {
         const interval = setInterval(() => {
+            const latest = getEventAttendanceData(eventId);
             setAttendanceData(prev => ({
                 ...prev,
-                checkedIn: Math.min(prev.checkedIn + Math.floor(Math.random() * 2), prev.totalExpected),
-                checkedInLastHour: Math.floor(Math.random() * 20),
+                totalExpected: latest.totalCount,
+                checkedIn: latest.checkedInCount,
+                checkedInLastHour: Math.max(0, latest.checkedInCount - prev.checkedIn), // Calculate diff
             }));
         }, 5000);
         return () => clearInterval(interval);
-    }, []);
+    }, [eventId]);
 
     const attendanceRate = (attendanceData.checkedIn / attendanceData.totalExpected) * 100;
     const checkInTimeline = [
@@ -70,13 +74,7 @@ export default function LiveAttendanceDashboard({ eventId }: LiveAttendanceDashb
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h2 className="text-2xl font-bold text-[var(--label)]">{title}</h2>
-                    <p className="text-sm text-[var(--secondary-label)] mt-1">
-                        {getEventTitle(event, language)}
-                    </p>
-                </div>
+            <div className="flex items-center justify-end">
                 <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--apple-red)]/10">
                     <div className="w-2 h-2 rounded-full bg-[var(--apple-red)] animate-pulse" />
                     <span className="text-sm font-medium text-[var(--apple-red)]">{liveText}</span>
