@@ -11,6 +11,10 @@ import { Input } from '@/components/ui/input';
 import { MOCK_USERS } from '@/lib/mockData';
 import { LoadingSkeleton } from '@/components/shared/LoadingSkeleton';
 
+// Force dynamic rendering - prevent caching of login page
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 function LoginForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
